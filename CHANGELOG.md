@@ -49,3 +49,8 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - Scénario GALSS aussi quand les canaux CPS/Vitale pointent un lecteur absent (galss.ini est partagé avec Icanopée,
   toujours installé chez nos clients). Réparation 7b : `galss-autofix.ps1` (réaligne CANAL1 CPS + CANAL2 Vitale).
 - galss-autofix relance JuxtaLink via explorer.exe (non élevé).
+
+## 2026-09-24 (8)
+- PC v0.3.5 : 2e redémarrage forcé pendant Nettoyage (juste après les Cryptolib, donc à l'étape produits Cegedim).
+  Le nettoyage ne désinstalle plus aucun produit Cegedim/jFSE : il les liste (à retirer à la main, hors consultation).
+  Chaque msiexec du nettoyage est tracé AVANT son lancement pour identifier un éventuel coupable.
