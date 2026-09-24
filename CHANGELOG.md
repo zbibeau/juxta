@@ -66,3 +66,7 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - PC v0.3.7 : cas MICA de bout en bout sans ligne de commande. Le MICA x64 fantôme (sources CEGEDIM/JFSE/RarSFX)
   est retiré automatiquement, puis le cache Plugins est vidé et JuxtaLink relancé dans la foulée (7d devient
   automatique quand 7c a réussi). En mode interactif, les questions précisent « taper o » (Entrée seul = non).
+- PC v0.3.8 : « o » tapé à « Désinstaller ce MICA x64 ? » sans effet (DRPARDON, 18:36 — aucune ligne msiexec dans
+  le rapport). Cause non établie (touche tapée d'avance absorbée probable). Désormais : tampon clavier vidé avant
+  chaque question, réponse o/n obligatoire, réponse écrite dans le rapport ; après désinstallation, vérification
+  que le MICA x64 a disparu, sinon KO + commande manuelle affichée.
