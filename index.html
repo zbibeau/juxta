@@ -121,7 +121,7 @@
 </main>
 
 <script>
-  var VERSION = { win: "v0.3.2", mac: "v0.3.1" };
+  var VERSION = { win: "v0.3.3", mac: "v0.3.1" };
   function detect() {
     var p = (navigator.platform || "") + " " + navigator.userAgent;
     if (/Mac/i.test(p) && !/iPhone|iPad/i.test(p)) return "mac";
@@ -158,7 +158,7 @@
       { g:"Sur indication du rapport", ico:"web", alert:true, f:"Autoriser-Odaiji-Chrome.bat", when:"Erreur DRC",
         does:["Corrige l'erreur DRC à la télétransmission","Autorise Odaiji à joindre JuxtaLink (Chrome, Edge, Firefox)","Vérifier ensuite chrome://flags (voir procédure équipe)"], out:"Relancer Chrome ensuite" },
       { g:"Sur indication du rapport", ico:"clean", f:"Nettoyage.bat", when:"Ancien logiciel installé",
-        does:["Pour les postes passés par Cegedim ou jFSE","Retire les FSV et Cryptolib en double","Supprime les restes Cegedim / diagAM"], out:"À lancer après une réparation réussie" },
+        does:["Pour les postes passés par Cegedim ou jFSE","Retire les FSV et Cryptolib en double","Supprime les restes Cegedim / diagAM"], out:"Avec le support uniquement · prise en main à distance jamais touchée" },
       { g:"Sur indication du rapport", ico:"pcsc", f:"SansGalss.bat", when:"Passage PC/SC direct",
         does:["Retire le GALSS x86 et bloque sa réinstallation","Retour arrière automatique si la lecture échoue"] }
     ],

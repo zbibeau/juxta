@@ -34,3 +34,11 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
   hors de l'arbre de processus des scripts (supprime aussi la cause du blocage aux étapes 4/5b).
   Diag : verdict `A_TESTER` (poste configuré, aucun KO, pas de lecture Vitale réussie) au lieu de `UNKNOWN`.
 - Mac v0.3.1 : même étape **5c** (arrêt + redémarrage de JuxtaLink, lecture de contrôle CPS + Vitale) avant le diag Après.
+
+## 2026-09-24 (6) — incident Nettoyage DRSAMITIER
+- Constat : pendant Nettoyage.bat, redémarrage forcé du poste et TeamViewer disparu.
+  Causes probables : désinstalleur non-MSI d'un produit Cegedim lancé en `/S` (peut redémarrer), et/ou TeamViewer
+  (souvent déployé par Cegedim) inclus dans les produits ou dossiers Cegedim supprimés.
+- PC v0.3.3 : outils de prise en main à distance exclus partout (produits, dossiers, entrées Run) ; désinstalleurs
+  non-MSI seulement listés (à faire à la main) ; tous les `msiexec` avec `REBOOT=ReallySuppress` ;
+  Nettoyage.bat affiche un avertissement et attend une confirmation. Page : « Avec le support uniquement ».
