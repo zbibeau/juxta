@@ -23,3 +23,8 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - Page : outils regroupés Nouveau poste / Poste déjà équipé / Sur indication du rapport ;
   libellé « Local Network Access : Odaiji autorisé » ; encadré « Procédure d'installation — équipe »
   (reste manuel : chrome://flags, formation facturation seule ou totale).
+
+## 2026-09-24 (5)
+- PC v0.3.2 : correction du blocage à l'étape 4 (DRSAMITIER). `Start-Process -Wait` attendait aussi les processus
+  enfants ; en scénario SESAM/GALSS le diag relance JuxtaLink (7e), qui ne se ferme jamais -> installeur figé.
+  Les 5 appels du diag passent par `Run-Diag` (`-PassThru` + `WaitForExit()`, n'attend que le diag).
