@@ -28,3 +28,8 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - PC v0.3.2 : correction du blocage à l'étape 4 (DRSAMITIER). `Start-Process -Wait` attendait aussi les processus
   enfants ; en scénario SESAM/GALSS le diag relance JuxtaLink (7e), qui ne se ferme jamais -> installeur figé.
   Les 5 appels du diag passent par `Run-Diag` (`-PassThru` + `WaitForExit()`, n'attend que le diag).
+- PC v0.3.2 (suite, test DRSAMITIER) : nouvelle étape **5c** en fin d'installation — arrêt de JuxtaLink, redémarrage
+  propre puis lecture de contrôle CPS + Vitale (1re lecture Vitale en échec, OK après redémarrage).
+  JuxtaLink est désormais lancé via `explorer.exe` (installeur et diag) : non élevé, dans la session du médecin,
+  hors de l'arbre de processus des scripts (supprime aussi la cause du blocage aux étapes 4/5b).
+  Diag : verdict `A_TESTER` (poste configuré, aucun KO, pas de lecture Vitale réussie) au lieu de `UNKNOWN`.
