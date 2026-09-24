@@ -42,3 +42,10 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - PC v0.3.3 : outils de prise en main à distance exclus partout (produits, dossiers, entrées Run) ; désinstalleurs
   non-MSI seulement listés (à faire à la main) ; tous les `msiexec` avec `REBOOT=ReallySuppress` ;
   Nettoyage.bat affiche un avertissement et attend une confirmation. Page : « Avec le support uniquement ».
+
+## 2026-09-24 (7) — analyse DRSAMITIER après nettoyage
+- PC v0.3.4 : **bug de verdict** — `if (Has "A" -or Has "B")` n'évaluait que A en PowerShell (le reste passait en
+  arguments). Conséquence : `GALSS_MISMATCH` (KO) ignoré, poste déclaré OK. Corrigé par `(Has "A") -or (Has "B")`.
+- Scénario GALSS aussi quand les canaux CPS/Vitale pointent un lecteur absent (galss.ini est partagé avec Icanopée,
+  toujours installé chez nos clients). Réparation 7b : `galss-autofix.ps1` (réaligne CANAL1 CPS + CANAL2 Vitale).
+- galss-autofix relance JuxtaLink via explorer.exe (non élevé).
