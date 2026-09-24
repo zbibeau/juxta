@@ -58,6 +58,14 @@
   .seg { display:inline-flex; background:var(--surface); border-radius:999px; padding:3px }
   .seg button { border:0; background:none; font:600 14px var(--font); color:var(--text-muted); padding:6px 14px; border-radius:999px; cursor:pointer }
   .seg button.on { background:var(--bg); color:var(--primary); box-shadow:0 1px 2px rgba(0,0,0,.08) }
+  .gd { text-transform:none; letter-spacing:0; font-weight:600; color:var(--primary-light) }
+  .team { border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; margin-top:24px }
+  .team h3 { margin:0 0 4px; font-size:17px; font-weight:600 }
+  .team p { margin:0 0 12px; font-size:15px; color:var(--text-muted) }
+  .todo { list-style:none; padding:0; margin:0; display:grid; gap:10px }
+  .todo li { display:flex; gap:12px; align-items:flex-start; background:var(--surface); border-radius:var(--radius); padding:12px 14px; font-size:15px }
+  .todo .n { flex:none; width:26px; height:26px; border-radius:50%; background:var(--bg); color:var(--primary); font-weight:700; display:grid; place-items:center; font-size:14px }
+  .todo b { display:block; font-weight:600; color:var(--text) }
   .out { font-size:13px; color:var(--text-muted); border-top:1px dashed var(--border); padding-top:8px; margin-top:auto }
 </style>
 </head>
@@ -98,6 +106,15 @@
   <p class="h2sub" id="tools-sub"></p>
   <div id="toolbox"></div>
 
+  <div class="team">
+    <h3>Procédure d'installation — équipe MadeForMed</h3>
+    <p>Le kit fait l'installation, la configuration et les vérifications. Il reste à faire à la main :</p>
+    <ul class="todo">
+      <li><span class="n">1</span><div><b>chrome://flags</b>Vérifier le réglage Local Network Access dans Chrome (et edge://flags dans Edge), puis relancer le navigateur.</div></li>
+      <li><span class="n">2</span><div><b>Formation du médecin</b>Facturation seule ou totale, selon l'offre souscrite.</div></li>
+    </ul>
+  </div>
+
   <div class="card soft small warn" style="margin-top:24px">
     Cartes insérées, hors consultation, depuis la session de l'utilisateur habituel du poste. En cas de doute, envoyer les rapports <code>Avant_…txt</code> / <code>Apres_…txt</code> du Bureau au support MadeForMed.
   </div>
@@ -131,38 +148,39 @@
   function svg(k){ return '<svg viewBox="0 0 24 24" aria-hidden="true">'+I[k]+'</svg>'; }
   var TOOLS = {
     win: [
-      { g:"Pour commencer", main:true, ico:"install", f:"Installer-Odaiji-Juxta.bat", when:"Nouveau poste",
-        does:["Installe JuxtaLink 2.2.3 + user.config MadeForMed","Corrige automatiquement sesam.ini, galss.ini et MICA","Disable Local Network Chrome + Edge","Passe le lecteur en PC/SC direct (sans GALSS)"],
+      { g:"Nouveau poste", main:true, ico:"install", f:"Installer-Odaiji-Juxta.bat", when:"Nouveau poste",
+        does:["Installe JuxtaLink 2.2.3 + user.config MadeForMed","Corrige automatiquement sesam.ini, galss.ini et MICA","Local Network Access : Odaiji autorisé (Chrome, Edge, Firefox)","Passe le lecteur en PC/SC direct (sans GALSS)"],
         out:"Rapports Avant_…txt et Apres_…txt sur le Bureau · environ 10 min" },
-      { g:"Pour commencer", ico:"diag", f:"Diag-seul.bat", when:"Poste déjà équipé",
-        does:["Vérifie lecteur, cartes, JuxtaLink et composants","Ne modifie rien sur le poste"], out:"Rapport OdaijiJuxta_…txt sur le Bureau" },
-      { g:"En cas de problème", ico:"repair", f:"Reparer-interactif.bat", when:"Carte non lue",
+      { g:"Poste déjà équipé", ico:"diag", f:"Diag-seul.bat", when:"Poste déjà équipé",
+        does:["Vérifie lecteur, cartes, JuxtaLink et composants","Vérifie Chrome, Edge et la politique Local Network","Ne modifie rien sur le poste"], out:"Rapport sur le Bureau : il indique quel outil lancer ensuite" },
+      { g:"Sur indication du rapport", ico:"repair", f:"Reparer-interactif.bat", when:"Carte non lue",
         does:["Propose chaque correction une par une","Vous validez (o/N) avant toute action"] },
-      { g:"En cas de problème", ico:"web", alert:true, f:"Autoriser-Odaiji-Chrome.bat", when:"Erreur DRC",
-        does:["Corrige l'erreur DRC à la télétransmission","Autorise Odaiji à joindre JuxtaLink (Chrome et Edge)","Remplace le réglage chrome://flags"], out:"Relancer Chrome ensuite" },
-      { g:"En cas de problème", ico:"clean", f:"Nettoyage.bat", when:"Ancien logiciel installé",
+      { g:"Sur indication du rapport", ico:"web", alert:true, f:"Autoriser-Odaiji-Chrome.bat", when:"Erreur DRC",
+        does:["Corrige l'erreur DRC à la télétransmission","Autorise Odaiji à joindre JuxtaLink (Chrome, Edge, Firefox)","Vérifier ensuite chrome://flags (voir procédure équipe)"], out:"Relancer Chrome ensuite" },
+      { g:"Sur indication du rapport", ico:"clean", f:"Nettoyage.bat", when:"Ancien logiciel installé",
         does:["Pour les postes passés par Cegedim ou jFSE","Retire les FSV et Cryptolib en double","Supprime les restes Cegedim / diagAM"], out:"À lancer après une réparation réussie" },
-      { g:"En cas de problème", ico:"pcsc", f:"SansGalss.bat", when:"Passage PC/SC direct",
+      { g:"Sur indication du rapport", ico:"pcsc", f:"SansGalss.bat", when:"Passage PC/SC direct",
         does:["Retire le GALSS x86 et bloque sa réinstallation","Retour arrière automatique si la lecture échoue"] }
     ],
     mac: [
-      { g:"Pour commencer", main:true, ico:"install", f:"Installer-Odaiji-Juxta.command", when:"Nouveau poste",
-        does:["Télécharge et installe JuxtaLink 2.2.3 + plugin SSV","Écrit le user.config MadeForMed","Régénère galss.ini et réactive Gatekeeper","Disable Local Network Chrome + Edge"],
+      { g:"Nouveau poste", main:true, ico:"install", f:"Installer-Odaiji-Juxta.command", when:"Nouveau poste",
+        does:["Télécharge et installe JuxtaLink 2.2.3 + plugin SSV","Écrit le user.config MadeForMed","Régénère galss.ini et réactive Gatekeeper","Local Network Access : Odaiji autorisé (Chrome, Edge, Firefox)"],
         out:"Rapports Avant_…txt et Apres_…txt sur le Bureau · environ 10 min (Internet requis)" },
-      { g:"Pour commencer", ico:"diag", f:"Diag-seul.command", when:"Poste déjà équipé",
-        does:["Vérifie lecteur, cartes, JuxtaLink et plugin","Ne modifie rien sur le poste"], out:"Rapport sur le Bureau" },
-      { g:"En cas de problème", ico:"repair", f:"Reparer-interactif.command", when:"Carte non lue",
+      { g:"Poste déjà équipé", ico:"diag", f:"Diag-seul.command", when:"Poste déjà équipé",
+        does:["Vérifie lecteur, cartes, JuxtaLink et plugin","Vérifie Chrome, Edge et la politique Local Network","Ne modifie rien sur le poste"], out:"Rapport sur le Bureau : il indique quel outil lancer ensuite" },
+      { g:"Sur indication du rapport", ico:"repair", f:"Reparer-interactif.command", when:"Carte non lue",
         does:["Propose chaque correction une par une","Retire l'agent jFSE si besoin (avec accord)"] },
-      { g:"En cas de problème", ico:"web", alert:true, f:"Autoriser-Odaiji-Chrome.command", when:"Erreur DRC",
-        does:["Corrige l'erreur DRC à la télétransmission","Autorise Odaiji à joindre JuxtaLink (Chrome et Edge)","Remplace le réglage chrome://flags"], out:"Relancer Chrome ensuite" },
-      { g:"En cas de problème", ico:"card", f:"Reparer-lecteur.command", when:"Lecteur « une fois sur deux »",
+      { g:"Sur indication du rapport", ico:"web", alert:true, f:"Autoriser-Odaiji-Chrome.command", when:"Erreur DRC",
+        does:["Corrige l'erreur DRC à la télétransmission","Autorise Odaiji à joindre JuxtaLink (Chrome, Edge, Firefox)","Vérifier ensuite chrome://flags (voir procédure équipe)"], out:"Relancer Chrome ensuite" },
+      { g:"Sur indication du rapport", ico:"card", f:"Reparer-lecteur.command", when:"Lecteur « une fois sur deux »",
         does:["Réaligne galss.ini sur les fentes du lecteur","Utile après un redémarrage ou un rebranchement"] }
     ]
   };
+  var GD = { "Nouveau poste":"l'équipe", "Poste déjà équipé":"l'équipe, en premier", "Sur indication du rapport":"selon le diagnostic" };
   function render(k){
     var h="", last="";
     TOOLS[k].forEach(function(t){
-      if (t.g!==last){ if(last) h+="</div>"; h+='<div class="group">'+t.g+'</div><div class="tools">'; last=t.g; }
+      if (t.g!==last){ if(last) h+="</div>"; h+='<div class="group">'+t.g+(GD[t.g]?' <span class="gd">· '+GD[t.g]+'</span>':'')+'</div><div class="tools">'; last=t.g; }
       h+='<div class="tool'+(t.main?' main':'')+(t.alert?' alert':'')+'"><div class="tool-head"><div class="ico">'+svg(t.ico)+'</div><div><div class="tname">'+t.f+'</div><span class="when">'+t.when+'</span></div></div>'
         +'<ul class="does">'+t.does.map(function(d){return "<li>"+d+"</li>";}).join("")+'</ul>'
         +(t.out?'<div class="out">'+t.out+'</div>':'')+'</div>';

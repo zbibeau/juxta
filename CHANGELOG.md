@@ -15,3 +15,11 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
 ## 2026-09-24 (3)
 - Page : section « Que contient le kit ? » (cartes par fichier : quand l'utiliser, ce qu'il fait, résultat), sélecteur Windows / Mac ; remplace la liste « Autres situations ».
+
+## 2026-09-24 (4)
+- PC + Mac : Autoriser-Odaiji-Chrome v1.1 — ajout Firefox 145+ (politique LocalNetworkAccess.SkipDomains :
+  app.odaiji.co, *.odaiji.co, *.madeformed.fr, localhost, 127.0.0.1). Chrome/Edge inchangés. Partie Firefox
+  isolée (try/catch) : un échec n'interrompt pas l'installeur. Vérification : about:policies.
+- Page : outils regroupés Nouveau poste / Poste déjà équipé / Sur indication du rapport ;
+  libellé « Local Network Access : Odaiji autorisé » ; encadré « Procédure d'installation — équipe »
+  (reste manuel : chrome://flags, formation facturation seule ou totale).
