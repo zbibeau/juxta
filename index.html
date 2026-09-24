@@ -132,7 +132,7 @@
   var TOOLS = {
     win: [
       { g:"Pour commencer", main:true, ico:"install", f:"Installer-Odaiji-Juxta.bat", when:"Nouveau poste",
-        does:["Installe JuxtaLink 2.2.3 et la configuration MadeForMed","Corrige automatiquement sesam.ini, galss.ini et MICA","Autorise Odaiji dans Chrome et Edge","Passe le lecteur en PC/SC direct (sans GALSS)"],
+        does:["Installe JuxtaLink 2.2.3 + user.config MadeForMed","Corrige automatiquement sesam.ini, galss.ini et MICA","Disable Local Network Chrome + Edge","Passe le lecteur en PC/SC direct (sans GALSS)"],
         out:"Rapports Avant_…txt et Apres_…txt sur le Bureau · environ 10 min" },
       { g:"Pour commencer", ico:"diag", f:"Diag-seul.bat", when:"Poste déjà équipé",
         does:["Vérifie lecteur, cartes, JuxtaLink et composants","Ne modifie rien sur le poste"], out:"Rapport OdaijiJuxta_…txt sur le Bureau" },
@@ -147,7 +147,7 @@
     ],
     mac: [
       { g:"Pour commencer", main:true, ico:"install", f:"Installer-Odaiji-Juxta.command", when:"Nouveau poste",
-        does:["Télécharge et installe JuxtaLink 2.2.3 + plugin SSV","Écrit la configuration MadeForMed","Régénère galss.ini et réactive Gatekeeper","Autorise Odaiji dans Chrome et Edge"],
+        does:["Télécharge et installe JuxtaLink 2.2.3 + plugin SSV","Écrit le user.config MadeForMed","Régénère galss.ini et réactive Gatekeeper","Disable Local Network Chrome + Edge"],
         out:"Rapports Avant_…txt et Apres_…txt sur le Bureau · environ 10 min (Internet requis)" },
       { g:"Pour commencer", ico:"diag", f:"Diag-seul.command", when:"Poste déjà équipé",
         does:["Vérifie lecteur, cartes, JuxtaLink et plugin","Ne modifie rien sur le poste"], out:"Rapport sur le Bureau" },
