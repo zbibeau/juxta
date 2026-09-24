@@ -12,3 +12,6 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
 ## 2026-09-24 (2)
 - Mac : sources.conf pointe sur la release GitHub `juxta-2.2.3` (pkg + plugin SSV 4.1.1.0) au lieu de Dropbox.
+
+## 2026-09-24 (3)
+- Page : section « Que contient le kit ? » (cartes par fichier : quand l'utiliser, ce qu'il fait, résultat), sélecteur Windows / Mac ; remplace la liste « Autres situations ».
