@@ -70,3 +70,11 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
   le rapport). Cause non établie (touche tapée d'avance absorbée probable). Désormais : tampon clavier vidé avant
   chaque question, réponse o/n obligatoire, réponse écrite dans le rapport ; après désinstallation, vérification
   que le MICA x64 a disparu, sinon KO + commande manuelle affichée.
+
+## 2026-09-24 (11)
+- PC v0.3.9 : **Neutraliser-Cegedim.bat** / **Restaurer-Cegedim.bat**. Coupe le lancement des restes Cegedim / jFSE
+  (entrées Run, raccourcis Démarrage, services, tâches planifiées) et arrête ClmLive / java lancé depuis un dossier
+  Cegedim/jFSE. Aucune désinstallation, aucun redémarrage ; journal JSON écrit avant chaque action
+  (C:\ProgramData\MadeForMed\CegedimNeutralise) ; restauration à l'identique. Jamais touchés : outils de prise en
+  main à distance, JuxtaLink, Icanopée, amelipro, composants GIE. Le diag le suggère quand ClmLive/java sont actifs.
+- Constat terrain (3 postes) : PERFORMANCE 0-1 s malgré les FSV/Cryptolib orphelines -> pas de nettoyage systématique.
