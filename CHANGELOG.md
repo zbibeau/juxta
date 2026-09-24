@@ -33,3 +33,4 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
   JuxtaLink est désormais lancé via `explorer.exe` (installeur et diag) : non élevé, dans la session du médecin,
   hors de l'arbre de processus des scripts (supprime aussi la cause du blocage aux étapes 4/5b).
   Diag : verdict `A_TESTER` (poste configuré, aucun KO, pas de lecture Vitale réussie) au lieu de `UNKNOWN`.
+- Mac v0.3.1 : même étape **5c** (arrêt + redémarrage de JuxtaLink, lecture de contrôle CPS + Vitale) avant le diag Après.
