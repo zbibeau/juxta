@@ -44,13 +44,13 @@
   <div class="card" id="main">
     <div class="pill" id="detected"></div>
     <div class="row">
-      <a class="btn" id="dl" href="#">Télécharger</a>
-      <a class="btn alt" id="other" href="#">Autre système</a>
+      <a class="btn" id="dl-win" href="kits/Odaiji_Juxta_PC.zip" download>Télécharger le kit Windows</a>
+      <a class="btn" id="dl-mac" href="kits/Odaiji_Juxta_Mac.zip" download>Télécharger le kit Mac</a>
     </div>
     <div class="os" id="osline"></div>
   </div>
 
-  <div class="card" id="steps-win" hidden>
+  <div class="card" id="steps-win">
     <strong>Windows — 3 étapes</strong>
     <ol>
       <li>Clic droit sur le fichier téléchargé → <strong>Extraire tout…</strong></li>
@@ -66,7 +66,7 @@
     </details>
   </div>
 
-  <div class="card" id="steps-mac" hidden>
+  <div class="card" id="steps-mac">
     <strong>Mac — 3 étapes</strong>
     <ol>
       <li>Double-clic sur le zip téléchargé pour l'extraire, puis ouvrir le dossier.</li>
@@ -89,31 +89,20 @@
 </main>
 
 <script>
-  // === À RENSEIGNER : liens de téléchargement (Dropbox : terminer par dl=1) ===
-  var LINKS = {
-    win: "kits/Odaiji_Juxta_PC.zip",
-    mac: "kits/Odaiji_Juxta_Mac.zip"
-  };
   var VERSION = { win: "v0.3.1", mac: "v0.3" };
-
   function detect() {
     var p = (navigator.platform || "") + " " + navigator.userAgent;
     if (/Mac/i.test(p) && !/iPhone|iPad/i.test(p)) return "mac";
     if (/Win/i.test(p)) return "win";
     return null;
   }
-  function show(os) {
-    var isWin = os === "win";
-    document.getElementById("detected").textContent = (isWin ? "Kit Windows " : "Kit Mac ") + VERSION[os];
-    document.getElementById("dl").href = LINKS[os];
-    document.getElementById("dl").textContent = "Télécharger le kit " + (isWin ? "Windows" : "Mac");
-    document.getElementById("other").textContent = isWin ? "Je suis sur Mac" : "Je suis sur Windows";
-    document.getElementById("other").onclick = function (e) { e.preventDefault(); show(isWin ? "mac" : "win"); };
-    document.getElementById("steps-win").hidden = !isWin;
-    document.getElementById("steps-mac").hidden = isWin;
-    document.getElementById("osline").textContent = "Système détecté : " + (isWin ? "Windows" : "macOS") + ". Si ce n'est pas le bon, utilisez le second bouton.";
-  }
-  show(detect() || "win");
+  var os = detect();
+  var win = document.getElementById("dl-win"), mac = document.getElementById("dl-mac");
+  win.textContent += " " + VERSION.win; mac.textContent += " " + VERSION.mac;
+  if (os === "mac") { win.classList.add("alt"); document.getElementById("steps-win").before(document.getElementById("steps-mac")); }
+  else if (os === "win") { mac.classList.add("alt"); }
+  document.getElementById("detected").textContent = os ? ("Système détecté : " + (os === "mac" ? "macOS" : "Windows")) : "Choisissez votre système";
+  document.getElementById("osline").textContent = "Les deux kits sont disponibles ; le bouton en surbrillance correspond à votre système.";
 </script>
 </body>
 </html>
