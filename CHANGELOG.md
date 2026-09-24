@@ -61,3 +61,8 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
   Le diag refusait la désinstallation en auto (source non CEGEDIM/JFSE).
 - PC v0.3.6 : MICA x64 de source `RarSFX` désinstallé automatiquement (même famille que DRSAMITIER / DR-CARRE).
   Filet `GALSS_REVERT` désactivé quand l'échec a une autre cause connue (MICA, SESAM, READER).
+
+## 2026-09-24 (10)
+- PC v0.3.7 : cas MICA de bout en bout sans ligne de commande. Le MICA x64 fantôme (sources CEGEDIM/JFSE/RarSFX)
+  est retiré automatiquement, puis le cache Plugins est vidé et JuxtaLink relancé dans la foulée (7d devient
+  automatique quand 7c a réussi). En mode interactif, les questions précisent « taper o » (Entrée seul = non).
