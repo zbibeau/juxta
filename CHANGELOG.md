@@ -54,3 +54,10 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - PC v0.3.5 : 2e redémarrage forcé pendant Nettoyage (juste après les Cryptolib, donc à l'étape produits Cegedim).
   Le nettoyage ne désinstalle plus aucun produit Cegedim/jFSE : il les liste (à retirer à la main, hors consultation).
   Chaque msiexec du nettoyage est tracé AVANT son lancement pour identifier un éventuel coupable.
+
+## 2026-09-24 (9) — DRPARDON
+- Cas : `mica x64 4.01.00` {e01e10c5…} (source RarSFX0) porte le même code produit que le MICA x86 4.01.00 du plugin
+  -> installation MICA x86 refusée (1638), Vitale « présente : False », « Erreur dans la détection des slots ».
+  Le diag refusait la désinstallation en auto (source non CEGEDIM/JFSE).
+- PC v0.3.6 : MICA x64 de source `RarSFX` désinstallé automatiquement (même famille que DRSAMITIER / DR-CARRE).
+  Filet `GALSS_REVERT` désactivé quand l'échec a une autre cause connue (MICA, SESAM, READER).
