@@ -78,3 +78,5 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
   (C:\ProgramData\MadeForMed\CegedimNeutralise) ; restauration à l'identique. Jamais touchés : outils de prise en
   main à distance, JuxtaLink, Icanopée, amelipro, composants GIE. Le diag le suggère quand ClmLive/java sont actifs.
 - Constat terrain (3 postes) : PERFORMANCE 0-1 s malgré les FSV/Cryptolib orphelines -> pas de nettoyage systématique.
+- Restaurer-Cegedim.bat retiré du kit (demande Vivien). Le retour arrière reste possible pour le support :
+  `powershell -ExecutionPolicy Bypass -File Neutraliser-Cegedim.ps1 -Restaurer` (journal conservé).
