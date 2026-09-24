@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Odaiji × JuxtaLink — installation et dépannage</title>
+<style>
+  :root { --ink:#1b2430; --muted:#5f6b7a; --accent:#1f7a5c; --bg:#f6f8f7; --card:#ffffff; --line:#e3e8e6; }
+  @media (prefers-color-scheme: dark) { :root { --ink:#eef2f1; --muted:#a8b3ae; --accent:#5cc79e; --bg:#131917; --card:#1c2320; --line:#2b3531; } }
+  * { box-sizing:border-box } body { margin:0; font:16px/1.5 -apple-system,Segoe UI,Roboto,sans-serif; color:var(--ink); background:var(--bg) }
+  main { max-width:680px; margin:0 auto; padding:48px 20px 64px }
+  h1 { font-size:26px; margin:0 0 6px } .sub { color:var(--muted); margin:0 0 28px }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin-bottom:18px }
+  .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:14px 22px; border-radius:10px; font-size:17px }
+  .btn.alt { background:transparent; color:var(--accent); border:1px solid var(--accent) }
+  .os { font-size:13px; color:var(--muted); margin-top:10px }
+  ol { padding-left:20px; margin:10px 0 0 } li { margin:6px 0 }
+  code { background:rgba(127,127,127,.15); padding:2px 6px; border-radius:6px; font-size:14px }
+  details { margin-top:14px } summary { cursor:pointer; color:var(--accent); font-weight:600 }
+  .row { display:flex; gap:12px; flex-wrap:wrap; margin-top:8px }
+  .small { font-size:13px; color:var(--muted) }
+</style>
+</head>
+<body>
+<main>
+  <h1>Odaiji × JuxtaLink</h1>
+  <p class="sub">Installation, vérification et dépannage du lecteur de cartes sur votre poste.</p>
+
+  <div class="card" id="main">
+    <div id="detected"></div>
+    <div class="row">
+      <a class="btn" id="dl" href="#">Télécharger</a>
+      <a class="btn alt" id="other" href="#">Autre système</a>
+    </div>
+    <div class="os" id="osline"></div>
+  </div>
+
+  <div class="card" id="steps-win" hidden>
+    <strong>Windows — 3 étapes</strong>
+    <ol>
+      <li>Clic droit sur le fichier téléchargé → <strong>Extraire tout…</strong></li>
+      <li>Ouvrir le dossier extrait → double-clic sur <code>Installer-Odaiji-Juxta.bat</code> (nouveau poste) ou <code>Diag-seul.bat</code> (poste déjà équipé) → accepter la fenêtre Windows.</li>
+      <li>Quand le script le demande : insérer CPS + Vitale, faire une lecture dans Odaiji, puis Entrée. Le rapport apparaît sur le Bureau.</li>
+    </ol>
+    <details><summary>Autres situations</summary>
+      <ul>
+        <li>Carte non lue sur un poste équipé → <code>Reparer-interactif.bat</code></li>
+        <li>Erreur DRC à la télétransmission → <code>Autoriser-Odaiji-Chrome.bat</code>, puis relancer Chrome</li>
+        <li>Poste ayant eu un autre logiciel (Cegedim, jFSE…) → <code>Nettoyage.bat</code> après réparation</li>
+      </ul>
+    </details>
+  </div>
+
+  <div class="card" id="steps-mac" hidden>
+    <strong>Mac — 3 étapes</strong>
+    <ol>
+      <li>Double-clic sur le zip téléchargé pour l'extraire, puis ouvrir le dossier.</li>
+      <li>Ouvrir <strong>Terminal</strong>, taper <code>cd </code> (avec un espace), glisser le dossier dans la fenêtre, Entrée, puis coller :<br>
+        <code>chmod +x *.command *.sh && xattr -dr com.apple.quarantine .</code></li>
+      <li>Double-clic sur <code>Installer-Odaiji-Juxta.command</code> (nouveau poste) ou <code>Diag-seul.command</code> (poste équipé) → mot de passe admin. Quand le script le demande : CPS + Vitale insérées, lecture dans Odaiji, puis Entrée.</li>
+    </ol>
+    <details><summary>Autres situations</summary>
+      <ul>
+        <li>Carte non lue sur un poste équipé → <code>Reparer-interactif.command</code></li>
+        <li>Erreur DRC à la télétransmission → <code>Autoriser-Odaiji-Chrome.command</code>, puis relancer Chrome</li>
+        <li>Lecteur qui marche « une fois sur deux » → <code>Reparer-lecteur.command</code> sur le Bureau</li>
+      </ul>
+    </details>
+  </div>
+
+  <div class="card small">
+    Cartes insérées, hors consultation, depuis la session de l'utilisateur habituel du poste. En cas de doute, envoyer les rapports <code>Avant_…txt</code> / <code>Apres_…txt</code> du Bureau au support MadeForMed.
+  </div>
+</main>
+
+<script>
+  // === À RENSEIGNER : liens de téléchargement (Dropbox : terminer par dl=1) ===
+  var LINKS = {
+    win: "kits/Odaiji_Juxta_PC.zip",
+    mac: "kits/Odaiji_Juxta_Mac.zip"
+  };
+  var VERSION = { win: "v0.3.1", mac: "v0.3" };
+
+  function detect() {
+    var p = (navigator.platform || "") + " " + navigator.userAgent;
+    if (/Mac/i.test(p) && !/iPhone|iPad/i.test(p)) return "mac";
+    if (/Win/i.test(p)) return "win";
+    return null;
+  }
+  function show(os) {
+    var isWin = os === "win";
+    document.getElementById("detected").innerHTML = "<strong>" + (isWin ? "Kit Windows" : "Kit Mac") + "</strong> " + VERSION[os];
+    document.getElementById("dl").href = LINKS[os];
+    document.getElementById("dl").textContent = "Télécharger le kit " + (isWin ? "Windows" : "Mac");
+    document.getElementById("other").textContent = isWin ? "Je suis sur Mac" : "Je suis sur Windows";
+    document.getElementById("other").onclick = function (e) { e.preventDefault(); show(isWin ? "mac" : "win"); };
+    document.getElementById("steps-win").hidden = !isWin;
+    document.getElementById("steps-mac").hidden = isWin;
+    document.getElementById("osline").textContent = "Système détecté : " + (isWin ? "Windows" : "macOS") + ". Si ce n'est pas le bon, utilisez le second bouton.";
+  }
+  show(detect() || "win");
+</script>
+</body>
+</html>
