@@ -112,3 +112,10 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - Liste des outils mise à jour : installeur (faux MICA x64, Cegedim, redémarrage final), Autoriser (*.juxta.cloud,
   vérification chrome://policy, lien vers l'outil Mac seul), Reparer-lecteur.bat ajouté côté Windows,
   Nettoyage présenté comme rarement utile. Procédure équipe : chrome://policy (flags obsolètes depuis Chrome 153).
+
+## 2026-09-25 — PC v0.3.13 (Dr Neyens)
+- Constat (installation manuelle) : ERR_TIMED_OUT sur https://localhost:1234 ; le port 1234 est tenu par
+  fsenxt.exe (Affid Systèmes), pas par JuxtaLink. Odaiji parle au mauvais programme : connexion acceptée, aucune
+  réponse (CLOSE_WAIT), timeout ~10 s ; fsenxt arrêté -> échec immédiat car JuxtaLink n'écoute pas.
+- Diag : section 4 vérifie quel programme écoute sur le port JuxtaLink (user.config, 1234 par défaut) ;
+  autre programme -> KO PORT_CONFLICT, scénario PORT (prioritaire après READER).
