@@ -137,3 +137,10 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
   Le diag ne vérifiait que les répertoires de sesam.ini. Il contrôle maintenant la section [MGC], sa clé
   RepertoireConfigTrace et la présence de log4crc.xml ; sinon KO SESAM_MGC -> sesam.ini régénéré (7a, sauvegarde .bak)
   avec [MGC] + log4crc.xml.
+
+## 2026-09-25 — PC v0.3.16 (Dr Neyens, erreur MGC persistante)
+- sesam.ini généré en chemins ABSOLUS (C:\ProgramData\santesocial\fsv\<v>\…) : certaines FSV ne développent pas
+  %ALLUSERSPROFILE% -> log4crc.xml « introuvable » alors que le diag (qui développe) le voyait. Section [MGC] en majuscules.
+- log4crc.xml créé dans le conf de chaque version FSV présente (le plugin peut utiliser une autre version).
+- Diag : KO si RepertoireConfigTrace contient une variable %…% (-> régénération) ; signale tout autre sesam.ini
+  trouvé sous santesocial.
