@@ -96,3 +96,12 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
   relançait JuxtaLink ; le processus relancé gardait la sortie ouverte -> attente infinie.
 - 7b : galss-autofix lancé comme processus séparé (fenêtre cachée), attente limitée à 60 s, résultat lu dans son
   journal (ProgramData\MadeForMed\galss-autofix.log), option -NoRelaunch (la relance est faite par 7e / 5c).
+
+## 2026-09-25 — PC v0.3.12 / Mac v0.3.2 (GERBAL)
+- DRC sous Chrome 153 malgré la politique LNA (Odaiji) et chrome://flags, alors que Firefox passe.
+  Hypothèse : la requête vers JuxtaLink part d'une page/iframe *.juxta.cloud (serveurs DRC Juxta), absente de la
+  liste Chrome (autorisation par site d'origine) ; Firefox passe car sa liste inclut localhost (côté cible).
+  Les flags LNA de Chrome ne sont plus fiables après M152 (l'opt-out temporaire est retiré après M152).
+- Autoriser-Odaiji-Chrome : ajout de https://[*.]juxta.cloud (Chrome/Edge) et *.juxta.cloud (Firefox).
+  Diag : WARN si la politique ne contient pas juxta.cloud.
+- certutil -silent -scinfo (diag + galss-autofix) : plus de fenêtre PIN possible (blocage 7b GERBAL, galss.ini non réaligné).
