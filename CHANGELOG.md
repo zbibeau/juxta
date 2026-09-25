@@ -129,3 +129,5 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
   Si non : KO « conflit de port », rien modifié. Jamais touchés : composants Windows, Juxta, Icanopée, santesocial,
   outils de prise en main à distance.
 - Neutraliser-Cegedim.ps1 v1.1 : paramètres -Nom / -Motif (générique), journal distinct par éditeur.
+- Reparer-lecteur.bat : utilisait uniquement C:\ProgramData\MadeForMed\galss-autofix.ps1 (présent seulement avec
+  -WithAutofix) -> échouait depuis le kit. Utilise maintenant le script du dossier du kit, sinon celui de ProgramData.
