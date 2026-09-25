@@ -154,3 +154,9 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
   (chemins absolus). Nouveau scénario TABLES dans le verdict.
 - Constat annexe : le port de JuxtaLink était 1230 dans la config manuelle (Odaiji appelle 1234) ; corrigé par
   notre user.config.
+
+## 2026-09-25 — PC v0.3.18
+- Filet GALSS_REVERT déclenché à tort sur POSTE1 (échec dû aux tables srt manquantes, verdict affiché GALSS) :
+  il ne s'applique plus dès qu'une autre cause connue est présente (tables, sesam.ini, MGC, MICA, port).
+- Question ouverte : sur POSTE1 (FSV 1.40.14), l'erreur MGC persistait avec un C:\Windows\sesam.ini correct ;
+  il existe aussi C:\ProgramData\santesocial\fsv\1.40.14\conf\sesam.ini. Vérifier lequel la FSV 1.40.14 lit.
