@@ -80,3 +80,13 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - Constat terrain (3 postes) : PERFORMANCE 0-1 s malgré les FSV/Cryptolib orphelines -> pas de nettoyage systématique.
 - Restaurer-Cegedim.bat retiré du kit (demande Vivien). Le retour arrière reste possible pour le support :
   `powershell -ExecutionPolicy Bypass -File Neutraliser-Cegedim.ps1 -Restaurer` (journal conservé).
+
+## 2026-09-25 — v0.3.10 (PC)
+- Constat DRPARDON : après retrait du MICA x64, le « Module lecteur de cartes » Cegedim affiche « La librairie MICA
+  n'est pas installée sur votre poste ! ». Le MICA x64 servait à Cegedim.
+- Règle : le MICA x64 n'est retiré que si le médecin n'utilise plus Cegedim ; les restes Cegedim sont alors
+  neutralisés dans la foulée (Neutraliser-Cegedim.ps1 -Auto, sans désinstallation). Sinon : MICA x64 conservé et
+  KO « conflit MICA x64 Cegedim / MICA x86 Juxta, à remonter à Juxta ».
+- Installeur : étape 1b, une seule question si des restes Cegedim sont détectés (« le médecin a-t-il arrêté
+  d'utiliser tout logiciel Cegedim ? »), réponse transmise au diag (-SansCegedim).
+- Reparer-interactif : même question posée avant la désinstallation du MICA x64.

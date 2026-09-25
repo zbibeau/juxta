@@ -121,7 +121,7 @@
 </main>
 
 <script>
-  var VERSION = { win: "v0.3.9", mac: "v0.3.1" };
+  var VERSION = { win: "v0.3.10", mac: "v0.3.1" };
   function detect() {
     var p = (navigator.platform || "") + " " + navigator.userAgent;
     if (/Mac/i.test(p) && !/iPhone|iPad/i.test(p)) return "mac";
@@ -150,7 +150,7 @@
     win: [
       { g:"Nouveau poste", main:true, ico:"install", f:"Installer-Odaiji-Juxta.bat", when:"Nouveau poste",
         does:["Installe JuxtaLink 2.2.3 + user.config MadeForMed","Corrige automatiquement sesam.ini, galss.ini et MICA","Local Network Access : Odaiji autorisé (Chrome, Edge, Firefox)","Passe le lecteur en PC/SC direct (sans GALSS)"],
-        out:"Rapports Avant_…txt et Apres_…txt sur le Bureau · environ 10 min" },
+        out:"Rapports Avant_…txt et Apres_…txt sur le Bureau · environ 10 min · 1 question si un ancien logiciel Cegedim est détecté" },
       { g:"Poste déjà équipé", ico:"diag", f:"Diag-seul.bat", when:"Poste déjà équipé",
         does:["Vérifie lecteur, cartes, JuxtaLink et composants","Vérifie Chrome, Edge et la politique Local Network","Ne modifie rien sur le poste"], out:"Rapport sur le Bureau : il indique quel outil lancer ensuite" },
       { g:"Sur indication du rapport", ico:"repair", f:"Reparer-interactif.bat", when:"Carte non lue",
