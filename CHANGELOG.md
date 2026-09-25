@@ -160,3 +160,10 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
   il ne s'applique plus dès qu'une autre cause connue est présente (tables, sesam.ini, MGC, MICA, port).
 - Question ouverte : sur POSTE1 (FSV 1.40.14), l'erreur MGC persistait avec un C:\Windows\sesam.ini correct ;
   il existe aussi C:\ProgramData\santesocial\fsv\1.40.14\conf\sesam.ini. Vérifier lequel la FSV 1.40.14 lit.
+
+## 2026-09-25 — PC v0.3.19 (CLIENT022, POSTE1)
+- galss-autofix ne reconnaissait aucune carte sur Windows FR (« Aucune carte vue ») : certutil met un espace
+  insécable avant « : ». Analyse alignée sur celle du diag (\W*, nettoyage des caractères OEM) ; le diag transmet en
+  plus les lecteurs CPS / Vitale qu'il a identifiés (-CpsReader / -VitReader). Effet : galss.ini réellement réaligné
+  (CLIENT022 : CPS et Vitale inversées entre les deux Gemalto).
+- CLIENT022 : MICA x64 conservé car restes Cegedim présents et réponse « Cegedim encore utilisé » (ou non confirmée).
