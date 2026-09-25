@@ -90,3 +90,9 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - Installeur : étape 1b, une seule question si des restes Cegedim sont détectés (« le médecin a-t-il arrêté
   d'utiliser tout logiciel Cegedim ? »), réponse transmise au diag (-SansCegedim).
 - Reparer-interactif : même question posée avant la désinstallation du MICA x64.
+
+## 2026-09-25 — v0.3.11 (PC)
+- GERBAL : installeur figé à l'étape 4, section 7b (réalignement galss.ini). galss-autofix était lancé en pipe et
+  relançait JuxtaLink ; le processus relancé gardait la sortie ouverte -> attente infinie.
+- 7b : galss-autofix lancé comme processus séparé (fenêtre cachée), attente limitée à 60 s, résultat lu dans son
+  journal (ProgramData\MadeForMed\galss-autofix.log), option -NoRelaunch (la relance est faite par 7e / 5c).
