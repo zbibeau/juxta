@@ -131,3 +131,9 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - Neutraliser-Cegedim.ps1 v1.1 : paramètres -Nom / -Motif (générique), journal distinct par éditeur.
 - Reparer-lecteur.bat : utilisait uniquement C:\ProgramData\MadeForMed\galss-autofix.ps1 (présent seulement avec
   -WithAutofix) -> échouait depuis le kit. Utilise maintenant le script du dossier du kit, sinon celui de ProgramData.
+
+## 2026-09-25 — PC v0.3.15 (Dr Neyens)
+- Erreur Odaiji : « Section MGC absente, ou clé RepertoireConfigTrace absente, ou fichier log4crc.xml non trouvé ».
+  Le diag ne vérifiait que les répertoires de sesam.ini. Il contrôle maintenant la section [MGC], sa clé
+  RepertoireConfigTrace et la présence de log4crc.xml ; sinon KO SESAM_MGC -> sesam.ini régénéré (7a, sauvegarde .bak)
+  avec [MGC] + log4crc.xml.
