@@ -144,3 +144,13 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - log4crc.xml créé dans le conf de chaque version FSV présente (le plugin peut utiliser une autre version).
 - Diag : KO si RepertoireConfigTrace contient une variable %…% (-> régénération) ; signale tout autre sesam.ini
   trouvé sous santesocial.
+
+## 2026-09-25 — PC v0.3.17 (Dr Neyens, POSTE1)
+- Rapport : tables FSV **srt vides** (x86 0 fichier, pas de x64) -> « Exception lors de l'appel à ssv.lirecarteps »
+  + message MGC. Sur GERBAL, les srt n'existaient qu'en x64 : le plugin Juxta installe les FSV x86 sans tables srt.
+- Bug : le MSI FSV du kit n'était jamais trouvé (cherché à la racine du kit, il est dans installeurs\).
+- Nouvelle étape 7t (auto, installeur compris) : tables manquantes -> installation du MSI FSV officiel du GIE
+  (fsv-1.40.1413_x64.msi), recherche des tables dans toutes les FSV x86/x64, puis sesam.ini régénéré
+  (chemins absolus). Nouveau scénario TABLES dans le verdict.
+- Constat annexe : le port de JuxtaLink était 1230 dans la config manuelle (Odaiji appelle 1234) ; corrigé par
+  notre user.config.
