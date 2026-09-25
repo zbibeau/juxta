@@ -105,3 +105,5 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - Autoriser-Odaiji-Chrome : ajout de https://[*.]juxta.cloud (Chrome/Edge) et *.juxta.cloud (Firefox).
   Diag : WARN si la politique ne contient pas juxta.cloud.
 - certutil -silent -scinfo (diag + galss-autofix) : plus de fenêtre PIN possible (blocage 7b GERBAL, galss.ini non réaligné).
+- kits/Autoriser-Odaiji-Mac.zip : outil Autoriser seul pour Mac (Chrome/Edge/Firefox, avec *.juxta.cloud), à envoyer
+  directement à un client. Lien : https://odaiji-juxta.netlify.app/kits/Autoriser-Odaiji-Mac.zip
