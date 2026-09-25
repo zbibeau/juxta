@@ -51,6 +51,7 @@
   .when { display:inline-block; margin-top:3px; font-size:13px; font-weight:600; color:var(--primary-light); background:var(--surface-2); padding:2px 9px; border-radius:999px }
   .tool.alert .when { color:#b4541c; background:#fbeee6 }
   .does { list-style:none; padding:0; margin:0; font-size:15px }
+  .does a { color:var(--primary) }
   .does li { position:relative; padding-left:24px; margin:5px 0 }
   .does li::before { content:""; position:absolute; left:2px; top:5px; width:13px; height:13px; border-radius:50%; background:var(--surface-2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.3 2.3 4.7-5' fill='none' stroke='%2333768a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/11px no-repeat }
   .tool.main .does { display:grid; grid-template-columns:1fr 1fr; column-gap:18px }
@@ -110,7 +111,7 @@
     <h3>Procédure d'installation — équipe MadeForMed</h3>
     <p>Le kit fait l'installation, la configuration et les vérifications. Il reste à faire à la main :</p>
     <ul class="todo">
-      <li><span class="n">1</span><div><b>chrome://flags</b>Vérifier le réglage Local Network Access dans Chrome (et edge://flags dans Edge), puis relancer le navigateur.</div></li>
+      <li><span class="n">1</span><div><b>chrome://policy</b>Vérifier que LocalNetworkAccessAllowedForUrls apparaît avec odaiji.co et juxta.cloud (edge://policy dans Edge). chrome://flags ne sert plus à partir de Chrome 153 ; à regarder seulement sur une version plus ancienne.</div></li>
       <li><span class="n">2</span><div><b>Formation du médecin</b>Facturation seule ou totale, selon l'offre souscrite.</div></li>
     </ul>
   </div>
@@ -149,31 +150,33 @@
   var TOOLS = {
     win: [
       { g:"Nouveau poste", main:true, ico:"install", f:"Installer-Odaiji-Juxta.bat", when:"Nouveau poste",
-        does:["Installe JuxtaLink 2.2.3 + user.config MadeForMed","Corrige automatiquement sesam.ini, galss.ini et MICA","Local Network Access : Odaiji autorisé (Chrome, Edge, Firefox)","Passe le lecteur en PC/SC direct (sans GALSS)"],
+        does:["Installe JuxtaLink 2.2.3 + user.config MadeForMed","Corrige sesam.ini, galss.ini et le faux MICA x64","Local Network Access : Odaiji + serveurs DRC Juxta autorisés (Chrome, Edge, Firefox)","Passe le lecteur en PC/SC direct (sans GALSS)","Neutralise les restes Cegedim si le médecin ne l'utilise plus","Redémarre JuxtaLink et fait faire une lecture de contrôle"],
         out:"Rapports Avant_…txt et Apres_…txt sur le Bureau · environ 10 min · 1 question si un ancien logiciel Cegedim est détecté" },
       { g:"Poste déjà équipé", ico:"diag", f:"Diag-seul.bat", when:"Poste déjà équipé",
-        does:["Vérifie lecteur, cartes, JuxtaLink et composants","Vérifie Chrome, Edge et la politique Local Network","Ne modifie rien sur le poste"], out:"Rapport sur le Bureau : il indique quel outil lancer ensuite" },
+        does:["Vérifie lecteur, cartes, JuxtaLink, MICA, sesam.ini, galss.ini","Vérifie iCanopée, Chrome, Edge et la politique Local Network","Ne modifie rien sur le poste"], out:"Rapport sur le Bureau : il indique quel outil lancer ensuite" },
       { g:"Sur indication du rapport", ico:"repair", f:"Reparer-interactif.bat", when:"Carte non lue",
-        does:["Propose chaque correction une par une","Vous validez (o/N) avant toute action"] },
+        does:["Propose chaque correction une par une","Répondre o ou n à chaque question (réponse notée dans le rapport)"] },
       { g:"Sur indication du rapport", ico:"web", alert:true, f:"Autoriser-Odaiji-Chrome.bat", when:"Erreur DRC",
-        does:["Corrige l'erreur DRC à la télétransmission","Autorise Odaiji à joindre JuxtaLink (Chrome, Edge, Firefox)","Vérifier ensuite chrome://flags (voir procédure équipe)"], out:"Relancer Chrome ensuite" },
+        does:["Corrige l'erreur DRC à la télétransmission","Autorise Odaiji et les serveurs DRC Juxta (*.juxta.cloud) à joindre JuxtaLink","Chrome, Edge et Firefox"], out:"Relancer le navigateur · vérifier chrome://policy" },
+      { g:"Sur indication du rapport", ico:"card", f:"Reparer-lecteur.bat", when:"Lecteur changé ou « une fois sur deux »",
+        does:["Réaligne galss.ini sur le lecteur branché (utile aussi pour iCanopée)","Sauvegarde l'ancien fichier"], out:"CPS + Vitale insérées" },
       { g:"Sur indication du rapport", ico:"pcsc", f:"Neutraliser-Cegedim.bat", when:"ClmLive / jFSE encore actifs",
         does:["Empêche les restes Cegedim de se lancer (démarrage, services, tâches)","Rien n'est désinstallé, pas de redémarrage","Retour arrière possible par le support (journal conservé)"], out:"Seulement si le médecin ne facture plus avec Cegedim" },
-      { g:"Sur indication du rapport", ico:"clean", f:"Nettoyage.bat", when:"Ancien logiciel installé",
-        does:["Pour les postes passés par Cegedim ou jFSE","Retire les FSV et Cryptolib en double","Liste les produits Cegedim restants (sans les désinstaller)"], out:"Avec le support uniquement · prise en main à distance jamais touchée" },
       { g:"Sur indication du rapport", ico:"pcsc", f:"SansGalss.bat", when:"Passage PC/SC direct",
-        does:["Retire le GALSS x86 et bloque sa réinstallation","Retour arrière automatique si la lecture échoue"] }
+        does:["Retire le GALSS x86 et bloque sa réinstallation","Retour arrière automatique si la lecture échoue"] },
+      { g:"Sur indication du rapport", ico:"clean", f:"Nettoyage.bat", when:"Anciennes FSV / Cryptolib",
+        does:["Retire les FSV et Cryptolib en double","Liste les produits Cegedim restants (sans les désinstaller)","Rarement utile : les restes ne ralentissent pas les lectures"], out:"Avec le support uniquement · prise en main à distance jamais touchée" }
     ],
     mac: [
       { g:"Nouveau poste", main:true, ico:"install", f:"Installer-Odaiji-Juxta.command", when:"Nouveau poste",
-        does:["Télécharge et installe JuxtaLink 2.2.3 + plugin SSV","Écrit le user.config MadeForMed","Régénère galss.ini et réactive Gatekeeper","Local Network Access : Odaiji autorisé (Chrome, Edge, Firefox)"],
+        does:["Télécharge et installe JuxtaLink 2.2.3 + plugin SSV","Écrit le user.config MadeForMed","Régénère galss.ini et réactive Gatekeeper","Local Network Access : Odaiji + serveurs DRC Juxta autorisés (Chrome, Edge, Firefox)","Passe le lecteur en PC/SC direct (sans GALSS)","Redémarre JuxtaLink et fait faire une lecture de contrôle"],
         out:"Rapports Avant_…txt et Apres_…txt sur le Bureau · environ 10 min (Internet requis)" },
       { g:"Poste déjà équipé", ico:"diag", f:"Diag-seul.command", when:"Poste déjà équipé",
         does:["Vérifie lecteur, cartes, JuxtaLink et plugin","Vérifie Chrome, Edge et la politique Local Network","Ne modifie rien sur le poste"], out:"Rapport sur le Bureau : il indique quel outil lancer ensuite" },
       { g:"Sur indication du rapport", ico:"repair", f:"Reparer-interactif.command", when:"Carte non lue",
         does:["Propose chaque correction une par une","Retire l'agent jFSE si besoin (avec accord)"] },
       { g:"Sur indication du rapport", ico:"web", alert:true, f:"Autoriser-Odaiji-Chrome.command", when:"Erreur DRC",
-        does:["Corrige l'erreur DRC à la télétransmission","Autorise Odaiji à joindre JuxtaLink (Chrome, Edge, Firefox)","Vérifier ensuite chrome://flags (voir procédure équipe)"], out:"Relancer Chrome ensuite" },
+        does:["Corrige l'erreur DRC à la télétransmission","Autorise Odaiji et les serveurs DRC Juxta (*.juxta.cloud) — Chrome, Edge, Firefox","Aussi téléchargeable seul : <a href=\"kits/Autoriser-Odaiji-Mac.zip\" download>Autoriser-Odaiji-Mac.zip</a>"], out:"Relancer le navigateur · vérifier chrome://policy" },
       { g:"Sur indication du rapport", ico:"card", f:"Reparer-lecteur.command", when:"Lecteur « une fois sur deux »",
         does:["Réaligne galss.ini sur les fentes du lecteur","Utile après un redémarrage ou un rebranchement"] }
     ]

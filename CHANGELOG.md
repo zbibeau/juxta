@@ -107,3 +107,8 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - certutil -silent -scinfo (diag + galss-autofix) : plus de fenêtre PIN possible (blocage 7b GERBAL, galss.ini non réaligné).
 - kits/Autoriser-Odaiji-Mac.zip : outil Autoriser seul pour Mac (Chrome/Edge/Firefox, avec *.juxta.cloud), à envoyer
   directement à un client. Lien : https://odaiji-juxta.netlify.app/kits/Autoriser-Odaiji-Mac.zip
+
+## 2026-09-25 — page
+- Liste des outils mise à jour : installeur (faux MICA x64, Cegedim, redémarrage final), Autoriser (*.juxta.cloud,
+  vérification chrome://policy, lien vers l'outil Mac seul), Reparer-lecteur.bat ajouté côté Windows,
+  Nettoyage présenté comme rarement utile. Procédure équipe : chrome://policy (flags obsolètes depuis Chrome 153).
