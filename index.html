@@ -122,7 +122,7 @@
 </main>
 
 <script>
-  var VERSION = { win: "v0.3.13", mac: "v0.3.2" };
+  var VERSION = { win: "v0.3.14", mac: "v0.3.2" };
   function detect() {
     var p = (navigator.platform || "") + " " + navigator.userAgent;
     if (/Mac/i.test(p) && !/iPhone|iPad/i.test(p)) return "mac";
@@ -150,18 +150,18 @@
   var TOOLS = {
     win: [
       { g:"Nouveau poste", main:true, ico:"install", f:"Installer-Odaiji-Juxta.bat", when:"Nouveau poste",
-        does:["Installe JuxtaLink 2.2.3 + user.config MadeForMed","Corrige sesam.ini, galss.ini et le faux MICA x64","Local Network Access : Odaiji + serveurs DRC Juxta autorisés (Chrome, Edge, Firefox)","Passe le lecteur en PC/SC direct (sans GALSS)","Neutralise les restes Cegedim si le médecin ne l'utilise plus","Redémarre JuxtaLink et fait faire une lecture de contrôle"],
-        out:"Rapports Avant_…txt et Apres_…txt sur le Bureau · environ 10 min · 1 question si un ancien logiciel Cegedim est détecté" },
+        does:["Installe JuxtaLink 2.2.3 + user.config MadeForMed","Corrige sesam.ini, galss.ini et le faux MICA x64","Local Network Access : Odaiji + serveurs DRC Juxta autorisés (Chrome, Edge, Firefox)","Passe le lecteur en PC/SC direct (sans GALSS)","Neutralise l'ancien logiciel (Cegedim, Affid…) si le médecin ne l'utilise plus","Redémarre JuxtaLink et fait faire une lecture de contrôle"],
+        out:"Rapports Avant_…txt et Apres_…txt sur le Bureau · environ 10 min · 1 question par ancien logiciel détecté (Cegedim, port 1234 occupé)" },
       { g:"Poste déjà équipé", ico:"diag", f:"Diag-seul.bat", when:"Poste déjà équipé",
-        does:["Vérifie lecteur, cartes, JuxtaLink, MICA, sesam.ini, galss.ini","Vérifie iCanopée, Chrome, Edge et la politique Local Network","Ne modifie rien sur le poste"], out:"Rapport sur le Bureau : il indique quel outil lancer ensuite" },
+        does:["Vérifie lecteur, cartes, JuxtaLink, MICA, sesam.ini, galss.ini","Vérifie que JuxtaLink tient bien son port (1234)","Vérifie iCanopée, Chrome, Edge et la politique Local Network","Ne modifie rien sur le poste"], out:"Rapport sur le Bureau : il indique quel outil lancer ensuite" },
       { g:"Sur indication du rapport", ico:"repair", f:"Reparer-interactif.bat", when:"Carte non lue",
         does:["Propose chaque correction une par une","Répondre o ou n à chaque question (réponse notée dans le rapport)"] },
       { g:"Sur indication du rapport", ico:"web", alert:true, f:"Autoriser-Odaiji-Chrome.bat", when:"Erreur DRC",
         does:["Corrige l'erreur DRC à la télétransmission","Autorise Odaiji et les serveurs DRC Juxta (*.juxta.cloud) à joindre JuxtaLink","Chrome, Edge et Firefox"], out:"Relancer le navigateur · vérifier chrome://policy" },
       { g:"Sur indication du rapport", ico:"card", f:"Reparer-lecteur.bat", when:"Lecteur changé ou « une fois sur deux »",
         does:["Réaligne galss.ini sur le lecteur branché (utile aussi pour iCanopée)","Sauvegarde l'ancien fichier"], out:"CPS + Vitale insérées" },
-      { g:"Sur indication du rapport", ico:"pcsc", f:"Neutraliser-Cegedim.bat", when:"ClmLive / jFSE encore actifs",
-        does:["Empêche les restes Cegedim de se lancer (démarrage, services, tâches)","Rien n'est désinstallé, pas de redémarrage","Retour arrière possible par le support (journal conservé)"], out:"Seulement si le médecin ne facture plus avec Cegedim" },
+      { g:"Sur indication du rapport", ico:"pcsc", f:"Neutraliser-Cegedim.bat", when:"Ancien logiciel encore actif",
+        does:["Empêche les restes Cegedim de se lancer (démarrage, services, tâches)","Proposé aussi par la réparation pour tout logiciel qui occupe le port de JuxtaLink (ex. Affid)","Rien n'est désinstallé, pas de redémarrage","Retour arrière possible par le support (journal conservé)"], out:"Seulement si le médecin ne facture plus avec Cegedim" },
       { g:"Sur indication du rapport", ico:"pcsc", f:"SansGalss.bat", when:"Passage PC/SC direct",
         does:["Retire le GALSS x86 et bloque sa réinstallation","Retour arrière automatique si la lecture échoue"] },
       { g:"Sur indication du rapport", ico:"clean", f:"Nettoyage.bat", when:"Anciennes FSV / Cryptolib",

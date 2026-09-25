@@ -119,3 +119,13 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
   réponse (CLOSE_WAIT), timeout ~10 s ; fsenxt arrêté -> échec immédiat car JuxtaLink n'écoute pas.
 - Diag : section 4 vérifie quel programme écoute sur le port JuxtaLink (user.config, 1234 par défaut) ;
   autre programme -> KO PORT_CONFLICT, scénario PORT (prioritaire après READER).
+
+## 2026-09-25 — PC v0.3.14
+- Ménage proposé pour tout ancien logiciel qui occupe le port de JuxtaLink (cas Dr Neyens : fsenxt.exe, Affid),
+  sur le modèle Cegedim : installeur étape 1c (question unique, -LibererPort transmis au diag) ;
+  Reparer-interactif étape 7p (question « le médecin a-t-il arrêté d'utiliser … ? »).
+  Si oui : Neutraliser générique (démarrage, services, tâches, processus du dossier de l'éditeur ; rien désinstallé,
+  journal par éditeur), arrêt du programme, relance de JuxtaLink, vérification que JuxtaLink tient le port.
+  Si non : KO « conflit de port », rien modifié. Jamais touchés : composants Windows, Juxta, Icanopée, santesocial,
+  outils de prise en main à distance.
+- Neutraliser-Cegedim.ps1 v1.1 : paramètres -Nom / -Motif (générique), journal distinct par éditeur.
