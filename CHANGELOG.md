@@ -167,3 +167,13 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
   plus les lecteurs CPS / Vitale qu'il a identifiés (-CpsReader / -VitReader). Effet : galss.ini réellement réaligné
   (CLIENT022 : CPS et Vitale inversées entre les deux Gemalto).
 - CLIENT022 : MICA x64 conservé car restes Cegedim présents et réponse « Cegedim encore utilisé » (ou non confirmée).
+
+## 2026-09-25 — PC v0.3.20 (CLIENT020, CLIENT022 : « carte Vitale non lue » chez Axel)
+- Les deux postes : faux MICA x64 conservé -> Mica..ctor / 1638 -> Vitale non lue. L'outil n'avait pas retiré le
+  MICA x64 car la question Cegedim (« a-t-il ARRÊTÉ… ? ») avait reçu « n » / pas de confirmation, et le verdict
+  affichait GALSS au lieu de MICA.
+- Question inversée et expliquée : « Le médecin facture-t-il ENCORE avec un logiciel Cegedim ? » ; n (cas normal
+  quand Odaiji remplace Cegedim) = MICA x64 retiré + Cegedim neutralisé. Même logique pour le port 1234.
+- MICA x64 conservé -> KO explicite « la Vitale ne pourra PAS être lue » (MICA_KEPT).
+- Verdict : MICA, TABLES, SESAM passent avant GALSS (galss.ini ne sert plus qu'à iCanopée). Les réparations
+  MICA / galss.ini / relance JuxtaLink s'exécutent selon les constats, plus seulement selon le scénario affiché.
