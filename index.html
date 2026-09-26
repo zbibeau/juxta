@@ -122,7 +122,7 @@
 </main>
 
 <script>
-  var VERSION = { win: "v0.3.20", mac: "v0.3.2" };
+  var VERSION = { win: "v0.3.21", mac: "v0.3.2" };
   function detect() {
     var p = (navigator.platform || "") + " " + navigator.userAgent;
     if (/Mac/i.test(p) && !/iPhone|iPad/i.test(p)) return "mac";
@@ -151,7 +151,7 @@
     win: [
       { g:"Nouveau poste", main:true, ico:"install", f:"Installer-Odaiji-Juxta.bat", when:"Nouveau poste",
         does:["Installe JuxtaLink 2.2.3 + user.config MadeForMed","Corrige sesam.ini, galss.ini et le faux MICA x64","Local Network Access : Odaiji + serveurs DRC Juxta autorisés (Chrome, Edge, Firefox)","Passe le lecteur en PC/SC direct (sans GALSS)","Neutralise l'ancien logiciel (Cegedim, Affid…) si le médecin ne l'utilise plus","Redémarre JuxtaLink et fait faire une lecture de contrôle"],
-        out:"Rapports Avant_…txt et Apres_…txt sur le Bureau · environ 10 min · 1 question par ancien logiciel détecté (Cegedim, port 1234 occupé)" },
+        out:"Rapports Avant_…txt et Apres_…txt sur le Bureau · environ 10 min · 1 question par ancien logiciel détecté (Cegedim, Affid…) : « facture-t-il encore avec… ? »" },
       { g:"Poste déjà équipé", ico:"diag", f:"Diag-seul.bat", when:"Poste déjà équipé",
         does:["Vérifie lecteur, cartes, JuxtaLink, MICA, sesam.ini, galss.ini","Vérifie que JuxtaLink tient bien son port (1234)","Vérifie iCanopée, Chrome, Edge et la politique Local Network","Ne modifie rien sur le poste"], out:"Rapport sur le Bureau : il indique quel outil lancer ensuite" },
       { g:"Sur indication du rapport", ico:"repair", f:"Reparer-interactif.bat", when:"Carte non lue",

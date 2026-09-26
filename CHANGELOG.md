@@ -177,3 +177,12 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - MICA x64 conservé -> KO explicite « la Vitale ne pourra PAS être lue » (MICA_KEPT).
 - Verdict : MICA, TABLES, SESAM passent avant GALSS (galss.ini ne sert plus qu'à iCanopée). Les réparations
   MICA / galss.ini / relance JuxtaLink s'exécutent selon les constats, plus seulement selon le scénario affiché.
+
+## 2026-09-26 — PC v0.3.21 : mécanisme générique « facture-t-il ENCORE avec… ? »
+- Nouveau catalogue `editeurs.psd1` (Cegedim, Affid) : nom, libellé, dossiers, motif de reconnaissance, bloquants
+  connus. Ajouter un ancien logiciel = ajouter un bloc, sans toucher aux scripts.
+- Installeur, étape 1b : pour chaque éditeur détecté, une seule question « Le médecin facture-t-il ENCORE avec … ? ».
+  n = composants neutralisés (démarrage, services, tâches, processus ; rien n'est désinstallé) ; réponses transmises
+  au diag (-SansEditeurs / -GardeEditeurs). Le port 1234 tenu par un éditeur connu suit la même réponse.
+- Diag : section « Anciens logiciels métiers détectés » ; réparation 7n (une question par éditeur en interactif,
+  jamais deux fois) ; MICA x64 (7c) et port (7p) utilisent la même décision ; conflit explicite si encore utilisé.
