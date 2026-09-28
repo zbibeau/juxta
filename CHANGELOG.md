@@ -220,3 +220,9 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - Correctif galss-autofix : avec un seul candidat pour la fente Vitale, seule sa 1re lettre était écrite (Vitale='K') ;
   garde-fou : seuls des noms de lecteurs vus par Windows sont écrits.
 - Correctif 7n : « Argument manquant pour le paramètre Dossiers » (dossiers du catalogue non transmis) -> désinstallation non lancée.
+
+## 2026-09-28 — PC v0.3.24
+- galss-autofix / Reparer-lecteur : deux lecteurs séparés (CPS sur l'un, Vitale sur l'autre, Vitale non identifiée par certutil)
+  -> le seul autre lecteur où une carte est présente est retenu pour la Vitale.
+- C:\Windows\sesam.ini absent = WARN (et non KO) si le sesam.ini de la FSV (ProgramData\santesocial\fsv\<version>\conf) existe :
+  3 postes facturaient ainsi.
