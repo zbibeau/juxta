@@ -247,3 +247,6 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
   avec repère « a verifier (concurrent ?) », pour repérer un logiciel concurrent absent du catalogue.
 - Nouvel outil Surveiller-JuxtaLink.bat : contrôle toutes les 20 s pendant 8 h (processus, PID, port 1234, réponse HTTPS, Weda/Vitalzen),
   n'écrit que les changements et lenteurs (JuxtaLink « injoignable par moment »).
+- 1er poste Weda : VitalZen 0.61.4 (WEDA SAS) = C:\Program Files\VitalZen, port 10100, démarrage fr.comunica.vitalzen ;
+  désinstalleur non-MSI (listé). Catalogue : ajout de **Pyxvital** (C:\pyxvital, port 10500). Neutraliser : plus d'erreur
+  Get-CimInstance quand le processus parent a disparu.
