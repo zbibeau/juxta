@@ -254,3 +254,8 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - Weda (retour terrain) : Weda Connect se relance à chaque démarrage -> désinstallé. Neutraliser v1.3 -NonMsi (éditeurs marqués
   DesinstallerNonMsi) : désinstalleurs non-MSI en silencieux (QuietUninstallString, Inno, Squirrel, NSIS), 5 min max, contrôles
   habituels ; applications par utilisateur (HKCU / ruche du médecin) incluses. Motif Weda élargi à « comunica » (fr.comunica.vitalzen).
+
+## 2026-09-28 — Mac v0.3.4 (Dr De Paris : iMac + MacBook Air, lecteur Ingenico Telium)
+- CPS via Telium (ATR 3bdc18…) reconnue (diag + galss-autofix) : faux « CPS non vue » et galss.ini jamais réaligné.
+- galss.ini à fins de ligne CR (Mac classique) lu correctement (faux « galss.ini déclare 1NomL… »).
+- Anciens logiciels Mac génériques : MediMust + **MediStory (Prokov)** (question, coupure launchd, rien supprimé).
