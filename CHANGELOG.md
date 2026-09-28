@@ -250,3 +250,4 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - 1er poste Weda : VitalZen 0.61.4 (WEDA SAS) = C:\Program Files\VitalZen, port 10100, démarrage fr.comunica.vitalzen ;
   désinstalleur non-MSI (listé). Catalogue : ajout de **Pyxvital** (C:\pyxvital, port 10500). Neutraliser : plus d'erreur
   Get-CimInstance quand le processus parent a disparu.
+- Surveiller-JuxtaLink : suit aussi Pyxvital (retour éventuel après coupure).
