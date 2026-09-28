@@ -251,3 +251,6 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
   désinstalleur non-MSI (listé). Catalogue : ajout de **Pyxvital** (C:\pyxvital, port 10500). Neutraliser : plus d'erreur
   Get-CimInstance quand le processus parent a disparu.
 - Surveiller-JuxtaLink : suit aussi Pyxvital (retour éventuel après coupure).
+- Weda (retour terrain) : Weda Connect se relance à chaque démarrage -> désinstallé. Neutraliser v1.3 -NonMsi (éditeurs marqués
+  DesinstallerNonMsi) : désinstalleurs non-MSI en silencieux (QuietUninstallString, Inno, Squirrel, NSIS), 5 min max, contrôles
+  habituels ; applications par utilisateur (HKCU / ruche du médecin) incluses. Motif Weda élargi à « comunica » (fr.comunica.vitalzen).
