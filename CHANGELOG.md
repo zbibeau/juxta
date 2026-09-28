@@ -231,3 +231,4 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - JuxtaLink.exe cherché aussi hors de Program Files (x86) : processus en cours, registre (InstallLocation), Program Files, AppData.
 - Verdict : galss.ini incohérent = avertissement Icanopée (et non scénario GALSS) quand JuxtaLink est en PC/SC direct et lit déjà.
 - Catalogue editeurs.psd1 : ajout de **Shaman** (dossiers Program Files\Shaman, C:\Shaman ; motif shaman|maj400).
+- Libellés : « DMP Connect / iCanopée » partout dans les rapports ; galss.ini incohérent = à corriger seulement si DMP Connect ne marche pas.
