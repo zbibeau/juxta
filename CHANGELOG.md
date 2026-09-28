@@ -229,3 +229,4 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - Réparation 7l : Reparer-interactif autorise aussi Chrome/Edge/Firefox (Local Network Access) quand le diag les voit en KO
   (jusqu'ici seulement à l'installation, étape 4b).
 - JuxtaLink.exe cherché aussi hors de Program Files (x86) : processus en cours, registre (InstallLocation), Program Files, AppData.
+- Verdict : galss.ini incohérent = avertissement Icanopée (et non scénario GALSS) quand JuxtaLink est en PC/SC direct et lit déjà.
