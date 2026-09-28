@@ -228,3 +228,4 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
   3 postes facturaient ainsi.
 - Réparation 7l : Reparer-interactif autorise aussi Chrome/Edge/Firefox (Local Network Access) quand le diag les voit en KO
   (jusqu'ici seulement à l'installation, étape 4b).
+- JuxtaLink.exe cherché aussi hors de Program Files (x86) : processus en cours, registre (InstallLocation), Program Files, AppData.
