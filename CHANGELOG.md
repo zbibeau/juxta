@@ -226,3 +226,5 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
   -> le seul autre lecteur où une carte est présente est retenu pour la Vitale.
 - C:\Windows\sesam.ini absent = WARN (et non KO) si le sesam.ini de la FSV (ProgramData\santesocial\fsv\<version>\conf) existe :
   3 postes facturaient ainsi.
+- Réparation 7l : Reparer-interactif autorise aussi Chrome/Edge/Firefox (Local Network Access) quand le diag les voit en KO
+  (jusqu'ici seulement à l'installation, étape 4b).
