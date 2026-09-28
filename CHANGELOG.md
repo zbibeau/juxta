@@ -262,3 +262,5 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - **Poste serveur** (base Oracle de l'ancien logiciel, ex. Crossway/Cegedim sur le poste du cabinet) : base jamais touchée ;
   réponse n = seulement les programmes liés au lecteur coupés + MICA x64 retiré, ni désinstallation ni quarantaine.
   Oracle / OpenVPN ajoutés aux éléments protégés. Verdict : MICA x64 revenu (mise à jour Cegedim) + erreur 1638 = scénario MICA.
+- galss-autofix / Reparer-lecteur : canaux supplémentaires (3, 4…) en fin de galss.ini pointant vers un lecteur absent supprimés
+  (ListeCanaux / NbCanaux mis à jour) — DRSAMITIER : CANAL3 sur l'ancien Ingenico empêchait DMP Connect de lire la CPS.
