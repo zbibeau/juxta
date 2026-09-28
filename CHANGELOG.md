@@ -213,3 +213,5 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - Dossiers de l'éditeur (catalogue editeurs.psd1) déplacés dans `C:\_Odaiji_a_supprimer\<éditeur>-<date>` (à vider
   après validation de la facturation Odaiji ; remis en place par -Restaurer). Journal complété (Desinstalles, Quarantaine).
 - Neutraliser-Cegedim.bat lancé seul : inchangé (neutralisation sans désinstallation).
+- Neutraliser : un journal existant ne bloque plus une nouvelle passe (ClmLive / java revenus malgré une 1re neutralisation) ;
+  le lanceur (processus parent) de chaque processus arrêté est écrit dans le rapport.
