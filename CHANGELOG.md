@@ -202,3 +202,14 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - Tables srt vides = WARN (2 postes facturaient sans) ; KO seulement si ssv/sts manquent.
 - Tri des versions FSV corrigé : 1.40.9 était prise pour la plus récente devant 1.40.14 (tri alphabétique).
 - Neutraliser : couvre aussi la ruche Run et le dossier Démarrage du médecin (résidus revenus au redémarrage).
+
+## 2026-09-28 — PC v0.3.23 : « n » = désinstallation de l'ancien logiciel
+- Réponse n à « Le médecin facture-t-il ENCORE avec … ? » : après la neutralisation, Neutraliser-Cegedim v1.2
+  `-Desinstaller` retire les produits MSI de l'éditeur un par un (`msiexec /x /qn /norestart REBOOT=ReallySuppress`,
+  5 min max chacun). Exclus : FSV, Cryptolib, MICA, GALSS, santesocial, JuxtaLink, iCanopée, amelipro, Java, .NET,
+  Visual C++, prise en main à distance. Contrôle après chaque produit : si un outil de prise en main, JuxtaLink,
+  iCanopée ou mica.dll disparaît, arrêt immédiat.
+- Désinstalleurs non-MSI (ceux qui ont redémarré des postes le 24/09) : listés, jamais lancés.
+- Dossiers de l'éditeur (catalogue editeurs.psd1) déplacés dans `C:\_Odaiji_a_supprimer\<éditeur>-<date>` (à vider
+  après validation de la facturation Odaiji ; remis en place par -Restaurer). Journal complété (Desinstalles, Quarantaine).
+- Neutraliser-Cegedim.bat lancé seul : inchangé (neutralisation sans désinstallation).
