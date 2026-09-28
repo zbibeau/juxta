@@ -215,3 +215,5 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - Neutraliser-Cegedim.bat lancé seul : inchangé (neutralisation sans désinstallation).
 - Neutraliser : un journal existant ne bloque plus une nouvelle passe (ClmLive / java revenus malgré une 1re neutralisation) ;
   le lanceur (processus parent) de chaque processus arrêté est écrit dans le rapport.
+- Correctif : relance de JuxtaLink en réparation (fonction Start-Jx cassée, erreur « elseStart-Jx ») ; contrôle automatique
+  des noms de commandes inconnus ajouté avant chaque publication.
