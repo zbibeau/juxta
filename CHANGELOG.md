@@ -259,3 +259,6 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - CPS via Telium (ATR 3bdc18…) reconnue (diag + galss-autofix) : faux « CPS non vue » et galss.ini jamais réaligné.
 - galss.ini à fins de ligne CR (Mac classique) lu correctement (faux « galss.ini déclare 1NomL… »).
 - Anciens logiciels Mac génériques : MediMust + **MediStory (Prokov)** (question, coupure launchd, rien supprimé).
+- **Poste serveur** (base Oracle de l'ancien logiciel, ex. Crossway/Cegedim sur le poste du cabinet) : base jamais touchée ;
+  réponse n = seulement les programmes liés au lecteur coupés + MICA x64 retiré, ni désinstallation ni quarantaine.
+  Oracle / OpenVPN ajoutés aux éléments protégés. Verdict : MICA x64 revenu (mise à jour Cegedim) + erreur 1638 = scénario MICA.
