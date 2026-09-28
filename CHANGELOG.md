@@ -245,3 +245,5 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
   Composants exacts à confirmer sur le 1er poste.
 - Diag : section « Autres logiciels actifs » (ports locaux, démarrages automatiques, services hors Windows, produits santé)
   avec repère « a verifier (concurrent ?) », pour repérer un logiciel concurrent absent du catalogue.
+- Nouvel outil Surveiller-JuxtaLink.bat : contrôle toutes les 20 s pendant 8 h (processus, PID, port 1234, réponse HTTPS, Weda/Vitalzen),
+  n'écrit que les changements et lenteurs (JuxtaLink « injoignable par moment »).

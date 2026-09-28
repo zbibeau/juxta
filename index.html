@@ -158,6 +158,8 @@
         does:["Propose chaque correction une par une","Répondre o ou n à chaque question (réponse notée dans le rapport)"] },
       { g:"Sur indication du rapport", ico:"repair", f:"Demarrage-JuxtaLink.bat", when:"JuxtaLink ne repart pas / fenêtre UAC",
         does:["JuxtaLink démarre à l'ouverture de session, sans fenêtre « Voulez-vous autoriser… »","Icône « JuxtaLink (Odaiji) » sur le Bureau pour le relancer sans UAC","Les anciens lancements automatiques sont mis de côté, rien n'est supprimé"], out:"Poste déjà installé · « Demarrage-JuxtaLink.bat retirer » pour annuler" },
+      { g:"Sur indication du rapport", ico:"diag", f:"Surveiller-JuxtaLink.bat", when:"JuxtaLink « injoignable par moment »",
+        does:["Contrôle toutes les 20 s pendant 8 h que JuxtaLink tourne et répond","Note chaque redémarrage, coupure ou lenteur avec l'heure","Ne modifie rien"], out:"Fichier Surveillance-JuxtaLink_…txt sur le Bureau · noter l'heure de chaque erreur dans Odaiji" },
       { g:"Sur indication du rapport", ico:"web", alert:true, f:"Autoriser-Odaiji-Chrome.bat", when:"Erreur DRC",
         does:["Corrige l'erreur DRC à la télétransmission","Autorise Odaiji et les serveurs DRC Juxta (*.juxta.cloud) à joindre JuxtaLink","Chrome, Edge et Firefox"], out:"Relancer le navigateur · vérifier chrome://policy" },
       { g:"Sur indication du rapport", ico:"card", f:"Reparer-lecteur.bat", when:"Lecteur changé ou « une fois sur deux »",
