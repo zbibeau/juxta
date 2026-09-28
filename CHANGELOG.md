@@ -186,3 +186,19 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
   au diag (-SansEditeurs / -GardeEditeurs). Le port 1234 tenu par un éditeur connu suit la même réponse.
 - Diag : section « Anciens logiciels métiers détectés » ; réparation 7n (une question par éditeur en interactif,
   jamais deux fois) ; MICA x64 (7c) et port (7p) utilisent la même décision ; conflit explicite si encore utilisé.
+
+## 2026-09-28 — PC v0.3.22 : JuxtaLink sans UAC, Smart App Control, verdicts plus justes
+- JuxtaLink exige l'UAC : lancé par une clé Run au démarrage de Windows, il était bloqué en silence -> après un
+  redémarrage du PC, port 1234 vide et « carte Vitale non lue ». Nouveau : tâche planifiée `\Odaiji\JuxtaLink`
+  (ouverture de session du médecin, privilèges les plus élevés) = démarrage sans fenêtre UAC ; icône
+  « JuxtaLink (Odaiji) » sur le Bureau public ; anciens lancements auto mis de côté (sauvegarde
+  HKLM\SOFTWARE\MadeForMed\JuxtaLinkDemarrage), jamais supprimés. Installeur étape 3b ; outil seul
+  `Demarrage-JuxtaLink.bat` (`retirer` pour annuler) ; relances du diag via la tâche.
+- Diag : JuxtaLink arrêté = KO (scénario ARRETE si c'est la seule cause, sinon ligne « En plus »), tâche absente = WARN,
+  réparation 7s (crée la tâche + relance).
+- Smart App Control (Windows 11) : actif = scénario SAC (mica.dll non signé bloqué, erreur 0xc0e90002) ; en
+  évaluation = WARN (Windows l'active seul plus tard). Correction manuelle, signalée à Juxta (DLL non signées).
+- Poste neuf sans plugin SSV = scénario PREMIERE_LECTURE au lieu d'un faux KO TABLES.
+- Tables srt vides = WARN (2 postes facturaient sans) ; KO seulement si ssv/sts manquent.
+- Tri des versions FSV corrigé : 1.40.9 était prise pour la plus récente devant 1.40.14 (tri alphabétique).
+- Neutraliser : couvre aussi la ruche Run et le dossier Démarrage du médecin (résidus revenus au redémarrage).
