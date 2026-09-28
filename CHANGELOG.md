@@ -217,3 +217,6 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
   le lanceur (processus parent) de chaque processus arrêté est écrit dans le rapport.
 - Correctif : relance de JuxtaLink en réparation (fonction Start-Jx cassée, erreur « elseStart-Jx ») ; contrôle automatique
   des noms de commandes inconnus ajouté avant chaque publication.
+- Correctif galss-autofix : avec un seul candidat pour la fente Vitale, seule sa 1re lettre était écrite (Vitale='K') ;
+  garde-fou : seuls des noms de lecteurs vus par Windows sont écrits.
+- Correctif 7n : « Argument manquant pour le paramètre Dossiers » (dossiers du catalogue non transmis) -> désinstallation non lancée.
