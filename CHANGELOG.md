@@ -264,3 +264,11 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
   Oracle / OpenVPN ajoutés aux éléments protégés. Verdict : MICA x64 revenu (mise à jour Cegedim) + erreur 1638 = scénario MICA.
 - galss-autofix / Reparer-lecteur : canaux supplémentaires (3, 4…) en fin de galss.ini pointant vers un lecteur absent supprimés
   (ListeCanaux / NbCanaux mis à jour) — DRSAMITIER : CANAL3 sur l'ancien Ingenico empêchait DMP Connect de lire la CPS.
+
+## 2026-09-28 — PC v0.3.26 (retour DRSAMITIER : DMP Connect KO, appels CPS lents)
+- Diag : « Causes de lenteur présentes » à chaque rapport — programmes qui se disputent le lecteur (jFSE, ClmLive, Pyxvital,
+  VitalZen, Weda), CertPropSvc automatique, VPN connecté, antivirus tiers (exclusions à demander), Cryptolib multiples.
+- 7v : CertPropSvc en Manuel (avec confirmation, réversible).
+- DMP Connect : « Timeout » répétés + canal galss.ini sur lecteur absent = KO DMP_TIMEOUT_GALSS ; -Fix réaligne galss.ini
+  (canaux fantômes supprimés) puis redémarre le service DMP Connect (7d-bis).
+- Poste serveur Cegedim + MICA x64 revenu : rappel que le service Octave le réinstalle (réponse n : Octave coupé, base conservée).
