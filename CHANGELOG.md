@@ -232,3 +232,10 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - Verdict : galss.ini incohérent = avertissement Icanopée (et non scénario GALSS) quand JuxtaLink est en PC/SC direct et lit déjà.
 - Catalogue editeurs.psd1 : ajout de **Shaman** (dossiers Program Files\Shaman, C:\Shaman ; motif shaman|maj400).
 - Libellés : « DMP Connect / iCanopée » partout dans les rapports ; galss.ini incohérent = à corriger seulement si DMP Connect ne marche pas.
+
+## 2026-09-28 — Mac v0.3.3 (1er Mac terrain : JuxtaLink + DMP Connect OK)
+- Aucun lecteur : inventaire USB via ioreg (SPUSBDataType vide sur macOS 15+), lecteur absent du bus = matériel,
+  alerte lecteur branché sur un clavier (courant), rappel « Autoriser les accessoires à se connecter ».
+- MediMust : détection (démarrages launchd, processus) ; 7m / installeur : « facture-t-il ENCORE avec MediMust ? »
+  n = démarrages coupés et sauvegardés sur le Bureau (_Odaiji_a_supprimer), rien n'est supprimé.
+- --sans-galss : le GALSS n'est jamais retiré si DMP Connect / iCanopée est installé (GALSS unique partagé sur Mac).
