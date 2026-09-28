@@ -239,3 +239,9 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - MediMust : détection (démarrages launchd, processus) ; 7m / installeur : « facture-t-il ENCORE avec MediMust ? »
   n = démarrages coupés et sauvegardés sur le Bureau (_Odaiji_a_supprimer), rien n'est supprimé.
 - --sans-galss : le GALSS n'est jamais retiré si DMP Connect / iCanopée est installé (GALSS unique partagé sur Mac).
+
+## 2026-09-28 — PC v0.3.25
+- Catalogue : **Weda** (Vitalzen, Weda Connect) — motif vitalzen|weda, dossiers Program Files / ProgramData / AppData\Local\Programs.
+  Composants exacts à confirmer sur le 1er poste.
+- Diag : section « Autres logiciels actifs » (ports locaux, démarrages automatiques, services hors Windows, produits santé)
+  avec repère « a verifier (concurrent ?) », pour repérer un logiciel concurrent absent du catalogue.
