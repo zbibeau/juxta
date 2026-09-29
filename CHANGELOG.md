@@ -293,3 +293,8 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - Réparation 7r (et Demarrage-JuxtaLink.bat) : source rétablie depuis le MSI du kit (même PackageCode) + `msiexec /fomus` silencieux.
 - Diag : plus de « galss.ini cohérent » affiché juste après un canal CPS inversé (retour PCCABINET 29/09).
 - Verdict : Vitale retirée avant le diag → « OK » si une lecture Vitale récente a réussi (au lieu de « Cas non reconnu »).
+
+## 2026-09-29 — PC v0.3.29 (retour PCCABINET)
+- Catalogue : **DrSanté (Calimaps)** (DrSante.Api, services Launcher / Watcher). Nouveau mode `NeutraliserSeulement` :
+  réponse n = services et programmes coupés, **ni désinstallation ni quarantaine** (logiciel médical : dossiers patients possibles).
+- Causes de lenteur : chemin des exceptions Bitdefender (Antivirus + Advanced Threat Defense, prévention des menaces en ligne).
