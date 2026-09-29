@@ -272,3 +272,9 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - DMP Connect : « Timeout » répétés + canal galss.ini sur lecteur absent = KO DMP_TIMEOUT_GALSS ; -Fix réaligne galss.ini
   (canaux fantômes supprimés) puis redémarre le service DMP Connect (7d-bis).
 - Poste serveur Cegedim + MICA x64 revenu : rappel que le service Octave le réinstalle (réponse n : Octave coupé, base conservée).
+
+## 2026-09-29 — PC v0.3.27 (correctif bloquant)
+- Le diag (et l'installeur) plantait dès le démarrage avec « Impossible de lier l'argument au paramètre Path, car il s'agit
+  d'une chaîne vide » (JuxtaLink-Demarrage-lib.ps1:13) quand l'entrée JuxtaLink du registre n'a pas d'icône (DisplayIcon vide).
+  Recherche de JuxtaLink.exe rendue infaillible (repli sur l'emplacement par défaut) et chargement des fonctions
+  JuxtaLink-Demarrage protégé : une erreur à cet endroit ne peut plus bloquer le diagnostic.
