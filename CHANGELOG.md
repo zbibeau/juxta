@@ -291,3 +291,4 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
   déplacés ; ceux déplacés par les versions précédentes sont remis en place.
 - Diag : source MSI JuxtaLink, événements MsiInstaller 1001/1004, éléments déplacés (JX_MSI_SOURCE / JX_MSI_REPAIR / JX_MOVED).
 - Réparation 7r (et Demarrage-JuxtaLink.bat) : source rétablie depuis le MSI du kit (même PackageCode) + `msiexec /fomus` silencieux.
+- Diag : plus de « galss.ini cohérent » affiché juste après un canal CPS inversé (retour PCCABINET 29/09).
