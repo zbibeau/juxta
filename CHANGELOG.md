@@ -278,3 +278,16 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
   d'une chaîne vide » (JuxtaLink-Demarrage-lib.ps1:13) quand l'entrée JuxtaLink du registre n'a pas d'icône (DisplayIcon vide).
   Recherche de JuxtaLink.exe rendue infaillible (repli sur l'emplacement par défaut) et chargement des fonctions
   JuxtaLink-Demarrage protégé : une erreur à cet endroit ne peut plus bloquer le diagnostic.
+
+## 2026-09-29 — PC v0.3.28 (3 fenêtres d'erreur au démarrage de JuxtaLink)
+- Symptôme : « Aucun package d'installation pour le produit JuxtaLink… SetupJuxtaLinkx86.msi », « ressource réseau non
+  disponible » (source dans `AppData\Local\Temp\…`), « Erreur irrécupérable lors de l'installation ».
+- Cause : kit lancé depuis le zip ouvert sans extraction → MSI installé depuis un dossier Temp purgé ensuite ; et les
+  v0.3.24-0.3.27 DÉPLAÇAIENT le raccourci / la clé de démarrage d'origine, qui appartiennent au MSI → Windows Installer
+  les voit manquants, veut réparer, ne trouve plus sa source.
+- Installeur : refuse de tourner depuis le zip / un dossier Temp ; MSI copié dans `C:\ProgramData\MadeForMed\JuxtaLink`
+  (source permanente) avant installation.
+- Lancements auto d'origine désormais DÉSACTIVÉS (StartupApproved, comme le Gestionnaire des tâches) au lieu d'être
+  déplacés ; ceux déplacés par les versions précédentes sont remis en place.
+- Diag : source MSI JuxtaLink, événements MsiInstaller 1001/1004, éléments déplacés (JX_MSI_SOURCE / JX_MSI_REPAIR / JX_MOVED).
+- Réparation 7r (et Demarrage-JuxtaLink.bat) : source rétablie depuis le MSI du kit (même PackageCode) + `msiexec /fomus` silencieux.
