@@ -303,3 +303,9 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - Catalogue : **HelloDoc (Imagine Editions)** en neutralisation seule ; PostgreSQL (base HelloDoc) ajouté aux éléments protégés de Neutraliser (retour HANSIANE 29/09).
 - Installeur : question « facture-t-il encore avec… ? » aussi quand l'ancien logiciel est installé mais fermé (programmes installés vérifiés) ; dossiers HelloDoc pour la détection.
 - Catalogue : Affid passe en neutralisation seule (logiciel médical local, dossiers patients possibles).
+
+## 2026-09-29 — PC v0.3.30 (retour HANSIANE : « carte Vitale non reconnue »)
+- Débloqué en relançant JuxtaLink (Reparer-lecteur) ; Reparer-interactif n'avait rien trouvé. Verdict A_TESTER : conseil
+  « relancer JuxtaLink » si Odaiji dit carte Vitale non reconnue.
+- Reparer-lecteur relance JuxtaLink via la tâche \Odaiji\JuxtaLink (sans UAC) quand elle existe.
+- Diag : liste du catalogue affichée (repère un kit périmé : HelloDoc absent de la détection sur HANSIANE).
