@@ -298,3 +298,4 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - Catalogue : **DrSanté (Calimaps)** (DrSante.Api, services Launcher / Watcher). Nouveau mode `NeutraliserSeulement` :
   réponse n = services et programmes coupés, **ni désinstallation ni quarantaine** (logiciel médical : dossiers patients possibles).
 - Causes de lenteur : chemin des exceptions Bitdefender (Antivirus + Advanced Threat Defense, prévention des menaces en ligne).
+- 7r : attend que Windows Installer soit libre avant de relancer JuxtaLink (sinon sa mise à jour de plugin échoue en 1618 puis 1603 — PCCABINET 29/09).
