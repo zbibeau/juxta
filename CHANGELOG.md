@@ -309,3 +309,9 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
   « relancer JuxtaLink » si Odaiji dit carte Vitale non reconnue.
 - Reparer-lecteur relance JuxtaLink via la tâche \Odaiji\JuxtaLink (sans UAC) quand elle existe.
 - Diag : liste du catalogue affichée (repère un kit périmé : HelloDoc absent de la détection sur HANSIANE).
+
+## 2026-09-29 — PC v0.3.31 (retour Dr Plongeron : erreur MGC après installation)
+- Verdict « OK » à tort : CPS/Vitale présentes, mais la dernière lecture renvoyait « Section MGC absente… » (exception
+  ssv.lirecarteps). La dernière réponse de la FSV est maintenant décodée : erreur MGC → KO scénario SESAM, lecture non comptée OK.
+- La FSV peut lire un autre sesam.ini que C:\Windows\sesam.ini : la section [MGC] est vérifiée dans tous les sesam.ini
+  (ProgramData / Program Files) et reposée par la réparation 7a (sauvegarde, seule la section [MGC] est réécrite).
