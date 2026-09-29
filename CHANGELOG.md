@@ -301,3 +301,4 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - 7r : attend que Windows Installer soit libre avant de relancer JuxtaLink (sinon sa mise à jour de plugin échoue en 1618 puis 1603 — PCCABINET 29/09).
 - Diag : erreurs 1603/1618 du plugin SSV → affiche les échecs Windows Installer des 3 derniers jours (produit en cause + message d'erreur), pour enfin isoler la cause des 1603.
 - Catalogue : **HelloDoc (Imagine Editions)** en neutralisation seule ; PostgreSQL (base HelloDoc) ajouté aux éléments protégés de Neutraliser (retour HANSIANE 29/09).
+- Installeur : question « facture-t-il encore avec… ? » aussi quand l'ancien logiciel est installé mais fermé (programmes installés vérifiés) ; dossiers HelloDoc pour la détection.
