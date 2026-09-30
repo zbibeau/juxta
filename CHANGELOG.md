@@ -315,3 +315,21 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
   ssv.lirecarteps). La dernière réponse de la FSV est maintenant décodée : erreur MGC → KO scénario SESAM, lecture non comptée OK.
 - La FSV peut lire un autre sesam.ini que C:\Windows\sesam.ini : la section [MGC] est vérifiée dans tous les sesam.ini
   (ProgramData / Program Files) et reposée par la réparation 7a (sauvegarde, seule la section [MGC] est réécrite).
+
+## 2026-09-30 — PC v0.3.32 (retour DESKTOP-RNFKE1A : neutralisation trop large, Cryptolib du GIE)
+- Neutraliser-Cegedim v1.5 : le motif `synchro` attrapait des éléments Windows / Adobe (tâches « SynchronizeTime »,
+  « ForceSynchronizeTime », « SynchronizeTimeZone », « Synchronize Language Settings », « Work Folders Logon Synchronization »,
+  « User_Feed_Synchronization », services OneSyncSvc et vmictimesync, entrées « Adobe Acrobat Synchronizer ») qui étaient désactivés.
+  Motif resserré (`clm\w*synchro|synchro\w*clm`) + garde-fou : un élément Windows / Microsoft / Adobe n'est jamais ciblé, sauf s'il porte
+  le nom de l'éditeur. Même correction dans `editeurs.psd1` et dans l'étape Run du Nettoyage.
+- Nouveau : `Neutraliser-Cegedim.ps1 -Restaurer -Systeme` (administrateur) remet en route uniquement les éléments désactivés à tort
+  (Windows / Microsoft / Adobe, ou que le motif corrigé ne cible plus) ; les éléments de l'ancien logiciel restent neutralisés.
+  À lancer sur les postes traités avec le kit v0.3.29 à v0.3.31 si la neutralisation Cegedim y a été faite.
+- Nettoyage 7h : les Cryptolib livrées avec les outils du GIE (`ProgramData\santesocial` : cps, atsam = Diagnostic Assurance Maladie) et celle
+  de DMP Connect / iCanopée ne sont plus désinstallées ni réparées ; msiexec avec délai max de 180 s (la réparation `/fa` pouvait rester bloquée,
+  rapport coupé à l'étape 7h) ; code 1605 expliqué (produit déjà absent).
+- Diag 3b : la Cryptolib x64 de DMP Connect est enfin détectée (le libellé « Composants Cryptographiques CPS » ne contenait pas « cryptolib » :
+  « Cryptolib absente » à tort).
+- galss-autofix v1.1 : lecteurs nommés « … Reader 0 / Reader 1 » (Identive CLOUD 2700 R) : la 2e fente est retrouvée (le nom n'a qu'un chiffre
+  final), le réalignement ne dépend plus de la présence de la Vitale ; message clair si CPS ou Vitale manque.
+
