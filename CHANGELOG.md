@@ -345,3 +345,7 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - Même moteur que l'installeur (`Neutraliser-Cegedim.ps1` v1.5, inchangé) : l'installeur et la réparation continuent de proposer la
   neutralisation pour chaque ancien logiciel détecté. `Neutraliser-Cegedim.bat` reste (Cegedim seulement). La page de téléchargement présente le nouvel outil.
 
+
+## 2026-09-30 — Mac v0.3.5 (Mac mini de Lancelot)
+- Diag : version DmpConnect lue via pkgutil (affichait « v » vide) ; accents des logs JuxtaLink conservés (locale UTF-8) ;
+  BLOQUERINSTALLEGALSS sans virgule finale ; « Dossier Plugins non inscriptible » devient une info quand le plugin SSV est installé.
