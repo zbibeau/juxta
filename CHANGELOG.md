@@ -353,3 +353,8 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 ## 2026-09-30 — PC v0.3.34 (POSTE1 : port 1234 pris par Affid)
 - galss-autofix : un galss.ini à un seul canal série (ancien logiciel, sans [CANAL2]) n'est plus signalé en ERREUR ; il n'est pas modifié et le message explique l'impact (DMP Connect seulement).
 - Neutralisation : le message de fin indique le nombre de dossiers réellement mis en quarantaine (il annonçait une quarantaine même quand rien n'était déplacé).
+
+## 2026-09-30 — PC v0.3.35 (POSTE1 : erreurs token 1100 / update 1200, puis MGC)
+- Profil : quand l'UAC est validée avec un autre compte que le médecin, le kit vise le profil de la session ouverte (propriétaire d'explorer.exe) pour user.config, plugins et tâche de démarrage, comme l'installateur.
+- user.config : absent du profil, sans serveurs token/update, ou port différent de 1234 = KO au diag ; correction 7k (copie du user.config MadeForMed ou port remis à 1234) puis relance de JuxtaLink.
+- sesam.ini : la section [MGC] est désormais posée dans les autres sesam.ini (ProgramData\santesocial\fsv\<version>\conf) même quand C:\Windows\sesam.ini est correct (étape 7a-ter). Avant, seulement lors de sa régénération.
