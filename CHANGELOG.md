@@ -359,3 +359,6 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - user.config : absent du profil, sans serveurs token/update, ou port différent de 1234 = KO au diag ; correction 7k (copie du user.config MadeForMed ou port remis à 1234) puis relance de JuxtaLink.
 - sesam.ini : la section [MGC] est désormais posée dans les autres sesam.ini (ProgramData\santesocial\fsv\<version>\conf) même quand C:\Windows\sesam.ini est correct (étape 7a-ter). Avant, seulement lors de sa régénération.
 - sesam.ini : un dossier des tables srt (x86) absent n'est plus un KO qui relance la régénération ; WARN puis dossier créé vide par -Fix (7a-quater) (NB-DELL-01).
+
+## 2026-09-30 — PC v0.3.36 (user.config aussi côté compte admin)
+- user.config : quand l'UAC est validée avec un autre compte (ex. admin.agtek), JuxtaLink lancé avec ce compte lit le user.config de SON profil. Le kit le pose désormais aussi dans le profil du compte admin (installateur + correction 7k) ; le diag signale son absence (UC_ADMIN, WARN).
