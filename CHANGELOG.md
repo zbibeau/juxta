@@ -358,3 +358,4 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - Profil : quand l'UAC est validée avec un autre compte que le médecin, le kit vise le profil de la session ouverte (propriétaire d'explorer.exe) pour user.config, plugins et tâche de démarrage, comme l'installateur.
 - user.config : absent du profil, sans serveurs token/update, ou port différent de 1234 = KO au diag ; correction 7k (copie du user.config MadeForMed ou port remis à 1234) puis relance de JuxtaLink.
 - sesam.ini : la section [MGC] est désormais posée dans les autres sesam.ini (ProgramData\santesocial\fsv\<version>\conf) même quand C:\Windows\sesam.ini est correct (étape 7a-ter). Avant, seulement lors de sa régénération.
+- sesam.ini : un dossier des tables srt (x86) absent n'est plus un KO qui relance la régénération ; WARN puis dossier créé vide par -Fix (7a-quater) (NB-DELL-01).
