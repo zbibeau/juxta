@@ -122,7 +122,7 @@
 </main>
 
 <script>
-  var VERSION = { win: "v0.3.32", mac: "v0.3.4" };
+  var VERSION = { win: "v0.3.33", mac: "v0.3.4" };
   function detect() {
     var p = (navigator.platform || "") + " " + navigator.userAgent;
     if (/Mac/i.test(p) && !/iPhone|iPad/i.test(p)) return "mac";
@@ -164,8 +164,8 @@
         does:["Corrige l'erreur DRC à la télétransmission","Autorise Odaiji et les serveurs DRC Juxta (*.juxta.cloud) à joindre JuxtaLink","Chrome, Edge et Firefox"], out:"Relancer le navigateur · vérifier chrome://policy" },
       { g:"Sur indication du rapport", ico:"card", f:"Reparer-lecteur.bat", when:"Lecteur changé ou « une fois sur deux »",
         does:["Réaligne galss.ini sur le lecteur branché (utile aussi pour DMP Connect / iCanopée)","Sauvegarde l'ancien fichier"], out:"CPS + Vitale insérées" },
-      { g:"Sur indication du rapport", ico:"pcsc", f:"Neutraliser-Cegedim.bat", when:"Ancien logiciel encore actif",
-        does:["Empêche les restes Cegedim de se lancer (démarrage, services, tâches)","Proposé aussi par la réparation pour tout logiciel qui occupe le port de JuxtaLink (ex. Affid)","Rien n'est désinstallé, pas de redémarrage","Retour arrière possible par le support (journal conservé)"], out:"Seulement si le médecin ne facture plus avec Cegedim" },
+      { g:"Sur indication du rapport", ico:"pcsc", f:"Neutraliser-Ancien-Logiciel.bat", when:"Ancien logiciel encore actif (équipe)",
+        does:["Liste le catalogue (Cegedim, Affid, Shaman, Weda, Pyxvital, DrSanté, HelloDoc) et ce qui est détecté sur le poste","Choix du logiciel puis du mode : neutralisation seule (démarrage, services, tâches, processus) ou avec désinstallation (jamais pour les logiciels médicaux)","Montre ce qui sera coupé et demande confirmation · remise en route possible","Proposé aussi par l'installeur et la réparation pour chaque ancien logiciel détecté"], out:"Seulement si le médecin ne facture plus avec ce logiciel · outil de l'équipe" },
       { g:"Sur indication du rapport", ico:"pcsc", f:"SansGalss.bat", when:"Passage PC/SC direct",
         does:["Retire le GALSS x86 et bloque sa réinstallation","Retour arrière automatique si la lecture échoue"] },
       { g:"Sur indication du rapport", ico:"clean", f:"Nettoyage.bat", when:"Anciennes FSV / Cryptolib",

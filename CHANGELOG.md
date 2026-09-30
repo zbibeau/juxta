@@ -333,3 +333,15 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - galss-autofix v1.1 : lecteurs nommés « … Reader 0 / Reader 1 » (Identive CLOUD 2700 R) : la 2e fente est retrouvée (le nom n'a qu'un chiffre
   final), le réalignement ne dépend plus de la présence de la Vitale ; message clair si CPS ou Vitale manque.
 
+## 2026-09-30 — PC v0.3.33 (outil de neutralisation à part, pour l'équipe)
+- Nouveau : `Neutraliser-Ancien-Logiciel.bat` (équipe uniquement). Menu construit depuis le catalogue `editeurs.psd1` : pour chaque logiciel,
+  ce qui est détecté sur le poste (dossier, processus actif, produit inscrit, base de données de l'éditeur). Choix du logiciel puis du mode :
+  **N** neutralisation seule (démarrage, services, tâches, processus ; rien n'est désinstallé, recommandé) ou **D** neutralisation +
+  désinstallation MSI (dossiers en quarantaine) — D jamais proposé pour les logiciels médicaux du catalogue (dossiers patients possibles)
+  ni sur un poste qui héberge la base de l'éditeur. Le moteur montre ce qui sera coupé et demande confirmation.
+- **R** remet en route un logiciel neutralisé (un journal par logiciel) ; **S** remet en route les éléments Windows / Adobe coupés à tort par
+  les kits 0.3.29 à 0.3.31 (journaux dont le logiciel est au catalogue, avec le motif de chaque logiciel). `-Nom X` va directement au choix du
+  mode ; `-Simulation` affiche la commande sans rien exécuter. Rapport `Neutralisation_<poste>_<date>.txt` sur le Bureau.
+- Même moteur que l'installeur (`Neutraliser-Cegedim.ps1` v1.5, inchangé) : l'installeur et la réparation continuent de proposer la
+  neutralisation pour chaque ancien logiciel détecté. `Neutraliser-Cegedim.bat` reste (Cegedim seulement). La page de téléchargement présente le nouvel outil.
+
