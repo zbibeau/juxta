@@ -349,3 +349,7 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 ## 2026-09-30 — Mac v0.3.5 (Mac mini de Lancelot)
 - Diag : version DmpConnect lue via pkgutil (affichait « v » vide) ; accents des logs JuxtaLink conservés (locale UTF-8) ;
   BLOQUERINSTALLEGALSS sans virgule finale ; « Dossier Plugins non inscriptible » devient une info quand le plugin SSV est installé.
+
+## 2026-09-30 — PC v0.3.34 (POSTE1 : port 1234 pris par Affid)
+- galss-autofix : un galss.ini à un seul canal série (ancien logiciel, sans [CANAL2]) n'est plus signalé en ERREUR ; il n'est pas modifié et le message explique l'impact (DMP Connect seulement).
+- Neutralisation : le message de fin indique le nombre de dossiers réellement mis en quarantaine (il annonçait une quarantaine même quand rien n'était déplacé).
