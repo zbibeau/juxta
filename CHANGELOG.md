@@ -362,3 +362,7 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
 ## 2026-09-30 — PC v0.3.36 (user.config aussi côté compte admin)
 - user.config : quand l'UAC est validée avec un autre compte (ex. admin.agtek), JuxtaLink lancé avec ce compte lit le user.config de SON profil. Le kit le pose désormais aussi dans le profil du compte admin (installateur + correction 7k) ; le diag signale son absence (UC_ADMIN, WARN).
+
+## 2026-10-01 — Mac v0.3.6 (MacBook Pro : user.config sans les serveurs MadeForMed)
+- Installateur : JuxtaLink est arrêté juste après le pkg (qui peut le lancer seul et lui faire écrire sa propre config) ; le user.config MadeForMed est posé dans Contents/Resources et dans tout autre emplacement existant, puis vérifié après le redémarrage final (repose + relance si les serveurs ont disparu).
+- Diag : contrôle que le user.config contient les serveurs MadeForMed (UC_NOT_MFM / UC_ABSENT).
