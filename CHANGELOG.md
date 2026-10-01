@@ -383,3 +383,6 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - galss-autofix v1.3 : un galss.ini absent est recréé en PC/SC (CPS / Vitale) si DMP Connect ou le GALSS x64 est installé.
 - Diag : galss.ini absent avec DMP Connect installé = WARN GALSS_MISSING, traité par Reparer-lecteur / 7b.
 - Étape 7g (retrait du GALSS x86) : sauvegarde de galss.ini avant et restauration s'il a disparu.
+
+## 2026-10-01 — PC v0.3.40 (installateur : enchaîne avec la réparation du lecteur)
+- Fin d'installation (étape 5d, après le redémarrage propre de JuxtaLink) : si DMP Connect / iCanopée (ou le GALSS x64) est installé et que `C:\Windows\galss.ini` est absent ou encore en mode série, l'installateur lance la logique de Reparer-lecteur (galss-autofix, avec CPS + Vitale insérées), redémarre le service DMP Connect, puis vérifie que le fichier est en PC/SC. Le diag « Après » reflète le résultat.
