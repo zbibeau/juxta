@@ -377,3 +377,9 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 ## 2026-10-01 — Mac v0.3.8 (MacBook Air : installation OK, faux KO Mica, LNA)
 - Diag : une erreur Mica du log antérieure au dernier démarrage de JuxtaLink (session précédente, avant l'installation de MICA par le plugin) est ignorée au lieu d'être comptée KO.
 - Installateur : après Autoriser-Odaiji-Chrome, vérifie la politique Local Network Access de Chrome/Edge et la repose (erreurs affichées) si elle est absente.
+
+## 2026-10-01 — PC v0.3.39 (DRLECLERE : DMP Connect ne lit plus, galss.ini disparu)
+- Sur ce poste `C:\Windows\galss.ini` (série, hérité de Shaman) existait avant l'installation et était absent après : DMP Connect / iCanopée n'avait plus de fichier pour trouver le lecteur (JuxtaLink, en PC/SC direct, restait OK ; aucun rapport avec le port 1234).
+- galss-autofix v1.3 : un galss.ini absent est recréé en PC/SC (CPS / Vitale) si DMP Connect ou le GALSS x64 est installé.
+- Diag : galss.ini absent avec DMP Connect installé = WARN GALSS_MISSING, traité par Reparer-lecteur / 7b.
+- Étape 7g (retrait du GALSS x86) : sauvegarde de galss.ini avant et restauration s'il a disparu.
