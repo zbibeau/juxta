@@ -369,3 +369,7 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
 ## 2026-10-01 — PC v0.3.37 (POSTE1 : iCanopée ne lit pas, galss.ini en série)
 - galss-autofix v1.2 : un galss.ini d'ancien logiciel (un seul canal série `9600,1,8,0,0` portant CPS + Vitale, sans CANAL2) est converti en PC/SC (2 canaux : CPS puis Vitale, bibliothèque PCSCW64.DLL), sur le modèle du galss.ini Mac, en gardant le [PROTOCOLE0] d'origine ; sauvegarde `.bak`, JuxtaLink relancé. Avant, ce cas n'était pas modifié, donc DMP Connect / iCanopée ne voyait pas le lecteur. Testé sur le fichier du POSTE1 (simulation) ; à confirmer sur le poste (redémarrer le service DMP Connect, lecture CPS via iCanopée).
+
+## 2026-10-01 — PC v0.3.38 / Mac v0.3.7 (retours installation)
+- PC : l'installateur ne s'arrête plus sur « Relancer Firefox… Entrée pour fermer » (Autoriser-Odaiji-Chrome avec -NoPause ; les politiques sont prises en compte au prochain redémarrage du navigateur). Bandeau coloré net à l'étape « Enregistrer la situation de facturation » + lecture CPS/Vitale.
+- Mac : le diagnostic ne parcourt plus ~/Library (demandes macOS iCloud / OneDrive / Photothèque supprimées). Étape 5 : JuxtaLink est relancé avec le user.config MadeForMed, vérifié (config chargée + port 1234 en écoute), puis seulement ensuite le bandeau « Enregistrer la situation de facturation ».
