@@ -373,3 +373,7 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 ## 2026-10-01 — PC v0.3.38 / Mac v0.3.7 (retours installation)
 - PC : l'installateur ne s'arrête plus sur « Relancer Firefox… Entrée pour fermer » (Autoriser-Odaiji-Chrome avec -NoPause ; les politiques sont prises en compte au prochain redémarrage du navigateur). Bandeau coloré net à l'étape « Enregistrer la situation de facturation » + lecture CPS/Vitale.
 - Mac : le diagnostic ne parcourt plus ~/Library (demandes macOS iCloud / OneDrive / Photothèque supprimées). Étape 5 : JuxtaLink est relancé avec le user.config MadeForMed, vérifié (config chargée + port 1234 en écoute), puis seulement ensuite le bandeau « Enregistrer la situation de facturation ».
+
+## 2026-10-01 — Mac v0.3.8 (MacBook Air : installation OK, faux KO Mica, LNA)
+- Diag : une erreur Mica du log antérieure au dernier démarrage de JuxtaLink (session précédente, avant l'installation de MICA par le plugin) est ignorée au lieu d'être comptée KO.
+- Installateur : après Autoriser-Odaiji-Chrome, vérifie la politique Local Network Access de Chrome/Edge et la repose (erreurs affichées) si elle est absente.
