@@ -366,3 +366,6 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 ## 2026-10-01 — Mac v0.3.6 (MacBook Pro : user.config sans les serveurs MadeForMed)
 - Installateur : JuxtaLink est arrêté juste après le pkg (qui peut le lancer seul et lui faire écrire sa propre config) ; le user.config MadeForMed est posé dans Contents/Resources et dans tout autre emplacement existant, puis vérifié après le redémarrage final (repose + relance si les serveurs ont disparu).
 - Diag : contrôle que le user.config contient les serveurs MadeForMed (UC_NOT_MFM / UC_ABSENT).
+
+## 2026-10-01 — PC v0.3.37 (POSTE1 : iCanopée ne lit pas, galss.ini en série)
+- galss-autofix v1.2 : un galss.ini d'ancien logiciel (un seul canal série `9600,1,8,0,0` portant CPS + Vitale, sans CANAL2) est converti en PC/SC (2 canaux : CPS puis Vitale, bibliothèque PCSCW64.DLL), sur le modèle du galss.ini Mac, en gardant le [PROTOCOLE0] d'origine ; sauvegarde `.bak`, JuxtaLink relancé. Avant, ce cas n'était pas modifié, donc DMP Connect / iCanopée ne voyait pas le lecteur. Testé sur le fichier du POSTE1 (simulation) ; à confirmer sur le poste (redémarrer le service DMP Connect, lecture CPS via iCanopée).
