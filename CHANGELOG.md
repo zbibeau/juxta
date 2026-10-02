@@ -400,3 +400,6 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
 ## 2026-10-02 — Mac v0.3.9
 - Installateur : animation avec le temps écoulé pendant le diagnostic, l’installation du pkg JuxtaLink (1 à 3 min), les corrections et le retrait du GALSS, et barre de progression des téléchargements. L’écran restait figé après « installer: Installing at base path / » (iMac Poste3) et semblait bloqué.
+
+## 2026-10-02 — Mac v0.3.10
+- Étape 5 : user.config MadeForMed écrit partout avant l’arrêt et le redémarrage de JuxtaLink (déclenche l’installation automatique des prérequis du plugin SSV). Si JuxtaLink remet sa config par défaut (iMac Poste3 : « user.config MadeForMed absent »), jusqu’à 3 essais dont un avec fichier verrouillé, et la valeur réelle de tokenServerUrl est affichée pour diagnostic.
