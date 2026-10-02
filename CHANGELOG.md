@@ -397,3 +397,6 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 ## 2026-10-02 — PC v0.3.43
 - DESKTOP-LD0E22D (retour Axel) : le MSI FSV échouait avec « Impossible de définir la sécurité du fichier C:\ProgramData\santesocial\fsv\… ». Le diag (-Fix, 7t et 7a-bis) exécute maintenant `takeown` + `icacls` (SID Administrateurs/SYSTEM) sur ce dossier puis relance le MSI une seule fois.
 - Installeur, étape 5d : seul le service iCanopee (DmpConnect-JS2, non désactivé) est redémarré ; son état est vérifié et il est relancé s'il est arrêté.
+
+## 2026-10-02 — Mac v0.3.9
+- Installateur : animation avec le temps écoulé pendant le diagnostic, l’installation du pkg JuxtaLink (1 à 3 min), les corrections et le retrait du GALSS, et barre de progression des téléchargements. L’écran restait figé après « installer: Installing at base path / » (iMac Poste3) et semblait bloqué.
