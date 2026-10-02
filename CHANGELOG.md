@@ -386,3 +386,7 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
 ## 2026-10-01 — PC v0.3.40 (installateur : enchaîne avec la réparation du lecteur)
 - Fin d'installation (étape 5d, après le redémarrage propre de JuxtaLink) : si DMP Connect / iCanopée (ou le GALSS x64) est installé et que `C:\Windows\galss.ini` est absent ou encore en mode série, l'installateur lance la logique de Reparer-lecteur (galss-autofix, avec CPS + Vitale insérées), redémarre le service DMP Connect, puis vérifie que le fichier est en PC/SC. Le diag « Après » reflète le résultat.
+
+## 2026-10-02 — PC v0.3.41 (Reparer-lecteur figé et muet : PC-MED2-0220, SUZANNE-PC-PORT)
+- galss-autofix v1.4 : la première action du script, `certutil -scinfo`, pouvait ne jamais rendre la main (carte tenue par un autre programme) alors que la fenêtre n'affichait rien. L'étape est maintenant annoncée (« Analyse des lecteurs et des cartes… 45 s maximum ») et limitée à 45 s, avec un message clair et une ligne dans `C:\ProgramData\MadeForMed\galss-autofix.log`. Cause réelle du blocage non confirmée : si le message de délai apparaît, c'était bien certutil.
+- Les échecs MSI 1603 « Composants Cryptographiques CPS v5.2.2 (x64) » observés pendant les essais ne viennent pas du script : c'est le plugin SSV qui retente cette installation à chaque relance de JuxtaLink (déjà vu, sans effet sur les lectures).
