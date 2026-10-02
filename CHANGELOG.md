@@ -403,3 +403,6 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
 ## 2026-10-02 — Mac v0.3.10
 - Étape 5 : user.config MadeForMed écrit partout avant l’arrêt et le redémarrage de JuxtaLink (déclenche l’installation automatique des prérequis du plugin SSV). Si JuxtaLink remet sa config par défaut (iMac Poste3 : « user.config MadeForMed absent »), jusqu’à 3 essais dont un avec fichier verrouillé, et la valeur réelle de tokenServerUrl est affichée pour diagnostic.
+
+## 2026-10-02 — Mac v0.3.11
+- Étape 5 : le bandeau « A VOUS DE JOUER » est remplacé par l’annonce du redémarrage de JuxtaLink et de l’installation automatique (FSV, GALSS, MICA, Cryptolib) ; « Enregistrer la situation de facturation » est demandé après l’installation.
