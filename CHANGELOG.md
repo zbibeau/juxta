@@ -406,3 +406,6 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
 ## 2026-10-02 — Mac v0.3.11
 - Étape 5 : le bandeau « A VOUS DE JOUER » est remplacé par l’annonce du redémarrage de JuxtaLink et de l’installation automatique (FSV, GALSS, MICA, Cryptolib) ; « Enregistrer la situation de facturation » est demandé après l’installation.
+
+## 2026-10-02 — PC v0.3.44
+- Installateur, étape 5 : JuxtaLink est toujours arrêté puis relancé après la pose du user.config MadeForMed (il pouvait déjà tourner avec l’ancienne config), avec contrôle du port 1234 et un second essai ; message explicite s’il est bloqué (UAC, antivirus, SmartScreen). Le bandeau annonce le redémarrage et l’installation automatique de FSV/GALSS/MICA/Cryptolib, puis demande « Enregistrer la situation de facturation » après l’installation.
