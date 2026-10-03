@@ -416,3 +416,6 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 ## 2026-10-03 — PC v0.3.46
 - Nouveau `Depannage.bat` pour un poste où JuxtaLink est déjà installé : diag Avant → questions (anciens logiciels, port 1234) → corrections sûres (`-Fix -Auto`) → réparation du lecteur (`galss-autofix`, redémarrage ciblé du service iCanopée) et autorisation Chrome/Edge selon les constats → relance de JuxtaLink avec contrôle du port 1234 → questions de confort (CertPropSvc en Manuel, ménage des Cryptolib en doublon via `-Nettoyage`) → diag Après avec résumé. Journal `Depannage_<poste>_<date>.txt` sur le Bureau.
 - Les questions CertPropSvc et ménage Cryptolib sont reformulées : à quoi ça sert, ce qui est protégé, réponse conseillée.
+
+## 2026-10-03 — PC v0.3.47
+- Depannage.bat : CertPropSvc passe en Manuel automatiquement (plus de question, une ligne explicative et le retour arrière sont affichés).
