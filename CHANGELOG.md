@@ -423,3 +423,8 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 ## 2026-10-03 — PC v0.3.48
 - Depannage.bat : retrait automatique du GALSS x86 Juxta (Full PC/SC, `-SansGalss`) quand il est présent, revenu, ou que sa réinstallation n’est pas bloquée ; le diag vérifie ses prérequis et sauvegarde/restaure `galss.ini`.
 - Installateur : CertPropSvc passe en Manuel automatiquement et le ménage des Cryptolib en doublon est proposé (même question que le dépannage), pour que les deux parcours fassent la même chose.
+
+## 2026-10-03 — PC v0.3.49 / Mac v0.3.13
+- Fichiers numérotés dans les deux kits : `1-Installer`, `2-Depanner`, `3-Diag-seul` (ex Installer-Odaiji-Juxta, Depannage, Diag-seul).
+- Mac : nouveau `2-Depanner.command` (diag Avant, questions anciens logiciels, corrections auto, lecteur galss, Chrome/Edge, Full PC/SC, relance JuxtaLink avec user.config vérifié et port 1234, diag Après, journal `Depannage_…txt`).
+- Page : switch Windows/Mac avec un seul bouton Télécharger, switch Installation/Dépannage, étapes détaillées par kit, « Ce qu’il vous reste à faire » (GED, chrome://flags avec capture, rapports, formation).
