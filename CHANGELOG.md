@@ -409,3 +409,6 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
 ## 2026-10-02 — PC v0.3.44
 - Installateur, étape 5 : JuxtaLink est toujours arrêté puis relancé après la pose du user.config MadeForMed (il pouvait déjà tourner avec l’ancienne config), avec contrôle du port 1234 et un second essai ; message explicite s’il est bloqué (UAC, antivirus, SmartScreen). Le bandeau annonce le redémarrage et l’installation automatique de FSV/GALSS/MICA/Cryptolib, puis demande « Enregistrer la situation de facturation » après l’installation.
+
+## 2026-10-03 — PC v0.3.45
+- DESKTOP-H0L11PM : 7a posait la section [MGC] dans `C:\ProgramData\santesocial\fsv\<ver>\conf\sesam.ini`, puis 7a-bis (MSI FSV en réparation) réécrivait ce fichier sans [MGC] ; l’erreur « Section MGC absente » revenait à la lecture suivante. La section est maintenant reposée après chaque passage du MSI FSV (7a-bis et 7t).
