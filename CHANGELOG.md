@@ -412,3 +412,7 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
 ## 2026-10-03 — PC v0.3.45
 - DESKTOP-H0L11PM : 7a posait la section [MGC] dans `C:\ProgramData\santesocial\fsv\<ver>\conf\sesam.ini`, puis 7a-bis (MSI FSV en réparation) réécrivait ce fichier sans [MGC] ; l’erreur « Section MGC absente » revenait à la lecture suivante. La section est maintenant reposée après chaque passage du MSI FSV (7a-bis et 7t).
+
+## 2026-10-03 — PC v0.3.46
+- Nouveau `Depannage.bat` pour un poste où JuxtaLink est déjà installé : diag Avant → questions (anciens logiciels, port 1234) → corrections sûres (`-Fix -Auto`) → réparation du lecteur (`galss-autofix`, redémarrage ciblé du service iCanopée) et autorisation Chrome/Edge selon les constats → relance de JuxtaLink avec contrôle du port 1234 → questions de confort (CertPropSvc en Manuel, ménage des Cryptolib en doublon via `-Nettoyage`) → diag Après avec résumé. Journal `Depannage_<poste>_<date>.txt` sur le Bureau.
+- Les questions CertPropSvc et ménage Cryptolib sont reformulées : à quoi ça sert, ce qui est protégé, réponse conseillée.
