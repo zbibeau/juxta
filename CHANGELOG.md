@@ -428,3 +428,8 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - Fichiers numérotés dans les deux kits : `1-Installer`, `2-Depanner`, `3-Diag-seul` (ex Installer-Odaiji-Juxta, Depannage, Diag-seul).
 - Mac : nouveau `2-Depanner.command` (diag Avant, questions anciens logiciels, corrections auto, lecteur galss, Chrome/Edge, Full PC/SC, relance JuxtaLink avec user.config vérifié et port 1234, diag Après, journal `Depannage_…txt`).
 - Page : switch Windows/Mac avec un seul bouton Télécharger, switch Installation/Dépannage, étapes détaillées par kit, « Ce qu’il vous reste à faire » (GED, chrome://flags avec capture, rapports, formation).
+
+## 2026-10-04 — PC v0.3.50 / Mac v0.3.14
+- Gardien JuxtaLink : veille toutes les 10 min ; JuxtaLink fermé ou planté → relancé seul (PC : tâche planifiée `\Odaiji\Gardien-JuxtaLink` SYSTEM, relance via la tâche JuxtaLink sans UAC ; Mac : agent launchd `fr.madeformed.juxtalink-gardien`).
+- Garde-fous : rien si personne n'est connecté, rien pendant une installation Windows ni un outil du kit, 3 relances max en 30 min (puis « BOUCLE » dans le journal), JuxtaLink qui tourne mais port 1234 muet 2 veilles → relancé.
+- Posé par 1-Installer, 2-Depanner (et Demarrage-JuxtaLink.bat sur PC) ; le diag signale `GARDIEN_ABSENT`. Journaux : `C:\ProgramData\MadeForMed\Gardien\gardien.log` (PC), `~/Library/Logs/juxtalink-gardien.log` (Mac).

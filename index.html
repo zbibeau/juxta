@@ -135,7 +135,7 @@
 </main>
 
 <script>
-  var VERSION = { win: "v0.3.49", mac: "v0.3.13" };
+  var VERSION = { win: "v0.3.50", mac: "v0.3.14" };
   function detect() {
     var p = (navigator.platform || "") + " " + navigator.userAgent;
     if (/Mac/i.test(p) && !/iPhone|iPad/i.test(p)) return "mac";
@@ -167,6 +167,7 @@
           [A,"Full PC/SC","Retrait du GALSS x86 Juxta et blocage de sa réinstallation ; retour arrière automatique si la lecture échoue."],
           [A,"Lecteur pour iCanopée","galss.ini recréé s'il est absent ou en mode série ; service DMP Connect redémarré puis vérifié."],
           [A,"Confort","CertPropSvc passé en Manuel (lectures CPS plus rapides, réversible)."],
+          [A,"Gardien","Veille de JuxtaLink toutes les 10 min : s'il est fermé ou plante, il est relancé seul (3 relances max en 30 min, puis le journal le signale)."],
           [Q,"Ménage","Si plus de 2 Cryptolib en doublon : on garde la plus récente ; celles des outils Assurance Maladie et de DMP Connect ne sont jamais touchées."],
           [A,"Diagnostic Après","Apres_….txt sur le Bureau, avec les [KO] restants."]
         ]},
@@ -178,6 +179,7 @@
           [A,"Lecteur et navigateurs","Réparation du lecteur pour iCanopée si galss.ini ne correspond pas ; autorisation Chrome/Edge si elle manque."],
           [A,"Redémarrage de JuxtaLink","Recharge la configuration puis contrôle que le port 1234 répond."],
           [A,"Confort","CertPropSvc passé en Manuel."],
+          [A,"Gardien","Pose la veille de JuxtaLink toutes les 10 min si elle manque."],
           [Q,"Ménage","Cryptolib en doublon, même règle que l'installation."],
           [A,"Diagnostic Après","Résumé de ce qui reste, plus le journal Depannage_….txt à envoyer."]
         ]}
@@ -213,6 +215,7 @@
           [A,"Redémarrage de JuxtaLink","Il installe alors FSV, GALSS, MICA et Cryptolib. Accepter les demandes macOS."],
           [Y,"Dans Odaiji, après l'installation","Cliquer sur « Enregistrer la situation de facturation », puis faire UNE lecture CPS + Vitale."],
           [A,"Full PC/SC","Retrait du GALSS Juxta et blocage de sa réinstallation."],
+          [A,"Gardien","Veille de JuxtaLink toutes les 10 min : s'il est fermé ou plante, il est relancé seul (3 relances max en 30 min, puis le journal le signale)."],
           [A,"Diagnostic Après","Apres_….txt sur le Bureau."]
         ]},
         { t:"Dépannage d'un poste déjà équipé", sub:"Dans l'ordre, ce que fait 2-Depanner.command. Il ne fait que ce que le diagnostic justifie.", id:"dep", items:[
@@ -222,6 +225,7 @@
           [A,"Lecteur et navigateurs","galss.ini réaligné sur les fentes réelles si besoin ; autorisation Chrome/Edge si elle manque, vérifiée après écriture."],
           [A,"Full PC/SC","Retire le GALSS Juxta s'il est présent (jamais si DMP Connect / iCanopée l'utilise)."],
           [A,"Redémarrage de JuxtaLink","user.config MadeForMed vérifié avant, relance, puis contrôle du port 1234."],
+          [A,"Gardien","Pose la veille de JuxtaLink toutes les 10 min si elle manque."],
           [Y,"Dans Odaiji","Une lecture CPS + Vitale pour contrôler."],
           [A,"Diagnostic Après","Résumé avant / après, plus le journal Depannage_….txt à envoyer."]
         ]}
