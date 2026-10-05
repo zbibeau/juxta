@@ -510,3 +510,8 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
   - Mac : nouveau `Relancer-DMP.command` (relance les services launchd `com.icanopee.*`, sinon arrête `dmpconnect-js2` pour que le moniteur le relance).
 - PC : nouveaux constats `ADR_SERVEUR` (erreurs ADR `siram_40` / `FASIBEN` = service de l'Assurance Maladie indisponible, pas le poste) et `VITALE_ABSENTE` (« La Carte Vitale est absente » = carte non insérée), avec message explicite dans le verdict.
 - Test : détection des lignes de log PC/SC (`Get-DmpPcscHits`).
+
+## 2026-10-05 — PC v1.0.0 / Mac v1.0.0
+- **Remontée automatique des rapports en service** : le kit envoie depuis le poste du client (session TeamViewer) chaque rapport Avant / Après / diag seul au récepteur Netlify, qui les range dans un dépôt GitHub privé (code CPS et blocs base64 masqués côté serveur). Plus de « bulle Intercom » : en cas d'échec, le message demande de récupérer le fichier par le transfert de fichiers TeamViewer.
+- PC : le journal du dépannage (actions et réponses) est envoyé aussi. Mac : rapports Fix techniques non envoyés.
+- PC : `JX_MSI_REPAIR` ne compte plus que les événements Windows Installer postérieurs au dernier lancement de JuxtaLink (plus de faux positif après réparation).
