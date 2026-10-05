@@ -481,3 +481,6 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
 ## 2026-10-05 — PC v0.3.61
 - Correction de 7a-sexies : au lieu de copier des fichiers x64 dans le x86 (risque de mélanger deux versions de tables), les sesam.ini (`[SSV]`, `[COMMUN]`, `[STS]`, `[SRT]`) pointent sur le dossier x64 quand celui-ci contient tous les fichiers du x86 et plus. Sauvegarde .bak de chaque sesam.ini.
+
+## 2026-10-05 — PC v0.3.62
+- PC26-FILLATRE : après v0.3.61 les tables x86 étaient complètes (ssv 25, sts 45) et tous les sesam.ini corrects, mais l'erreur « tables binaires des SSV » persistait → l'hypothèse « tables incomplètes » n'explique pas ce poste. Le diag liste maintenant les fichiers (noms et tailles) des dossiers ssv/sts x86 et x64, et affiche le contexte du log JuxtaLink autour de la dernière erreur SSV (NIR et base64 masqués) pour voir quel chemin la FSV tente d'ouvrir.
