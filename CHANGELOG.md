@@ -451,3 +451,6 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 ## 2026-10-05 — Mac v0.3.17
 - 2-Depanner.command : bug corrigé — les constats dont le code contient des minuscules (ex. LNA_Google_Chrome) n'étaient pas lus, donc l'autorisation Chrome/Edge (Local Network Access) n'était jamais appliquée par le dépannage (« Navigateurs : rien à faire » alors que le diag signalait un [KO]).
 - 2-Depanner.command : demande d'insérer CPS + Vitale juste avant le réalignement de galss.ini (sans les deux cartes, galss-autofix ne peut pas identifier les fentes).
+
+## 2026-10-05 — Mac v0.3.18
+- Gardien Mac v1.1 : à chaque veille (10 min), galss-autofix vérifie que galss.ini suit les fentes réelles du lecteur. Si le médecin inverse ou déplace sa CPS / sa Vitale, galss.ini est réaligné et JuxtaLink relancé tout seul (2 réalignements max en 30 min, tracé dans ~/Library/Logs/juxtalink-gardien.log). L'installateur et le dépannage copient galss-autofix.sh et rendent galss.ini modifiable sans mot de passe.
