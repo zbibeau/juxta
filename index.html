@@ -135,7 +135,7 @@
 </main>
 
 <script>
-  var VERSION = { win: "v0.3.51", mac: "v0.3.14" };
+  var VERSION = { win: "v0.3.52", mac: "v0.3.15" };
   function detect() {
     var p = (navigator.platform || "") + " " + navigator.userAgent;
     if (/Mac/i.test(p) && !/iPhone|iPad/i.test(p)) return "mac";
@@ -163,12 +163,13 @@
           [A,"Corrections sûres","sesam.ini et section [MGC], tables FSV (droits réparés si besoin), MICA x86, galss.ini, faux MICA x64 de jFSE."],
           [A,"Chrome, Edge, Firefox","Odaiji et les serveurs DRC Juxta autorisés à joindre JuxtaLink (Local Network Access)."],
           [A,"Redémarrage de JuxtaLink","Il installe alors tout seul FSV, GALSS, MICA et Cryptolib. Accepter les fenêtres UAC."],
-          [Y,"Dans Odaiji, après l'installation","Cliquer sur « Enregistrer la situation de facturation », puis faire UNE lecture CPS + Vitale."],
+          [Y,"Dans Odaiji, après l'installation","Cliquer sur « Enregistrer la situation de facturation » : l'installation des SSV démarre à ce moment-là. Puis UNE lecture CPS + Vitale."],
           [A,"Full PC/SC","Retrait du GALSS x86 Juxta et blocage de sa réinstallation ; retour arrière automatique si la lecture échoue."],
           [A,"Lecteur pour iCanopée","galss.ini recréé s'il est absent ou en mode série ; service DMP Connect redémarré puis vérifié."],
           [A,"Confort","CertPropSvc passé en Manuel (lectures CPS plus rapides, réversible)."],
           [A,"Gardien","Veille de JuxtaLink toutes les 10 min : s'il est fermé ou plante, il est relancé seul (3 relances max en 30 min, puis le journal le signale)."],
           [Q,"Ménage","Si plus de 2 Cryptolib en doublon : on garde la plus récente ; celles des outils Assurance Maladie et de DMP Connect ne sont jamais touchées."],
+          [Y,"Contrôle dans Odaiji","Une facture avec une carte Vitale, puis une facture sans Vitale (valider l'appel ADRi)."],
           [A,"Diagnostic Après","Apres_….txt sur le Bureau, avec les [KO] restants."]
         ]},
         { t:"Dépannage d'un poste déjà équipé", sub:"Dans l'ordre, ce que fait 2-Depanner.bat. Il ne fait que ce que le diagnostic justifie.", id:"dep", items:[
@@ -213,9 +214,10 @@
           [A,"Corrections sûres","galss.ini et réglages du poste."],
           [A,"Chrome, Edge, Firefox","Odaiji et les serveurs DRC Juxta autorisés (Local Network Access), vérifié après écriture."],
           [A,"Redémarrage de JuxtaLink","Il installe alors FSV, GALSS, MICA et Cryptolib. Accepter les demandes macOS."],
-          [Y,"Dans Odaiji, après l'installation","Cliquer sur « Enregistrer la situation de facturation », puis faire UNE lecture CPS + Vitale."],
+          [Y,"Dans Odaiji, après l'installation","Cliquer sur « Enregistrer la situation de facturation » : l'installation des SSV démarre à ce moment-là. Puis UNE lecture CPS + Vitale."],
           [A,"Full PC/SC","Retrait du GALSS Juxta et blocage de sa réinstallation."],
           [A,"Gardien","Veille de JuxtaLink toutes les 10 min : s'il est fermé ou plante, il est relancé seul (3 relances max en 30 min, puis le journal le signale)."],
+          [Y,"Contrôle dans Odaiji","Une facture avec une carte Vitale, puis une facture sans Vitale (valider l'appel ADRi)."],
           [A,"Diagnostic Après","Apres_….txt sur le Bureau."]
         ]},
         { t:"Dépannage d'un poste déjà équipé", sub:"Dans l'ordre, ce que fait 2-Depanner.command. Il ne fait que ce que le diagnostic justifie.", id:"dep", items:[
@@ -226,7 +228,7 @@
           [A,"Full PC/SC","Retire le GALSS Juxta s'il est présent (jamais si DMP Connect / iCanopée l'utilise)."],
           [A,"Redémarrage de JuxtaLink","user.config MadeForMed vérifié avant, relance, puis contrôle du port 1234."],
           [A,"Gardien","Pose la veille de JuxtaLink toutes les 10 min si elle manque."],
-          [Y,"Dans Odaiji","Une lecture CPS + Vitale pour contrôler."],
+          [Y,"Contrôle dans Odaiji","Une facture avec une carte Vitale, puis une facture sans Vitale (valider l'appel ADRi)."],
           [A,"Diagnostic Après","Résumé avant / après, plus le journal Depannage_….txt à envoyer."]
         ]}
       ],

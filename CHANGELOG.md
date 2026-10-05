@@ -438,3 +438,6 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - 2-Depanner.bat : demande d'insérer CPS + Vitale juste avant la réparation du lecteur (poste MSI : la CPS avait été retirée entre le diag Avant et cette étape, galss.ini n'a pas été recréé) et réessaie une fois si Windows ne voit aucune carte.
 - Diag : l'échec 1603 « Composants Cryptographiques CPS v5.2.2 (x64) » du plugin SSV passe en information (et non plus [KO]) quand une Cryptolib x64 plus récente est déjà installée.
 - Plus de message d'erreur parasite « Get-NetTCPConnection » dans le journal à l'étape de relance de JuxtaLink.
+
+## 2026-10-05 — PC v0.3.52 / Mac v0.3.15
+- Messages alignés sur l'Installateur : l'installation des SSV démarre à « Enregistrer la situation de facturation » ; le contrôle final = une facture avec une carte Vitale, puis une facture sans Vitale (valider l'appel ADRi). Bannière et textes PC/Mac, page de téléchargement.
