@@ -3,6 +3,9 @@
 Page de téléchargement : `index.html` (détection Mac / Windows).
 Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
+## Mac 1.0.1 - 05/10/2026
+- Envoi automatique du rapport : JSON construit en LC_ALL=C + iconv -c (octets non UTF-8 du log JuxtaLink), et le message d'echec affiche maintenant le code HTTP / l'erreur curl pour diagnostiquer.
+
 ## 2026-09-24
 - Mise en ligne initiale.
 - PC v0.3.1 : installeur complet (MSI JuxtaLink 2.2.3 x86 inclus), diag, réparation, nettoyage,
