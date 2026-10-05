@@ -1,0 +1,260 @@
+
+
+======================================================================
+  OdaijiJuxta v0.3.33 - 30/09/2026 18:06
+======================================================================
+         Poste : POSTE-05   Utilisateur : Admin   Mode : REPARATION
+         Rapport : C:\Users\Admin\Desktop\OdaijiJuxta_POSTE-05_20260930-1806.txt
+
+======================================================================
+  1. SYSTEME
+======================================================================
+         Windows : Microsoft Windows 11 Professionnel 10.0.26200 (64 bits)   Boot : 30/09 12:41
+  [OK]   SCardSvr : Running
+  [OK]   Smart App Control desactive
+         CertPropSvc : Stopped / Automatic  (lit tous les certificats CPS a l'insertion ; source de lenteur possible)
+         Antivirus : Windows Defender
+
+======================================================================
+  2. LECTEURS ET CARTES
+======================================================================
+         PnP : Olaqin SESAM-VITALE reader [OK]
+         PnP : Lecteur de carte à puce Microsoft Usbccid (WUDF) [OK]
+         PnP : uTrust 2700 R Smart Card Reader [OK]
+
+--- certutil -scinfo (resume)
+         Lecteur : FEI PC/SC SmartCard Reader 0
+           --- Statut : SCARD_STATE_EMPTY
+         Lecteur : Identive CLOUD 2700 R Smart Card Reader 0
+           --- Statut : SCARD_STATE_EMPTY
+         Lecteur : Ingenico [n] TL TELIUM 1 0
+           --- Statut : SCARD_STATE_PRESENT | SCARD_STATE_INUSE
+  [OK]     CPS dans 'Ingenico [n] TL TELIUM 1 0'
+         Lecteur : Ingenico [n] TL TELIUM 2 0
+           --- Statut : SCARD_STATE_PRESENT
+         Lecteur : Ingenico [n] TL TELIUM 3 0
+           --- Statut : SCARD_STATE_EMPTY
+         Lecteur : Windows Hello for Business 1
+           --- Statut : SCARD_STATE_PRESENT
+         Lecteur : Ingenico [n] TL TELIUM 1 0
+  [OK]     CPS dans 'Ingenico [n] TL TELIUM 1 0'
+         Lecteur : Windows Hello for Business 1
+         Lecteur : Windows Hello for Business 1
+  [WARN] Vitale non identifiee par certutil (peut etre presente mais non reconnue : voir statut PRESENT ci-dessus)
+
+======================================================================
+  3. PILE SESAM-VITALE
+======================================================================
+
+--- Dossiers
+         C:\Program Files (x86)\santesocial -> CPS, diagAM, fsv, mica, srvsvcnam
+         C:\Program Files\santesocial -> CPS, galss
+  [OK]   FSV x86 : 1.40.14  (utilisee : 1.40.14)
+  [WARN] Pile 64 bits presente (Program Files\santesocial)
+
+--- Tables FSV disponibles (donnees identiques x86/x64)
+         ssv  x86: 18 fich. x64: absent   -> C:\Program Files (x86)\santesocial\fsv\1.40.14\ssv
+         srt  x86: 0 fich.  x64: absent   -> AUCUNE TABLE
+  [WARN] Tables srt vides : normal sur une installation recente (remplies par les mises a jour), pas un blocage
+         sts  x86: 3 fich.  x64: absent   -> C:\Program Files (x86)\santesocial\fsv\1.40.14\sts
+
+--- MICA
+  [OK]   mica.dll x86 : C:\Program Files (x86)\santesocial\mica\mica.dll
+
+--- Produits GIE / Cryptolib / GALSS inscrits
+         GALSS v3.45 x64              3.45.01      {82AB7DB2-140E-4166-A04E-1FD805EE0A74}  [DMP Connect / iCanopee - x64]
+             src : C:\Users\Admin\AppData\Local\Temp\
+         Composants Cryptographiques CPS v5.2.5 (x64) 5.2.5        {8E7E05AF-341D-412A-937E-B80867AE8D2B}
+             src : C:\Users\Admin\AppData\Local\Temp\{AAF01982-6172-4C5E-8F3F-8987BCA26072}\{19A3FCE2-8108-4F83-9E30-BD3CD8ADA6B4}\
+         Composant SrvSvCnam 5.10.04  5.10.04      {306912f2-76f5-4ba3-9260-e9f581c886dd}
+             src : C:\Users\Admin\AppData\Local\Temp\{34178DAF-C535-4BD1-BEDC-220845A6CCE8}\{132EB661-CC19-4038-8A75-06CACC38588D}\
+         fsv-1.40.1413_x86            1.40.1413    {9EF61CC2-74F6-48B8-9E78-4A577D6C9108}
+             src : C:\Users\Admin\AppData\Local\Temp\
+         mica                         4.01.00      {e01e10c5-2079-4835-940a-[n]f4}
+             src : C:\Users\Admin\AppData\Local\Temp\
+         amelipro connect             2.3.3        amelipro-connect
+         DiagAM V3 : collecte de suivi de parc et diagnostic poste 3.2.16       DiagAM_V3
+
+--- GALSS Juxta (x86) - politique Full PC/SC
+         GALSS x86 absent (mode Full PC/SC)
+         BLOQUERINSTALLEGALSS dans le plugin SSV : false
+
+--- sesam.ini
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\fsv\1.40.14\conf\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] C:\Windows\sesam.ini absent, mais celui de la FSV 1.40.14 est present (C:\ProgramData\santesocial\fsv\1.40.14\conf\sesam.ini) : non bloquant
+
+--- Inscription FSV (registre GIE) et MSI disponibles
+         Registre GIE FSV : 1.40.14 (x86)
+         MSI FSV disponibles a cote du script : fsv-1.40.1413_x64.msi
+
+--- galss.ini (canaux vs lecteurs reels)
+         CANAL1 : 'Ingenico [n] TL TELIUM 1 0' [present]  LAD: CPS
+         CANAL2 : 'Ingenico [n] TL TELIUM 2 0' [present]  LAD: Vitale
+         CANAL3 : 'Ingenico [n] TL TELIUM 3 0' [present]  LAD: CPS1
+         CANAL4 : 'Windows Hello for Business 1' [present]  LAD: Vitale1
+  [OK]   galss.ini coherent avec les lecteurs presents
+         NomLib=PSSINW64.DLL
+         NomLib=PCSCW64.DLL
+
+--- Processus concurrents sur le lecteur
+         actif : dmpconnectjs_monitor  DMP Connect / iCanopee
+         actif : SRVSVCNAM             amelipro CNAM
+
+--- Anciens logiciels metiers detectes (catalogue editeurs.psd1)
+  [OK]   Aucun ancien logiciel metier du catalogue
+         Catalogue : Cegedim, Affid, Shaman, Weda, Pyxvital, DrSante, HelloDoc
+
+--- Autres logiciels actifs (inventaire, a signaler si concurrent)
+         Port local 623 : LMS (C:\WINDOWS\System32\DriverStore\FileRepository\lms.inf_amd64_84c8651a9ebb25c9\LMS.exe)
+         Port local 1922 : SRVSVCNAM (C:\Program Files (x86)\santesocial\srvsvcnam\SRVSVCNAM.exe)
+         Port local 1943 : SRVSVCNAM (C:\Program Files (x86)\santesocial\srvsvcnam\SRVSVCNAM.exe)
+         Port local 5432 : postgres (C:\Program Files (x86)\psql\bin\postgres.exe)
+         Port local 6039 : TeamViewer (C:\Users\Admin\AppData\Local\Temp\TeamViewer\TeamViewer.exe)
+         Port local 9982 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 9983 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 9984 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 16992 : LMS (C:\WINDOWS\System32\DriverStore\FileRepository\lms.inf_amd64_84c8651a9ebb25c9\LMS.exe)
+         Port local 37014 : TeamViewer (C:\Users\Admin\AppData\Local\Temp\TeamViewer\TeamViewer.exe)
+         Port local 37114 : TeamViewer (C:\Users\Admin\AppData\Local\Temp\TeamViewer\TeamViewer.exe)
+         Port local 40500 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 42050 : OneDrive.Sync.Service (C:\Program Files\Microsoft OneDrive\26.168.0830.0006\OneDrive.Sync.Service.exe)
+         Demarrage auto : Logi Download Assistant -> "C:\Program Files\LogiDownloadAssistant\bin\logi_download_assistant.exe" -system-restarted
+         Demarrage auto : ScanSnap Home Pfussmon -> C:\Program Files (x86)\PFU\ScanSnap\Home\pfuSSMon.exe
+         Demarrage auto : ScanSnap WIA Service Checker -> C:\Program Files (x86)\PFU\ScanSnap\Home\SSDriver\fi5110\SsWiaChecker.exe
+         Demarrage auto : SshCloudMonitor -> C:\Program Files (x86)\PFU\ScanSnap\Home\SshCloudMonitor.exe
+         Demarrage auto : SshRegister -> C:\Program Files (x86)\PFU\ScanSnap\Home\SshRegister.exe
+         Demarrage auto : pfuSshMain -> "C:\Program Files (x86)\PFU\ScanSnap\Home\pfuSshMain.exe" -backgroundstartup
+         Demarrage auto : ScanSnap OnlineUpdate Watcher -> "C:\Program Files (x86)\PFU\ScanSnap\Update\SsUWatcher.exe" -StartOS
+         Service : postgresql-9.2 (postgresql-9.2)
+         Service : ScanSnap Home WIA restart service (SshWiaRestart)
+
+======================================================================
+  3b. DMP CONNECT / ICANOPEE (doit fonctionner en parallele de JuxtaLink)
+======================================================================
+  [OK]   Installe : DmpConnect-JS2 - Service d'accès au DMP 1.11.14
+  [OK]   dmpconnectjs_monitor actif
+  [OK]   dmpconnect-js2 actif (3 processus)
+  [OK]   Ecoute locale sur port(s) : 9982, 9983, 9984, 40500
+         Demarrage auto : dmpconnectjs_monitoring
+         Pile 64 bits DMP Connect : GALSS 3.45.01 / Cryptolib 5.2.5
+         Log recent : C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.log (30/09 14:06)
+  [WARN]   260930:120601 [10] [E] [REQUEST] #1676: Network exception: Software caused connection abort.
+  [OK]   DMP Connect / iCanopee operationnel (processus + port)
+
+         Rappel : ne jamais desinstaller 'GALSS' ou 'Cryptolib' en bloc ; le x64 appartient a DMP Connect / iCanopee, le x86 a Juxta.
+
+======================================================================
+  3c. NAVIGATEURS - Local Network Access (erreurs DRC a la teletransmission)
+======================================================================
+  [KO]   Chrome 154.0.8037.92 : Local Network Access actif et Odaiji non autorise -> erreurs DRC possibles (Autoriser-Odaiji-Chrome.bat)
+  [KO]   Edge 154.0.4258.37 : Local Network Access actif et Odaiji non autorise -> erreurs DRC possibles (Autoriser-Odaiji-Chrome.bat)
+
+======================================================================
+  4. JUXTALINK
+======================================================================
+  [OK]   JuxtaLink 2.2.3.0
+  [KO]   JuxtaLink ne tourne pas : Odaiji ne peut lire aucune carte
+  [WARN] Demarrage auto sans UAC : tache absente -> JuxtaLink demande l'UAC et ne repart pas seul apres un redemarrage (Demarrage-JuxtaLink.bat)
+         Autre lancement auto : Run 'JuxtaLink' -> C:\Program Files (x86)\Juxta\JuxtaLink\JuxtaLink.exe  (bloque en silence au demarrage : JuxtaLink exige l'UAC)
+  [WARN] Source d'installation JuxtaLink introuvable (C:\Users\Admin\AppData\Local\Temp\23326e6e-4fa8-4b99-8e5f-b52d8a75f913_JuxtaLink_Windows.zip.913\ ; C:\Users\Admin\AppData\Local\Temp\23326e6e-4fa8-4b99-8e5f-b52d8a75f913_JuxtaLink_Windows.zip.913\) : toute reparation Windows de JuxtaLink affichera 'Aucun package d'installation...'
+  [WARN] Aucun programme n'ecoute sur le port 1234 (JuxtaLink arrete ou n'a pas pu demarrer)
+         Plugins : SSV 4.1.0.0
+
+--- Derniers etats de lecture
+         [29/09/2026 11:41:45] - [DEBUG] - [SSV] CPS présente : True
+         [29/09/2026 11:41:46] - [DEBUG] - [SSV] Vitale présente : True
+
+--- Erreurs recentes
+  [OK]   Aucune ligne [ERROR] dans les 400 dernieres lignes
+
+--- Diagnostics decodes des reponses (base64)
+         Aucun message d'erreur serveur dans les dernieres reponses
+
+======================================================================
+  5. PERFORMANCE (durees mesurees dans le log JuxtaLink)
+======================================================================
+  29/09 09:14:04  TestPresenceCarte                0 s
+  29/09 09:14:17  LireCartePS                      0 s
+  29/09 09:16:20  TestPresenceCarte                0 s
+  29/09 09:16:21  LireDroitsVitale                 0 s
+  29/09 09:20:00  TestPresenceCarte                0 s
+  29/09 09:20:01  TestPresenceCarte                0 s
+  29/09 09:20:02  FacturerSilent                   0 s
+  29/09 09:27:08  TestPresenceCarte                0 s
+  29/09 09:27:10  patientAdrSilent                 0 s
+  29/09 10:01:49  TestPresenceCarte                0 s
+  29/09 10:02:05  LireCartePS                      0 s
+  29/09 10:02:25  TestPresenceCarte                0 s
+  29/09 10:02:37  LireCartePS                      0 s
+  29/09 10:39:28  TestPresenceCarte                0 s
+  29/09 10:39:49  TestPresenceCarte                0 s
+  29/09 10:40:15  TestPresenceCarte                0 s
+  29/09 11:41:44  TestPresenceCarte                0 s
+  29/09 11:41:47  LireDroitsVitale                 0 s
+
+--- Par action
+         TestPresenceCarte            n=11  moy=    0 s  max=   0 s
+         LireCartePS                  n=3   moy=    0 s  max=   0 s
+         LireDroitsVitale             n=2   moy=    0 s  max=   0 s
+         FacturerSilent               n=1   moy=    0 s  max=   0 s
+         patientAdrSilent             n=1   moy=    0 s  max=   0 s
+
+--- Causes de lenteur presentes sur ce poste (a traiter si les lectures sont lentes)
+  [WARN] CertPropSvc en demarrage automatique : relit tous les certificats de la CPS a chaque insertion -> passer en Manuel (-Fix 7v)
+
+======================================================================
+  6. VERDICT
+======================================================================
+  [KO]   JuxtaLink ne tourne pas : Odaiji ne joint aucun lecteur (carte non lue). Icone JuxtaLink (Odaiji) du Bureau ou Demarrage-JuxtaLink.bat ; -Fix le relance et cree le demarrage sans UAC.
+
+Scenario : ARRETE
+Constats :
+           STACK_X64             WARN  Pile 64 bits presente
+           SRT_EMPTY             WARN  Tables srt vides (non bloquant)
+           SESAM_WIN_ABSENT      WARN  sesam.ini Windows absent (celui de la FSV suffit)
+           LNA_CHROME            KO    Chrome sans politique Local Network Access
+           LNA_EDGE              KO    Edge sans politique Local Network Access
+           JUXTA_STOPPED         KO    JuxtaLink arrete (pas relance apres un redemarrage du PC ?)
+           NO_AUTOSTART          WARN  Pas de demarrage automatique de JuxtaLink sans UAC
+           JX_MSI_SOURCE         WARN  Source d'installation MSI de JuxtaLink disparue (dossier temporaire purge)
+           CERTPROP_AUTO         WARN  CertPropSvc automatique
+
+======================================================================
+  7. REPARATION
+======================================================================
+
+--- 7s. Demarrage de JuxtaLink sans UAC
+>> Creer le demarrage automatique de JuxtaLink sans UAC (tache planifiee + icone Bureau) ? -> oui
+  [OK]   Tache planifiee \Odaiji\JuxtaLink creee pour POSTE-05\Admin (ouverture de session, privileges eleves, sans UAC)
+  [OK]   Lancement automatique d'origine desactive (sans le supprimer) : JuxtaLink
+  [OK]   Icone 'JuxtaLink (Odaiji)' posee sur le Bureau (relance sans UAC)
+  [OK]   JuxtaLink demarre
+
+--- 7r. JuxtaLink : fenetres 'Aucun package d'installation' (source MSI)
+>> Remettre en place les elements d'origine de JuxtaLink (desactives, pas deplaces), retablir sa source d'installation et le reparer en silence ? -> oui
+  [OK]   Source d'installation JuxtaLink retablie : C:\ProgramData\MadeForMed\JuxtaLink\SetupJuxtaLinkx86.msi (l'ancienne etait dans un dossier temporaire purge)
+  [OK]   JuxtaLink repare en silence (msiexec 0) : plus de fenetres 'package d'installation introuvable'
+  [OK]   Tache planifiee \Odaiji\JuxtaLink creee pour POSTE-05\Admin (ouverture de session, privileges eleves, sans UAC)
+  [OK]   Icone 'JuxtaLink (Odaiji)' posee sur le Bureau (relance sans UAC)
+  [OK]   JuxtaLink relance
+
+--- 7l. Navigateurs : autoriser Odaiji (Local Network Access)
+>> Autoriser Odaiji dans Chrome, Edge et Firefox (erreurs DRC a la teletransmission) ? -> oui
+           Politiques ecrites pour Chrome et Edge :
+             HKLM:\SOFTWARE\Policies\Google\Chrome : https://app.odaiji.co, https://[*.]odaiji.co, https://[*.]madeformed.fr, https://[*.]juxta.cloud
+             HKLM:\SOFTWARE\Policies\Microsoft\Edge : https://app.odaiji.co, https://[*.]odaiji.co, https://[*.]madeformed.fr, https://[*.]juxta.cloud
+           Relancer Chrome/Edge. Verification : chrome://policy (ou edge://policy) doit lister LocalNetworkAccessAllowedForUrls.
+           Politique ecrite pour Firefox : app.odaiji.co, *.odaiji.co, *.madeformed.fr, *.juxta.cloud, localhost, 127.0.0.1
+           Relancer Firefox. Verification : about:policies doit lister LocalNetworkAccess.
+           
+         Relancer Chrome / Edge pour appliquer (verifier : chrome://policy)
+
+--- 7v. CertPropSvc (lecture des certificats a chaque insertion de CPS)
+>> Passer CertPropSvc en demarrage Manuel (reversible, accelere la lecture CPS) ? -> oui
+  [OK]   CertPropSvc : Manuel (retour arriere : Set-Service CertPropSvc -StartupType Automatic)
+
+======================================================================
+  FIN
+======================================================================
+Rapport : C:\Users\Admin\Desktop\OdaijiJuxta_POSTE-05_20260930-1806.txt
+Copier son contenu dans le channel Claude pour analyse.

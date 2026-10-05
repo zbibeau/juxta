@@ -1,0 +1,143 @@
+
+======================================================================
+  OdaijiJuxta-Mac v0.3.4 - 30/09/2026 16:09
+======================================================================
+         Mac         : MAC-05   Utilisateur : utilisateur-22
+         Rapport     : /Users/utilisateur-22/Desktop/Avant_MAC-05_20260930-1609.txt
+         Mode        : DIAGNOSTIC (lecture seule)
+
+
+======================================================================
+  1. SYSTEME
+======================================================================
+         macOS       : macOS 26.6.2 (build 25G83)
+         Architecture: arm64   Modele : Mac14,3
+  [OK]   Rosetta 2 installe
+         Gatekeeper  : assessments enabled
+
+======================================================================
+  2. LECTEURS ET CARTES
+======================================================================
+
+--- Lecteurs vus par macOS
+               #01: SMSC SMSC USX101x Reader (ATR:{length = 17, bytes = 0x3bac00402a[n]})
+               #02: SMSC SMSC USX101x Reader 01 (ATR:{length = 10, bytes = 0x3b[n]ea9000})
+  [OK]   CPS presente
+  [OK]   Vitale presente
+
+--- Pilotes lecteur
+               #01: fr.apdu.ccid.smartcardccid:1.5.1 (/usr/libexec/SmartCardServices/drivers/ifd-ccid.bundle)
+               #02: IngenicoSVReader:1.0.2 (/usr/local/libexec/SmartCardServices/drivers/IngenicoSVReader.bundle)
+
+--- Processus clients du lecteur (en ce moment)
+           283 01:17:40 /usr/local/dmpconnectjs2/dmpconnect-js2
+           515 01:14:14 /Applications/jFSE/Lecteur/Gestion Lecteur SV.app/Contents/MacOS/JavaAppLauncher
+           575 01:14:12 /Applications/DmpConnectJS2.app/Contents/MacOS/dmpconnectjs_monitor
+           777 01:14:05 /System/Library/Frameworks/PCSC.framework/Versions/A/XPCServices/com.apple.ctkpcscd.xpc/Contents/MacOS/com.apple.ctkpcscd
+           789 01:14:04 /System/Library/Frameworks/PCSC.framework/Versions/A/XPCServices/com.apple.ctkpcscd.xpc/Contents/MacOS/com.apple.ctkpcscd
+         46153    11:51 /usr/local/dmpconnectjs2/dmpconnect-js2
+         46269    11:42 /System/Library/Frameworks/PCSC.framework/Versions/A/XPCServices/com.apple.ctkpcscd.xpc/Contents/MacOS/com.apple.ctkpcscd
+         46403    11:31 /usr/local/dmpconnectjs2/dmpconnect-js2
+         46441    11:29 /System/Library/Frameworks/PCSC.framework/Versions/A/XPCServices/com.apple.ctkpcscd.xpc/Contents/MacOS/com.apple.ctkpcscd
+         dmpconnect-js2 : 3 instance(s)   ctkpcscd : 4   agent jFSE : 1
+  [WARN] Plusieurs dmpconnect-js2 simultanes
+  [KO]   Agent jFSE 'Gestion Lecteur SV' EN COURS D'EXECUTION
+
+======================================================================
+  3. PILE SESAM-VITALE ET EDITEURS
+======================================================================
+
+--- Paquets installes (pkgutil) - * = fichiers absents (recu orphelin)
+          com.epson.fpkg.ECPS1100.220                          v2.2.0       25/02/2026  
+          com.epson.fpkg.ECPS1013.220                          v2.2.0       25/02/2026  
+          fr.sesamvitale.mica.pkg                              v4.01.00     08/07/2025  /
+          org.icanopee.dmpcjs2                                 v1.11.14     16/09/2026  /
+          fr.asip.esante.cpsgestion.dev                        v1.6.1       29/10/2024  Applications
+          fr.sesamvitale.diagAM.pkg                            v3.2.16      16/09/2026  /
+          fr.sesamvitale.galss.pkg                             v3.43.02     02/10/2023  /
+          com.epson.fpkg.ECPS1013.210                          v2.1.0       07/05/2025  
+          org.icanopee.printer                                 v1.0.0       16/09/2026  /
+          com.epson.fpkg.ECPS1100.210                          v2.1.0       07/05/2025  
+          fr.asipsante.pkg.cryptolibCPS                        v5.2.5       16/09/2026  /
+          fr.sesam-vitale.navigateur-amelipro                  v2.04.04     16/09/2026  /
+
+--- jFSE (Cegedim / Medimust / MediStory)
+  [KO]   Agent de demarrage jFSE : /Library/LaunchAgents/org.clm.jfse.demon.launchd.plist
+  [WARN] /Applications/jFSE present
+         Derniere activite jFSE Lecteur : 2026-09-30T16:08:00,685
+
+--- Anciens logiciels metiers (MediMust, MediStory...)
+  [OK]   MediMust absent
+  [OK]   MediStory (Prokov) absent
+
+--- GALSS Juxta - politique Full PC/SC
+         GALSS installe : fr.sesamvitale.galss.pkg v3.43.02
+         galssosx.framework present
+         BLOQUERINSTALLEGALSS dans le plugin SSV : (plugin non installe)
+
+--- DmpConnect-JS2 (Icanopee)
+         Installe : v
+         /Library/LaunchAgents/com.icanopee.dmpcjsmonitor2.plist
+         /Library/LaunchDaemons/com.icanopee.dmpcjs2.plist
+
+--- diagAM (telemetrie GIE)
+  [WARN] diagAM installe (inutile pour la facturation)
+
+--- Fichiers de configuration GIE
+  [OK]   /Library/Preferences/galss.ini (856 octets)
+
+--- Bibliotheques MICA / GALSS et leur architecture
+         /usr/local/lib/libmica.dylib                                                                    arm64/x86_64
+         /Library/Frameworks/galssosx.framework/Versions/A/galssosx                                      x86_64
+         /usr/local/dmpconnectjs2/assets/mica/libmica.dylib                                              arm64/x86_64
+
+--- Applications metier
+         DiagAM.app
+         DmpConnectJS2.app
+         jFSE
+
+======================================================================
+  4. SERVICES launchd (col.2 = dernier code de sortie ; negatif = crash par signal)
+======================================================================
+         283    0     com.icanopee.dmpcjs2
+         575    0     com.icanopee.dmpcjsmonitor2
+  [KO]   -      -6    fr.sesam-vitale.diagam_collecteur   <- CRASH (signal 6)
+         -      0     fr.sesam-vitale.diagam_transmission
+         -      0     org.clm.jfse.launchd
+
+--- Crash reports (30 derniers jours)
+  [WARN] diagam : 26 crash(s), dernier : diagam_collecteur-2026-09-30-154804.ips
+  [WARN] JavaAppLauncher : 1 crash(s), dernier : 
+
+======================================================================
+  4b. NAVIGATEURS - Local Network Access (erreurs DRC a la teletransmission)
+======================================================================
+  [KO]   Google Chrome 154.0.8037.92 : Local Network Access actif et Odaiji non autorise -> erreurs DRC possibles (Autoriser-Odaiji-Chrome.command)
+         Microsoft Edge non installe
+
+======================================================================
+  5. JUXTALINK
+======================================================================
+  [WARN] JuxtaLink absent de /Applications
+         Aucun log JuxtaLink trouve sous ~/Library (chemin Mac a identifier : envoyer le rapport a Claude)
+
+======================================================================
+  6. VERDICT
+======================================================================
+  [KO]   Agent jFSE 'Gestion Lecteur SV' present : il gere le lecteur pour Cegedim et entre en concurrence avec JuxtaLink.
+         Correction : --fix (suppression jFSE si le medecin ne facture plus avec Medimust/MediStory).
+
+Scenario : JFSE_AGENT
+Constats :
+         DMP_MULTI                              WARN  3 instances dmpconnect-js2
+         JFSE_RUN                               KO    Agent jFSE actif (tient le lecteur)
+         JFSE_AGENT                             KO    Agent launchd jFSE present
+         JFSE_DIR                               WARN  /Applications/jFSE present
+         DIAGAM                                 WARN  diagAM present
+         CRASH_fr_sesam_vitale_diagam_collecteur KO    fr.sesam-vitale.diagam_collecteur crashe (signal 6)
+         LNA_Google_Chrome                      KO    Google Chrome sans politique Local Network Access
+
+======================================================================
+  FIN
+======================================================================
+Rapport : /Users/utilisateur-22/Desktop/Avant_MAC-05_20260930-1609.txt

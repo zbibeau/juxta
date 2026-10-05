@@ -1,0 +1,350 @@
+
+
+======================================================================
+  OdaijiJuxta v0.3.41 - 02/10/2026 09:55
+======================================================================
+         Poste : POSTE-06   Utilisateur : utilisateur-23   Mode : DIAGNOSTIC
+         Rapport : C:\Users\utilisateur-23\Desktop\Apres_POSTE-06_20261002-0955.txt
+
+======================================================================
+  1. SYSTEME
+======================================================================
+         Windows : Microsoft Windows 10 Professionnel 10.0.19045 (64 bits)   Boot : 02/10 08:56
+  [OK]   SCardSvr : Running
+         CertPropSvc : Running / Automatic  (lit tous les certificats CPS a l'insertion ; source de lenteur possible)
+         Antivirus : Windows Defender, 360 Total Security
+
+======================================================================
+  2. LECTEURS ET CARTES
+======================================================================
+         PnP : Olaqin SESAM-VITALE reader [OK]
+
+--- certutil -scinfo (resume)
+         Lecteur : Ingenico [n] TL TELIUM 1 0
+           --- Statut : SCARD_STATE_PRESENT | SCARD_STATE_INUSE
+  [OK]     CPS dans 'Ingenico [n] TL TELIUM 1 0'
+         Lecteur : Ingenico [n] TL TELIUM 2 0
+           --- Statut : SCARD_STATE_PRESENT
+  [OK]     Vitale dans 'Ingenico [n] TL TELIUM 2 0'
+         Lecteur : Ingenico [n] TL TELIUM 3 0
+           --- Statut : SCARD_STATE_EMPTY
+         Lecteur : Ingenico [n] TL TELIUM 1 0
+  [OK]     CPS dans 'Ingenico [n] TL TELIUM 1 0'
+
+======================================================================
+  3. PILE SESAM-VITALE
+======================================================================
+
+--- Dossiers
+         C:\Program Files (x86)\santesocial -> amelipro, CPS, diagAM, FSV, mica, srvsvcnam
+         C:\Program Files\santesocial -> CPS, galss
+  [OK]   FSV x86 : 1.40.14, 1.40.10, 1.40.9  (utilisee : 1.40.14)
+  [WARN] Pile 64 bits presente (Program Files\santesocial)
+
+--- Tables FSV disponibles (donnees identiques x86/x64)
+         ssv  x86: 18 fich. x64: absent   -> C:\Program Files (x86)\santesocial\fsv\1.40.14\ssv
+         srt  x86: 0 fich.  x64: absent   -> AUCUNE TABLE
+  [WARN] Tables srt vides : normal sur une installation recente (remplies par les mises a jour), pas un blocage
+         sts  x86: 3 fich.  x64: absent   -> C:\Program Files (x86)\santesocial\fsv\1.40.14\sts
+
+--- MICA
+  [OK]   mica.dll x86 : C:\Program Files (x86)\santesocial\mica\mica.dll
+
+--- Produits GIE / Cryptolib / GALSS inscrits
+         Composants Cryptographiques CPS v5.0.42 (x64) 5.0.42       {370D799B-992B-49E0-8325-F2E10110A861}
+             src : C:\ProgramData\santesocial\cps\
+         Composants Cryptographiques CPS v5.0.34 (x64) 5.0.34       {657E024F-D943-4DCB-8F7F-E4A2DBF9801A}
+             src : C:\ProgramData\santesocial\atsam\
+         GALSS v3.45 x64              3.45.01      {82AB7DB2-140E-4166-A04E-1FD805EE0A74}  [DMP Connect / iCanopee - x64]
+             src : C:\Users\utilisateur-23\AppData\Local\Temp\is-L8CET.tmp\
+         Composants Cryptographiques CPS v5.0.25 (x64) 5.0.25       {CAAECC15-2B3F-4315-BF98-[n]BD6}
+             src : C:\ProgramData\santesocial\atsam\
+         Composants Cryptographiques CPS v5.2.2 (x64) 5.2.2        {D8609B2B-CE98-43A8-B2D2-77811A6ECAE1}
+             src : C:\Program Files (x86)\DmpConnect-JS2\cryptolib\x64\
+         Composant SrvSvCnam 5.08.04  5.08.04      {36d412c8-ab7d-4818-9a4d-3adf339d5bde}
+             src : C:\Users\utilisateur-23\AppData\Local\Temp\{16A979EF-178F-46C2-B004-1A43B306B71F}\{3F06A708-C2C6-4353-AB42-AF7BDE6C3667}\
+         mica                         2.13.03      {6730838E-4F44-4ADE-B260-A0B5E696077A}
+             src : C:\Users\utilisateur-23\AppData\Local\Temp\is-T4VNL.tmp\
+         fsv-1.40.1413_x86            1.40.1413    {9EF61CC2-74F6-48B8-9E78-4A577D6C9108}
+             src : C:\Users\utilisateur-23\AppData\Local\Temp\
+         Composants Cryptographiques CPS v5.0.16 5.0.16       {C3AE945A-17C4-40BF-A1D5-E42A70A2F345}
+             src : C:\Users\utilisateur-23\AppData\Local\Temp\IXP000.TMP\AxiMessageV3\
+         mica                         4.01.00      {e01e10c5-2079-4835-940a-[n]f4}
+             src : C:\Users\utilisateur-23\AppData\Local\Temp\
+         amelipro connect             2.3.3        amelipro-connect
+         DiagAM 2.0                   2.0.1.50     b6adedf7ec676962
+
+--- GALSS Juxta (x86) - politique Full PC/SC
+         GALSS x86 absent (mode Full PC/SC)
+         BLOQUERINSTALLEGALSS dans le plugin SSV : false
+
+--- sesam.ini
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf_003\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf_004\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf_005\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf_006\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf_007\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf_008\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf_009\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf_010\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf_011\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf_012\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf_013\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf_014\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf_015\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf_016\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.9\conf\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.9\conf_003\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.9\conf_004\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.9\conf_005\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.9\conf_006\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.9\conf_007\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.9\conf_008\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.9\conf_009\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.9\conf_010\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.9\conf_011\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.9\conf_012\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.9\conf_013\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.9\conf_014\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.9\conf_015\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.9\conf_016\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.9\conf_cas\sesam.ini (verifier lequel la FSV utilise)
+  [KO]   sesam.ini ABSENT
+
+--- Inscription FSV (registre GIE) et MSI disponibles
+         Registre GIE FSV : 1.40.14 (x86)
+         MSI FSV disponibles a cote du script : fsv-1.40.1413_x64.msi
+
+--- galss.ini (canaux vs lecteurs reels)
+         CANAL1 : 'Ingenico [n] TL TELIUM 1 0' [present]  LAD: CPS
+         CANAL2 : 'Ingenico [n] TL TELIUM 2 0' [present]  LAD: Vitale
+  [OK]   galss.ini coherent avec les lecteurs presents
+         NomLib=PSSINW64.DLL
+         NomLib=PCSCW64.DLL
+
+--- Processus concurrents sur le lecteur
+         actif : dmpconnectjs_monitor  DMP Connect / iCanopee
+         actif : SRVSVCNAM             amelipro CNAM
+  [WARN] actif : java                  Java (jFSE ?)  <- residu (Neutraliser-Cegedim.bat)
+         actif : JuxtaLink             JuxtaLink
+
+--- Anciens logiciels metiers detectes (catalogue editeurs.psd1)
+  [OK]   Aucun ancien logiciel metier du catalogue
+         Catalogue : Cegedim, Affid, Shaman, Weda, Pyxvital, DrSante, HelloDoc
+
+--- Autres logiciels actifs (inventaire, a signaler si concurrent)
+         Port local 1234 : JuxtaLink (C:\Program Files (x86)\Juxta\JuxtaLink\JuxtaLink.exe)
+         Port local 1337 : grpm-sync-unit (C:\Program Files\Common Files\Acronis\Agent\bin\grpm-sync-unit.exe)
+         Port local 1922 : SRVSVCNAM (C:\Program Files (x86)\santesocial\srvsvcnam\SRVSVCNAM.exe)
+         Port local 1943 : SRVSVCNAM (C:\Program Files (x86)\santesocial\srvsvcnam\SRVSVCNAM.exe)
+         Port local 1998 : compagnonApicrypt (C:\Program Files\APICEM\CompagnonApicrypt\compagnonApicrypt.exe)
+         Port local 1999 : compagnonApicrypt (C:\Program Files\APICEM\CompagnonApicrypt\compagnonApicrypt.exe)
+         Port local 2600 : archive_server (C:\Program Files\Acronis\ArchiveServer\archive_server.exe)
+         Port local 2700 : archive_server (C:\Program Files\Acronis\ArchiveServer\archive_server.exe)
+         Port local 3055 : fbserver (C:\Program Files (x86)\Firebird_2_0\bin\fbserver.exe)
+         Port local 3066 : AxiDBSafe (C:\Program Files (x86)\AxiSoftware\AxiDBSafe\AxiDBSafe.exe)
+         Port local 4661 : CGM.CLICKDOC.Api (C:\CGM\CGMHubClickdoc\CGM.CLICKDOC.Api.exe)
+         Port local 4709 : wpscloudsvr (C:\Users\utilisateur-23\AppData\Local\Kingsoft\WPS Office\12.1.0.28485\office6\wpscloudsvr.exe)
+         Port local 5001 : javaw (C:\Users\utilisateur-23\AppData\Local\MaltaSig\bin\jre\bin\javaw.exe)
+         Port local 5002 : javaw (C:\Users\utilisateur-23\AppData\Local\MaltaSig\bin\jre\bin\javaw.exe)
+         Port local 5050 : CGM.Canopee.AgentWorker (C:\Program Files (x86)\CGM\CGM.Canopee.AgentWorker\CGM.Canopee.AgentWorker.exe)
+         Port local 5354 : mDNSResponder (C:\Program Files\Bonjour\mDNSResponder.exe)
+         Port local 5939 : TeamViewer_Service (C:\Program Files (x86)\TeamViewer\TeamViewer_Service.exe)
+         Port local 6039 : TeamViewer (C:\Users\utilisateur-23\AppData\Local\Temp\TeamViewer\TeamViewer.exe)
+         Port local 6109 : active_protection_service ()
+         Port local 6110 : cyber-protect-service ()
+         Port local 6888 : updater (C:\Program Files\Common Files\Acronis\Agent\bin\updater.exe)
+         Port local 7755 : zmqgw (C:\Program Files\Acronis\ZmqGw\zmqgw.exe)
+         Port local 7756 : zmqgw (C:\Program Files\Acronis\ZmqGw\zmqgw.exe)
+         Port local 7765 : zmqgw (C:\Program Files\Acronis\ZmqGw\zmqgw.exe)
+         Port local 7780 : zmqgw (C:\Program Files\Acronis\ZmqGw\zmqgw.exe)
+         Port local 9656 : iSCSIAgent (C:\Program Files (x86)\QNAP\Qfinder\iSCSIAgent.exe)
+         Port local 9771 : sh-inventory (C:\Program Files\Common Files\Acronis\Agent\bin\sh-inventory.exe)
+         Port local 9772 : adp-agent (C:\Program Files\Common Files\Acronis\Agent\bin\adp-agent.exe)
+         Port local 9773 : scan-agent (C:\Program Files\Common Files\Acronis\Agent\bin\scan-agent.exe)
+         Port local 9850 : mms (C:\Program Files\Acronis\BackupAndRecovery\mms.exe)
+         Port local 9851 : ManagementServer (C:\Program Files\Acronis\AMS\ManagementServer.exe)
+         Port local 9860 : mms (C:\Program Files\Acronis\BackupAndRecovery\mms.exe)
+         Port local 9861 : ManagementServer (C:\Program Files\Acronis\AMS\ManagementServer.exe)
+         Port local 9866 : caching-reg-unit (C:\Program Files\Common Files\Acronis\Agent\bin\caching-reg-unit.exe)
+         Port local 9877 : api_gateway (C:\Program Files\Acronis\ApiGateway\api_gateway.exe)
+         Port local 9892 : ManagementServer (C:\Program Files\Acronis\AMS\ManagementServer.exe)
+         Port local 10000 : api_gateway (C:\Program Files\Acronis\ApiGateway\api_gateway.exe)
+         Port local 11123 : CGMHub (C:\Program Files (x86)\CGM\CGMHub\CGMHub.exe)
+         Port local 18018 : updater (C:\Program Files\Common Files\Acronis\Agent\bin\updater.exe)
+         Port local 18019 : updater (C:\Program Files\Common Files\Acronis\Agent\bin\updater.exe)
+         Port local 30025 : fbserver (C:\Program Files (x86)\Firebird\Firebird_2_5\bin\fbserver.exe)
+         Port local 30333 : zmqgw (C:\Program Files\Acronis\ZmqGw\zmqgw.exe)
+         Port local 30444 : acronis_monitoring_service (C:\Program Files\Acronis\MonitoringServer\acronis_monitoring_service.exe)
+         Port local 30447 : acronis_patch_management (C:\Program Files\Acronis\PatchManagement\acronis_patch_management.exe)
+         Port local 30448 : disk_health_monitoring (C:\Program Files\Acronis\DiskHealthMonitoring\disk_health_monitoring.exe)
+         Port local 30449 : tcp-tunnels-connector (C:\Program Files\Acronis\TcpTunnels\tcp-tunnels-connector.exe)
+         Port local 30451 : tcp-tunnels-wsproxy (C:\Program Files\Acronis\WsProxy\tcp-tunnels-wsproxy.exe)
+         Port local 30555 : grpm-atp-addon (C:\Program Files\Acronis\GrpmAtpAddon\grpm-atp-addon.exe)
+         Port local 30572 : acronis_notification_service (C:\Program Files\Acronis\NotificationService\acronis_notification_service.exe)
+         Port local 30630 : bckp_amgr (C:\Program Files\Acronis\AlertManager\bckp_amgr.exe)
+         Port local 30667 : cred-store (C:\Program Files\Acronis\CredStore\cred-store.exe)
+         Port local 30677 : task_manager (C:\Program Files\Acronis\TaskManager\task_manager.exe)
+         Port local 30678 : account_server (C:\Program Files\Acronis\AccountServer\account_server.exe)
+         Port local 30679 : ams_web_service (C:\Program Files\Acronis\WebServer\ams_web_service.exe)
+         Port local 30680 : agent-gateway (C:\Program Files\Acronis\AgentGateway\agent-gateway.exe)
+         Port local 30681 : scheduler (C:\Program Files\Acronis\Scheduler\scheduler.exe)
+         Port local 30682 : agent-manager (C:\Program Files\Acronis\AgentManager\agent-manager.exe)
+         Port local 30685 : backup_manager (C:\Program Files\Acronis\BackupManager\backup_manager.exe)
+         Port local 30691 : vault_manager (C:\Program Files\Acronis\VaultManager\vault_manager.exe)
+         Port local 30700 : acep-collector (C:\Program Files\Acronis\ACEPCollector\acep-collector.exe)
+         Port local 30701 : acep-collector (C:\Program Files\Acronis\ACEPCollector\acep-collector.exe)
+         Port local 30776 : account_server (C:\Program Files\Acronis\AccountServer\account_server.exe)
+         Port local 30778 : app-backup-grpm-addon (C:\Program Files\Acronis\AppBackupGrpmAddon\app-backup-grpm-addon.exe)
+         Port local 30800 : alerts-feed-manager-crud (C:\Program Files\Acronis\AtpAlertsFeedManager\alerts-feed-manager-crud.exe)
+         Port local 30801 : alerts-feed-manager-ipn (C:\Program Files\Acronis\AtpAlertsFeedManager\alerts-feed-manager-ipn.exe)
+         Port local 30885 : atp-data-protection-map (C:\Program Files\Acronis\AtpDataProtectionMap\atp-data-protection-map.exe)
+         Port local 31025 : license-manager (C:\Program Files\Common Files\Acronis\ManagementAgent\bin\license-manager.exe)
+         Port local 31099 : aakore (C:\Program Files\Common Files\Acronis\ManagementAgent\aakore.exe)
+         Port local 40249 : va-deployer (C:\Program Files\Acronis\VaDeployer\va-deployer.exe)
+         Port local 41234 : auth-connector (C:\Program Files\Acronis\AuthConnector\auth-connector.exe)
+         Port local 43234 : mms (C:\Program Files\Acronis\BackupAndRecovery\mms.exe)
+         Demarrage auto : AxilogNotify -> C:\Program Files (x86)\AxiSoftware\LiveUpdate\AxilogNotifier.exe
+         Demarrage auto : Axi-eServices -> C:\Program Files (x86)\AxiSoftware\Axi-eServices\Axi-eServices.exe
+         Demarrage auto : MicTray -> "C:\Program Files\Conexant\MicTray\MicTray64.exe"
+         Demarrage auto : walogon -> C:\Program Files (x86)\MYRIADconnect\UserDesktop\files\svcr.exe "C:\Program Files (x86)\MYRIADconnect\UserDesktop\files\
+         Demarrage auto : Acronis Scheduler2 Service -> "C:\Program Files (x86)\Common Files\Acronis\Schedule2\schedhlp.exe"
+         Demarrage auto : MaltaSig -> C:\Users\utilisateur-23\AppData\Local\MaltaSig\MaltaSigLauncher.exe
+         Demarrage auto : MmsMonitor.exe -> C:\Program Files\Acronis\TrayMonitor\MmsMonitor.exe
+         Demarrage auto : ControlCenter4 -> C:\Program Files (x86)\ControlCenter4\BrCcBoot.exe /autorun
+         Demarrage auto : BrStsMon00 -> C:\Program Files (x86)\Browny02\Brother\BrStMonW.exe /AUTORUN
+         Demarrage auto : AxilogNotify -> C:\Program Files (x86)\AxiSoftware\LiveUpdate\AxilogNotifier.exe
+         Demarrage auto : AxiDBSafe -> C:\Program Files (x86)\AxiSoftware\AxiDBSafe\AxiDBSafe.exe
+         Demarrage auto : QfinderPro -> "C:\Program Files (x86)\QNAP\Qfinder\QfinderPro.exe" /min /auto
+         Demarrage auto : SunJavaUpdateSched -> "C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe"
+         Demarrage auto : AcronisTibMounterMonitor -> C:\Program Files (x86)\Common Files\Acronis\TibMounter\tib_mounter_monitor.exe
+         Demarrage auto : QHSafeTray -> "C:\Program Files (x86)\360\Total Security\safemon\360Tray.exe" /start
+         Demarrage auto : BrotherSoftwareUpdateNotification -> C:\Program Files (x86)\Brother\SoftwareUpdateNotification\SoftwareUpdateNotificationService.exe /Autorun
+         Demarrage auto : AxiDBSafe -> "C:\Program Files (x86)\AxiSoftware\AxiDBSafe\AxiDBSafe.exe"
+         Service : Acronis Agent Core Service (aakore)
+         Service : Acronis Cyber Protect Management Server (AcrMngSrv)
+         Service : Acronis Active Protection Service (AcronisActiveProtectionService)
+         Service : Acronis Cyber Protection Service (AcronisCyberProtectionService)
+         Service : Acronis Cyber Protect Monitoring Service (AcronisMonitoringService)
+         Service : Acronis ZeroMQ Gateway Service (AcronisZmqGw)
+         Service : Acronis Scheduler2 Service (AcrSch2Svc)
+         Service : Application Publishing Session Control (APSC) (APSC)
+         Service : Acronis Service Manager Service (ASM)
+         Service : AxiDBSafe (AxiDBSafe)
+         Service : AxiDBSafe Watchdog (AxiDBSafeWatchdog)
+         Service : AxilogUpdate - Service de mise à jour Axilog (AxilogUpdateService)
+         Service : AxiTaskManager (AxiTaskManager)
+         Service : Service Bonjour (Bonjour Service)
+         Service : CDPConnector (CDPConnector)
+         Service : CGM.Canopee.AgentWorker (CGM.Canopee.AgentWorker)
+         Service : CGM.CLICKDOC.Api (CGM.CLICKDOC.Api)
+         Service : CGM.CLICKDOC.Watchdog (CGM.CLICKDOC.Watchdog)
+         Service : CGM.ePrescription.LogEmitter (CGM.ePrescription.LogEmitter)
+         Service : CGM.MerlinWatchdogService (Cgm.Has.Merlin.MerlinWatchdogService)
+         Service : CGMHub (CGMHub)
+         Service : CxUtilSvc (CxUtilSvc)
+         Service : PDI Display Tune Service (DTuneSrvc)
+         Service : Firebird Guardian - DefaultInstance (FirebirdGuardianDefaultInstance)
+         Service : Firebird Server - 2.5 (FirebirdServer2.5)
+         Service : Firebird Server - DefaultInstance (FirebirdServerDefaultInstance)
+         Service : Acronis Management Agent Core Service (management_aakore)
+         Service : Acronis Managed Machine Service (MMS)
+         Service : MYRIAD Security Service (MYRIAD-Security)
+         Service : 360 Total Security (QHActiveDefense)
+         Service : Enterprise Service (SVCE)
+         Service : Web Server Service (SVCW)
+         Service : Brother USB Application Controller (USBAppControl)
+         Service : Brother Workflow Application Controller (WorkflowAppControl)
+         Produit sante : cdp-connector 24.6.1 24.6.1 (CompuGroup Medical Software GmbH)   <- a verifier (concurrent ?)
+         Produit sante : ComposantCDP 3.83.0.5 ()   <- a verifier (concurrent ?)
+         Produit sante : AxiBDE - Borland Database Engine 5.2 (CompuGroup Medical Solutions)   <- a verifier (concurrent ?)
+         Produit sante : AxiDBSafe 4.0.26.0 (CompuGroup Medical Solutions)   <- a verifier (concurrent ?)
+         Produit sante : AxiDMP 2.6.44.0 (CompuGroup Medical Solutions)   <- a verifier (concurrent ?)
+         Produit sante : AxiFirebird 2.0 2.0.1 (CompuGroup Medical Solutions)   <- a verifier (concurrent ?)
+         Produit sante : AxiSanté 5 Généraliste 3.8.70.0 (CompuGroup Medical Solutions)   <- a verifier (concurrent ?)
+         Produit sante : CLICKDOC version 2.6.0.201 2.6.0.201 (CompuGroup Medical Solutions)   <- a verifier (concurrent ?)
+         Produit sante : AxiBDE - Borland Database Engine 5.2 (CompuGroup Medical Solutions)   <- a verifier (concurrent ?)
+         Produit sante : AxiSanté version 3.96.0.317 3.96.0.317 ()   <- a verifier (concurrent ?)
+         Produit sante : AxiSanté 5 3.8.70.0 (CompuGroup Medical Solutions)   <- a verifier (concurrent ?)
+         Produit sante : AxiMessageV3 1.0.0 (CompuGroup Medical Solutions)   <- a verifier (concurrent ?)
+         Produit sante : winspiroLIGHT 2.0.0 (Mir Medical International Research)   <- a verifier (concurrent ?)
+         Produit sante : CefSharp Redist 75.1.141 (CompuGroup Medical SE)   <- a verifier (concurrent ?)
+         Produit sante : MIR USB driver 64 bit 2.09 (MIR srl Medical International Research)   <- a verifier (concurrent ?)
+         Produit sante : AxiFirebird 2.0 2.0.1 (CompuGroup Medical Solutions)   <- a verifier (concurrent ?)
+         Produit sante : AxiDMP 2.6.44.0 (CompuGroup Medical Solutions)   <- a verifier (concurrent ?)
+         Produit sante : AxiDBSafe version 4.8.0.41 4.8.0.41 (CompuGroup Medical Solutions)   <- a verifier (concurrent ?)
+         Produit sante : CLICKDOCpro 22.11.3 22.11.3 (CompuGroup Medical Deutschland AG)   <- a verifier (concurrent ?)
+
+======================================================================
+  3b. DMP CONNECT / ICANOPEE (doit fonctionner en parallele de JuxtaLink)
+======================================================================
+  [OK]   Installe : DmpConnect-JS2 - Service d'accés au DMP 1.11.1
+  [OK]   dmpconnectjs_monitor actif
+  [WARN] dmpconnect-js2 non lance
+         Demarrage auto : dmpconnectjs_monitoring
+         Pile 64 bits DMP Connect : GALSS 3.45.01 / Cryptolib 5.0.42 5.0.34 5.0.25 5.2.2
+         Log recent : C:\Program Files (x86)\DmpConnect-JS2\dmp-connect.log (02/10 08:57)
+  [KO]   DMP Connect / iCanopee non operationnel
+
+         Rappel : ne jamais desinstaller 'GALSS' ou 'Cryptolib' en bloc ; le x64 appartient a DMP Connect / iCanopee, le x86 a Juxta.
+
+======================================================================
+  3c. NAVIGATEURS - Local Network Access (erreurs DRC a la teletransmission)
+======================================================================
+  [OK]   Chrome 154.0.8037.92 : politique Local Network Access OK (https://app.odaiji.co, https://[*.]odaiji.co, https://[*.]madeformed.fr, https://[*.]juxta.cloud)
+  [OK]   Edge 154.0.4258.48 : politique Local Network Access OK (https://app.odaiji.co, https://[*.]odaiji.co, https://[*.]madeformed.fr, https://[*.]juxta.cloud)
+
+======================================================================
+  4. JUXTALINK
+======================================================================
+  [OK]   JuxtaLink 2.2.3.0
+  [OK]   JuxtaLink en cours d'execution
+  [OK]   Demarrage auto sans UAC : tache \Odaiji\JuxtaLink (compte utilisateur-23, niveau Highest, Running)
+         Autre lancement auto : Run 'JuxtaLink' -> C:\Program Files (x86)\Juxta\JuxtaLink\JuxtaLink.exe  (desactive par Odaiji)
+  [OK]   Source d'installation JuxtaLink presente (SetupJuxtaLinkx86.msi)
+  [OK]   Port 1234 : JuxtaLink
+         Plugins : SSV 4.1.0.0
+
+--- Derniers etats de lecture
+
+--- Erreurs recentes
+  [KO]   [02/10/2026 09:54:00] - [ERROR] - [SSV] [EXEC] Exception lors de l'appel à ssv.lirecarteps
+
+--- Diagnostics decodes des reponses (base64)
+  [WARN] 02/10/2026 09:54:00  Le chemin des tables binaires des SSV est absent du fichier sesam.ini.
+
+======================================================================
+  5. PERFORMANCE (durees mesurees dans le log JuxtaLink)
+======================================================================
+  02/10 09:53:32  LireCartePS                      0 s
+
+--- Par action
+         LireCartePS                  n=1   moy=    0 s  max=   0 s
+         Aucune paire requete/reponse trouvee
+
+--- Causes de lenteur presentes sur ce poste (a traiter si les lectures sont lentes)
+  [WARN] CertPropSvc en demarrage automatique : relit tous les certificats de la CPS a chaque insertion -> passer en Manuel (-Fix 7v)
+  [WARN] Antivirus tiers : demander les exclusions C:\Program Files (x86)\santesocial, C:\Program Files (x86)\Juxta, C:\Program Files (x86)\DmpConnect-JS2 (et le processus JuxtaLink.exe)
+  [WARN] Cryptolib CPS installee 5 fois : nettoyage possible avec le support (Nettoyage.bat), apres mesure
+
+======================================================================
+  6. VERDICT
+======================================================================
+  [KO]   sesam.ini absent/vide/incorrect. Correction : -Fix.
+
+Scenario : SESAM
+Constats :
+           AV_TIERS              INFO  Antivirus tiers : Windows Defender, 360 Total Security
+           STACK_X64             WARN  Pile 64 bits presente
+           SRT_EMPTY             WARN  Tables srt vides (non bloquant)
+           SESAM_MISSING         KO    sesam.ini absent
+           PROC_JAVA             WARN  Java (jFSE ?) actif
+           DMP_KO                KO    DmpConnect-JS2 non operationnel
+           CERTPROP_AUTO         WARN  CertPropSvc automatique
+
+======================================================================
+  FIN
+======================================================================
+Rapport : C:\Users\utilisateur-23\Desktop\Apres_POSTE-06_20261002-0955.txt
+Copier son contenu dans le channel Claude pour analyse.

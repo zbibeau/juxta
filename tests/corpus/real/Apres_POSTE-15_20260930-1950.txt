@@ -1,0 +1,198 @@
+
+
+======================================================================
+  OdaijiJuxta v0.3.33 - 30/09/2026 19:50
+======================================================================
+         Poste : POSTE-15   Utilisateur : utilisateur-21   Mode : DIAGNOSTIC
+         Rapport : C:\Users\utilisateur-21\Desktop\Apres_POSTE-15_20260930-1950.txt
+
+======================================================================
+  1. SYSTEME
+======================================================================
+         Windows : Microsoft Windows 11 Professionnel 10.0.26200 (64 bits)   Boot : 31/08 22:50
+  [OK]   SCardSvr : Running
+  [OK]   Smart App Control desactive
+         CertPropSvc : Running / Automatic  (lit tous les certificats CPS a l'insertion ; source de lenteur possible)
+         Antivirus : Windows Defender
+
+======================================================================
+  2. LECTEURS ET CARTES
+======================================================================
+         PnP : uTrust 2700 R Smart Card Reader [OK]
+         PnP : uTrust 2700 R Smart Card Reader [OK]
+
+--- certutil -scinfo (resume)
+         Lecteur : Identive CLOUD 2700 R Smart Card Reader 1
+           --- Statut : SCARD_STATE_PRESENT | SCARD_STATE_UNPOWERED
+  [OK]     Vitale dans 'Identive CLOUD 2700 R Smart Card Reader 1'
+         Lecteur : Identive CLOUD 2700 R Smart Card Reader 2
+           --- Statut : SCARD_STATE_PRESENT | SCARD_STATE_INUSE
+  [OK]     CPS dans 'Identive CLOUD 2700 R Smart Card Reader 2'
+         Lecteur : Identive CLOUD 2700 R Smart Card Reader 2
+  [OK]     CPS dans 'Identive CLOUD 2700 R Smart Card Reader 2'
+
+======================================================================
+  3. PILE SESAM-VITALE
+======================================================================
+
+--- Dossiers
+         C:\Program Files (x86)\santesocial -> CPS, fsv, srvsvcnam
+         C:\Program Files\santesocial -> CPS, fsv, galss
+  [OK]   FSV x86 : 1.40.14  (utilisee : 1.40.14)
+  [WARN] Pile 64 bits presente (Program Files\santesocial)
+
+--- Tables FSV disponibles (donnees identiques x86/x64)
+         ssv  x86: 5 fich.  x64: 5 fich.  -> C:\Program Files (x86)\santesocial\fsv\1.40.14\ssv
+         srt  x86: absent   x64: 0 fich.  -> AUCUNE TABLE
+  [WARN] Tables srt vides : normal sur une installation recente (remplies par les mises a jour), pas un blocage
+         sts  x86: 3 fich.  x64: 3 fich.  -> C:\Program Files (x86)\santesocial\fsv\1.40.14\sts
+
+--- MICA
+  [KO]   mica.dll x86 ABSENT
+
+--- Produits GIE / Cryptolib / GALSS inscrits
+         Composants Cryptographiques CPS v5.1.7 (x64) 5.1.7        {297EFD05-38C7-479C-BC34-BC269DCDE018}
+             src : C:\Users\utilisateur-07\AppData\Local\Temp\is-O09MG.tmp\
+         fsv-1.40.1413_x64            1.40.1413    {6CBB8D6D-3787-4CC8-8BBA-E99C5FCC5AD6}
+             src : C:\Users\utilisateur-21\Downloads\Odaiji_Juxta_PC\Odaiji_Juxta_PC\installeurs\
+         GALSS v3.45 x64              3.45.01      {82AB7DB2-140E-4166-A04E-1FD805EE0A74}  [DMP Connect / iCanopee - x64]
+             src : C:\Users\utilisateur-07\AppData\Local\Temp\is-O09MG.tmp\
+         Composants Cryptographiques CPS v5.2.6 (x64) 5.2.6        {CF3BEBDD-16A0-4AE8-8764-ADDF9A104998}
+             src : C:\ProgramData\santesocial\cps\
+         Composant SrvSvCnam 5.10.04  5.10.04      {306912f2-76f5-4ba3-9260-e9f581c886dd}
+             src : C:\Users\utilisateur-07\AppData\Local\Temp\{52219D81-5309-46D6-90FD-45E63AF582DB}\{132EB661-CC19-4038-8A75-06CACC38588D}\
+         amelipro connect             2.3.3        amelipro-connect
+         DiagAM V3 : collecte de suivi de parc et diagnostic poste 3.2.16       DiagAM_V3
+
+--- GALSS Juxta (x86) - politique Full PC/SC
+         GALSS x86 absent (mode Full PC/SC)
+         BLOQUERINSTALLEGALSS dans le plugin SSV : (plugin non installe)
+
+--- sesam.ini
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\fsv\1.40.13\conf\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\fsv\1.40.14\conf\sesam.ini (verifier lequel la FSV utilise)
+  [OK]   RepertoireTravail -> C:\ProgramData\santesocial\fsv\1.40.14\adm
+  [OK]   RepertoireTable -> C:\Program Files (x86)\santesocial\fsv\1.40.14\ssv
+  [OK]   RepertoireConfigTrace -> C:\ProgramData\santesocial\fsv\1.40.14\conf
+  [OK]   RepertoireTable -> C:\Program Files (x86)\santesocial\fsv\1.40.14\ssv
+  [OK]   RepertoireConfigTrace -> C:\ProgramData\santesocial\fsv\1.40.14\conf
+  [KO]   RepertoireTable -> C:\Program Files (x86)\santesocial\fsv\1.40.14\srt  INEXISTANT, mais existe en x64 : C:\Program Files\santesocial\fsv\1.40.14\srt
+  [OK]   repertoiremodification -> C:\ProgramData\santesocial\fsv\1.40.14\srt
+  [OK]   RepertoireTable -> C:\Program Files (x86)\santesocial\fsv\1.40.14\sts
+  [OK]   [MGC] RepertoireConfigTrace -> C:\ProgramData\santesocial\fsv\1.40.14\conf (log4crc.xml present)
+
+--- Inscription FSV (registre GIE) et MSI disponibles
+         Registre GIE FSV : 1.40.14 (x86), 1.40.14 (x64)
+         MSI FSV disponibles a cote du script : fsv-1.40.1413_x64.msi
+
+--- galss.ini (canaux vs lecteurs reels)
+         CANAL1 : '9600,1,8,0,0' [ABSENT]  LAD: CPS,Log_SV,Vitale
+  [WARN]   canal declare sur un lecteur absent -> timeouts GALSS
+  [KO]     canal Vitale = '9600,1,8,0,0' mais la Vitale est dans 'Identive CLOUD 2700 R Smart Card Reader 1'
+  [WARN]   canal CPS = '9600,1,8,0,0' mais la CPS est dans 'Identive CLOUD 2700 R Smart Card Reader 2'
+         NomLib=PSSINW64.DLL
+
+--- Processus concurrents sur le lecteur
+         actif : dmpconnectjs_monitor  DMP Connect / iCanopee
+         actif : SRVSVCNAM             amelipro CNAM
+         actif : JuxtaLink             JuxtaLink
+
+--- Anciens logiciels metiers detectes (catalogue editeurs.psd1)
+  [WARN] Affid : dossier, produit inscrit -> plus utilise (a neutraliser)  [bloquants connus : fsenxt.exe occupe le port 1234 de JuxtaLink]
+         Catalogue : Cegedim, Affid, Shaman, Weda, Pyxvital, DrSante, HelloDoc
+
+--- Autres logiciels actifs (inventaire, a signaler si concurrent)
+         Port local 1234 : JuxtaLink (C:\Program Files (x86)\Juxta\JuxtaLink\JuxtaLink.exe)
+         Port local 1922 : SRVSVCNAM (C:\Program Files (x86)\santesocial\srvsvcnam\SRVSVCNAM.exe)
+         Port local 1943 : SRVSVCNAM (C:\Program Files (x86)\santesocial\srvsvcnam\SRVSVCNAM.exe)
+         Port local 5939 : TeamViewer_Service (C:\Program Files (x86)\TeamViewer\TeamViewer_Service.exe)
+         Port local 9982 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 9983 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 37014 : TeamViewer_Service (C:\Program Files (x86)\TeamViewer\TeamViewer_Service.exe)
+         Port local 37114 : TeamViewer_Service (C:\Program Files (x86)\TeamViewer\TeamViewer_Service.exe)
+         Port local 40500 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Demarrage auto : WavesSvc -> "C:\Program Files\Waves\MaxxAudio\WavesSvc64.exe" -Jack
+         Demarrage auto : OpenVPN-GUI -> C:\Program Files\OpenVPN\bin\openvpn-gui.exe
+         Service : Foxit PDF Reader Update Service (FoxitReaderUpdateService)   <- a verifier (concurrent ?)
+         Service : OpenVPN Interactive Service (OpenVPNServiceInteractive)
+         Service : Waves Audio Services (WavesSysSvc)
+         Produit sante : Foxit PDF Reader 2025.2.1.33197 (Foxit Software Inc.)   <- a verifier (concurrent ?)
+
+======================================================================
+  3b. DMP CONNECT / ICANOPEE (doit fonctionner en parallele de JuxtaLink)
+======================================================================
+  [OK]   Installe : DmpConnect-JS2 - Service d'accès au DMP 1.11.14
+  [OK]   dmpconnectjs_monitor actif
+  [OK]   dmpconnect-js2 actif (2 processus)
+  [OK]   Ecoute locale sur port(s) : 9982, 9983, 40500
+         Demarrage auto : dmpconnectjs_monitoring
+         Pile 64 bits DMP Connect : GALSS 3.45.01 / Cryptolib 5.1.7 5.2.6
+         Log recent : C:\Program Files (x86)\DmpConnect-JS2\dmp-connect.log (30/09 19:48)
+  [WARN]   820    [[n]] INFO : Synchronization using DmpConnect NTP client legacy failed:
+  [OK]   DMP Connect / iCanopee operationnel (processus + port)
+
+         Rappel : ne jamais desinstaller 'GALSS' ou 'Cryptolib' en bloc ; le x64 appartient a DMP Connect / iCanopee, le x86 a Juxta.
+
+======================================================================
+  3c. NAVIGATEURS - Local Network Access (erreurs DRC a la teletransmission)
+======================================================================
+  [OK]   Chrome 154.0.8037.58 : politique Local Network Access OK (https://app.odaiji.co, https://[*.]odaiji.co, https://[*.]madeformed.fr, https://[*.]juxta.cloud)
+  [OK]   Edge 154.0.4258.37 : politique Local Network Access OK (https://app.odaiji.co, https://[*.]odaiji.co, https://[*.]madeformed.fr, https://[*.]juxta.cloud)
+
+======================================================================
+  4. JUXTALINK
+======================================================================
+  [OK]   JuxtaLink 2.2.3.0
+  [OK]   JuxtaLink en cours d'execution
+  [OK]   Demarrage auto sans UAC : tache \Odaiji\JuxtaLink (compte utilisateur-21, niveau Highest, Running)
+         Autre lancement auto : Run 'JuxtaLink' -> C:\Program Files (x86)\Juxta\JuxtaLink\JuxtaLink.exe  (desactive par Odaiji)
+  [OK]   Source d'installation JuxtaLink presente (SetupJuxtaLinkx86.msi)
+  [OK]   Port 1234 : JuxtaLink
+  [WARN] Plugin SSV pas encore installe : aucune lecture faite depuis Odaiji (normal sur un poste neuf)
+         Plugins : 
+
+--- Derniers etats de lecture
+
+--- Erreurs recentes
+  [KO]   [30/09/2026 19:50:41] - [ERROR] - [JuxtaLink] [CLIENT] HttpsAuthentificationFailException (on va répondre en HTTP)
+  [KO]   [30/09/2026 19:50:41] - [ERROR] - [JuxtaLink] [CLIENT] Exception lors de l'envoi du retour
+
+--- Diagnostics decodes des reponses (base64)
+         Aucun message d'erreur serveur dans les dernieres reponses
+
+======================================================================
+  5. PERFORMANCE (durees mesurees dans le log JuxtaLink)
+======================================================================
+  30/09 19:50:41  TestPresenceCarte                0 s
+
+--- Par action
+         TestPresenceCarte            n=1   moy=    0 s  max=   0 s
+         Aucune paire requete/reponse trouvee
+
+--- Causes de lenteur presentes sur ce poste (a traiter si les lectures sont lentes)
+  [WARN] CertPropSvc en demarrage automatique : relit tous les certificats de la CPS a chaque insertion -> passer en Manuel (-Fix 7v)
+
+======================================================================
+  6. VERDICT
+======================================================================
+  [OK]   Poste neuf : aucune lecture faite depuis Odaiji. FSV/MICA/tables/sesam.ini arrivent a la 1re lecture CPS + Vitale : lancer Installer-Odaiji-Juxta.bat (ou faire une lecture) puis refaire le diag.
+  [WARN] galss.ini ne decrit pas le lecteur reel : sans effet sur Odaiji (JuxtaLink en PC/SC direct), a corriger seulement si DMP Connect / iCanopee ne marche pas (Reparer-lecteur.bat).
+
+Scenario : PREMIERE_LECTURE
+Constats :
+           STACK_X64             WARN  Pile 64 bits presente
+           SRT_EMPTY             WARN  Tables srt vides (non bloquant)
+           NO_MICA_X86           KO    mica.dll 32 bits absent
+           SESAM_WRONG_ARCH      KO    sesam.ini pointe sur la mauvaise arborescence : C:\Program Files (x86)\santesocial\fsv\1.40.14\srt
+           GALSS_ABSENT_READER   WARN  CANAL1 sur lecteur absent : 9600,1,8,0,0
+           GALSS_MISMATCH        KO    galss.ini Vitale sur le mauvais lecteur
+           GALSS_MISMATCH_CPS    WARN  galss.ini CPS sur le mauvais lecteur
+           OLD_AFFID             WARN  Affid detecte (dossier, produit inscrit)
+           NO_PLUGIN             INFO  Premiere lecture jamais faite (plugin SSV absent)
+           CERTPROP_AUTO         WARN  CertPropSvc automatique
+
+======================================================================
+  FIN
+======================================================================
+Rapport : C:\Users\utilisateur-21\Desktop\Apres_POSTE-15_20260930-1950.txt
+Copier son contenu dans le channel Claude pour analyse.

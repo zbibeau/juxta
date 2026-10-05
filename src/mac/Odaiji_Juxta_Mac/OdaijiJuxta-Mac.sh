@@ -270,7 +270,7 @@ JLOG_OK=0
 if [ -n "$LOGF" ]; then
     h2 "Log JuxtaLink : $LOGF (40 dernieres lignes)"
     # 05/10 : les reponses d'erreur (base64) contiennent la requete d'origine, donc le code CPS : jamais dans un rapport
-    tail -40 "$LOGF" | sed -E 's/[A-Za-z0-9+\/=]{80,}/[base64-omis]/g; s/([Cc]ode[Cc][Pp][Ss][^0-9]{0,6})[0-9]{4,8}/\1****/g' | sed 's/^/         /' | tee -a "$REPORT"
+    tail -40 "$LOGF" | sed -E 's/[A-Za-z0-9+\/=]{80,}/[base64-omis]/g; s/([Cc]ode[Cc][Pp][Ss][^0-9]{0,6})[0-9]{4,8}/\1****/g; s/([nN][uU][mM][nN][aA][tT][pP][sS]|[nN][uU][mM][eE][rR][oO][nN][aA][tT][pP][sS]|[fF][iI][nN][eE][sS][sS]|[nN][iI][rR]|[nN][uU][mM][sS][eE][cC][uU][A-Za-z]*|[nN][uU][mM][eE][rR][oO][sS][eE][cC][uU][A-Za-z]*|[dD][aA][tT][eE][nN][aA][iI][sS][sS][aA][nN][cC][eE]|[nN][oO][mM][pP][aA][tT][iI][eE][nN][tT]|[pP][rR][eE][nN][oO][mM][pP][aA][tT][iI][eE][nN][tT]|[rR][pP][pP][sS]|[aA][dD][eE][lL][iI])([^A-Za-z0-9]{1,6})[A-Za-z0-9]{3,}/\1\2[masque]/g; s/[0-9]{13,15}/[nir-masque]/g' | sed 's/^/         /' | tee -a "$REPORT"
     # 05/10 (MacBook Pro SACHOT) : CPS vue par macOS mais 'Carte CPS absente' pour le SSV, et erreur serveur 'facture inexistante'
     SLOTL=$(tail -400 "$LOGF" | grep -E 'Slot de carte trouv' | tail -1 | grep -oE '[0-9]+$')
     if tail -400 "$LOGF" | grep -E 'CPS pr.sente : (True|False)' | tail -1 | grep -q 'False' && [ "${CPS_R:-0}" -gt 0 ]; then

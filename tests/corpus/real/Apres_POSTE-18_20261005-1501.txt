@@ -1,0 +1,318 @@
+
+
+======================================================================
+  OdaijiJuxta v0.3.66 - 05/10/2026 15:01
+======================================================================
+         Poste : POSTE-18   Utilisateur : utilisateur-21   Mode : DIAGNOSTIC
+         Rapport : C:\Users\utilisateur-21\Desktop\Apres_POSTE-18_20261005-1501.txt
+
+======================================================================
+  1. SYSTEME
+======================================================================
+         Windows : Microsoft Windows 11 Professionnel 10.0.26200 (64 bits)   Boot : 05/10 14:35
+  [OK]   SCardSvr : Running
+  [OK]   Smart App Control desactive
+         CertPropSvc : Stopped / Manual  (lit tous les certificats CPS a l'insertion ; source de lenteur possible)
+         Antivirus : Windows Defender
+
+======================================================================
+  2. LECTEURS ET CARTES
+======================================================================
+         PnP : uTrust 2700 R Smart Card Reader [OK]
+         PnP : uTrust 2700 R Smart Card Reader [OK]
+
+--- certutil -scinfo (resume)
+         Lecteur : Identive CLOUD 2700 R Smart Card Reader 0
+           --- Statut : SCARD_STATE_PRESENT | SCARD_STATE_INUSE
+  [OK]     CPS dans 'Identive CLOUD 2700 R Smart Card Reader 0'
+         Lecteur : Identive CLOUD 2700 R Smart Card Reader 1
+           --- Statut : SCARD_STATE_PRESENT | SCARD_STATE_UNPOWERED
+  [OK]     Vitale dans 'Identive CLOUD 2700 R Smart Card Reader 1'
+         Lecteur : Identive CLOUD 2700 R Smart Card Reader 0
+  [OK]     CPS dans 'Identive CLOUD 2700 R Smart Card Reader 0'
+
+======================================================================
+  3. PILE SESAM-VITALE
+======================================================================
+
+--- Dossiers
+         C:\Program Files (x86)\santesocial -> amelipro, CPS, diagAM, fsv, mica, srvsvcnam
+         C:\Program Files\santesocial -> CPS, fsv, galss
+  [OK]   FSV x86 : 1.40.14, 1.40.13  (utilisee : 1.40.14)
+  [WARN] Pile 64 bits presente (Program Files\santesocial)
+
+--- Tables FSV disponibles (donnees identiques x86/x64)
+         ssv  x86: 18 fich. x64: 5 fich.  -> C:\Program Files (x86)\santesocial\fsv\1.40.14\ssv
+         srt  x86: 0 fich.  x64: 0 fich.  -> AUCUNE TABLE
+  [WARN] Tables srt vides : normal sur une installation recente (remplies par les mises a jour), pas un blocage
+         sts  x86: 0 fich.  x64: 3 fich.  -> C:\Program Files\santesocial\fsv\1.40.14\sts
+  [WARN] Tables sts uniquement en x64 : sesam.ini doit pointer sur Program Files\ (pas x86)
+         --- ssv x86 : acint.pem (1562), certamcr.pem (1655), certamct.pem (1655), certamoamcr.pem (1663), certamoamct.pem (1663), certamor.pem (1655), certamot.pem (1655), certbabusr.pem (1749), certbabust.pem (1749), certgier.pem (1659), certgiet.pem (1659), crl.crl (706), crl.pem (1007), scripts.sms (5693), scripts.ssv (602783), tablebin.smc (11545), tablebin.ssp (267), tablebin.ssv (35609)
+         --- ssv x64 : scripts.sms (5693), scripts.ssv (602783), tablebin.smc (11545), tablebin.ssp (267), tablebin.ssv (35609)
+         --- sts x86 : 
+         --- sts x64 : scriptsi.sts (26213), scriptsm.sts (201036), tablesi.sts (4269)
+
+--- MICA
+  [OK]   mica.dll x86 : C:\Program Files (x86)\santesocial\mica\mica.dll
+
+--- Produits GIE / Cryptolib / GALSS inscrits
+         Composants Cryptographiques CPS v5.1.7 (x64) 5.1.7        {297EFD05-38C7-479C-BC34-BC269DCDE018}
+             src : C:\Users\utilisateur-07\AppData\Local\Temp\is-QNNQ7.tmp\
+         fsv-1.40.1413_x64            1.40.1413    {6CBB8D6D-3787-4CC8-8BBA-E99C5FCC5AD6}
+             src : C:\Users\utilisateur-21\Downloads\Odaiji_Juxta_PC (2)\Odaiji_Juxta_PC\installeurs\
+         GALSS v3.45 x64              3.45.01      {82AB7DB2-140E-4166-A04E-1FD805EE0A74}  [DMP Connect / iCanopee - x64]
+             src : C:\Users\utilisateur-21\AppData\Local\Temp\
+         Composants Cryptographiques CPS v5.2.6 (x64) 5.2.6        {CF3BEBDD-16A0-4AE8-8764-ADDF9A104998}
+             src : C:\ProgramData\santesocial\cps\
+         Composant SrvSvCnam 5.10.04  5.10.04      {306912f2-76f5-4ba3-9260-e9f581c886dd}
+             src : C:\Users\utilisateur-21\AppData\Local\Temp\{B2F7BDCF-0219-4DB6-B0BD-095DE7433C9E}\{132eb661-cc19-4038-8a75-06cacc38588d}\
+         fsv-1.40.1413_x86            1.40.1413    {9EF61CC2-74F6-48B8-9E78-4A577D6C9108}
+             src : C:\Users\utilisateur-21\AppData\Local\Temp\
+         mica                         4.01.00      {e01e10c5-2079-4835-940a-[n]f4}
+             src : C:\Users\utilisateur-21\AppData\Local\Temp\
+         amelipro connect             2.3.3        amelipro-connect
+         DiagAM V3 : collecte de suivi de parc et diagnostic poste 3.2.16       DiagAM_V3
+
+--- GALSS Juxta (x86) - politique Full PC/SC
+         GALSS x86 absent (mode Full PC/SC)
+         BLOQUERINSTALLEGALSS dans le plugin SSV : true
+
+--- sesam.ini
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\fsv\1.40.13\conf\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\fsv\1.40.14\conf\sesam.ini (verifier lequel la FSV utilise)
+         --- contenu de C:\Windows\sesam.ini (835 octets, 05/10 14:53)
+             octets : debut=3B 20 73 65 73 61 6D 2E 69 6E 69 20 67 65 6E 65  NUL=0  lignes=25
+             | ; sesam.ini genere par JuxtaDiag v0.3.65 - chemins de tables resolus sur ce poste
+             | [COMMUN]
+             | RepertoireTravail=C:\ProgramData\santesocial\fsv\1.40.14\adm
+             | RepertoireTable=C:\Program Files (x86)\santesocial\fsv\1.40.14\ssv
+             | ActivationTracesLog4c=0
+             | RepertoireConfigTrace=C:\ProgramData\santesocial\fsv\1.40.14\conf
+             | 
+             | [SSV]
+             | RepertoireTable=C:\Program Files (x86)\santesocial\fsv\1.40.14\ssv
+             | tempoexclusivite=500
+             | repetitionexclusivite=10
+             | tempoexclusivitePCSC=500
+             | repetitionexclusivitePCSC=10
+             | tempoaccesfichier=500
+             | repetitionaccesfichier=10
+             | 
+             | [MGC]
+             | RepertoireConfigTrace=C:\ProgramData\santesocial\fsv\1.40.14\conf
+             | 
+             | [SRT]
+             | RepertoireTable=C:\Program Files (x86)\santesocial\fsv\1.40.14\srt
+             | repertoiremodification=C:\ProgramData\santesocial\fsv\1.40.14\srt
+             | 
+             | [STS]
+             | RepertoireTable=C:\Program Files\santesocial\fsv\1.40.14\sts
+         --- contenu de C:\ProgramData\santesocial\fsv\1.40.13\conf\sesam.ini (556 octets, 30/09 20:03)
+             octets : debut=5B 43 4F 4D 4D 55 4E 5D 0D 0A 52 65 70 65 72 74  NUL=0  lignes=15
+             | [COMMUN]
+             | RepertoireTravail=C:\ProgramData\santesocial\fsv\1.40.13\adm
+             | RepertoireTable=C:\Program Files (x86)\santesocial\fsv\1.40.13\ssv
+             | [SSV]
+             | RepertoireTable=C:\Program Files (x86)\santesocial\fsv\1.40.13\ssv
+             | tempoexclusivite=500
+             | repetitionexclusivite=10
+             | [SRT]
+             | RepertoireTable=C:\Program Files (x86)\santesocial\fsv\1.40.13\srt
+             | RepertoireModification=C:\ProgramData\santesocial\fsv\1.40.13\srt
+             | [STS]
+             | RepertoireTable=C:\Program Files (x86)\santesocial\fsv\1.40.13\sts
+             | 
+             | [MGC]
+             | RepertoireConfigTrace=C:\ProgramData\santesocial\fsv\1.40.13\conf
+         --- contenu de C:\ProgramData\santesocial\fsv\1.40.14\conf\sesam.ini (556 octets, 01/10 09:30)
+             octets : debut=5B 43 4F 4D 4D 55 4E 5D 0D 0A 52 65 70 65 72 74  NUL=0  lignes=15
+             | [COMMUN]
+             | RepertoireTravail=C:\ProgramData\santesocial\fsv\1.40.14\adm
+             | RepertoireTable=C:\Program Files (x86)\santesocial\fsv\1.40.14\ssv
+             | [SSV]
+             | RepertoireTable=C:\Program Files (x86)\santesocial\fsv\1.40.14\ssv
+             | tempoexclusivite=500
+             | repetitionexclusivite=10
+             | [SRT]
+             | RepertoireTable=C:\Program Files (x86)\santesocial\fsv\1.40.14\srt
+             | RepertoireModification=C:\ProgramData\santesocial\fsv\1.40.14\srt
+             | [STS]
+             | RepertoireTable=C:\Program Files (x86)\santesocial\fsv\1.40.14\sts
+             | 
+             | [MGC]
+             | RepertoireConfigTrace=C:\ProgramData\santesocial\fsv\1.40.14\conf
+  [OK]   RepertoireTravail -> C:\ProgramData\santesocial\fsv\1.40.14\adm
+  [OK]   RepertoireTable -> C:\Program Files (x86)\santesocial\fsv\1.40.14\ssv
+  [OK]   RepertoireConfigTrace -> C:\ProgramData\santesocial\fsv\1.40.14\conf
+  [OK]   RepertoireTable -> C:\Program Files (x86)\santesocial\fsv\1.40.14\ssv
+  [OK]   RepertoireConfigTrace -> C:\ProgramData\santesocial\fsv\1.40.14\conf
+  [OK]   RepertoireTable -> C:\Program Files (x86)\santesocial\fsv\1.40.14\srt
+  [OK]   repertoiremodification -> C:\ProgramData\santesocial\fsv\1.40.14\srt
+  [OK]   RepertoireTable -> C:\Program Files\santesocial\fsv\1.40.14\sts
+  [OK]   [MGC] RepertoireConfigTrace -> C:\ProgramData\santesocial\fsv\1.40.14\conf (log4crc.xml present)
+
+--- Inscription FSV (registre GIE) et MSI disponibles
+         Registre GIE FSV : 1.40.14 (x86), 1.40.14 (x64)
+         MSI FSV disponibles a cote du script : fsv-1.40.1413_x64.msi
+
+--- galss.ini (canaux vs lecteurs reels)
+         CANAL1 : 'Identive CLOUD 2700 R Smart Card Reader 0' [present]  LAD: CPS,Vitale,Log_SV
+  [KO]     canal Vitale = 'Identive CLOUD 2700 R Smart Card Reader 0' mais la Vitale est dans 'Identive CLOUD 2700 R Smart Card Reader 1'
+         CANAL2 : 'Identive CLOUD 2700 R Smart Card Reader 1' [present]  LAD: CPS1
+         CANAL3 : '9600,1,8,0,0' [ABSENT]  LAD: CPS3,Vitale3,Log_SV3
+  [WARN]   canal declare sur un lecteur absent -> timeouts GALSS
+         NomLib=PSSINW64.DLL
+         NomLib=PCSCW64.DLL
+
+--- Processus concurrents sur le lecteur
+         actif : dmpconnectjs_monitor  DMP Connect / iCanopee
+         actif : SRVSVCNAM             amelipro CNAM
+         actif : JuxtaLink             JuxtaLink
+
+--- Anciens logiciels metiers detectes (catalogue editeurs.psd1)
+  [WARN] Cegedim : produit inscrit -> plus utilise (a neutraliser)  [bloquants connus : MICA x64 (empeche le MICA x86 de Juxta), processus ClmLive / demon jFSE sur le lecteur]
+  [WARN] Affid : dossier -> plus utilise (a neutraliser)  [bloquants connus : fsenxt.exe occupe le port 1234 de JuxtaLink]
+         Catalogue : Cegedim, Affid, Shaman, Weda, Pyxvital, DrSante, HelloDoc
+
+--- Autres logiciels actifs (inventaire, a signaler si concurrent)
+         Port local 1234 : JuxtaLink (C:\Program Files (x86)\Juxta\JuxtaLink\JuxtaLink.exe)
+         Port local 1922 : SRVSVCNAM (C:\Program Files (x86)\santesocial\srvsvcnam\SRVSVCNAM.exe)
+         Port local 1943 : SRVSVCNAM (C:\Program Files (x86)\santesocial\srvsvcnam\SRVSVCNAM.exe)
+         Port local 3306 : mysqld-nt (c:\Program Files\MySQL\MySQL Server 5.0\bin\mysqld-nt.exe)
+         Port local 5939 : TeamViewer_Service (C:\Program Files (x86)\TeamViewer\TeamViewer_Service.exe)
+         Port local 9982 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 14148 : ECGService (C:\Program Files (x86)\PCECG\Service\ECGService.exe)
+         Port local 37014 : TeamViewer_Service (C:\Program Files (x86)\TeamViewer\TeamViewer_Service.exe)
+         Port local 37114 : TeamViewer_Service (C:\Program Files (x86)\TeamViewer\TeamViewer_Service.exe)
+         Port local 40500 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Demarrage auto : LogiOptions -> C:\Program Files\Logitech\LogiOptions\LogiOptions.exe /noui
+         Demarrage auto : EvtMgr6 -> C:\Program Files\Logitech\SetPointP\SetPoint.exe /launchGaming
+         Demarrage auto : Logi Download Assistant -> "C:\Program Files\LogiDownloadAssistant\bin\logi_download_assistant.exe" -system-restarted
+         Demarrage auto : Reader_Sl -> C:\PROGRAM FILES (X86)\FOXIT SOFTWARE\FOXIT PDF READER\reader_sl.exe DefaultReader   <- a verifier (concurrent ?)
+         Service : AtherosSvc (AtherosSvc)
+         Service : ECGMAC ECG File Server (ECG File Server)
+         Service : Foxit PDF Reader Update Service (FoxitReaderUpdateService)   <- a verifier (concurrent ?)
+         Service : MySQL (MySQL)
+         Produit sante : Foxit PDF Reader 2025.2.0.33046 (Foxit Software Inc.)   <- a verifier (concurrent ?)
+         Produit sante : Foxit PDF Reader 2025.2.0.33046 (Foxit Software Inc.)   <- a verifier (concurrent ?)
+         Produit sante : Composants BCB 06.25 (RESIP)   <- a verifier (concurrent ?)
+
+======================================================================
+  3b. DMP CONNECT / ICANOPEE (doit fonctionner en parallele de JuxtaLink)
+======================================================================
+  [OK]   Installe : DmpConnect-JS2 - Service d'accès au DMP 1.11.14
+  [OK]   dmpconnectjs_monitor actif
+  [OK]   dmpconnect-js2 actif (1 processus)
+  [OK]   Ecoute locale sur port(s) : 9982, 40500
+         Demarrage auto : dmpconnectjs_monitoring
+         Pile 64 bits DMP Connect : GALSS 3.45.01 / Cryptolib 5.1.7 5.2.6
+         Log recent : C:\Program Files (x86)\DmpConnect-JS2\dmp-connect.log (05/10 15:01)
+  [OK]   DMP Connect / iCanopee operationnel (processus + port)
+
+         Rappel : ne jamais desinstaller 'GALSS' ou 'Cryptolib' en bloc ; le x64 appartient a DMP Connect / iCanopee, le x86 a Juxta.
+
+======================================================================
+  3c. NAVIGATEURS - Local Network Access (erreurs DRC a la teletransmission)
+======================================================================
+  [OK]   Chrome 154.0.8037.93 : politique Local Network Access OK (https://app.odaiji.co, https://[*.]odaiji.co, https://[*.]madeformed.fr, https://[*.]juxta.cloud)
+  [OK]   Edge 154.0.4258.53 : politique Local Network Access OK (https://app.odaiji.co, https://[*.]odaiji.co, https://[*.]madeformed.fr, https://[*.]juxta.cloud)
+
+======================================================================
+  4. JUXTALINK
+======================================================================
+  [OK]   JuxtaLink 2.2.3.0
+  [OK]   JuxtaLink en cours d'execution
+  [OK]   Demarrage auto sans UAC : tache \Odaiji\JuxtaLink (compte utilisateur-21, niveau Highest, Running)
+  [OK]   Gardien JuxtaLink : veille toutes les 10 min, compte SYSTEM
+         Autre lancement auto : Run 'JuxtaLink' -> C:\Program Files (x86)\Juxta\JuxtaLink\JuxtaLink.exe  (desactive par Odaiji)
+  [WARN] Source d'installation du FSV fragile (C:\Users\utilisateur-21\AppData\Local\Temp\ ; C:\ProgramData\santesocial\fsv\1.40.14 ; C:\Users\utilisateur-21\AppData\Local\Temp\) : une reparation Windows afficherait 'Aucun package d'installation'
+  [WARN] Source d'installation du FSV fragile (C:\Users\utilisateur-21\Downloads\Odaiji_Juxta_PC (2)\Odaiji_Juxta_PC\installeurs\) : une reparation Windows afficherait 'Aucun package d'installation'
+  [OK]   Source d'installation JuxtaLink presente (SetupJuxtaLinkx86.msi)
+  [OK]   Port 1234 : JuxtaLink
+         Plugins : SSV 4.1.0.0
+
+--- Derniers etats de lecture
+
+--- Erreurs recentes
+         [05/10/2026 15:01:24] - [ERROR] - [SSV] L'installation a échoué avec le code de sortie 1603   (connu, sans effet : une Cryptolib x64 plus recente est deja installee)
+         Windows Installer (echecs des 3 derniers jours, produit en cause) :
+           05/10 15:01 [1033] Windows Installer a installé le produit. Nom du produit : Composants Cryptographiques CPS v5.2.2 (x64). Version du produit : 5.2.2. Langue du produit : 1036. Fabricant : Agence du Numérique en Santé. Réussite de l’installation ou état d’err...
+           05/10 15:01 [11708] Produit : Composants Cryptographiques CPS v5.2.2 (x64) -- L'installation a échoué.
+           05/10 14:54 [1033] Windows Installer a installé le produit. Nom du produit : Composants Cryptographiques CPS v5.2.2 (x64). Version du produit : 5.2.2. Langue du produit : 1036. Fabricant : Agence du Numérique en Santé. Réussite de l’installation ou état d’err...
+           05/10 14:54 [11708] Produit : Composants Cryptographiques CPS v5.2.2 (x64) -- L'installation a échoué.
+           05/10 14:53 [1033] Windows Installer a installé le produit. Nom du produit : Composants Cryptographiques CPS v5.2.2 (x64). Version du produit : 5.2.2. Langue du produit : 1036. Fabricant : Agence du Numérique en Santé. Réussite de l’installation ou état d’err...
+           05/10 14:53 [11708] Produit : Composants Cryptographiques CPS v5.2.2 (x64) -- L'installation a échoué.
+           05/10 14:53 [1033] Windows Installer a installé le produit. Nom du produit : Composants Cryptographiques CPS v5.2.2 (x64). Version du produit : 5.2.2. Langue du produit : 1036. Fabricant : Agence du Numérique en Santé. Réussite de l’installation ou état d’err...
+           05/10 14:53 [11708] Produit : Composants Cryptographiques CPS v5.2.2 (x64) -- L'installation a échoué.
+
+--- Diagnostics decodes des reponses (base64)
+  [WARN] 05/10/2026 14:53:27  Le fichier contenant les tables SSV, identifié par 0, est inaccessible en lecture (inexistant ou pas de droits d'accès). Ces erreurs peuvent apparaitre en phase de mise au point du progiciel de santé, mais ne doivent plus se produire à son utilisation.
+  [WARN] 05/10/2026 14:53:45  Le fichier contenant les tables SSV, identifié par 0, est inaccessible en lecture (inexistant ou pas de droits d'accès). Ces erreurs peuvent apparaitre en phase de mise au point du progiciel de santé, mais ne doivent plus se produire à son utilisation.
+  [WARN] 05/10/2026 14:54:55  Le fichier contenant les tables SSV, identifié par 0, est inaccessible en lecture (inexistant ou pas de droits d'accès). Ces erreurs peuvent apparaitre en phase de mise au point du progiciel de santé, mais ne doivent plus se produire à son utilisation.
+  [WARN] 05/10/2026 14:57:34  Le fichier contenant les tables SSV, identifié par 0, est inaccessible en lecture (inexistant ou pas de droits d'accès). Ces erreurs peuvent apparaitre en phase de mise au point du progiciel de santé, mais ne doivent plus se produire à son utilisation.
+         Le plugin SSV charge : C:\ProgramData\santesocial\fsv\1.40.14\conf\sesam.ini
+
+--- Contexte du log autour de la derniere erreur SSV
+           | [05/10/2026 15:01:00] - [INFO] - [SSV] [EXEC] Recherche de la méthode correspondant à la requête
+           | [05/10/2026 15:01:00] - [INFO] - [SSV] [EXEC] Méthode LireDroitsVitale : analyse
+           | [05/10/2026 15:01:00] - [INFO] - [SSV] [EXEC] Paramètre optionnel dateConsultation : compatible
+           | [05/10/2026 15:01:00] - [INFO] - [SSV] [EXEC] Paramètre modeHomologue : compatible
+           | [05/10/2026 15:01:00] - [INFO] - [SSV] [EXEC] Paramètre codeCPS : compatible
+           | [05/10/2026 15:01:00] - [INFO] - [SSV] [EXEC] Paramètre strVersionSv : compatible
+           | [05/10/2026 15:01:00] - [INFO] - [SSV] [EXEC] Protocoles de sécurité : Tls, Tls11, Tls12
+           | [05/10/2026 15:01:00] - [INFO] - [SSV] [EXEC] Méthode LireDroitsVitale : compatible
+           | [05/10/2026 15:01:00] - [DEBUG] - [SSV] Version à charger :  1.40.14
+           | [05/10/2026 15:01:00] - [DEBUG] - [SSV] *****APPEL DU 20261005 150100*****
+           | [05/10/2026 15:01:00] - [DEBUG] - [SSV] Nom Ressource: CPS
+           | [05/10/2026 15:01:00] - [DEBUG] - [SSV] Nom Ressource Lecteur: Log_SV
+           | [05/10/2026 15:01:00] - [DEBUG] - [SSV] *****RETOUR DU 20261005 150100*****
+           | [05/10/2026 15:01:00] - [DEBUG] - [SSV] Retour : 0
+           | [05/10/2026 15:01:00] - [DEBUG] - [SSV] Appel à LireCartePS()
+           | [05/10/2026 15:01:01] - [DEBUG] - [SSV] *****APPEL DU 20261005 150101*****
+           | [05/10/2026 15:01:01] - [DEBUG] - [SSV] Nom Ressource: CPS
+
+======================================================================
+  5. PERFORMANCE (durees mesurees dans le log JuxtaLink)
+======================================================================
+  05/10 14:33:29  LireDroitsVitale                 0 s
+  05/10 14:33:32  LireDroitsVitale                 0 s
+  05/10 14:36:20  LireDroitsVitale                 0 s
+  05/10 14:49:33  LireDroitsVitale                 0 s
+  05/10 14:53:27  LireDroitsVitale                 0 s
+  05/10 14:53:44  LireDroitsVitale                 0 s
+  05/10 14:54:55  LireCartePS                      0 s
+  05/10 14:57:33  LireCartePS                      0 s
+  05/10 15:00:56  LireCartePS                      0 s
+  05/10 15:01:00  LireDroitsVitale                 0 s
+
+--- Par action
+         LireDroitsVitale             n=7   moy=    0 s  max=   0 s
+         LireCartePS                  n=3   moy=    0 s  max=   0 s
+
+--- Causes de lenteur presentes sur ce poste (a traiter si les lectures sont lentes)
+  [OK]   Aucune cause de lenteur connue sur ce poste
+
+======================================================================
+  6. VERDICT
+======================================================================
+  [WARN] Cas non reconnu : envoyer ce rapport a Claude.
+  [WARN] galss.ini ne decrit pas le lecteur reel : sans effet sur Odaiji (JuxtaLink en PC/SC direct), a corriger seulement si DMP Connect / iCanopee ne marche pas (Reparer-lecteur.bat).
+
+Scenario : UNKNOWN
+Constats :
+           STACK_X64             WARN  Pile 64 bits presente
+           SRT_EMPTY             WARN  Tables srt vides (non bloquant)
+           TABLES_X64_ONLY       WARN  Tables sts seulement en 64 bits
+           GALSS_MISMATCH        KO    galss.ini Vitale sur le mauvais lecteur
+           GALSS_ABSENT_READER   WARN  CANAL3 sur lecteur absent : 9600,1,8,0,0
+           OLD_CEGEDIM           WARN  Cegedim detecte (produit inscrit)
+           OLD_AFFID             WARN  Affid detecte (dossier)
+           FSV_MSI_SOURCE        WARN  Source MSI du FSV dans un dossier temporaire/utilisateur
+           FSV_MSI_SOURCE        WARN  Source MSI du FSV dans un dossier temporaire/utilisateur
+           MSI_ECHEC             INFO  Installation(s) MSI en echec (detail section 4)
+
+======================================================================
+  FIN
+======================================================================
+Rapport : C:\Users\utilisateur-21\Desktop\Apres_POSTE-18_20261005-1501.txt
+Envoi automatique impossible : envoyer ce fichier via la bulle Intercom.

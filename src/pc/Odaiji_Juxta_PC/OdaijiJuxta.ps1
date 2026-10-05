@@ -127,7 +127,7 @@ if ($Auto -or $Nettoyage) { $Fix = $true }
 $Report  = Join-Path $Desktop ("{0}_{1}_{2}.txt" -f $Prefix, $env:COMPUTERNAME, $Stamp)
 $Script:Findings = @()
 # 05/10 : jamais de blob base64 (les reponses d'erreur contiennent la requete, donc le code CPS) ni de code CPS dans un rapport
-function W    { param([string]$t="", [string]$c="Gray") $t = [regex]::Replace([string]$t, '[A-Za-z0-9+/=]{80,}', '[base64-omis]'); $t = [regex]::Replace($t, '(?i)(codecps[^0-9]{0,6})\d{4,8}', '$1****'); Write-Host $t -ForegroundColor $c; Add-Content -Path $Report -Value $t -Encoding UTF8 }
+function W    { param([string]$t="", [string]$c="Gray") $t = [regex]::Replace([string]$t, '[A-Za-z0-9+/=]{80,}', '[base64-omis]'); $t = [regex]::Replace($t, '(?i)(codecps[^0-9]{0,6})\d{4,8}', '$1****'); $t = [regex]::Replace($t, '(?i)((?:numNatPs|numeroNatPs|finess|nir|numSecu\w*|numeroSecu\w*|dateNaissance|nomPatient|prenomPatient|rpps|adeli)\W{1,6})[A-Za-z0-9]{3,}', '$1[masque]'); $t = [regex]::Replace($t, '\d{13,15}', '[nir-masque]'); Write-Host $t -ForegroundColor $c; Add-Content -Path $Report -Value $t -Encoding UTF8 }
 function H1   { param($t) W ""; W ("=" * 70) "Cyan"; W ("  " + $t) "Cyan"; W ("=" * 70) "Cyan" }
 function H2   { param($t) W ""; W ("--- " + $t) "Yellow" }
 function OK   { param($t) W ("  [OK]   " + $t) "Green" }
@@ -701,7 +701,7 @@ if (Test-Path $Paths.JuxtaLog) {
     if ($iErr -ge 0) {
         H2 "Contexte du log autour de la derniere erreur SSV"
         $k0 = [math]::Max(0, $iErr - 14); $k1 = [math]::Min($Script:LogLines.Count - 1, $iErr + 2)
-        for ($k = $k0; $k -le $k1; $k++) { $x = [string]$Script:LogLines[$k]; $x = [regex]::Replace($x, '\d{13,15}', '[nir-masque]'); $x = [regex]::Replace($x, '[A-Za-z0-9+/=]{80,}', '[base64-omis]'); if ($x.Length -gt 260) { $x = $x.Substring(0, 260) + "..." }; INFO ("  | " + $x) }
+        for ($k = $k0; $k -le $k1; $k++) { $x = [string]$Script:LogLines[$k]; $x = [regex]::Replace($x, '\d{13,15}', '[nir-masque]'); $x = [regex]::Replace($x, '[A-Za-z0-9+/=]{80,}', '[base64-omis]'); $x = [regex]::Replace($x, '(?i)((?:numNatPs|numeroNatPs|finess|nir|numSecu\w*|numeroSecu\w*|dateNaissance|nomPatient|prenomPatient|rpps|adeli)\W{1,6})[A-Za-z0-9]{3,}', '$1[masque]'); if ($x.Length -gt 260) { $x = $x.Substring(0, 260) + "..." }; INFO ("  | " + $x) }
     }
     # 29/09 (Dr Plongeron) : erreur MGC sur la DERNIERE reponse = la FSV ne trouve pas sa config de traces -> lecture impossible
     $lastB = $b64s | Select-Object -Last 1

@@ -1,0 +1,88 @@
+Odaiji_Juxta - DEPANNAGE sur MAC-04
+Mot de passe administrateur requis.
+
+[1;36m==> 1/7  Diagnostic AVANT (lecture seule)[0m
+    (cartes CPS + Vitale inserees)
+    (Analyse du Mac en cours (1 a 2 min) : 5 s)
+    [32m[OK][0m Rapport : /Users/utilisateur-26/Desktop/Avant_MAC-04_20261005-1410.txt
+    Scenario : JFSE_AGENT
+  [KO]   Agent jFSE 'Gestion Lecteur SV' EN COURS D'EXECUTION
+  [KO]   Agent de demarrage jFSE : /Library/LaunchAgents/org.clm.jfse.demon.launchd.plist
+  [KO]   Google Chrome 154.0.8037.95 : Local Network Access actif et Odaiji non autorise -> erreurs DRC possibles (Autoriser-Odaiji-Chrome.command)
+  [KO]   Agent jFSE 'Gestion Lecteur SV' present : il gere le lecteur pour Cegedim et entre en concurrence avec JuxtaLink.
+
+[1;36m==> 2/7  Anciens logiciels de facturation[0m
+    Rien a couper.
+
+[1;36m==> 3/7  Corrections automatiques sures[0m
+    (Corrections en cours (1 a 2 min) : 3 s)
+  [OK]   Rosetta 2 installe
+  [OK]   CPS presente
+  [WARN] Vitale non vue (absente du lecteur ? inserer la carte et relancer)
+  [WARN] Plusieurs dmpconnect-js2 simultanes
+  [KO]   Agent jFSE 'Gestion Lecteur SV' EN COURS D'EXECUTION
+  [KO]   Agent de demarrage jFSE : /Library/LaunchAgents/org.clm.jfse.demon.launchd.plist
+  [WARN] /Applications/jFSE present
+  [OK]   MediMust absent
+  [OK]   MediStory (Prokov) absent
+  [WARN] diagAM installe (inutile pour la facturation)
+  [OK]   /Library/Preferences/galss.ini (889 octets)
+  [WARN] JavaAppLauncher : 1 crash(s), dernier : 
+  [KO]   Google Chrome 154.0.8037.95 : Local Network Access actif et Odaiji non autorise -> erreurs DRC possibles (Autoriser-Odaiji-Chrome.command)
+  [OK]   /Applications/JuxtaLink.app  v2.2.3  (x86_64 )
+  [OK]   Plugin SSV present : 4.1.1.0 
+  [OK]   user.config MadeForMed (serveurs token/update)
+  [WARN] Gardien JuxtaLink absent : JuxtaLink ne serait pas relance s'il est ferme ou plante (2-Depanner.command)
+  [KO]   Agent jFSE 'Gestion Lecteur SV' present : il gere le lecteur pour Cegedim et entre en concurrence avec JuxtaLink.
+>> Arreter et SUPPRIMER l'agent jFSE et /Applications/jFSE ? -> ignore en mode auto (action a valider par un humain)
+  [WARN] jFSE conserve
+
+[1;36m==> 4/7  Lecteur de cartes et navigateurs[0m
+    [32m[OK][0m galss.ini : rien a realigner
+    Chrome / Edge : autoriser Odaiji a joindre JuxtaLink (Local Network Access)
+    Politique ecrite (Firefox) : app.odaiji.co *.odaiji.co *.madeformed.fr *.juxta.cloud localhost 127.0.0.1  -> verification : about:policies
+    Politiques ecrites (Chrome + Edge) : https://app.odaiji.co https://[*.]odaiji.co https://[*.]madeformed.fr https://[*.]juxta.cloud
+    Relancer le navigateur. Verification : chrome://policy doit lister LocalNetworkAccessAllowedForUrls.
+    [32m[OK][0m Politique Local Network Access en place (com.google.Chrome)
+    [33m[WARN][0m Fermer puis rouvrir Chrome / Edge pour que la politique soit prise en compte
+
+[1;36m==> 5/7  Full PC/SC (retrait du GALSS Juxta)[0m
+    (Passage Full PC/SC en cours : 4 s)
+--- GALSS Juxta - politique Full PC/SC
+         GALSS installe : fr.sesamvitale.galss.pkg v3.43.02
+         BLOQUERINSTALLEGALSS dans le plugin SSV : false
+--- Bibliotheques MICA / GALSS et leur architecture
+  Prerequis : le medecin ne facture PLUS depuis Medimust / MediStory.
+--- 7g. Passage en Full PC/SC : retrait du GALSS Juxta
+  [OK]   DMP Connect / iCanopee installe : GALSS conserve (il l'utilise). galss.ini regenere en PC/SC suffit.
+  >>> Redemarrer le Mac, puis 10 lectures Vitale dans Odaiji. Relancer le diag apres.
+
+[1;36m==> 6/7  user.config MadeForMed + redemarrage de JuxtaLink[0m
+cp: /Applications/JuxtaLink.app/Contents/Resources/user.config.bak-20261005-1410: Operation not permitted
+cp: /Applications/JuxtaLink.app/Contents/Resources/user.config: Operation not permitted
+    [32m[OK][0m user.config MadeForMed charge
+    [32m[OK][0m JuxtaLink en cours d'execution
+    [32m[OK][0m JuxtaLink ecoute sur le port 1234
+    [32m[OK][0m Gardien installe : veille de JuxtaLink toutes les 10 min, relance s'il est arrete (journal ~/Library/Logs/juxtalink-gardien.log)
+    >>> CONTROLE dans Odaiji : une facture avec une carte Vitale, puis une facture sans Vitale (valider l'appel ADRi).
+    Entree une fois les deux factures faites 
+[1;36m==> 7/7  Diagnostic APRES[0m
+    (Analyse du Mac en cours (1 a 2 min) : 3 s)
+    [32m[OK][0m Rapport : /Users/utilisateur-26/Desktop/Apres_MAC-04_20261005-1415.txt
+
+    AVANT : Scenario : JFSE_AGENT
+    APRES : Scenario : JFSE_AGENT
+  [WARN] Vitale non vue (absente du lecteur ? inserer la carte et relancer)
+  [WARN] Plusieurs dmpconnect-js2 simultanes
+  [KO]   Agent jFSE 'Gestion Lecteur SV' EN COURS D'EXECUTION
+  [KO]   Agent de demarrage jFSE : /Library/LaunchAgents/org.clm.jfse.demon.launchd.plist
+  [WARN] /Applications/jFSE present
+  [WARN] diagAM installe (inutile pour la facturation)
+  [WARN] JavaAppLauncher : 1 crash(s), dernier : 
+  [KO]   Agent jFSE 'Gestion Lecteur SV' present : il gere le lecteur pour Cegedim et entre en concurrence avec JuxtaLink.
+
+A envoyer dans le channel Claude si le scenario n'est pas OK :
+    /Users/utilisateur-26/Desktop/Avant_MAC-04_20261005-1410.txt
+    /Users/utilisateur-26/Desktop/Apres_MAC-04_20261005-1415.txt
+    /Users/utilisateur-26/Desktop/Depannage_MAC-04_20261005-1410.txt
+Ensuite, si un doute persiste : 3-Diag-seul.command apres ces deux factures.

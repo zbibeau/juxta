@@ -1,0 +1,3319 @@
+{
+ "Apres_MAC-01_20261001-1640.txt": {
+  "constats": [
+   [
+    "DMP_MULTI",
+    "WARN"
+   ],
+   [
+    "DIAGAM",
+    "WARN"
+   ],
+   [
+    "SIG_MICA",
+    "KO"
+   ]
+  ],
+  "kit": "mac",
+  "prefix": "Apres",
+  "scenario": "DMPCONNECT",
+  "type": "diag",
+  "version": "0.3.6"
+ },
+ "Apres_MAC-02_20261005-1126.txt": {
+  "constats": [
+   [
+    "DMP_MULTI",
+    "WARN"
+   ]
+  ],
+  "kit": "mac",
+  "prefix": "Apres",
+  "scenario": "DMPCONNECT",
+  "type": "diag",
+  "version": "0.3.16"
+ },
+ "Apres_MAC-02_20261005-1134.txt": {
+  "constats": [
+   [
+    "DMP_MULTI",
+    "WARN"
+   ]
+  ],
+  "kit": "mac",
+  "prefix": "Apres",
+  "scenario": "DMPCONNECT",
+  "type": "diag",
+  "version": "0.3.18"
+ },
+ "Apres_MAC-03_20261001-1117.txt": {
+  "constats": [
+   [
+    "VITALE_ABSENT",
+    "WARN"
+   ],
+   [
+    "DMP_MULTI",
+    "WARN"
+   ],
+   [
+    "DIAGAM",
+    "WARN"
+   ],
+   [
+    "GALSS_EMPTY",
+    "KO"
+   ],
+   [
+    "GALSS_SERIE",
+    "KO"
+   ],
+   [
+    "NO_PLUGIN",
+    "WARN"
+   ]
+  ],
+  "kit": "mac",
+  "prefix": "Apres",
+  "scenario": "GALSS",
+  "type": "diag",
+  "version": "0.3.5"
+ },
+ "Apres_MAC-04_20261005-1415.txt": {
+  "constats": [
+   [
+    "VITALE_ABSENT",
+    "WARN"
+   ],
+   [
+    "DMP_MULTI",
+    "WARN"
+   ],
+   [
+    "JFSE_RUN",
+    "KO"
+   ],
+   [
+    "JFSE_AGENT",
+    "KO"
+   ],
+   [
+    "JFSE_DIR",
+    "WARN"
+   ],
+   [
+    "DIAGAM",
+    "WARN"
+   ]
+  ],
+  "kit": "mac",
+  "prefix": "Apres",
+  "scenario": "JFSE_AGENT",
+  "type": "diag",
+  "version": "0.3.19"
+ },
+ "Apres_MAC-05_20260930-1620.txt": {
+  "constats": [
+   [
+    "DMP_MULTI",
+    "WARN"
+   ],
+   [
+    "JFSE_RUN",
+    "KO"
+   ],
+   [
+    "JFSE_AGENT",
+    "KO"
+   ],
+   [
+    "JFSE_DIR",
+    "WARN"
+   ],
+   [
+    "DIAGAM",
+    "WARN"
+   ]
+  ],
+  "kit": "mac",
+  "prefix": "Apres",
+  "scenario": "JFSE_AGENT",
+  "type": "diag",
+  "version": "0.3.4"
+ },
+ "Apres_POSTE-01_20261005-1917.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Apres",
+  "scenario": "A_TESTER",
+  "type": "diag",
+  "version": "0.3.67"
+ },
+ "Apres_POSTE-02_20260930-1243.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Apres",
+  "scenario": "OK",
+  "type": "diag",
+  "version": "0.3.29"
+ },
+ "Apres_POSTE-03_20261001-1508.txt": {
+  "constats": [
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "TABLES_X64_ONLY",
+    "WARN"
+   ],
+   [
+    "SESAM_WIN_ABSENT",
+    "WARN"
+   ],
+   [
+    "MSI_ECHEC",
+    "INFO"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Apres",
+  "scenario": "A_TESTER",
+  "type": "diag",
+  "version": "0.3.37"
+ },
+ "Apres_POSTE-05_20261005-0935.txt": {
+  "constats": [
+   [
+    "SAC_EVAL",
+    "WARN"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "MSI_ECHEC",
+    "INFO"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Apres",
+  "scenario": "A_TESTER",
+  "type": "diag",
+  "version": "0.3.51"
+ },
+ "Apres_POSTE-06_20261002-0955.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "SESAM_MISSING",
+    "KO"
+   ],
+   [
+    "PROC_JAVA",
+    "WARN"
+   ],
+   [
+    "DMP_KO",
+    "KO"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Apres",
+  "scenario": "SESAM",
+  "type": "diag",
+  "version": "0.3.41"
+ },
+ "Apres_POSTE-07_20261002-1455.txt": {
+  "constats": [
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "MSI_ECHEC",
+    "INFO"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Apres",
+  "scenario": "A_TESTER",
+  "type": "diag",
+  "version": "0.3.43"
+ },
+ "Apres_POSTE-09_20261001-1043.txt": {
+  "constats": [
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "TABLES_X64_ONLY",
+    "WARN"
+   ],
+   [
+    "OLD_HELLODOC",
+    "WARN"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Apres",
+  "scenario": "OK",
+  "type": "diag",
+  "version": "0.3.36"
+ },
+ "Apres_POSTE-11_20261001-1613.txt": {
+  "constats": [
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "OLD_SHAMAN",
+    "WARN"
+   ],
+   [
+    "MSI_ECHEC",
+    "INFO"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Apres",
+  "scenario": "OK",
+  "type": "diag",
+  "version": "0.3.37"
+ },
+ "Apres_POSTE-12_20261001-1014.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "GALSS_MISMATCH_CPS",
+    "WARN"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "GALSS_MISMATCH",
+    "KO"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Apres",
+  "scenario": "OK",
+  "type": "diag",
+  "version": "0.3.36"
+ },
+ "Apres_POSTE-13_20261005-1622.txt": {
+  "constats": [
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "SESAM_WIN_ABSENT",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "JX_MSI_REPAIR",
+    "WARN"
+   ],
+   [
+    "MSI_ECHEC",
+    "INFO"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Apres",
+  "scenario": "A_TESTER",
+  "type": "diag",
+  "version": "0.3.66"
+ },
+ "Apres_POSTE-14_20261004-2052.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "NO_CPS",
+    "KO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "SESAM_WIN_ABSENT",
+    "WARN"
+   ],
+   [
+    "GALSS_MISSING",
+    "WARN"
+   ],
+   [
+    "MSI_ECHEC",
+    "INFO"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Apres",
+  "scenario": "READER",
+  "type": "diag",
+  "version": "0.3.50"
+ },
+ "Apres_POSTE-15_20260930-1950.txt": {
+  "constats": [
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "NO_MICA_X86",
+    "KO"
+   ],
+   [
+    "SESAM_WRONG_ARCH",
+    "KO"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "GALSS_MISMATCH",
+    "KO"
+   ],
+   [
+    "GALSS_MISMATCH_CPS",
+    "WARN"
+   ],
+   [
+    "OLD_AFFID",
+    "WARN"
+   ],
+   [
+    "NO_PLUGIN",
+    "INFO"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Apres",
+  "scenario": "PREMIERE_LECTURE",
+  "type": "diag",
+  "version": "0.3.33"
+ },
+ "Apres_POSTE-16_20261005-1325.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "TABLES_X64_ONLY",
+    "WARN"
+   ],
+   [
+    "SESAM_WIN_ABSENT",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Apres",
+  "scenario": "A_TESTER",
+  "type": "diag",
+  "version": "0.3.54"
+ },
+ "Apres_POSTE-16_20261005-1329.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "TABLES_X64_ONLY",
+    "WARN"
+   ],
+   [
+    "SESAM_WIN_ABSENT",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Apres",
+  "scenario": "A_TESTER",
+  "type": "diag",
+  "version": "0.3.55"
+ },
+ "Apres_POSTE-16_20261005-1351.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "TABLES_X64_ONLY",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Apres",
+  "scenario": "A_TESTER",
+  "type": "diag",
+  "version": "0.3.58"
+ },
+ "Apres_POSTE-16_20261005-1357.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "TABLES_X64_ONLY",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Apres",
+  "scenario": "A_TESTER",
+  "type": "diag",
+  "version": "0.3.59"
+ },
+ "Apres_POSTE-16_20261005-1405.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "TABLES_X64_ONLY",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "SSV_TABLES_PERSIST",
+    "KO"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Apres",
+  "scenario": "UNKNOWN",
+  "type": "diag",
+  "version": "0.3.61"
+ },
+ "Apres_POSTE-16_20261005-1412.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "TABLES_X64_ONLY",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "SSV_TABLES_PERSIST",
+    "KO"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Apres",
+  "scenario": "UNKNOWN",
+  "type": "diag",
+  "version": "0.3.63"
+ },
+ "Apres_POSTE-17_20260930-1923.txt": {
+  "constats": [
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "SESAM_MGC",
+    "WARN"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "GALSS_MISMATCH_CPS",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "OLD_AFFID",
+    "WARN"
+   ],
+   [
+    "MSI_ECHEC",
+    "INFO"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Apres",
+  "scenario": "GALSS",
+  "type": "diag",
+  "version": "0.3.33"
+ },
+ "Apres_POSTE-18_20260930-2006.txt": {
+  "constats": [
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "OLD_AFFID",
+    "WARN"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Apres",
+  "scenario": "OK",
+  "type": "diag",
+  "version": "0.3.34"
+ },
+ "Apres_POSTE-18_20261005-1454.txt": {
+  "constats": [
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "TABLES_X86_INCOMPLET",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "TABLES_X64_ONLY",
+    "WARN"
+   ],
+   [
+    "GALSS_MISMATCH",
+    "KO"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "OLD_AFFID",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "MSI_ECHEC",
+    "INFO"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Apres",
+  "scenario": "UNKNOWN",
+  "type": "diag",
+  "version": "0.3.65"
+ },
+ "Apres_POSTE-18_20261005-1501.txt": {
+  "constats": [
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "TABLES_X64_ONLY",
+    "WARN"
+   ],
+   [
+    "GALSS_MISMATCH",
+    "KO"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "OLD_AFFID",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "MSI_ECHEC",
+    "INFO"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Apres",
+  "scenario": "UNKNOWN",
+  "type": "diag",
+  "version": "0.3.66"
+ },
+ "Apres_POSTE-19_20261002-1142.txt": {
+  "constats": [
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SESAM_WIN_ABSENT",
+    "WARN"
+   ],
+   [
+    "JFSE_DIR",
+    "WARN"
+   ],
+   [
+    "SRV_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "MSI_ECHEC",
+    "INFO"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Apres",
+  "scenario": "A_TESTER",
+  "type": "diag",
+  "version": "0.3.41"
+ },
+ "Apres_POSTE-20_20261002-1114.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "TABLES_X64_ONLY",
+    "WARN"
+   ],
+   [
+    "PROC_JAVA",
+    "WARN"
+   ],
+   [
+    "OLD_HELLODOC",
+    "WARN"
+   ],
+   [
+    "MSI_ECHEC",
+    "INFO"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Apres",
+  "scenario": "A_TESTER",
+  "type": "diag",
+  "version": "0.3.41"
+ },
+ "Avant_MAC-01_20261001-1615.txt": {
+  "constats": [
+   [
+    "VITALE_ABSENT",
+    "WARN"
+   ],
+   [
+    "DMP_MULTI",
+    "WARN"
+   ],
+   [
+    "DIAGAM",
+    "WARN"
+   ],
+   [
+    "GALSS_SERIE",
+    "KO"
+   ]
+  ],
+  "kit": "mac",
+  "prefix": "Avant",
+  "scenario": "GALSS",
+  "type": "diag",
+  "version": "0.3.6"
+ },
+ "Avant_MAC-02_20261005-1123.txt": {
+  "constats": [
+   [
+    "VITALE_ABSENT",
+    "WARN"
+   ],
+   [
+    "DMP_MULTI",
+    "WARN"
+   ],
+   [
+    "GARDIEN_ABSENT",
+    "WARN"
+   ]
+  ],
+  "kit": "mac",
+  "prefix": "Avant",
+  "scenario": "DMPCONNECT",
+  "type": "diag",
+  "version": "0.3.16"
+ },
+ "Avant_MAC-02_20261005-1133.txt": {
+  "constats": [
+   [
+    "DMP_MULTI",
+    "WARN"
+   ]
+  ],
+  "kit": "mac",
+  "prefix": "Avant",
+  "scenario": "DMPCONNECT",
+  "type": "diag",
+  "version": "0.3.18"
+ },
+ "Avant_MAC-03_20261001-1111.txt": {
+  "constats": [
+   [
+    "VITALE_ABSENT",
+    "WARN"
+   ],
+   [
+    "DMP_MULTI",
+    "WARN"
+   ],
+   [
+    "DIAGAM",
+    "WARN"
+   ],
+   [
+    "GALSS_SERIE",
+    "KO"
+   ]
+  ],
+  "kit": "mac",
+  "prefix": "Avant",
+  "scenario": "GALSS",
+  "type": "diag",
+  "version": "0.3.5"
+ },
+ "Avant_MAC-04_20261005-1410.txt": {
+  "constats": [
+   [
+    "VITALE_ABSENT",
+    "WARN"
+   ],
+   [
+    "DMP_MULTI",
+    "WARN"
+   ],
+   [
+    "JFSE_RUN",
+    "KO"
+   ],
+   [
+    "JFSE_AGENT",
+    "KO"
+   ],
+   [
+    "JFSE_DIR",
+    "WARN"
+   ],
+   [
+    "DIAGAM",
+    "WARN"
+   ],
+   [
+    "GARDIEN_ABSENT",
+    "WARN"
+   ]
+  ],
+  "kit": "mac",
+  "prefix": "Avant",
+  "scenario": "JFSE_AGENT",
+  "type": "diag",
+  "version": "0.3.19"
+ },
+ "Avant_MAC-05_20260930-1609.txt": {
+  "constats": [
+   [
+    "DMP_MULTI",
+    "WARN"
+   ],
+   [
+    "JFSE_RUN",
+    "KO"
+   ],
+   [
+    "JFSE_AGENT",
+    "KO"
+   ],
+   [
+    "JFSE_DIR",
+    "WARN"
+   ],
+   [
+    "DIAGAM",
+    "WARN"
+   ]
+  ],
+  "kit": "mac",
+  "prefix": "Avant",
+  "scenario": "JFSE_AGENT",
+  "type": "diag",
+  "version": "0.3.4"
+ },
+ "Avant_POSTE-01_20261005-1906.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "GARDIEN_ABSENT",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Avant",
+  "scenario": "A_TESTER",
+  "type": "diag",
+  "version": "0.3.66"
+ },
+ "Avant_POSTE-01_20261005-1915.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "GARDIEN_ABSENT",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Avant",
+  "scenario": "A_TESTER",
+  "type": "diag",
+  "version": "0.3.67"
+ },
+ "Avant_POSTE-02_20260930-1237.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "NO_FSV_X86",
+    "KO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "NO_TABLES",
+    "KO"
+   ],
+   [
+    "NO_TABLES",
+    "KO"
+   ],
+   [
+    "NO_TABLES",
+    "KO"
+   ],
+   [
+    "NO_MICA_X86",
+    "KO"
+   ],
+   [
+    "SESAM_MISSING",
+    "KO"
+   ],
+   [
+    "FSV_NOREG",
+    "INFO"
+   ],
+   [
+    "LNA_CHROME",
+    "KO"
+   ],
+   [
+    "LNA_EDGE",
+    "KO"
+   ],
+   [
+    "NO_JUXTA",
+    "KO"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Avant",
+  "scenario": "TABLES",
+  "type": "diag",
+  "version": "0.3.29"
+ },
+ "Avant_POSTE-03_20261001-1449.txt": {
+  "constats": [
+   [
+    "NO_FSV_X86",
+    "KO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "TABLES_X64_ONLY",
+    "WARN"
+   ],
+   [
+    "TABLES_X64_ONLY",
+    "WARN"
+   ],
+   [
+    "TABLES_X64_ONLY",
+    "WARN"
+   ],
+   [
+    "NO_MICA_X86",
+    "KO"
+   ],
+   [
+    "MICA_X64",
+    "WARN"
+   ],
+   [
+    "SESAM_WIN_ABSENT",
+    "WARN"
+   ],
+   [
+    "PROC_JAVA",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "LNA_CHROME",
+    "KO"
+   ],
+   [
+    "LNA_EDGE",
+    "KO"
+   ],
+   [
+    "NO_JUXTA",
+    "KO"
+   ],
+   [
+    "PROC_READER",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Avant",
+  "scenario": "MICA",
+  "type": "diag",
+  "version": "0.3.37"
+ },
+ "Avant_POSTE-05_20261005-0930.txt": {
+  "constats": [
+   [
+    "SAC_EVAL",
+    "WARN"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "TABLES_X64_ONLY",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "TABLES_X64_ONLY",
+    "WARN"
+   ],
+   [
+    "NO_MICA_X86",
+    "KO"
+   ],
+   [
+    "NO_PLUGIN",
+    "INFO"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Avant",
+  "scenario": "PREMIERE_LECTURE",
+  "type": "diag",
+  "version": "0.3.51"
+ },
+ "Avant_POSTE-06_20261002-0908.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "TABLES_X64_ONLY",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "TABLES_X64_ONLY",
+    "WARN"
+   ],
+   [
+    "MICA_X64",
+    "WARN"
+   ],
+   [
+    "SESAM_MGC",
+    "WARN"
+   ],
+   [
+    "SESAM_WIN_ABSENT",
+    "WARN"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "GALSS_MISMATCH_CPS",
+    "WARN"
+   ],
+   [
+    "PROC_JAVA",
+    "WARN"
+   ],
+   [
+    "OLD_WEDA",
+    "WARN"
+   ],
+   [
+    "OLD_PYXVITAL",
+    "WARN"
+   ],
+   [
+    "LNA_CHROME",
+    "KO"
+   ],
+   [
+    "LNA_EDGE",
+    "KO"
+   ],
+   [
+    "NO_JUXTA",
+    "KO"
+   ],
+   [
+    "PROC_READER",
+    "WARN"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Avant",
+  "scenario": "GALSS",
+  "type": "diag",
+  "version": "0.3.41"
+ },
+ "Avant_POSTE-07_20261002-1449.txt": {
+  "constats": [
+   [
+    "NO_FSV_X86",
+    "KO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "NO_TABLES",
+    "KO"
+   ],
+   [
+    "NO_TABLES",
+    "KO"
+   ],
+   [
+    "NO_TABLES",
+    "KO"
+   ],
+   [
+    "NO_MICA_X86",
+    "KO"
+   ],
+   [
+    "SESAM_MISSING",
+    "KO"
+   ],
+   [
+    "FSV_NOREG",
+    "INFO"
+   ],
+   [
+    "GALSS_MISSING",
+    "WARN"
+   ],
+   [
+    "LNA_CHROME",
+    "KO"
+   ],
+   [
+    "LNA_EDGE",
+    "KO"
+   ],
+   [
+    "NO_JUXTA",
+    "KO"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Avant",
+  "scenario": "TABLES",
+  "type": "diag",
+  "version": "0.3.43"
+ },
+ "Avant_POSTE-09_20261001-1038.txt": {
+  "constats": [
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "NO_TABLES",
+    "KO"
+   ],
+   [
+    "MICA_X64",
+    "WARN"
+   ],
+   [
+    "SESAM_MGC",
+    "WARN"
+   ],
+   [
+    "SESAM_WIN_ABSENT",
+    "WARN"
+   ],
+   [
+    "OLD_HELLODOC",
+    "WARN"
+   ],
+   [
+    "LNA_CHROME",
+    "KO"
+   ],
+   [
+    "LNA_EDGE",
+    "KO"
+   ],
+   [
+    "NO_JUXTA",
+    "KO"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Avant",
+  "scenario": "TABLES",
+  "type": "diag",
+  "version": "0.3.36"
+ },
+ "Avant_POSTE-11_20261001-1555.txt": {
+  "constats": [
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "NO_MICA_X86",
+    "KO"
+   ],
+   [
+    "SESAM_MGC",
+    "KO"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "GALSS_MISMATCH_CPS",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "OLD_SHAMAN",
+    "WARN"
+   ],
+   [
+    "LNA_CHROME",
+    "KO"
+   ],
+   [
+    "LNA_EDGE",
+    "KO"
+   ],
+   [
+    "NO_JUXTA",
+    "KO"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Avant",
+  "scenario": "SESAM",
+  "type": "diag",
+  "version": "0.3.37"
+ },
+ "Avant_POSTE-12_20261001-1006.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "NO_FSV_X86",
+    "KO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "NO_TABLES",
+    "KO"
+   ],
+   [
+    "NO_TABLES",
+    "KO"
+   ],
+   [
+    "NO_TABLES",
+    "KO"
+   ],
+   [
+    "NO_MICA_X86",
+    "KO"
+   ],
+   [
+    "SESAM_MISSING",
+    "KO"
+   ],
+   [
+    "FSV_NOREG",
+    "INFO"
+   ],
+   [
+    "LNA_CHROME",
+    "KO"
+   ],
+   [
+    "LNA_EDGE",
+    "KO"
+   ],
+   [
+    "NO_JUXTA",
+    "KO"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Avant",
+  "scenario": "TABLES",
+  "type": "diag",
+  "version": "0.3.36"
+ },
+ "Avant_POSTE-13_20261005-1618.txt": {
+  "constats": [
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "SESAM_WIN_ABSENT",
+    "WARN"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "GALSS_MISMATCH_CPS",
+    "WARN"
+   ],
+   [
+    "GARDIEN_ABSENT",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "JX_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "JX_MSI_REPAIR",
+    "WARN"
+   ],
+   [
+    "JX_MOVED",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Avant",
+  "scenario": "GALSS",
+  "type": "diag",
+  "version": "0.3.66"
+ },
+ "Avant_POSTE-14_20261004-2048.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "SESAM_WIN_ABSENT",
+    "WARN"
+   ],
+   [
+    "GALSS_MISSING",
+    "WARN"
+   ],
+   [
+    "LNA_CHROME",
+    "KO"
+   ],
+   [
+    "LNA_EDGE",
+    "KO"
+   ],
+   [
+    "NO_AUTOSTART",
+    "WARN"
+   ],
+   [
+    "GARDIEN_ABSENT",
+    "WARN"
+   ],
+   [
+    "JX_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "MSI_ECHEC",
+    "INFO"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Avant",
+  "scenario": "A_TESTER",
+  "type": "diag",
+  "version": "0.3.50"
+ },
+ "Avant_POSTE-15_20260930-1929.txt": {
+  "constats": [
+   [
+    "NO_CPS",
+    "KO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "NO_TABLES",
+    "KO"
+   ],
+   [
+    "NO_MICA_X86",
+    "KO"
+   ],
+   [
+    "SESAM_MGC",
+    "WARN"
+   ],
+   [
+    "SESAM_WIN_ABSENT",
+    "WARN"
+   ],
+   [
+    "FSV_NOREG",
+    "INFO"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "OLD_AFFID",
+    "WARN"
+   ],
+   [
+    "DMP_TIMEOUT_GALSS",
+    "KO"
+   ],
+   [
+    "LNA_CHROME",
+    "KO"
+   ],
+   [
+    "LNA_EDGE",
+    "KO"
+   ],
+   [
+    "NO_JUXTA",
+    "KO"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Avant",
+  "scenario": "READER",
+  "type": "diag",
+  "version": "0.3.33"
+ },
+ "Avant_POSTE-16_20261005-1321.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "TABLES_X64_ONLY",
+    "WARN"
+   ],
+   [
+    "NO_MICA_X86",
+    "KO"
+   ],
+   [
+    "MICA_X64",
+    "WARN"
+   ],
+   [
+    "SESAM_MGC",
+    "WARN"
+   ],
+   [
+    "SESAM_WIN_ABSENT",
+    "WARN"
+   ],
+   [
+    "PROC_JAVA",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "LNA_CHROME",
+    "KO"
+   ],
+   [
+    "LNA_EDGE",
+    "KO"
+   ],
+   [
+    "NO_AUTOSTART",
+    "WARN"
+   ],
+   [
+    "GARDIEN_ABSENT",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "JX_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "SIG_1638",
+    "KO"
+   ],
+   [
+    "MSI_ECHEC",
+    "INFO"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Avant",
+  "scenario": "MICA",
+  "type": "diag",
+  "version": "0.3.54"
+ },
+ "Avant_POSTE-16_20261005-1328.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "TABLES_X64_ONLY",
+    "WARN"
+   ],
+   [
+    "SESAM_SSV_TABLE",
+    "KO"
+   ],
+   [
+    "SESAM_WIN_ABSENT",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Avant",
+  "scenario": "SESAM",
+  "type": "diag",
+  "version": "0.3.55"
+ },
+ "Avant_POSTE-16_20261005-1350.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "TABLES_X64_ONLY",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Avant",
+  "scenario": "A_TESTER",
+  "type": "diag",
+  "version": "0.3.58"
+ },
+ "Avant_POSTE-16_20261005-1355.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "TABLES_X64_ONLY",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Avant",
+  "scenario": "A_TESTER",
+  "type": "diag",
+  "version": "0.3.59"
+ },
+ "Avant_POSTE-16_20261005-1404.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "TABLES_X64_ONLY",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "SSV_TABLES_PERSIST",
+    "KO"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Avant",
+  "scenario": "UNKNOWN",
+  "type": "diag",
+  "version": "0.3.61"
+ },
+ "Avant_POSTE-17_20260930-1918.txt": {
+  "constats": [
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "SESAM_MGC",
+    "WARN"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "GALSS_MISMATCH_CPS",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "OLD_AFFID",
+    "WARN"
+   ],
+   [
+    "OLD_PYXVITAL",
+    "WARN"
+   ],
+   [
+    "NO_AUTOSTART",
+    "WARN"
+   ],
+   [
+    "PORT_CONFLICT",
+    "KO"
+   ],
+   [
+    "MSI_ECHEC",
+    "INFO"
+   ],
+   [
+    "PROC_READER",
+    "WARN"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Avant",
+  "scenario": "PORT",
+  "type": "diag",
+  "version": "0.3.33"
+ },
+ "Avant_POSTE-18_20260930-1956.txt": {
+  "constats": [
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "NO_MICA_X86",
+    "KO"
+   ],
+   [
+    "SESAM_MGC",
+    "WARN"
+   ],
+   [
+    "SESAM_WIN_ABSENT",
+    "WARN"
+   ],
+   [
+    "FSV_NOREG",
+    "INFO"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "GALSS_MISMATCH_CPS",
+    "WARN"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "OLD_AFFID",
+    "WARN"
+   ],
+   [
+    "LNA_CHROME",
+    "KO"
+   ],
+   [
+    "LNA_EDGE",
+    "KO"
+   ],
+   [
+    "NO_JUXTA",
+    "KO"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Avant",
+  "scenario": "GALSS",
+  "type": "diag",
+  "version": "0.3.34"
+ },
+ "Avant_POSTE-18_20261005-1451.txt": {
+  "constats": [
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "NO_TABLES",
+    "KO"
+   ],
+   [
+    "GALSS_MISMATCH_CPS",
+    "WARN"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "OLD_AFFID",
+    "WARN"
+   ],
+   [
+    "GARDIEN_ABSENT",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "MSI_ECHEC",
+    "INFO"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Avant",
+  "scenario": "TABLES",
+  "type": "diag",
+  "version": "0.3.65"
+ },
+ "Avant_POSTE-18_20261005-1459.txt": {
+  "constats": [
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "TABLES_X86_INCOMPLET",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "TABLES_X64_ONLY",
+    "WARN"
+   ],
+   [
+    "GALSS_MISMATCH",
+    "KO"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "OLD_AFFID",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "MSI_ECHEC",
+    "INFO"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Avant",
+  "scenario": "UNKNOWN",
+  "type": "diag",
+  "version": "0.3.66"
+ },
+ "Avant_POSTE-19_20261002-1129.txt": {
+  "constats": [
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "NO_MICA_X86",
+    "KO"
+   ],
+   [
+    "MICA_X64",
+    "WARN"
+   ],
+   [
+    "SESAM_WIN_ABSENT",
+    "WARN"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "GALSS_MISMATCH_CPS",
+    "WARN"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "PROC_JAVA",
+    "WARN"
+   ],
+   [
+    "JFSE_DIR",
+    "WARN"
+   ],
+   [
+    "SRV_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "LNA_CHROME",
+    "KO"
+   ],
+   [
+    "LNA_EDGE",
+    "KO"
+   ],
+   [
+    "NO_JUXTA",
+    "KO"
+   ],
+   [
+    "PROC_READER",
+    "WARN"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Avant",
+  "scenario": "MICA",
+  "type": "diag",
+  "version": "0.3.41"
+ },
+ "Avant_POSTE-20_20261002-1109.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "NO_TABLES",
+    "KO"
+   ],
+   [
+    "NO_MICA_X86",
+    "KO"
+   ],
+   [
+    "MICA_X64",
+    "WARN"
+   ],
+   [
+    "SESAM_MGC",
+    "WARN"
+   ],
+   [
+    "SESAM_WIN_ABSENT",
+    "WARN"
+   ],
+   [
+    "GALSS_MISSING",
+    "WARN"
+   ],
+   [
+    "PROC_JAVA",
+    "WARN"
+   ],
+   [
+    "OLD_HELLODOC",
+    "WARN"
+   ],
+   [
+    "LNA_CHROME",
+    "KO"
+   ],
+   [
+    "LNA_EDGE",
+    "KO"
+   ],
+   [
+    "NO_JUXTA",
+    "KO"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Avant",
+  "scenario": "MICA",
+  "type": "diag",
+  "version": "0.3.41"
+ },
+ "Depannage_MAC-02_20261005-1121.txt": {
+  "constats": [],
+  "kit": null,
+  "prefix": "Depannage",
+  "scenario": null,
+  "type": "journal",
+  "version": null
+ },
+ "Depannage_MAC-02_20261005-1133.txt": {
+  "constats": [],
+  "kit": null,
+  "prefix": "Depannage",
+  "scenario": null,
+  "type": "journal",
+  "version": null
+ },
+ "Depannage_MAC-04_20261005-1410.txt": {
+  "constats": [],
+  "kit": null,
+  "prefix": "Depannage",
+  "scenario": null,
+  "type": "journal",
+  "version": null
+ },
+ "Depannage_POSTE-01_20261005-1915.txt": {
+  "constats": [],
+  "kit": null,
+  "prefix": "Depannage",
+  "scenario": null,
+  "type": "journal",
+  "version": null
+ },
+ "Depannage_POSTE-13_20261005-1618.txt": {
+  "constats": [],
+  "kit": null,
+  "prefix": "Depannage",
+  "scenario": null,
+  "type": "journal",
+  "version": null
+ },
+ "Depannage_POSTE-14_20261004-2048.txt": {
+  "constats": [],
+  "kit": null,
+  "prefix": "Depannage",
+  "scenario": null,
+  "type": "journal",
+  "version": null
+ },
+ "Depannage_POSTE-16_20261005-1328.txt": {
+  "constats": [],
+  "kit": null,
+  "prefix": "Depannage",
+  "scenario": null,
+  "type": "journal",
+  "version": null
+ },
+ "Depannage_POSTE-16_20261005-1350.txt": {
+  "constats": [],
+  "kit": null,
+  "prefix": "Depannage",
+  "scenario": null,
+  "type": "journal",
+  "version": null
+ },
+ "Depannage_POSTE-16_20261005-1355.txt": {
+  "constats": [],
+  "kit": null,
+  "prefix": "Depannage",
+  "scenario": null,
+  "type": "journal",
+  "version": null
+ },
+ "Depannage_POSTE-16_20261005-1404.txt": {
+  "constats": [],
+  "kit": null,
+  "prefix": "Depannage",
+  "scenario": null,
+  "type": "journal",
+  "version": null
+ },
+ "Depannage_POSTE-16_20261005-1411.txt": {
+  "constats": [],
+  "kit": null,
+  "prefix": "Depannage",
+  "scenario": null,
+  "type": "journal",
+  "version": null
+ },
+ "Depannage_POSTE-18_20261005-1451.txt": {
+  "constats": [],
+  "kit": null,
+  "prefix": "Depannage",
+  "scenario": null,
+  "type": "journal",
+  "version": null
+ },
+ "Depannage_POSTE-18_20261005-1459.txt": {
+  "constats": [],
+  "kit": null,
+  "prefix": "Depannage",
+  "scenario": null,
+  "type": "journal",
+  "version": null
+ },
+ "Fix2_POSTE-02_20260930-1240.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Fix2",
+  "scenario": "A_TESTER",
+  "type": "diag",
+  "version": "0.3.29"
+ },
+ "Fix2_POSTE-17_20260930-1921.txt": {
+  "constats": [
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "SESAM_MGC",
+    "WARN"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "GALSS_MISMATCH_CPS",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "OLD_AFFID",
+    "WARN"
+   ],
+   [
+    "MSI_ECHEC",
+    "INFO"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Fix2",
+  "scenario": "GALSS",
+  "type": "diag",
+  "version": "0.3.33"
+ },
+ "Fix_POSTE-02_20260930-1237.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "NO_FSV_X86",
+    "KO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "NO_TABLES",
+    "KO"
+   ],
+   [
+    "NO_TABLES",
+    "KO"
+   ],
+   [
+    "NO_TABLES",
+    "KO"
+   ],
+   [
+    "NO_MICA_X86",
+    "KO"
+   ],
+   [
+    "SESAM_MISSING",
+    "KO"
+   ],
+   [
+    "FSV_NOREG",
+    "INFO"
+   ],
+   [
+    "LNA_CHROME",
+    "KO"
+   ],
+   [
+    "LNA_EDGE",
+    "KO"
+   ],
+   [
+    "NO_PLUGIN",
+    "INFO"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Fix",
+  "scenario": "PREMIERE_LECTURE",
+  "type": "diag",
+  "version": "0.3.29"
+ },
+ "Fix_POSTE-17_20260930-1919.txt": {
+  "constats": [
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "SESAM_MGC",
+    "WARN"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "GALSS_MISMATCH_CPS",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "OLD_AFFID",
+    "WARN"
+   ],
+   [
+    "OLD_PYXVITAL",
+    "WARN"
+   ],
+   [
+    "JUXTA_STOPPED",
+    "KO"
+   ],
+   [
+    "PORT_CONFLICT",
+    "KO"
+   ],
+   [
+    "MSI_ECHEC",
+    "INFO"
+   ],
+   [
+    "PROC_READER",
+    "WARN"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Fix",
+  "scenario": "PORT",
+  "type": "diag",
+  "version": "0.3.33"
+ },
+ "Galss_POSTE-02_20260930-1241.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Galss",
+  "scenario": "A_TESTER",
+  "type": "diag",
+  "version": "0.3.29"
+ },
+ "Galss_POSTE-17_20260930-1921.txt": {
+  "constats": [
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "SESAM_MGC",
+    "WARN"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "GALSS_MISMATCH_CPS",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "OLD_AFFID",
+    "WARN"
+   ],
+   [
+    "MSI_ECHEC",
+    "INFO"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "Galss",
+  "scenario": "GALSS",
+  "type": "diag",
+  "version": "0.3.33"
+ },
+ "OdaijiJuxta-Mac_MAC-05_20260930-1624.txt": {
+  "constats": [
+   [
+    "DMP_MULTI",
+    "WARN"
+   ],
+   [
+    "JFSE_RUN",
+    "KO"
+   ],
+   [
+    "JFSE_AGENT",
+    "KO"
+   ],
+   [
+    "JFSE_DIR",
+    "WARN"
+   ],
+   [
+    "DIAGAM",
+    "WARN"
+   ]
+  ],
+  "kit": "mac",
+  "prefix": "OdaijiJuxta-Mac",
+  "scenario": "JFSE_AGENT",
+  "type": "diag",
+  "version": "0.3.4"
+ },
+ "OdaijiJuxta_POSTE-04_20261003-1431.txt": {
+  "constats": [
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "SESAM_MGC",
+    "WARN"
+   ],
+   [
+    "PROC_JAVA",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "MSI_ECHEC",
+    "INFO"
+   ],
+   [
+    "MGC_ERREUR",
+    "KO"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "OdaijiJuxta",
+  "scenario": "SESAM",
+  "type": "diag",
+  "version": "0.3.44"
+ },
+ "OdaijiJuxta_POSTE-05_20260930-1806.txt": {
+  "constats": [
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "SESAM_WIN_ABSENT",
+    "WARN"
+   ],
+   [
+    "LNA_CHROME",
+    "KO"
+   ],
+   [
+    "LNA_EDGE",
+    "KO"
+   ],
+   [
+    "JUXTA_STOPPED",
+    "KO"
+   ],
+   [
+    "NO_AUTOSTART",
+    "WARN"
+   ],
+   [
+    "JX_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "OdaijiJuxta",
+  "scenario": "ARRETE",
+  "type": "diag",
+  "version": "0.3.33"
+ },
+ "OdaijiJuxta_POSTE-08_20260930-1439.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "SESAM_MGC",
+    "WARN"
+   ],
+   [
+    "SESAM_EMPTY",
+    "KO"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "GALSS_MISMATCH_CPS",
+    "WARN"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "OLD_PYXVITAL",
+    "WARN"
+   ],
+   [
+    "LNA_CHROME",
+    "KO"
+   ],
+   [
+    "LNA_EDGE",
+    "KO"
+   ],
+   [
+    "NO_AUTOSTART",
+    "WARN"
+   ],
+   [
+    "JX_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "OdaijiJuxta",
+  "scenario": "SESAM",
+  "type": "diag",
+  "version": "0.3.31"
+ },
+ "OdaijiJuxta_POSTE-08_20260930-1441.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "SESAM_MGC",
+    "WARN"
+   ],
+   [
+    "SESAM_EMPTY",
+    "KO"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "GALSS_MISMATCH_CPS",
+    "WARN"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "OLD_PYXVITAL",
+    "WARN"
+   ],
+   [
+    "LNA_CHROME",
+    "KO"
+   ],
+   [
+    "LNA_EDGE",
+    "KO"
+   ],
+   [
+    "NO_AUTOSTART",
+    "WARN"
+   ],
+   [
+    "JX_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "OdaijiJuxta",
+  "scenario": "SESAM",
+  "type": "diag",
+  "version": "0.3.31"
+ },
+ "OdaijiJuxta_POSTE-10_20261001-0849.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SESAM_WIN_ABSENT",
+    "WARN"
+   ],
+   [
+    "OLD_HELLODOC",
+    "WARN"
+   ],
+   [
+    "LNA_CHROME",
+    "KO"
+   ],
+   [
+    "LNA_EDGE",
+    "KO"
+   ],
+   [
+    "NO_AUTOSTART",
+    "WARN"
+   ],
+   [
+    "JX_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "CERTPROP_AUTO",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "OdaijiJuxta",
+  "scenario": "OK",
+  "type": "diag",
+  "version": "0.3.36"
+ },
+ "OdaijiJuxta_POSTE-16_20261005-1358.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "TABLES_X64_ONLY",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "OdaijiJuxta",
+  "scenario": "A_TESTER",
+  "type": "diag",
+  "version": "0.3.59"
+ },
+ "OdaijiJuxta_POSTE-16_20261005-1408.txt": {
+  "constats": [
+   [
+    "AV_TIERS",
+    "INFO"
+   ],
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "TABLES_X64_ONLY",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "FSV_MSI_SOURCE",
+    "WARN"
+   ],
+   [
+    "SSV_TABLES_PERSIST",
+    "KO"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "OdaijiJuxta",
+  "scenario": "UNKNOWN",
+  "type": "diag",
+  "version": "0.3.62"
+ },
+ "OdaijiJuxta_POSTE-17_20260930-1937.txt": {
+  "constats": [
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "SESAM_MGC",
+    "WARN"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "GALSS_MISMATCH_CPS",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "OLD_AFFID",
+    "WARN"
+   ],
+   [
+    "NO_PLUGIN",
+    "INFO"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "OdaijiJuxta",
+  "scenario": "PREMIERE_LECTURE",
+  "type": "diag",
+  "version": "0.3.33"
+ },
+ "OdaijiJuxta_POSTE-17_20261001-1031.txt": {
+  "constats": [
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "GALSS_MISMATCH_CPS",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "OLD_AFFID",
+    "WARN"
+   ],
+   [
+    "PORT_CFG",
+    "KO"
+   ],
+   [
+    "MSI_ECHEC",
+    "INFO"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "OdaijiJuxta",
+  "scenario": "GALSS",
+  "type": "diag",
+  "version": "0.3.36"
+ },
+ "OdaijiJuxta_POSTE-17_20261001-1404.txt": {
+  "constats": [
+   [
+    "STACK_X64",
+    "WARN"
+   ],
+   [
+    "SRT_EMPTY",
+    "WARN"
+   ],
+   [
+    "GALSS_ABSENT_READER",
+    "WARN"
+   ],
+   [
+    "GALSS_MISMATCH_CPS",
+    "WARN"
+   ],
+   [
+    "OLD_CEGEDIM",
+    "WARN"
+   ],
+   [
+    "OLD_AFFID",
+    "WARN"
+   ],
+   [
+    "MSI_ECHEC",
+    "INFO"
+   ]
+  ],
+  "kit": "pc",
+  "prefix": "OdaijiJuxta",
+  "scenario": "OK",
+  "type": "diag",
+  "version": "0.3.36"
+ }
+}

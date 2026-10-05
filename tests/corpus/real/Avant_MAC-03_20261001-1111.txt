@@ -1,0 +1,129 @@
+
+======================================================================
+  OdaijiJuxta-Mac v0.3.5 - 01/10/2026 11:11
+======================================================================
+         Mac         : MAC-03   Utilisateur : utilisateur-27
+         Rapport     : /Users/utilisateur-27/Desktop/Avant_MAC-03_20261001-1111.txt
+         Mode        : DIAGNOSTIC (lecture seule)
+
+
+======================================================================
+  1. SYSTEME
+======================================================================
+         macOS       : macOS 26.2 (build 25C56)
+         Architecture: x86_64   Modele : MacBookPro16,1
+         Gatekeeper  : assessments enabled
+
+======================================================================
+  2. LECTEURS ET CARTES
+======================================================================
+
+--- Lecteurs vus par macOS
+               #01: Ingenico TL TELIUM(3) (no card present)
+               #02: Ingenico TL TELIUM(2) (no card present)
+               #03: FEI USB Card Reader/QR Scanner (no card present)
+               #04: Ingenico TL TELIUM(1) (ATR:{length = 17, bytes = 0x3bdc18ff[n]})
+  [OK]   CPS presente
+  [WARN] Vitale non vue (absente du lecteur ? inserer la carte et relancer)
+
+--- Pilotes lecteur
+               #01: fr.apdu.ccid.smartcardccid:1.5.1 (/usr/libexec/SmartCardServices/drivers/ifd-ccid.bundle)
+               #02: IngenicoSVReader:1.0.4 (/usr/local/libexec/SmartCardServices/drivers/IngenicoSVReader.bundle)
+               #03: (null):(null) (/usr/local/libexec/SmartCardServices/drivers/ifdokccid_mac_universal-v.4.3.2-5-edf5f6ed66b4.bundle)
+
+--- Processus clients du lecteur (en ce moment)
+           291 03:23:15 /usr/local/dmpconnectjs2/dmpconnect-js2
+           588 03:23:01 /Applications/DmpConnectJS2.app/Contents/MacOS/dmpconnectjs_monitor
+           771 03:22:53 /System/Library/Frameworks/PCSC.framework/Versions/A/XPCServices/com.apple.ctkpcscd.xpc/Contents/MacOS/com.apple.ctkpcscd
+          2147 03:21:06 /usr/local/dmpconnectjs2/dmpconnect-js2
+          2649 03:20:26 /System/Library/Frameworks/PCSC.framework/Versions/A/XPCServices/com.apple.ctkpcscd.xpc/Contents/MacOS/com.apple.ctkpcscd
+          2727 03:20:20 /usr/local/dmpconnectjs2/dmpconnect-js2
+          2762 03:20:17 /System/Library/Frameworks/PCSC.framework/Versions/A/XPCServices/com.apple.ctkpcscd.xpc/Contents/MacOS/com.apple.ctkpcscd
+         dmpconnect-js2 : 3 instance(s)   ctkpcscd : 3   agent jFSE : 0
+  [WARN] Plusieurs dmpconnect-js2 simultanes
+
+======================================================================
+  3. PILE SESAM-VITALE ET EDITEURS
+======================================================================
+
+--- Paquets installes (pkgutil) - * = fichiers absents (recu orphelin)
+         *fr.omnidoc.local-services                            v1.3.1       01/07/2026  tmp/__omnidoc__/
+          org.icanopee.dmpcjs2                                 v1.11.1      03/10/2025  /
+          fr.asip.esante.cpsgestion.dev                        v1.7.1       08/03/2026  Applications
+          fr.sesamvitale.diagAM.pkg                            v3.2.16      24/08/2026  /
+          org.icanopee.printer                                 v1.0.0       03/10/2025  /
+          fr.asipsante.pkg.cryptolibCPS                        v5.2.5       16/09/2026  /
+          fr.sesam-vitale.navigateur-amelipro                  v2.04.04     07/03/2026  /
+
+--- jFSE (Cegedim / Medimust / MediStory)
+  [OK]   Pas d'agent launchd jFSE
+  [OK]   /Applications/jFSE absent
+
+--- Anciens logiciels metiers (MediMust, MediStory...)
+  [OK]   MediMust absent
+  [OK]   MediStory (Prokov) absent
+
+--- GALSS Juxta - politique Full PC/SC
+         GALSS absent (Full PC/SC)
+         BLOQUERINSTALLEGALSS dans le plugin SSV : (plugin non installe)
+
+--- DmpConnect-JS2 (Icanopee)
+         Installe : v1.11.1
+         /Library/LaunchAgents/com.icanopee.dmpcjsmonitor2.plist
+         /Library/LaunchDaemons/com.icanopee.dmpcjs2.plist
+
+--- diagAM (telemetrie GIE)
+  [WARN] diagAM installe (inutile pour la facturation)
+
+--- Fichiers de configuration GIE
+  [KO]   galss.ini en mode SERIE (COM/PSS) : aucun canal PC/SC -> JuxtaLink ne verra pas les cartes via GALSS
+
+--- Bibliotheques MICA / GALSS et leur architecture
+         /usr/local/dmpconnectjs2/assets/mica/libmica.dylib                                              arm64/x86_64
+         /Users/utilisateur-27/Library/Application Support/Omnidoc/omnidoc-local-services/_internal/tlsi/libmica.dylib x86_64
+         /Users/utilisateur-27/Library/Application Support/Omnidoc/omnidoc-local-services/_internal/tlsi/libmica64.so 
+
+--- Applications metier
+         DiagAM.app
+         DmpConnectJS2.app
+
+======================================================================
+  4. SERVICES launchd (col.2 = dernier code de sortie ; negatif = crash par signal)
+======================================================================
+         291    0     com.icanopee.dmpcjs2
+         588    0     com.icanopee.dmpcjsmonitor2
+         -      0     fr.sesam-vitale.diagam_collecteur
+         -      0     fr.sesam-vitale.diagam_transmission
+
+--- Crash reports (30 derniers jours)
+  [WARN] diagam : 54 crash(s), dernier : diagam_collecteur-2026-10-01-093101.ips
+
+======================================================================
+  4b. NAVIGATEURS - Local Network Access (erreurs DRC a la teletransmission)
+======================================================================
+  [KO]   Google Chrome 154.0.8037.92 : Local Network Access actif et Odaiji non autorise -> erreurs DRC possibles (Autoriser-Odaiji-Chrome.command)
+         Microsoft Edge non installe
+
+======================================================================
+  5. JUXTALINK
+======================================================================
+  [WARN] JuxtaLink absent de /Applications
+         Aucun log JuxtaLink trouve sous ~/Library (chemin Mac a identifier : envoyer le rapport a Claude)
+
+======================================================================
+  6. VERDICT
+======================================================================
+  [KO]   galss.ini ne decrit pas le lecteur reel (mode serie ou mauvais nom). Correction : --fix / --auto (regeneration PC/SC).
+
+Scenario : GALSS
+Constats :
+         VITALE_ABSENT                          WARN  Vitale non inseree ou non lue
+         DMP_MULTI                              WARN  3 instances dmpconnect-js2
+         DIAGAM                                 WARN  diagAM present
+         GALSS_SERIE                            KO    galss.ini en mode serie
+         LNA_Google_Chrome                      KO    Google Chrome sans politique Local Network Access
+
+======================================================================
+  FIN
+======================================================================
+Rapport : /Users/utilisateur-27/Desktop/Avant_MAC-03_20261001-1111.txt

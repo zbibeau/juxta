@@ -1,0 +1,89 @@
+**********************
+Début de la transcription Windows PowerShell
+Heure de début : 20261004204849
+Nom d'utilisateur : POSTE-14\utilisateur-25
+Utilisateur runAs :  POSTE-14\utilisateur-25
+Nom de la configuration : 
+Ordinateur : POSTE-14 (Microsoft Windows NT 10.0.26300.0)
+Application hôte : C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\utilisateur-25\Downloads\Odaiji_Juxta_PC\Odaiji_Juxta_PC\Depannage.ps1
+ID de processus : 13724
+PSVersion: 5.1.26100.9549
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9549
+BuildVersion: 10.0.26100.9549
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Odaiji_Juxta - DEPANNAGE sur POSTE-14 pour l'utilisateur utilisateur-25  (kit v0.3.50)
+
+==> 1/7  Diagnostic AVANT (lecture seule)
+    [OK]  Rapport : C:\Users\utilisateur-25\Desktop\Avant_POSTE-14_20261004-2048.txt
+    [KO]   Chrome 154.0.8037.93 : Local Network Access actif et Odaiji non autorise -> erreurs DRC possibles (Autoriser-Odaiji-Chrome.bat)
+    [KO]   Edge 154.0.4258.53 : Local Network Access actif et Odaiji non autorise -> erreurs DRC possibles (Autoriser-Odaiji-Chrome.bat)
+    [KO]   [04/10/2026 20:45:51] - [ERROR] - [SSV] L'installation a échoué avec le code de sortie 1603
+    Scenario : A_TESTER
+
+==> 3/7  Corrections automatiques sures (une fenetre s'ouvre, la laisser finir) : AV_TIERS, GALSS_MISSING, LNA_CHROME, LNA_EDGE, NO_AUTOSTART, GARDIEN_ABSENT, JX_MSI_SOURCE
+    [KO]   CPS non vue par Windows
+    [OK]   mica.dll x86 : C:\Program Files (x86)\santesocial\mica\mica.dll
+    [KO]   Chrome 154.0.8037.93 : Local Network Access actif et Odaiji non autorise -> erreurs DRC possibles (Autoriser-Odaiji-Chrome.bat)
+    [KO]   Edge 154.0.4258.53 : Local Network Access actif et Odaiji non autorise -> erreurs DRC possibles (Autoriser-Odaiji-Chrome.bat)
+    [KO]   [04/10/2026 20:45:51] - [ERROR] - [SSV] L'installation a échoué avec le code de sortie 1603
+    [KO]   Windows ne voit pas la CPS -> lecteur / USB / pilote.
+    --- 7s. Demarrage de JuxtaLink sans UAC
+    >> Creer le demarrage automatique de JuxtaLink sans UAC (tache planifiee + icone Bureau) ? -> oui (auto)
+    --- 7r. JuxtaLink : fenetres 'Aucun package d'installation' (source MSI)
+    >> Remettre en place les elements d'origine de JuxtaLink (desactives, pas deplaces), retablir sa source d'installation et le reparer en silence ? -> oui (auto)
+    --- 7l. Navigateurs : autoriser Odaiji (Local Network Access)
+    >> Autoriser Odaiji dans Chrome, Edge et Firefox (erreurs DRC a la teletransmission) ? -> oui (auto)
+    --- 7b. Realigner galss.ini sur le lecteur reel
+    >> Realigner galss.ini (CANAL1 CPS / CANAL2 Vitale) sur le lecteur branche (sauvegarde .bak) ? -> oui (auto)
+    --- 7e. Relancer JuxtaLink
+    >> Relancer JuxtaLink pour recharger la configuration ? -> oui (auto)
+    --- 7v. CertPropSvc (lecture des certificats a chaque insertion de CPS)
+    >> Passer CertPropSvc en demarrage Manuel (reversible, accelere la lecture CPS) ? -> ignore en mode auto (a valider par un humain)
+
+==> 4a/7  Reparation du lecteur pour DMP Connect / iCanopee (CPS + Vitale inserees dans le lecteur)
+    2026-10-04 20:52:01 Analyse des lecteurs et des cartes (CPS + Vitale inserees) - 45 s maximum...
+    2026-10-04 20:52:01 Aucune carte vue par Windows, rien a faire.
+    [OK]  Service redemarre : DmpConnect-JS2
+    [OK]  DMP Connect actif : DmpConnect-JS2
+
+==> 4b/7  Chrome / Edge : autoriser Odaiji a joindre JuxtaLink
+    Politiques ecrites pour Chrome et Edge :
+      HKLM:\SOFTWARE\Policies\Google\Chrome : https://app.odaiji.co, https://[*.]odaiji.co, https://[*.]madeformed.fr, https://[*.]juxta.cloud
+      HKLM:\SOFTWARE\Policies\Microsoft\Edge : https://app.odaiji.co, https://[*.]odaiji.co, https://[*.]madeformed.fr, https://[*.]juxta.cloud
+    Pris en compte au prochain redemarrage de Chrome/Edge (inutile de le faire maintenant). Verification : chrome://policy.
+    Politique ecrite pour Firefox : app.odaiji.co, *.odaiji.co, *.madeformed.fr, *.juxta.cloud, localhost, 127.0.0.1
+    Pris en compte au prochain redemarrage de Firefox (inutile de le faire maintenant).
+
+==> 5/7  Redemarrage de JuxtaLink (recharge la configuration)
+PS>Erreur de terminaison (Get-NetTCPConnection) : « L’exécution de la commande s’est arrêtée, car la variable de préférence « ErrorActionPreference » ou le paramètre courant a la valeur Stop : Aucun objet MSFT_NetTCPConnection correspondant n’a été trouvé par Requête CIM pour les instances de la classe ROOT/StandardCimv2/MSFT_NetTCPConnection sur le serveur CIM  : SELECT * FROM MSFT_NetTCPConnection  WHERE ((LocalPort = 1234)) AND ((State = 2)). Vérifiez les paramètres de la requête et réessayez. »
+    [OK]  JuxtaLink en cours d'execution
+    [OK]  JuxtaLink ecoute sur le port 1234
+
+==> 6a/7  Lecture de la carte CPS plus rapide : service Windows CertPropSvc passe en Manuel (automatique, reversible)
+    Par defaut, Windows relit TOUS les certificats de la CPS a chaque insertion ; en Manuel il ne le fait plus : sans effet sur Odaiji ni la facturation.
+    [OK]  CertPropSvc : Manuel (retour arriere : Set-Service CertPropSvc -StartupType Automatic)
+
+==> 7/7  Diagnostic APRES
+    [OK]  Rapport : C:\Users\utilisateur-25\Desktop\Apres_POSTE-14_20261004-2052.txt
+
+    Scenario : READER
+
+    Reste a traiter :
+    [KO]   CPS non vue par Windows
+    [KO]   [04/10/2026 20:52:19] - [ERROR] - [SSV] L'installation a échoué avec le code de sortie 1603
+    [KO]   Windows ne voit pas la CPS -> lecteur / USB / pilote.
+
+    PROCHAINE ETAPE : dans Odaiji, une lecture CPS + Vitale (+ ADRi), puis 3-Diag-seul.bat si un doute persiste.
+    A ENVOYER dans le channel Claude pour faire evoluer le kit :
+      - C:\Users\utilisateur-25\Desktop\Avant_POSTE-14_20261004-2048.txt
+      - C:\Users\utilisateur-25\Desktop\Apres_POSTE-14_20261004-2052.txt
+      - C:\Users\utilisateur-25\Desktop\Depannage_POSTE-14_20261004-2048.txt  (journal de ce depannage : actions et reponses)
+**********************
+Fin de la transcription Windows PowerShell
+Heure de fin : 20261004205313
+**********************

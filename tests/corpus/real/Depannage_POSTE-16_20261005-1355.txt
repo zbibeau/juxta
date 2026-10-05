@@ -1,0 +1,63 @@
+**********************
+Début de la transcription Windows PowerShell
+Heure de début : 20261005135555
+Nom d'utilisateur : POSTE-16\POSTE
+Utilisateur runAs :  POSTE-16\POSTE
+Nom de la configuration : 
+Ordinateur : POSTE-16 (Microsoft Windows NT 10.0.26200.0)
+Application hôte : C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\POSTE\Downloads\Odaiji_Juxta_PC (4)\Odaiji_Juxta_PC\Depannage.ps1
+ID de processus : 4784
+PSVersion: 5.1.26100.9444
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9444
+BuildVersion: 10.0.26100.9444
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Odaiji_Juxta - DEPANNAGE sur POSTE-16 pour l'utilisateur POSTE  (kit v0.3.59)
+
+==> 1/7  Diagnostic AVANT (lecture seule)
+    [OK]  Rapport : C:\Users\POSTE\Desktop\Avant_POSTE-16_20261005-1355.txt
+    [KO]   [05/10/2026 13:52:36] - [ERROR] - [JuxtaLink] [CLIENT] HttpsAuthentificationFailException (on va répondre en HTTP)
+    [KO]   [05/10/2026 13:52:37] - [ERROR] - [SSV] [EXEC] Exception lors de l'appel à ssv.lirecarteps
+    Scenario : A_TESTER
+
+==> 2/7  Anciens logiciels metiers detectes sur ce poste
+    Ces logiciels se disputent le lecteur de cartes avec JuxtaLink. S'ils ne servent plus au medecin (il facture avec Odaiji), ils sont coupes
+    puis desinstalles (hors briques partagees FSV/Cryptolib/MICA, sans redemarrage). S'ils servent encore : on n'y touche pas.
+    - Cegedim : MICA x64 (empeche le MICA x86 de Juxta), processus ClmLive / demon jFSE sur le lecteur
+    [OK]  Cegedim : plus utilise -> sera coupe puis desinstalle
+
+==> 3/7  Corrections automatiques sures (une fenetre s'ouvre, la laisser finir) : AV_TIERS, TABLES_X64_ONLY, OLD_CEGEDIM, FSV_MSI_SOURCE, FSV_MSI_SOURCE
+    [OK]   mica.dll x86 : C:\Program Files (x86)\santesocial\mica\mica.dll
+    [OK]   galss.ini coherent avec les lecteurs presents
+    [KO]   [05/10/2026 13:52:36] - [ERROR] - [JuxtaLink] [CLIENT] HttpsAuthentificationFailException (on va répondre en HTTP)
+    [KO]   [05/10/2026 13:52:37] - [ERROR] - [SSV] [EXEC] Exception lors de l'appel à ssv.lirecarteps
+    >> Copier le MSI FSV du kit dans C:\ProgramData\MadeForMed\FSV et le declarer comme source de Windows Installer (sans reinstaller) ? -> oui (auto)
+    --- 7n. Anciens logiciels metiers
+    >> Cegedim n'est plus utilise -> neutralisation puis desinstallation (hors briques partagees, sans redemarrage)
+
+==> 5/7  Redemarrage de JuxtaLink (recharge la configuration)
+    [OK]  JuxtaLink en cours d'execution
+    [OK]  JuxtaLink ecoute sur le port 1234
+
+==> 7/7  Diagnostic APRES
+    [OK]  Rapport : C:\Users\POSTE\Desktop\Apres_POSTE-16_20261005-1357.txt
+
+    Scenario : A_TESTER
+
+    Reste a traiter :
+    [KO]   [05/10/2026 13:52:36] - [ERROR] - [JuxtaLink] [CLIENT] HttpsAuthentificationFailException (on va répondre en HTTP)
+    [KO]   [05/10/2026 13:52:37] - [ERROR] - [SSV] [EXEC] Exception lors de l'appel à ssv.lirecarteps
+
+    PROCHAINE ETAPE : dans Odaiji, une facture avec une carte Vitale puis une facture sans Vitale (valider l'appel ADRi), puis 3-Diag-seul.bat si un doute persiste.
+    A ENVOYER dans le channel Claude pour faire evoluer le kit :
+      - C:\Users\POSTE\Desktop\Avant_POSTE-16_20261005-1355.txt
+      - C:\Users\POSTE\Desktop\Apres_POSTE-16_20261005-1357.txt
+      - C:\Users\POSTE\Desktop\Depannage_POSTE-16_20261005-1355.txt  (journal de ce depannage : actions et reponses)
+**********************
+Fin de la transcription Windows PowerShell
+Heure de fin : 20261005135719
+**********************

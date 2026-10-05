@@ -1,0 +1,77 @@
+**********************
+Début de la transcription Windows PowerShell
+Heure de début : 20261005161856
+Nom d'utilisateur : POSTE-13\utilisateur-16
+Utilisateur runAs :  POSTE-13\utilisateur-16
+Nom de la configuration : 
+Ordinateur : POSTE-13 (Microsoft Windows NT 10.0.26200.0)
+Application hôte : C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\utilisateur-16\Downloads\Odaiji_Juxta_PC\Odaiji_Juxta_PC\Depannage.ps1
+ID de processus : 28492
+PSVersion: 5.1.26100.9444
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9444
+BuildVersion: 10.0.26100.9444
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Odaiji_Juxta - DEPANNAGE sur POSTE-13 pour l'utilisateur utilisateur-16  (kit v0.3.66)
+
+==> 1/7  Diagnostic AVANT (lecture seule)
+    [OK]  Rapport : C:\Users\utilisateur-16\Desktop\Avant_POSTE-13_20261005-1618.txt
+    [KO]   galss.ini ne decrit pas le lecteur reel (fichier partage avec DMP Connect / iCanopee). Correction : -Fix.
+    Scenario : GALSS
+
+==> 3/7  Corrections automatiques sures (une fenetre s'ouvre, la laisser finir) : [masque]_ABSENT_READER, GALSS_MISMATCH_CPS, GARDIEN_ABSENT, FSV_MSI_SOURCE, JX_MSI_SOURCE, JX_MSI_REPAIR, JX_MOVED
+    [OK]   mica.dll x86 : C:\Program Files (x86)\santesocial\mica\mica.dll
+    [KO]   galss.ini ne decrit pas le lecteur reel (fichier partage avec DMP Connect / iCanopee). Correction : -Fix.
+    --- 7s. Demarrage de JuxtaLink sans UAC
+    >> Installer le gardien : veille de JuxtaLink toutes les 10 min, relance s'il est arrete ? -> oui (auto)
+    >> Copier le MSI FSV du kit dans C:\ProgramData\MadeForMed\FSV et le declarer comme source de Windows Installer (sans reinstaller) ? -> oui (auto)
+    --- 7r. JuxtaLink : fenetres 'Aucun package d'installation' (source MSI)
+    >> Remettre en place les elements d'origine de JuxtaLink (desactives, pas deplaces), retablir sa source d'installation et le reparer en silence ? -> oui (auto)
+    --- 7b. Realigner galss.ini sur le lecteur reel
+    >> Realigner galss.ini (CANAL1 CPS / CANAL2 Vitale) sur le lecteur branche (sauvegarde .bak) ? -> oui (auto)
+    --- 7e. Relancer JuxtaLink
+    >> Relancer JuxtaLink pour recharger la configuration ? -> oui (auto)
+
+==> 3b/7  Full PC/SC : retrait du GALSS x86 Juxta + blocage de sa reinstallation (automatique)
+    GALSS x86 absent (mode Full PC/SC)
+    BLOQUERINSTALLEGALSS dans le plugin SSV : false
+    --- galss.ini (canaux vs lecteurs reels)
+    [OK]   galss.ini coherent avec les lecteurs presents
+    [OK]   JuxtaLink repare en silence (msiexec 0) : plus de fenetres 'package d'installation introuvable'
+    7g. PASSAGE EN FULL PC/SC (desinstallation du GALSS x86 Juxta)
+    [OK]   Prerequis OK : lecteur(s) PC/SC = Gemalto USB Smart Card Reader 0 | Identive CLOUD 2700 R Smart Card Reader 1 | Gemalto USB Smart Card Reader 0 | Gemalto USB Smart Card Reader 0 | Gemalto USB Smart Card Reader 0 ; Cryptolib sans indication GALSS
+    [OK]   GALSS x86 deja absent
+    [OK]   BLOQUERINSTALLEGALSS=true dans C:\Users\utilisateur-16\AppData\Roaming\juxta\juxtalink\Plugins\SSV\4.1.0.0\SSV.dll.config
+    >>> Tester CPS + Vitale + une ADRi dans Odaiji, puis relancer le diag : section PERFORMANCE et 'GALSS x86 absent' attendus.
+
+==> 4a/7  Reparation du lecteur pour DMP Connect / iCanopee (CPS + Vitale inserees dans le lecteur)
+    >>> Inserer la CPS ET la Vitale dans le lecteur (les laisser jusqu'a la fin de cette etape).
+    2026-10-05 16:21:56 Analyse des lecteurs et des cartes (CPS + Vitale inserees) - 45 s maximum...
+    2026-10-05 16:21:59 Vitale non identifiee par certutil : lecteur 'Identive CLOUD 2700 R Smart Card Reader 1' retenu (seul autre lecteur avec une carte)
+    2026-10-05 16:21:59 OK : galss.ini deja aligne (CPS='Gemalto USB Smart Card Reader 0', Vitale='Identive CLOUD 2700 R Smart Card Reader 1').
+    [OK]  Service redemarre : DmpConnect-JS2
+    [OK]  DMP Connect actif : DmpConnect-JS2
+
+==> 5/7  Redemarrage de JuxtaLink (recharge la configuration)
+    [OK]  JuxtaLink en cours d'execution
+    [OK]  JuxtaLink ecoute sur le port 1234
+
+==> 7/7  Diagnostic APRES
+    [OK]  Rapport : C:\Users\utilisateur-16\Desktop\Apres_POSTE-13_20261005-1622.txt
+
+    Scenario : A_TESTER
+    [OK]  Aucun [KO] dans le rapport Apres
+
+    PROCHAINE ETAPE : dans Odaiji, une facture avec une carte Vitale puis une facture sans Vitale (valider l'appel ADRi), puis 3-Diag-seul.bat si un doute persiste.
+    A ENVOYER dans le channel Claude pour faire evoluer le kit :
+      - C:\Users\utilisateur-16\Desktop\Avant_POSTE-13_20261005-1618.txt
+      - C:\Users\utilisateur-16\Desktop\Apres_POSTE-13_20261005-1622.txt
+      - C:\Users\utilisateur-16\Desktop\Depannage_POSTE-13_20261005-1618.txt  (journal de ce depannage : actions et reponses)
+**********************
+Fin de la transcription Windows PowerShell
+Heure de fin : 20261005162243
+**********************

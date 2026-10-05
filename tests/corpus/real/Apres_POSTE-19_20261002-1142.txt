@@ -1,0 +1,243 @@
+
+
+======================================================================
+  OdaijiJuxta v0.3.41 - 02/10/2026 11:42
+======================================================================
+         Poste : POSTE-19   Utilisateur : Utilisateur   Mode : DIAGNOSTIC
+         Rapport : C:\Users\Utilisateur\Desktop\Apres_POSTE-19_20261002-1142.txt
+
+======================================================================
+  1. SYSTEME
+======================================================================
+         Windows : Microsoft Windows 10 Professionnel 10.0.19045 (64 bits)   Boot : 30/09 07:55
+  [OK]   SCardSvr : Running
+         CertPropSvc : Running / Automatic  (lit tous les certificats CPS a l'insertion ; source de lenteur possible)
+         Antivirus : Windows Defender
+
+======================================================================
+  2. LECTEURS ET CARTES
+======================================================================
+         PnP : Olaqin SESAM-VITALE reader [OK]
+
+--- certutil -scinfo (resume)
+         Lecteur : Ingenico [n] TL TELIUM 1 0
+           --- Statut : SCARD_STATE_PRESENT | SCARD_STATE_INUSE
+  [OK]     CPS dans 'Ingenico [n] TL TELIUM 1 0'
+         Lecteur : Ingenico [n] TL TELIUM 2 0
+           --- Statut : SCARD_STATE_PRESENT | SCARD_STATE_INUSE
+  [OK]     Vitale dans 'Ingenico [n] TL TELIUM 2 0'
+         Lecteur : Ingenico [n] TL TELIUM 3 0
+           --- Statut : SCARD_STATE_EMPTY
+         Lecteur : Ingenico [n] TL TELIUM 1 0
+  [OK]     CPS dans 'Ingenico [n] TL TELIUM 1 0'
+
+======================================================================
+  3. PILE SESAM-VITALE
+======================================================================
+
+--- Dossiers
+         C:\Program Files (x86)\santesocial -> CPS, diagAM, fsv, mica, srvsvcnam
+         C:\Program Files\santesocial -> CPS, fsv, galss
+  [OK]   FSV x86 : 1.40.14, 1.40.13, 1.40.12, 1.40.9  (utilisee : 1.40.14)
+  [WARN] Pile 64 bits presente (Program Files\santesocial)
+
+--- Tables FSV disponibles (donnees identiques x86/x64)
+         ssv  x86: 25 fich. x64: 22 fich. -> C:\Program Files (x86)\santesocial\fsv\1.40.14\ssv
+         srt  x86: 1 fich.  x64: 1 fich.  -> C:\Program Files (x86)\santesocial\fsv\1.40.14\srt
+         sts  x86: 31 fich. x64: 31 fich. -> C:\Program Files (x86)\santesocial\fsv\1.40.14\sts
+
+--- MICA
+  [OK]   mica.dll x86 : C:\Program Files (x86)\santesocial\mica\mica.dll
+
+--- Produits GIE / Cryptolib / GALSS inscrits
+         Composants Cryptographiques CPS v5.1.7 (x64) 5.1.7        {297EFD05-38C7-479C-BC34-BC269DCDE018}
+             src : C:\ProgramData\santesocial\atsam\
+         Composants Cryptographiques CPS v5.0.42 (x64) 5.0.42       {370D799B-992B-49E0-8325-F2E10110A861}
+             src : C:\Program Files (x86)\CEGEDIM\Clm\Outils\
+         Composants Cryptographiques CPS v5.1.6 (x64) 5.1.6        {4E44FAFE-FF5A-4987-837D-37B8EBE825DC}
+             src : C:\Program Files (x86)\CEGEDIM\Clm\Outils\
+         Composants Cryptographiques CPS v5.0.34 (x64) 5.0.34       {657E024F-D943-4DCB-8F7F-E4A2DBF9801A}
+             src : C:\ProgramData\santesocial\atsam\
+         fsv-1.40.1413_x64            1.40.1413    {6CBB8D6D-3787-4CC8-8BBA-E99C5FCC5AD6}
+             src : C:\CEGEDIM\JFSE\Installation\
+         GALSS v3.45 x64              3.45.01      {82AB7DB2-140E-4166-A04E-1FD805EE0A74}  [DMP Connect / iCanopee - x64]
+             src : C:\ProgramData\santesocial\atsam\
+         Composants Cryptographiques CPS v5.0.37 (x64) 5.0.37       {B72E6883-542A-490A-B7C1-65E6D4C66E6D}
+             src : C:\ProgramData\santesocial\atsam\
+         Composants Cryptographiques CPS v5.2.6 (x64) 5.2.6        {CF3BEBDD-16A0-4AE8-8764-ADDF9A104998}
+             src : C:\ProgramData\santesocial\cps\
+         FSV 1.40.1309_x64            1.40.1309    {E5DFC000-FF14-4218-BF8A-1570C2A719B7}
+             src : C:\CEGEDIM\JFSE\Installation\
+         Composant SrvSvCnam 5.10.04  5.10.04      {306912f2-76f5-4ba3-9260-e9f581c886dd}
+             src : C:\Users\utilisateur-14\AppData\Local\Temp\{F67F09C7-4A56-47DE-BF5D-2A0131BE08FF}\{132EB661-CC19-4038-8A75-06CACC38588D}\
+         FSV 1.40.0901                1.40.0901    {31CAD4E1-4418-4C66-8D73-4281D4990D12}
+             src : C:\WINDOWS\Temp\Cegedim\RESIP\
+         FSV 1.40.1309                1.40.1309    {5CB02AF4-8C72-44B9-9BF1-1497085C0CD0}
+             src : C:\CEGEDIM\JFSE\Installation\
+         FSV 1.40.1304                1.40.1304    {60D93858-9191-4A04-8755-256A[n]}
+             src : C:\CEGEDIM\JFSE\Installation\
+         FSV 1.40.1203                1.40.1203    {6435F6AF-DE3A-45AE-9B42-B358B4325C03}
+             src : C:\CEGEDIM\JFSE\Installation\
+         fsv-1.40.1413_x86            1.40.1413    {9EF61CC2-74F6-48B8-9E78-4A577D6C9108}
+             src : C:\Users\Utilisateur\AppData\Local\Temp\
+         mica                         4.01.00      {e01e10c5-2079-4835-940a-[n]f4}
+             src : C:\Users\Utilisateur\AppData\Local\Temp\
+         amelipro connect             2.3.3        amelipro-connect
+         DiagAM V3 : collecte de suivi de parc et diagnostic poste 3.2.16       DiagAM_V3
+
+--- GALSS Juxta (x86) - politique Full PC/SC
+         GALSS x86 absent (mode Full PC/SC)
+         BLOQUERINSTALLEGALSS dans le plugin SSV : true
+
+--- sesam.ini
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\fsv\1.40.13\conf\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\fsv\1.40.14\conf\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] C:\Windows\sesam.ini absent, mais celui de la FSV 1.40.14 est present (C:\ProgramData\santesocial\fsv\1.40.14\conf\sesam.ini) : non bloquant
+
+--- Inscription FSV (registre GIE) et MSI disponibles
+         Registre GIE FSV : 1.40.12 (x86), 1.40.13 (x86), 1.40.14 (x86), 1.40.9 (x86), 1.40.13 (x64), 1.40.14 (x64)
+         MSI FSV disponibles a cote du script : fsv-1.40.1413_x64.msi
+
+--- galss.ini (canaux vs lecteurs reels)
+         CANAL1 : 'Ingenico [n] TL TELIUM 1 0' [present]  LAD: CPS
+         CANAL2 : 'Ingenico [n] TL TELIUM 2 0' [present]  LAD: Vitale
+  [OK]   galss.ini coherent avec les lecteurs presents
+         NomLib=PCSCW64.DLL
+
+--- Processus concurrents sur le lecteur
+         actif : dmpconnectjs_monitor  DMP Connect / iCanopee
+         actif : SRVSVCNAM             amelipro CNAM
+         actif : JuxtaLink             JuxtaLink
+  [WARN] C:\CEGEDIM\JFSE present
+
+--- Anciens logiciels metiers detectes (catalogue editeurs.psd1)
+  [WARN] Ce poste heberge la BASE DE DONNEES Cegedim (service Oracle) : a conserver (cabinet / historique des dossiers). Reponse n = seuls les programmes lies au lecteur sont coupes + MICA x64 retire ; rien n'est desinstalle ni deplace.
+  [WARN] Cegedim : dossier, processus actif, produit inscrit -> plus utilise (a neutraliser)  [bloquants connus : MICA x64 (empeche le MICA x86 de Juxta), processus ClmLive / demon jFSE sur le lecteur]
+         Catalogue : Cegedim, Affid, Shaman, Weda, Pyxvital, DrSante, HelloDoc
+
+--- Autres logiciels actifs (inventaire, a signaler si concurrent)
+         Port local 443 : edgeBroker (C:\Program Files (x86)\Honeywell\EZConfig-Scanning v4\EZConfig-Agent\HPA\edgeBroker.exe)
+         Port local 1234 : JuxtaLink (C:\Program Files (x86)\Juxta\JuxtaLink\JuxtaLink.exe)
+         Port local 1521 : TNSLSNR (C:\oracle\OraHomeCEGEDIM\BIN\TNSLSNR.exe)
+         Port local 1922 : SRVSVCNAM (C:\Program Files (x86)\santesocial\srvsvcnam\SRVSVCNAM.exe)
+         Port local 1943 : SRVSVCNAM (C:\Program Files (x86)\santesocial\srvsvcnam\SRVSVCNAM.exe)
+         Port local 5939 : TeamViewer_Service (C:\Program Files\TeamViewer\TeamViewer_Service.exe)
+         Port local 9982 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 9983 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 9984 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 9992 : edgeBroker (C:\Program Files (x86)\Honeywell\EZConfig-Scanning v4\EZConfig-Agent\HPA\edgeBroker.exe)
+         Port local 9997 : edgeBroker (C:\Program Files (x86)\Honeywell\EZConfig-Scanning v4\EZConfig-Agent\HPA\edgeBroker.exe)
+         Port local 9998 : edgeBroker (C:\Program Files (x86)\Honeywell\EZConfig-Scanning v4\EZConfig-Agent\HPA\edgeBroker.exe)
+         Port local 19010 : logioptionsplus_agent (C:\Program Files\LogiOptionsPlus\logioptionsplus_agent.exe)
+         Port local 19292 : AdobeCollabSync (C:\Program Files\Adobe\Acrobat DC\Acrobat\AdobeCollabSync.exe)
+         Port local 37014 : TeamViewer_Service (C:\Program Files\TeamViewer\TeamViewer_Service.exe)
+         Port local 37114 : TeamViewer_Service (C:\Program Files\TeamViewer\TeamViewer_Service.exe)
+         Port local 40500 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Demarrage auto : WavesSvc -> "C:\Program Files\Waves\MaxxAudio\WavesSvc64.exe" -Jack
+         Demarrage auto : LogiBolt -> "C:\Program Files\Logi\LogiBolt\LogiBolt.exe" --startup
+         Demarrage auto : Logi Download Assistant -> "C:\Program Files\LogiDownloadAssistant\bin\logi_download_assistant.exe" -system-restarted
+         Demarrage auto : AgentSynchro -> "C:\Program Files (x86)\CEGEDIM\CLM\Bin\AgentSynchro.exe" ORACLE
+         Demarrage auto : LogiBolt -> C:\Program Files\Logi\LogiBolt\LogiBolt.exe --startup
+         Demarrage auto : Proton Drive -> "C:\Users\Utilisateur\AppData\Local\Programs\Proton\Drive\ProtonDrive.exe" -quiet
+         Demarrage auto : org.whispersystems.signal-desktop -> "C:\Users\Utilisateur\AppData\Local\Programs\signal-desktop\Signal.exe" --start-in-tray
+         Service : EZCloudPeripherals (EZCloudPeripherals)
+         Service : Logi Options+ (OptionsPlusUpdaterService)
+         Service : OracleOraHomeCEGEDIMTNSListener (OracleOraHomeCEGEDIMTNSListener)
+         Service : OracleServicePICARD (OracleServicePICARD)
+         Service : Synology Drive VSS Service x64 (Synology Drive VSS Service x64)
+         Service : UsbClientService (UsbClientService)
+         Service : Waves Audio Services (WavesSysSvc)
+         Produit sante : MIR Spiro 2.1.11 (MIR spa Medical International Research)   <- a verifier (concurrent ?)
+         Produit sante : Crossway v21.00 21.00.0000 (CEGEDIM)   <- a verifier (concurrent ?)
+         Produit sante : Terminal Santé Ingenico Healthcare 1.0 (Ingenico Healthcare)   <- a verifier (concurrent ?)
+         Produit sante : Resip FSE 3.58 (RESIP)   <- a verifier (concurrent ?)
+         Produit sante : Crossway v21.00 21.00.0000 (CEGEDIM)   <- a verifier (concurrent ?)
+         Produit sante : MIR USB driver 64 bit 2.09 (MIR srl Medical International Research)   <- a verifier (concurrent ?)
+         Produit sante : Composants BCB 09.25 (RESIP)   <- a verifier (concurrent ?)
+
+======================================================================
+  3b. DMP CONNECT / ICANOPEE (doit fonctionner en parallele de JuxtaLink)
+======================================================================
+  [OK]   Installe : DmpConnect-JS2 - Service d'accès au DMP 1.11.14
+  [OK]   dmpconnectjs_monitor actif
+  [OK]   dmpconnect-js2 actif (3 processus)
+  [OK]   Ecoute locale sur port(s) : 9982, 9983, 9984, 40500
+         Demarrage auto : dmpconnectjs_monitoring
+         Pile 64 bits DMP Connect : GALSS 3.45.01 / Cryptolib 5.1.7 5.0.42 5.1.6 5.0.34 5.0.37 5.2.6
+         Log recent : C:\Program Files (x86)\DmpConnect-JS2\dmp-connect.log (02/10 08:55)
+  [OK]   DMP Connect / iCanopee operationnel (processus + port)
+
+         Rappel : ne jamais desinstaller 'GALSS' ou 'Cryptolib' en bloc ; le x64 appartient a DMP Connect / iCanopee, le x86 a Juxta.
+
+======================================================================
+  3c. NAVIGATEURS - Local Network Access (erreurs DRC a la teletransmission)
+======================================================================
+  [OK]   Chrome 154.0.8037.97 : politique Local Network Access OK (https://app.odaiji.co, https://[*.]odaiji.co, https://[*.]madeformed.fr, https://[*.]juxta.cloud)
+  [OK]   Edge 154.0.4258.48 : politique Local Network Access OK (https://app.odaiji.co, https://[*.]odaiji.co, https://[*.]madeformed.fr, https://[*.]juxta.cloud)
+
+======================================================================
+  4. JUXTALINK
+======================================================================
+  [OK]   JuxtaLink 2.2.3.0
+  [OK]   JuxtaLink en cours d'execution
+  [OK]   Demarrage auto sans UAC : tache \Odaiji\JuxtaLink (compte Utilisateur, niveau Highest, Running)
+         Autre lancement auto : Run 'JuxtaLink' -> C:\Program Files (x86)\Juxta\JuxtaLink\JuxtaLink.exe  (desactive par Odaiji)
+  [OK]   Source d'installation JuxtaLink presente (SetupJuxtaLinkx86.msi)
+  [OK]   Port 1234 : JuxtaLink
+         Plugins : SSV 4.1.0.0
+
+--- Derniers etats de lecture
+         [02/10/2026 11:38:01] - [DEBUG] - [SSV] CPS présente : True
+
+--- Erreurs recentes
+  [KO]   [02/10/2026 11:37:47] - [ERROR] - [SSV] L'installation a échoué avec le code de sortie 1603
+         Windows Installer (echecs des 3 derniers jours, produit en cause) :
+           02/10 11:37 [1033] Windows Installer a installé le produit. Nom du produit : Composants Cryptographiques CPS v5.2.2 (x64). Version du produit : 5.2.2. Langue du produit : 1036. Fabricant : Agence du Numérique en Santé. Réussite de l’installation ou état d’err...
+           02/10 11:37 [11708] Produit : Composants Cryptographiques CPS v5.2.2 (x64) -- L'installation a échoué.
+           02/10 11:36 [1033] Windows Installer a installé le produit. Nom du produit : Composants Cryptographiques CPS v5.2.2 (x64). Version du produit : 5.2.2. Langue du produit : 1036. Fabricant : Agence du Numérique en Santé. Réussite de l’installation ou état d’err...
+           02/10 11:36 [11708] Produit : Composants Cryptographiques CPS v5.2.2 (x64) -- L'installation a échoué.
+           02/10 11:32 [1033] Windows Installer a installé le produit. Nom du produit : Composants Cryptographiques CPS v5.2.2 (x64). Version du produit : 5.2.2. Langue du produit : 1036. Fabricant : Agence du Numérique en Santé. Réussite de l’installation ou état d’err...
+           02/10 11:32 [11708] Produit : Composants Cryptographiques CPS v5.2.2 (x64) -- L'installation a échoué.
+
+--- Diagnostics decodes des reponses (base64)
+         Aucun message d'erreur serveur dans les dernieres reponses
+
+======================================================================
+  5. PERFORMANCE (durees mesurees dans le log JuxtaLink)
+======================================================================
+  02/10 11:32:25  LireCartePS                      0 s
+  02/10 11:35:16  LireDroitsVitale                 0 s
+  02/10 11:37:26  patientAdrSilent                 0 s
+  02/10 11:37:59  FacturerSilent                   0 s
+
+--- Par action
+         LireCartePS                  n=1   moy=    0 s  max=   0 s
+         LireDroitsVitale             n=1   moy=    0 s  max=   0 s
+         patientAdrSilent             n=1   moy=    0 s  max=   0 s
+         FacturerSilent               n=1   moy=    0 s  max=   0 s
+
+--- Causes de lenteur presentes sur ce poste (a traiter si les lectures sont lentes)
+  [WARN] CertPropSvc en demarrage automatique : relit tous les certificats de la CPS a chaque insertion -> passer en Manuel (-Fix 7v)
+  [WARN] Cryptolib CPS installee 6 fois : nettoyage possible avec le support (Nettoyage.bat), apres mesure
+
+======================================================================
+  6. VERDICT
+======================================================================
+  [OK]   Poste configure, aucun blocage detecte. Pas de lecture Vitale reussie dans le log : faire une lecture CPS + Vitale dans Odaiji puis Diag-seul.bat.
+         Si Odaiji dit 'carte Vitale non reconnue' alors que la carte est inseree : relancer JuxtaLink (icone 'JuxtaLink (Odaiji)' sur le Bureau, ou Reparer-lecteur.bat), puis relire (HANSIANE 29/09 : lecteur Telium 3 fentes).
+
+Scenario : A_TESTER
+Constats :
+           STACK_X64             WARN  Pile 64 bits presente
+           SESAM_WIN_ABSENT      WARN  sesam.ini Windows absent (celui de la FSV suffit)
+           JFSE_DIR              WARN  Dossier jFSE present
+           SRV_CEGEDIM           WARN  Base Cegedim hebergee sur ce poste
+           OLD_CEGEDIM           WARN  Cegedim detecte (dossier, processus actif, produit inscrit)
+           MSI_ECHEC             INFO  Installation(s) MSI en echec (detail section 4)
+           CERTPROP_AUTO         WARN  CertPropSvc automatique
+
+======================================================================
+  FIN
+======================================================================
+Rapport : C:\Users\Utilisateur\Desktop\Apres_POSTE-19_20261002-1142.txt
+Copier son contenu dans le channel Claude pour analyse.

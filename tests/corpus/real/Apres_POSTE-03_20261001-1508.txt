@@ -1,0 +1,202 @@
+
+
+======================================================================
+  OdaijiJuxta v0.3.37 - 01/10/2026 15:08
+======================================================================
+         Poste : POSTE-03   Utilisateur : utilisateur-09   Mode : DIAGNOSTIC
+         Rapport : C:\Users\utilisateur-09\Desktop\Apres_POSTE-03_20261001-1508.txt
+
+======================================================================
+  1. SYSTEME
+======================================================================
+         Windows : Microsoft Windows 11 Famille 10.0.26300 (64 bits)   Boot : 30/09 08:06
+  [OK]   SCardSvr : Running
+  [OK]   Smart App Control desactive
+         CertPropSvc : Running / Manual  (lit tous les certificats CPS a l'insertion ; source de lenteur possible)
+         Antivirus : Windows Defender
+
+======================================================================
+  2. LECTEURS ET CARTES
+======================================================================
+         PnP : Lecteur de carte à puce Microsoft Usbccid (WUDF) [OK]
+         PnP : Lecteur de carte à puce Microsoft Usbccid (WUDF) [OK]
+         PnP : Lecteur de carte à puce Microsoft Usbccid (WUDF) [OK]
+
+--- certutil -scinfo (resume)
+         Lecteur : Kapelse CCID Interface CLESS slot2 0
+           --- Statut : SCARD_STATE_PRESENT | SCARD_STATE_MUTE
+         Lecteur : Kapelse CCID Interface slot0 0
+           --- Statut : SCARD_STATE_PRESENT | SCARD_STATE_INUSE
+  [OK]     CPS dans 'Kapelse CCID Interface slot0 0'
+         Lecteur : Kapelse CCID Interface slot1 0
+           --- Statut : SCARD_STATE_PRESENT | SCARD_STATE_UNPOWERED
+  [OK]     Vitale dans 'Kapelse CCID Interface slot1 0'
+         Lecteur : Kapelse CCID Interface slot0 0
+  [OK]     CPS dans 'Kapelse CCID Interface slot0 0'
+
+======================================================================
+  3. PILE SESAM-VITALE
+======================================================================
+
+--- Dossiers
+         C:\Program Files (x86)\santesocial -> CPS, diagAM, fsv, mica, srvsvcnam
+         C:\Program Files\santesocial -> CPS, fsv, galss
+  [OK]   FSV x86 : 1.40.14  (utilisee : 1.40.14)
+  [WARN] Pile 64 bits presente (Program Files\santesocial)
+
+--- Tables FSV disponibles (donnees identiques x86/x64)
+         ssv  x86: 18 fich. x64: 22 fich. -> C:\Program Files (x86)\santesocial\fsv\1.40.14\ssv
+         srt  x86: 0 fich.  x64: 1 fich.  -> C:\Program Files\santesocial\fsv\1.40.14\srt
+  [WARN] Tables srt uniquement en x64 : sesam.ini doit pointer sur Program Files\ (pas x86)
+         sts  x86: 3 fich.  x64: 45 fich. -> C:\Program Files (x86)\santesocial\fsv\1.40.14\sts
+
+--- MICA
+  [OK]   mica.dll x86 : C:\Program Files (x86)\santesocial\mica\mica.dll
+
+--- Produits GIE / Cryptolib / GALSS inscrits
+         fsv-1.40.1413_x64            1.40.1413    {6CBB8D6D-3787-4CC8-8BBA-E99C5FCC5AD6}
+             src : C:\Users\utilisateur-08\AppData\Local\Temp\RarSFX0\Resources\
+         GALSS v3.45 x64              3.45.01      {82AB7DB2-140E-4166-A04E-1FD805EE0A74}  [DMP Connect / iCanopee - x64]
+             src : C:\Users\utilisateur-09\AppData\Local\Temp\
+         Composants Cryptographiques CPS v5.2.6 (x64) 5.2.6        {CF3BEBDD-16A0-4AE8-8764-ADDF9A104998}
+             src : C:\Program Files (x86)\DmpConnect-JS2\cryptolib\x64\
+         Composant SrvSvCnam 5.10.04  5.10.04      {306912f2-76f5-4ba3-9260-e9f581c886dd}
+             src : C:\Users\utilisateur-08\AppData\Local\Temp\{DEDAF6FD-DAE6-49A3-82C3-FEA01143B0B9}\{132EB661-CC19-4038-8A75-06CACC38588D}\
+         fsv-1.40.1413_x86            1.40.1413    {9EF61CC2-74F6-48B8-9E78-4A577D6C9108}
+             src : C:\Users\utilisateur-09\AppData\Local\Temp\
+         mica                         4.01.00      {e01e10c5-2079-4835-940a-[n]f4}
+             src : C:\Users\utilisateur-09\AppData\Local\Temp\
+         amelipro connect             2.3.3        amelipro-connect
+         DiagAM V3 : collecte de suivi de parc et diagnostic poste 3.1.15       DiagAM_V3
+
+--- GALSS Juxta (x86) - politique Full PC/SC
+         GALSS x86 absent (mode Full PC/SC)
+         BLOQUERINSTALLEGALSS dans le plugin SSV : true
+
+--- sesam.ini
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\fsv\1.40.14\conf\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] C:\Windows\sesam.ini absent, mais celui de la FSV 1.40.14 est present (C:\ProgramData\santesocial\fsv\1.40.14\conf\sesam.ini) : non bloquant
+
+--- Inscription FSV (registre GIE) et MSI disponibles
+         Registre GIE FSV : 1.40.14 (x86), 1.40.13 (x64), 1.40.14 (x64)
+         MSI FSV disponibles a cote du script : fsv-1.40.1413_x64.msi
+
+--- galss.ini (canaux vs lecteurs reels)
+         CANAL1 : 'Kapelse CCID Interface slot0 0' [present]  LAD: CPS
+         CANAL2 : 'Kapelse CCID Interface slot1 0' [present]  LAD: Vitale
+         CANAL3 : 'Kapelse CCID Interface slot1 0' [present]  LAD: CPS1
+  [OK]   galss.ini coherent avec les lecteurs presents
+         NomLib=PSSINW64.DLL
+         NomLib=PCSCW64.DLL
+
+--- Processus concurrents sur le lecteur
+         actif : dmpconnectjs_monitor  DMP Connect / iCanopee
+         actif : JuxtaLink             JuxtaLink
+
+--- Anciens logiciels metiers detectes (catalogue editeurs.psd1)
+  [OK]   Aucun ancien logiciel metier du catalogue
+         Catalogue : Cegedim, Affid, Shaman, Weda, Pyxvital, DrSante, HelloDoc
+
+--- Autres logiciels actifs (inventaire, a signaler si concurrent)
+         Port local 1234 : JuxtaLink (C:\Program Files (x86)\Juxta\JuxtaLink\JuxtaLink.exe)
+         Port local 1998 : compagnonApicrypt (C:\Program Files\APICEM\CompagnonApicrypt\compagnonApicrypt.exe)
+         Port local 1999 : compagnonApicrypt (C:\Program Files\APICEM\CompagnonApicrypt\compagnonApicrypt.exe)
+         Port local 5939 : TeamViewer_Service (C:\Program Files\TeamViewer\TeamViewer_Service.exe)
+         Port local 6313 : MonSisra2 (C:\Users\utilisateur-09\AppData\Local\Programs\monsisra\MonSisra2.exe)
+         Port local 9982 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 9983 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 9984 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 27015 : AppleMobileDeviceProcess (C:\Program Files\WindowsApps\AppleInc.iTunes_12139.11001.62009.0_x64__nzyj5cx40ttqa\AMDS64\AppleMobileDeviceProcess.exe)
+         Port local 37014 : TeamViewer_Service (C:\Program Files\TeamViewer\TeamViewer_Service.exe)
+         Port local 37114 : TeamViewer_Service (C:\Program Files\TeamViewer\TeamViewer_Service.exe)
+         Port local 37531 : winspace (C:\Program Files (x86)\Lenovo\Smart Storage\winspace.exe)
+         Port local 40500 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 42050 : OneDrive.Sync.Service (C:\Users\utilisateur-09\AppData\Local\Microsoft\OneDrive\26.168.0830.0006\OneDrive.Sync.Service.exe)
+         Demarrage auto : MonSisra -> C:\Users\utilisateur-09\AppData\Local\Programs\monsisra\MonSisra2.exe
+         Demarrage auto : electron.app.BlueStacks Services -> C:\Users\utilisateur-09\AppData\Local\Programs\bluestacks-services\BlueStacksServices.exe --hidden
+         Produit sante : M-TracePC Base version 4.69 4.69 (M4Medical Sp. z o.o.)   <- a verifier (concurrent ?)
+
+======================================================================
+  3b. DMP CONNECT / ICANOPEE (doit fonctionner en parallele de JuxtaLink)
+======================================================================
+  [OK]   Installe : DmpConnect-JS2 - Service d'accès au DMP 1.11.14
+  [OK]   dmpconnectjs_monitor actif
+  [OK]   dmpconnect-js2 actif (3 processus)
+  [OK]   Ecoute locale sur port(s) : 9982, 9983, 9984, 40500
+         Demarrage auto : dmpconnectjs_monitoring
+         Pile 64 bits DMP Connect : GALSS 3.45.01 / Cryptolib 5.2.6
+         Log recent : C:\Program Files (x86)\DmpConnect-JS2\dmp-connect.log (01/10 14:39)
+  [WARN]   850    [00000cbc] INFO : Synchronization using DmpConnect NTP client legacy failed:
+  [OK]   DMP Connect / iCanopee operationnel (processus + port)
+
+         Rappel : ne jamais desinstaller 'GALSS' ou 'Cryptolib' en bloc ; le x64 appartient a DMP Connect / iCanopee, le x86 a Juxta.
+
+======================================================================
+  3c. NAVIGATEURS - Local Network Access (erreurs DRC a la teletransmission)
+======================================================================
+  [OK]   Chrome 154.0.8037.58 : politique Local Network Access OK (https://app.odaiji.co, https://[*.]odaiji.co, https://[*.]madeformed.fr, https://[*.]juxta.cloud)
+  [OK]   Edge 154.0.4258.48 : politique Local Network Access OK (https://app.odaiji.co, https://[*.]odaiji.co, https://[*.]madeformed.fr, https://[*.]juxta.cloud)
+
+======================================================================
+  4. JUXTALINK
+======================================================================
+  [OK]   JuxtaLink 2.2.3.0
+  [OK]   JuxtaLink en cours d'execution
+  [OK]   Demarrage auto sans UAC : tache \Odaiji\JuxtaLink (compte utilisateur-09, niveau Highest, Running)
+         Autre lancement auto : Run 'JuxtaLink' -> C:\Program Files (x86)\Juxta\JuxtaLink\JuxtaLink.exe  (desactive par Odaiji)
+  [OK]   Source d'installation JuxtaLink presente (SetupJuxtaLinkx86.msi)
+  [OK]   Port 1234 : JuxtaLink
+         Plugins : SSV 4.1.0.0
+
+--- Derniers etats de lecture
+
+--- Erreurs recentes
+  [KO]   [01/10/2026 15:00:32] - [ERROR] - [SSV] L'installation a échoué avec le code de sortie 1603
+  [KO]   [01/10/2026 15:08:42] - [ERROR] - [SSV] L'installation a échoué avec le code de sortie 1603
+         Windows Installer (echecs des 3 derniers jours, produit en cause) :
+           01/10 15:08 [1033] Windows Installer a installé le produit. Nom du produit : Composants Cryptographiques CPS v5.2.2 (x64). Version du produit : 5.2.2. Langue du produit : 1036. Fabricant : Agence du Numérique en Santé. Réussite de l’installation ou état d’err...
+           01/10 15:08 [11708] Produit : Composants Cryptographiques CPS v5.2.2 (x64) -- L'installation a échoué.
+           01/10 15:00 [1033] Windows Installer a installé le produit. Nom du produit : Composants Cryptographiques CPS v5.2.2 (x64). Version du produit : 5.2.2. Langue du produit : 1036. Fabricant : Agence du Numérique en Santé. Réussite de l’installation ou état d’err...
+           01/10 15:00 [11708] Produit : Composants Cryptographiques CPS v5.2.2 (x64) -- L'installation a échoué.
+           01/10 15:00 [1033] Windows Installer a installé le produit. Nom du produit : Composants Cryptographiques CPS v5.2.2 (x64). Version du produit : 5.2.2. Langue du produit : 1036. Fabricant : Agence du Numérique en Santé. Réussite de l’installation ou état d’err...
+           01/10 15:00 [11708] Produit : Composants Cryptographiques CPS v5.2.2 (x64) -- L'installation a échoué.
+           01/10 14:52 [1033] Windows Installer a installé le produit. Nom du produit : Composants Cryptographiques CPS v5.2.2 (x64). Version du produit : 5.2.2. Langue du produit : 1036. Fabricant : Agence du Numérique en Santé. Réussite de l’installation ou état d’err...
+           01/10 14:52 [11708] Produit : Composants Cryptographiques CPS v5.2.2 (x64) -- L'installation a échoué.
+
+--- Diagnostics decodes des reponses (base64)
+         Aucun message d'erreur serveur dans les dernieres reponses
+
+======================================================================
+  5. PERFORMANCE (durees mesurees dans le log JuxtaLink)
+======================================================================
+  01/10 14:52:03  TestPresenceCarte                0 s
+  01/10 14:53:01  LireCartePS                      0 s
+  01/10 14:56:32  TestPresenceCarte                0 s
+  01/10 14:56:34  LireDroitsVitale                 0 s
+
+--- Par action
+         TestPresenceCarte            n=2   moy=    0 s  max=   0 s
+         LireCartePS                  n=1   moy=    0 s  max=   0 s
+         LireDroitsVitale             n=1   moy=    0 s  max=   0 s
+
+--- Causes de lenteur presentes sur ce poste (a traiter si les lectures sont lentes)
+  [OK]   Aucune cause de lenteur connue sur ce poste
+
+======================================================================
+  6. VERDICT
+======================================================================
+  [OK]   Poste configure, aucun blocage detecte. Pas de lecture Vitale reussie dans le log : faire une lecture CPS + Vitale dans Odaiji puis Diag-seul.bat.
+         Si Odaiji dit 'carte Vitale non reconnue' alors que la carte est inseree : relancer JuxtaLink (icone 'JuxtaLink (Odaiji)' sur le Bureau, ou Reparer-lecteur.bat), puis relire (HANSIANE 29/09 : lecteur Telium 3 fentes).
+
+Scenario : A_TESTER
+Constats :
+           STACK_X64             WARN  Pile 64 bits presente
+           TABLES_X64_ONLY       WARN  Tables srt seulement en 64 bits
+           SESAM_WIN_ABSENT      WARN  sesam.ini Windows absent (celui de la FSV suffit)
+           MSI_ECHEC             INFO  Installation(s) MSI en echec (detail section 4)
+
+======================================================================
+  FIN
+======================================================================
+Rapport : C:\Users\utilisateur-09\Desktop\Apres_POSTE-03_20261001-1508.txt
+Copier son contenu dans le channel Claude pour analyse.

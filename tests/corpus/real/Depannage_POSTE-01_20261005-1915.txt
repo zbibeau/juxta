@@ -1,0 +1,62 @@
+**********************
+Début de la transcription Windows PowerShell
+Heure de début : 20261005191556
+Nom d'utilisateur : POSTE-01\utilisateur-18
+Utilisateur runAs :  POSTE-01\utilisateur-18
+Nom de la configuration : 
+Ordinateur : POSTE-01 (Microsoft Windows NT 10.0.26200.0)
+Application hôte : C:\windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\utilisateur-18\Downloads\Odaiji_Juxta_PC (2)\Odaiji_Juxta_PC\Depannage.ps1
+ID de processus : 20100
+PSVersion: 5.1.26100.9444
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9444
+BuildVersion: 10.0.26100.9444
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Odaiji_Juxta - DEPANNAGE sur POSTE-01 pour l'utilisateur utilisateur-18  (kit v0.3.67)
+
+==> 1/7  Diagnostic AVANT (lecture seule)
+    [OK]  Rapport : C:\Users\utilisateur-18\OneDrive\Desktop\Avant_POSTE-01_20261005-1915.txt
+    [KO]   [05/10/2026 19:11:55] - [ERROR] - [SSV] [EXEC] Exception lors de l'appel à ssv.liredroitsvitale
+    [KO]   [05/10/2026 19:12:37] - [ERROR] - [SSV] [EXEC] Exception lors de l'appel à ssv.patientadrsilent
+    Scenario : A_TESTER
+
+==> 3/7  Corrections automatiques sures (une fenetre s'ouvre, la laisser finir) : AV_TIERS, GARDIEN_ABSENT, FSV_MSI_SOURCE, FSV_MSI_SOURCE
+    [OK]   mica.dll x86 : C:\Program Files (x86)\santesocial\mica\mica.dll
+    [OK]   galss.ini coherent avec les lecteurs presents
+    [KO]   [05/10/2026 19:11:55] - [ERROR] - [SSV] [EXEC] Exception lors de l'appel à ssv.liredroitsvitale
+    [KO]   [05/10/2026 19:12:37] - [ERROR] - [SSV] [EXEC] Exception lors de l'appel à ssv.patientadrsilent
+    --- 7s. Demarrage de JuxtaLink sans UAC
+    >> Installer le gardien : veille de JuxtaLink toutes les 10 min, relance s'il est arrete ? -> oui (auto)
+    >> Copier le MSI FSV du kit dans C:\ProgramData\MadeForMed\FSV et le declarer comme source de Windows Installer (sans reinstaller) ? -> oui (auto)
+    --- 7v. CertPropSvc (lecture des certificats a chaque insertion de CPS)
+    >> Passer CertPropSvc en demarrage Manuel (reversible, accelere la lecture CPS) ? -> ignore en mode auto (a valider par un humain)
+
+==> 5/7  Redemarrage de JuxtaLink (recharge la configuration)
+    [OK]  JuxtaLink en cours d'execution
+    [OK]  JuxtaLink ecoute sur le port 1234
+
+==> 6a/7  Lecture de la carte CPS plus rapide : service Windows CertPropSvc passe en Manuel (automatique, reversible)
+    Par defaut, Windows relit TOUS les certificats de la CPS a chaque insertion ; en Manuel il ne le fait plus : sans effet sur Odaiji ni la facturation.
+    [OK]  CertPropSvc : Manuel (retour arriere : Set-Service CertPropSvc -StartupType Automatic)
+
+==> 7/7  Diagnostic APRES
+    [OK]  Rapport : C:\Users\utilisateur-18\OneDrive\Desktop\Apres_POSTE-01_20261005-1917.txt
+
+    Scenario : A_TESTER
+
+    Reste a traiter :
+    [KO]   [05/10/2026 19:12:37] - [ERROR] - [SSV] [EXEC] Exception lors de l'appel à ssv.patientadrsilent
+
+    PROCHAINE ETAPE : dans Odaiji, une facture avec une carte Vitale puis une facture sans Vitale (valider l'appel ADRi), puis 3-Diag-seul.bat si un doute persiste.
+    A ENVOYER dans le channel Claude pour faire evoluer le kit :
+      - C:\Users\utilisateur-18\OneDrive\Desktop\Avant_POSTE-01_20261005-1915.txt
+      - C:\Users\utilisateur-18\OneDrive\Desktop\Apres_POSTE-01_20261005-1917.txt
+      - C:\Users\utilisateur-18\OneDrive\Desktop\Depannage_POSTE-01_20261005-1915.txt  (journal de ce depannage : actions et reponses)
+**********************
+Fin de la transcription Windows PowerShell
+Heure de fin : 20261005191826
+**********************

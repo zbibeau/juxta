@@ -1,0 +1,234 @@
+
+
+======================================================================
+  OdaijiJuxta v0.3.54 - 05/10/2026 13:21
+======================================================================
+         Poste : POSTE-16   Utilisateur : POSTE   Mode : DIAGNOSTIC
+         Rapport : C:\Users\POSTE\Desktop\Avant_POSTE-16_20261005-1321.txt
+
+======================================================================
+  1. SYSTEME
+======================================================================
+         Windows : Microsoft Windows 11 Professionnel 10.0.26200 (64 bits)   Boot : 05/10 08:27
+  [OK]   SCardSvr : Running
+  [OK]   Smart App Control desactive
+         CertPropSvc : Running / Automatic  (lit tous les certificats CPS a l'insertion ; source de lenteur possible)
+         Antivirus : Windows Defender, ESET Security
+
+======================================================================
+  2. LECTEURS ET CARTES
+======================================================================
+         PnP : Lecteur de carte à puce Microsoft Usbccid (WUDF) [OK]
+         PnP : Lecteur de carte à puce Microsoft Usbccid (WUDF) [OK]
+         PnP : Lecteur de carte à puce Microsoft Usbccid (WUDF) [OK]
+
+--- certutil -scinfo (resume)
+         Lecteur : FEI Smart Card CPS 0
+           --- Statut : SCARD_STATE_PRESENT | SCARD_STATE_INUSE
+  [OK]     CPS dans 'FEI Smart Card CPS 0'
+         Lecteur : FEI Smart Card CV1/CV2 0
+           --- Statut : SCARD_STATE_PRESENT
+  [OK]     Vitale dans 'FEI Smart Card CV1/CV2 0'
+         Lecteur : FEI Smart Card NFC 0
+           --- Statut : SCARD_STATE_EMPTY
+         Lecteur : FEI Smart Card CPS 0
+  [OK]     CPS dans 'FEI Smart Card CPS 0'
+
+======================================================================
+  3. PILE SESAM-VITALE
+======================================================================
+
+--- Dossiers
+         C:\Program Files (x86)\santesocial -> CPS, fsv
+         C:\Program Files\santesocial -> CPS, fsv, galss, mica
+  [OK]   FSV x86 : 1.40.14  (utilisee : 1.40.14)
+  [WARN] Pile 64 bits presente (Program Files\santesocial)
+
+--- Tables FSV disponibles (donnees identiques x86/x64)
+         ssv  x86: 18 fich. x64: 22 fich. -> C:\Program Files (x86)\santesocial\fsv\1.40.14\ssv
+         srt  x86: 0 fich.  x64: 1 fich.  -> C:\Program Files\santesocial\fsv\1.40.14\srt
+  [WARN] Tables srt uniquement en x64 : sesam.ini doit pointer sur Program Files\ (pas x86)
+         sts  x86: 3 fich.  x64: 45 fich. -> C:\Program Files (x86)\santesocial\fsv\1.40.14\sts
+
+--- MICA
+  [KO]   mica.dll x86 ABSENT
+
+--- Produits GIE / Cryptolib / GALSS inscrits
+         fsv-1.40.1413_x64            1.40.1413    {6CBB8D6D-3787-4CC8-8BBA-E99C5FCC5AD6}
+             src : C:\Users\POSTE\AppData\Local\Temp\RarSFX2\Resources\
+         GALSS v3.45 x64              3.45.01      {82AB7DB2-140E-4166-A04E-1FD805EE0A74}  [DMP Connect / iCanopee - x64]
+             src : C:\Users\POSTE\AppData\Local\Temp\
+         Composants Cryptographiques CPS v5.2.2 (x64) 5.2.2        {D8609B2B-CE98-43A8-B2D2-77811A6ECAE1}
+             src : C:\Users\POSTE\AppData\Local\Temp\RarSFX2\Resources\
+         mica x64                     4.01.00      {e01e10c5-2079-4835-940a-[n]f4}
+             src : C:\Users\POSTE\AppData\Local\Temp\RarSFX2\Resources\
+         fsv-1.40.1413_x86            1.40.1413    {9EF61CC2-74F6-48B8-9E78-4A577D6C9108}
+             src : C:\Users\POSTE\AppData\Local\Temp\
+         amelipro connect             2.3.3        amelipro-connect
+         DiagAM V3 : collecte de suivi de parc et diagnostic poste 3.2.16       DiagAM_V3
+  [WARN] MICA x64 inscrit (bloque l'installation de MICA x86 : erreur 1638)
+
+--- GALSS Juxta (x86) - politique Full PC/SC
+         GALSS x86 absent (mode Full PC/SC)
+         BLOQUERINSTALLEGALSS dans le plugin SSV : false
+
+--- sesam.ini
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\fsv\1.40.14\conf\sesam.ini (verifier lequel la FSV utilise)
+  [WARN]   C:\ProgramData\santesocial\fsv\1.40.14\conf\sesam.ini : section [MGC] absente ou log4crc.xml introuvable
+  [WARN] C:\Windows\sesam.ini absent, mais celui de la FSV 1.40.14 est present (C:\ProgramData\santesocial\fsv\1.40.14\conf\sesam.ini) : non bloquant
+
+--- Inscription FSV (registre GIE) et MSI disponibles
+         Registre GIE FSV : 1.40.14 (x86), 1.40.14 (x64)
+         MSI FSV disponibles a cote du script : fsv-1.40.1413_x64.msi
+
+--- galss.ini (canaux vs lecteurs reels)
+         CANAL1 : 'FEI Smart Card CPS 0' [present]  LAD: CPS
+         CANAL2 : 'FEI Smart Card CV1/CV2 0' [present]  LAD: Vitale
+         CANAL3 : 'FEI Smart Card NFC 0' [present]  LAD: CPS1
+  [OK]   galss.ini coherent avec les lecteurs presents
+         NomLib=PSSINW64.DLL
+         NomLib=PCSCW64.DLL
+
+--- Processus concurrents sur le lecteur
+         actif : dmpconnectjs_monitor  DMP Connect / iCanopee
+  [WARN] actif : java                  Java (jFSE ?)  <- residu (Neutraliser-Cegedim.bat)
+         actif : JuxtaLink             JuxtaLink
+
+--- Anciens logiciels metiers detectes (catalogue editeurs.psd1)
+  [WARN] Cegedim : produit inscrit -> usage a confirmer  [bloquants connus : MICA x64 (empeche le MICA x86 de Juxta), processus ClmLive / demon jFSE sur le lecteur]
+         Catalogue : Cegedim, Affid, Shaman, Weda, Pyxvital, DrSante, HelloDoc
+
+--- Autres logiciels actifs (inventaire, a signaler si concurrent)
+         Port local 1234 : JuxtaLink (C:\Program Files (x86)\Juxta\JuxtaLink\JuxtaLink.exe)
+         Port local 1998 : compagnonApicrypt (C:\Program Files\APICEM\CompagnonApicrypt\compagnonApicrypt.exe)
+         Port local 1999 : compagnonApicrypt (C:\Program Files\APICEM\CompagnonApicrypt\compagnonApicrypt.exe)
+         Port local 5939 : TeamViewer_Service (C:\Program Files\TeamViewer\TeamViewer_Service.exe)
+         Port local 6475 : beebeep (C:\Program Files (x86)\BeeBEEP\beebeep.exe)
+         Port local 6476 : beebeep (C:\Program Files (x86)\BeeBEEP\beebeep.exe)
+         Port local 7070 : AnyDesk-b8d55821_msi (C:\Program Files (x86)\AnyDesk-b8d55821_msi\AnyDesk-b8d55821_msi.exe)
+         Port local 9982 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 9983 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 9984 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 23000 : java (C:\Program Files\MediMust\Outils\MMTC\jre\bin\java.exe)
+         Port local 32000 : wrapper-windows-x86-64 (C:\Program Files\MediMust\Outils\MMTC\bin\wrapper-windows-x86-64.exe)
+         Port local 37014 : TeamViewer_Service (C:\Program Files\TeamViewer\TeamViewer_Service.exe)
+         Port local 37114 : TeamViewer_Service (C:\Program Files\TeamViewer\TeamViewer_Service.exe)
+         Port local 40500 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Demarrage auto : Logi Download Assistant -> "C:\Program Files\LogiDownloadAssistant\bin\logi_download_assistant.exe" -system-restarted
+         Demarrage auto : ControlCenter4 -> C:\Program Files (x86)\ControlCenter4\BrCcBoot.exe /autorun
+         Demarrage auto : BrStsMon00 -> C:\Program Files (x86)\Browny02\Brother\BrStMonW.exe /AUTORUN
+         Demarrage auto : BrotherSoftwareUpdateNotification -> C:\Program Files (x86)\Brother\SoftwareUpdateNotification\SoftwareUpdateNotificationService.exe /Autorun
+         Demarrage auto : BeeBEEP -> C:\Program Files (x86)\BeeBEEP\beebeep.exe
+         Service : BrYNSvc (BrYNSvc)
+         Service : Brother USB Application Controller (USBAppControl)
+         Service : Brother Workflow Application Controller (WorkflowAppControl)
+         Produit sante : Lecteur cartes 3.34 3.34 (RESIP)   <- a verifier (concurrent ?)
+         Produit sante : Composants BCB 04.26 (RESIP)   <- a verifier (concurrent ?)
+
+======================================================================
+  3b. DMP CONNECT / ICANOPEE (doit fonctionner en parallele de JuxtaLink)
+======================================================================
+  [OK]   Installe : DmpConnect-JS2 - Service d'accès au DMP 1.11.14
+  [OK]   dmpconnectjs_monitor actif
+  [OK]   dmpconnect-js2 actif (3 processus)
+  [OK]   Ecoute locale sur port(s) : 9982, 9983, 9984, 40500
+         Demarrage auto : dmpconnectjs_monitoring
+         Pile 64 bits DMP Connect : GALSS 3.45.01 / Cryptolib 5.2.2
+         Log recent : C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.log (05/10 12:52)
+  [WARN]   261005:102532 [14] [E] [REQUEST] #1472: Poco exception: I/O error: Socket operation attempted on non-socket.
+  [WARN]   261005:105226 [46] [E] [REQUEST] #2236: Poco exception: I/O error: Socket operation attempted on non-socket.
+  [WARN]   261005:105226 [119] [E] [REQUEST] #2132: Poco exception: I/O error: Socket operation attempted on non-socket.
+  [OK]   DMP Connect / iCanopee operationnel (processus + port)
+
+         Rappel : ne jamais desinstaller 'GALSS' ou 'Cryptolib' en bloc ; le x64 appartient a DMP Connect / iCanopee, le x86 a Juxta.
+
+======================================================================
+  3c. NAVIGATEURS - Local Network Access (erreurs DRC a la teletransmission)
+======================================================================
+  [KO]   Chrome 154.0.8037.93 : Local Network Access actif et Odaiji non autorise -> erreurs DRC possibles (Autoriser-Odaiji-Chrome.bat)
+  [KO]   Edge 154.0.4258.53 : Local Network Access actif et Odaiji non autorise -> erreurs DRC possibles (Autoriser-Odaiji-Chrome.bat)
+
+======================================================================
+  4. JUXTALINK
+======================================================================
+  [OK]   JuxtaLink 2.2.3.0
+  [OK]   JuxtaLink en cours d'execution
+  [WARN] Demarrage auto sans UAC : tache absente -> JuxtaLink demande l'UAC et ne repart pas seul apres un redemarrage (Demarrage-JuxtaLink.bat)
+  [WARN] Gardien JuxtaLink : tache absente -> JuxtaLink ne serait pas relance s'il est ferme ou plante en cours de journee (2-Depanner.bat)
+         Autre lancement auto : Run 'JuxtaLink' -> C:\Program Files (x86)\Juxta\JuxtaLink\JuxtaLink.exe  (bloque en silence au demarrage : JuxtaLink exige l'UAC)
+  [WARN] Source d'installation du FSV fragile (C:\Users\POSTE\AppData\Local\Temp\ ; C:\ProgramData\santesocial\fsv\1.40.14 ; C:\Users\POSTE\AppData\Local\Temp\) : une reparation Windows afficherait 'Aucun package d'installation'
+  [WARN] Source d'installation du FSV fragile (C:\Users\POSTE\AppData\Local\Temp\RarSFX2\Resources\) : une reparation Windows afficherait 'Aucun package d'installation'
+  [WARN] Source d'installation JuxtaLink introuvable (C:\Users\POSTE\AppData\Local\Temp\e7dd4643-a554-49a7-8af2-a0c9530a1c65_JuxtaLink_Windows.zip.c65\ ; C:\Users\POSTE\AppData\Local\Temp\e7dd4643-a554-49a7-8af2-a0c9530a1c65_JuxtaLink_Windows.zip.c65\) : toute reparation Windows de JuxtaLink affichera 'Aucun package d'installation...'
+  [OK]   Port 1234 : JuxtaLink
+         Plugins : SSV 4.1.0.0
+
+--- Derniers etats de lecture
+  [KO]   Signature MSI 1638 (MICA x64 bloque MICA x86)
+
+--- Erreurs recentes
+  [KO]   [05/10/2026 08:28:39] - [ERROR] - [SSV] L'installation a échoué avec le code de sortie 1638
+  [KO]   [05/10/2026 13:08:08] - [ERROR] - [JuxtaLink] [CLIENT] HttpsAuthentificationFailException (on va répondre en HTTP)
+  [KO]   [05/10/2026 13:08:08] - [ERROR] - [SSV] [EXEC] Exception lors de l'appel à ssv.liredroitsvitale
+  [KO]   [05/10/2026 13:08:11] - [ERROR] - [SSV] [EXEC] Exception lors de l'appel à ssv.liredroitsvitale
+         Windows Installer (echecs des 3 derniers jours, produit en cause) :
+           05/10 08:28 [11729] Produit : mica -- La configuration a échoué.
+
+--- Diagnostics decodes des reponses (base64)
+  [WARN] 09/09/2026 15:29:47  Le chemin d’accès spécifié est introuvable
+  [WARN] 05/10/2026 13:08:08  Le chemin des tables binaires des SSV est absent du fichier sesam.ini.
+  [WARN] 05/10/2026 13:08:11  Le chemin des tables binaires des SSV est absent du fichier sesam.ini.
+
+======================================================================
+  5. PERFORMANCE (durees mesurees dans le log JuxtaLink)
+======================================================================
+  09/09 15:28:54  FacturerSilent                   0 s
+  09/09 15:29:45  TestPresenceCarte                0 s
+  09/09 15:29:46  patientAdrSilent                 0 s
+  09/09 15:30:07  TestPresenceCarte                0 s
+  09/09 15:30:08  TestPresenceCarte                0 s
+  09/09 15:30:09  FacturerSilent                   0 s
+  05/10 13:08:08  LireDroitsVitale                 0 s
+  05/10 13:08:11  LireDroitsVitale                 0 s
+
+--- Par action
+         FacturerSilent               n=2   moy=    0 s  max=   0 s
+         TestPresenceCarte            n=3   moy=    0 s  max=   0 s
+         patientAdrSilent             n=1   moy=    0 s  max=   0 s
+         LireDroitsVitale             n=2   moy=    0 s  max=   0 s
+
+--- Causes de lenteur presentes sur ce poste (a traiter si les lectures sont lentes)
+  [WARN] CertPropSvc en demarrage automatique : relit tous les certificats de la CPS a chaque insertion -> passer en Manuel (-Fix 7v)
+  [WARN] Antivirus tiers : demander les exclusions C:\Program Files (x86)\santesocial, C:\Program Files (x86)\Juxta, C:\Program Files (x86)\DmpConnect-JS2 (et le processus JuxtaLink.exe)
+
+======================================================================
+  6. VERDICT
+======================================================================
+  [KO]   MICA x86 absent
+
+Scenario : MICA
+Constats :
+           AV_TIERS              INFO  Antivirus tiers : Windows Defender, ESET Security
+           STACK_X64             WARN  Pile 64 bits presente
+           TABLES_X64_ONLY       WARN  Tables srt seulement en 64 bits
+           NO_MICA_X86           KO    mica.dll 32 bits absent
+           MICA_X64              WARN  MICA x64 inscrit
+           SESAM_MGC             WARN  [MGC] manquante dans 1 autre(s) sesam.ini
+           SESAM_WIN_ABSENT      WARN  sesam.ini Windows absent (celui de la FSV suffit)
+           PROC_JAVA             WARN  Java (jFSE ?) actif
+           OLD_CEGEDIM           WARN  Cegedim detecte (produit inscrit)
+           LNA_CHROME            KO    Chrome sans politique Local Network Access
+           LNA_EDGE              KO    Edge sans politique Local Network Access
+           NO_AUTOSTART          WARN  Pas de demarrage automatique de JuxtaLink sans UAC
+           GARDIEN_ABSENT        WARN  Pas de gardien : JuxtaLink n'est pas relance s'il s'arrete
+           FSV_MSI_SOURCE        WARN  Source MSI du FSV dans un dossier temporaire/utilisateur
+           FSV_MSI_SOURCE        WARN  Source MSI du FSV dans un dossier temporaire/utilisateur
+           JX_MSI_SOURCE         WARN  Source d'installation MSI de JuxtaLink disparue (dossier temporaire purge)
+           SIG_1638              KO    Erreur MSI 1638
+           MSI_ECHEC             INFO  Installation(s) MSI en echec (detail section 4)
+           CERTPROP_AUTO         WARN  CertPropSvc automatique
+
+======================================================================
+  FIN
+======================================================================
+Rapport : C:\Users\POSTE\Desktop\Avant_POSTE-16_20261005-1321.txt
+Envoi automatique impossible : envoyer ce fichier via la bulle Intercom.

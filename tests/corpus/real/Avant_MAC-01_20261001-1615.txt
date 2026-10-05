@@ -1,0 +1,122 @@
+
+======================================================================
+  OdaijiJuxta-Mac v0.3.6 - 01/10/2026 16:15
+======================================================================
+         Mac         : MAC-01   Utilisateur : utilisateur-15
+         Rapport     : /Users/utilisateur-15/Desktop/Avant_MAC-01_20261001-1615.txt
+         Mode        : DIAGNOSTIC (lecture seule)
+
+
+======================================================================
+  1. SYSTEME
+======================================================================
+         macOS       : macOS 26.6 (build 25G72)
+         Architecture: arm64   Modele : Mac17,3
+  [OK]   Rosetta 2 installe
+         Gatekeeper  : assessments enabled
+
+======================================================================
+  2. LECTEURS ET CARTES
+======================================================================
+
+--- Lecteurs vus par macOS
+               #01: FEI USB Card Reader/QR Scanner 01 (no card present)
+               #02: FEI USB Card Reader/QR Scanner (ATR:{length = 17, bytes = 0x3bdc18ff[n]})
+  [OK]   CPS presente
+  [WARN] Vitale non vue (absente du lecteur ? inserer la carte et relancer)
+
+--- Pilotes lecteur
+               #01: fr.apdu.ccid.smartcardccid:1.5.1 (/usr/libexec/SmartCardServices/drivers/ifd-ccid.bundle)
+
+--- Processus clients du lecteur (en ce moment)
+           895 06:05:46 /System/Library/Frameworks/PCSC.framework/Versions/A/XPCServices/com.apple.ctkpcscd.xpc/Contents/MacOS/com.apple.ctkpcscd
+          3810    03:12 /usr/local/dmpconnectjs2/dmpconnect-js2
+          3823    03:07 /Applications/DmpConnectJS2.app/Contents/MacOS/dmpconnectjs_monitor
+          4170    02:41 /usr/local/dmpconnectjs2/dmpconnect-js2
+          4193    02:39 /System/Library/Frameworks/PCSC.framework/Versions/A/XPCServices/com.apple.ctkpcscd.xpc/Contents/MacOS/com.apple.ctkpcscd
+          4533    02:12 /usr/local/dmpconnectjs2/dmpconnect-js2
+          4557    02:11 /System/Library/Frameworks/PCSC.framework/Versions/A/XPCServices/com.apple.ctkpcscd.xpc/Contents/MacOS/com.apple.ctkpcscd
+         dmpconnect-js2 : 3 instance(s)   ctkpcscd : 3   agent jFSE : 0
+  [WARN] Plusieurs dmpconnect-js2 simultanes
+
+======================================================================
+  3. PILE SESAM-VITALE ET EDITEURS
+======================================================================
+
+--- Paquets installes (pkgutil) - * = fichiers absents (recu orphelin)
+          org.icanopee.dmpcjs2                                 v1.11.14     01/10/2026  /
+          fr.sesamvitale.diagAM.pkg                            v3.2.16      30/09/2026  /
+          org.icanopee.printer                                 v1.0.0       01/10/2026  /
+          fr.asipsante.pkg.cryptolibCPS                        v5.2.2       28/09/2026  /
+
+--- jFSE (Cegedim / Medimust / MediStory)
+  [OK]   Pas d'agent launchd jFSE
+  [OK]   /Applications/jFSE absent
+
+--- Anciens logiciels metiers (MediMust, MediStory...)
+  [OK]   MediMust absent
+  [OK]   MediStory (Prokov) absent
+
+--- GALSS Juxta - politique Full PC/SC
+         GALSS absent (Full PC/SC)
+         BLOQUERINSTALLEGALSS dans le plugin SSV : (plugin non installe)
+
+--- DmpConnect-JS2 (Icanopee)
+         Installe : v1.11.14
+         /Library/LaunchAgents/com.icanopee.dmpcjsmonitor2.plist
+         /Library/LaunchDaemons/com.icanopee.dmpcjs2.plist
+
+--- diagAM (telemetrie GIE)
+  [WARN] diagAM installe (inutile pour la facturation)
+
+--- Fichiers de configuration GIE
+  [KO]   galss.ini en mode SERIE (COM/PSS) : aucun canal PC/SC -> JuxtaLink ne verra pas les cartes via GALSS
+
+--- Bibliotheques MICA / GALSS et leur architecture
+         /usr/local/dmpconnectjs2/assets/mica/libmica.dylib                                              arm64/x86_64
+
+--- Applications metier
+         DiagAM.app
+         DmpConnectJS2.app
+
+======================================================================
+  4. SERVICES launchd (col.2 = dernier code de sortie ; negatif = crash par signal)
+======================================================================
+         3810   0     com.icanopee.dmpcjs2
+         3823   0     com.icanopee.dmpcjsmonitor2
+  [KO]   -      -6    fr.sesam-vitale.diagam_collecteur   <- CRASH (signal 6)
+         -      0     fr.sesam-vitale.diagam_transmission
+
+--- Crash reports (30 derniers jours)
+  [WARN] diagam : 9 crash(s), dernier : diagam_collecteur-2026-10-01-155506.ips
+
+======================================================================
+  4b. NAVIGATEURS - Local Network Access (erreurs DRC a la teletransmission)
+======================================================================
+  [KO]   Google Chrome 153.0.8010.48 : Local Network Access actif et Odaiji non autorise -> erreurs DRC possibles (Autoriser-Odaiji-Chrome.command)
+         Microsoft Edge non installe
+
+======================================================================
+  5. JUXTALINK
+======================================================================
+  [WARN] JuxtaLink absent de /Applications
+         Aucun log JuxtaLink trouve sous ~/Library (chemin Mac a identifier : envoyer le rapport a Claude)
+
+======================================================================
+  6. VERDICT
+======================================================================
+  [KO]   galss.ini ne decrit pas le lecteur reel (mode serie ou mauvais nom). Correction : --fix / --auto (regeneration PC/SC).
+
+Scenario : GALSS
+Constats :
+         VITALE_ABSENT                          WARN  Vitale non inseree ou non lue
+         DMP_MULTI                              WARN  3 instances dmpconnect-js2
+         DIAGAM                                 WARN  diagAM present
+         GALSS_SERIE                            KO    galss.ini en mode serie
+         CRASH_fr_sesam_vitale_diagam_collecteur KO    fr.sesam-vitale.diagam_collecteur crashe (signal 6)
+         LNA_Google_Chrome                      KO    Google Chrome sans politique Local Network Access
+
+======================================================================
+  FIN
+======================================================================
+Rapport : /Users/utilisateur-15/Desktop/Avant_MAC-01_20261001-1615.txt

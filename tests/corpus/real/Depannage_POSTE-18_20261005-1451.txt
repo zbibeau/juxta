@@ -1,0 +1,93 @@
+**********************
+Début de la transcription Windows PowerShell
+Heure de début : 20261005145157
+Nom d'utilisateur : POSTE-18\utilisateur-21
+Utilisateur runAs :  POSTE-18\utilisateur-21
+Nom de la configuration : 
+Ordinateur : POSTE-18 (Microsoft Windows NT 10.0.26200.0)
+Application hôte : C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\utilisateur-21\Downloads\Odaiji_Juxta_PC (2)\Odaiji_Juxta_PC\Depannage.ps1
+ID de processus : 13820
+PSVersion: 5.1.26100.8972
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.8972
+BuildVersion: 10.0.26100.8972
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Odaiji_Juxta - DEPANNAGE sur POSTE-18 pour l'utilisateur utilisateur-21  (kit v0.3.65)
+
+==> 1/7  Diagnostic AVANT (lecture seule)
+    [OK]  Rapport : C:\Users\utilisateur-21\Desktop\Avant_POSTE-18_20261005-1451.txt
+    [KO]   Tables sts introuvables des deux cotes
+    [KO]   [05/10/2026 14:49:33] - [ERROR] - [SSV] [EXEC] Exception lors de l'appel à ssv.liredroitsvitale
+    [KO]   Tables FSV manquantes (srt/ssv/sts) : lecture et facturation impossibles. Correction : -Fix (MSI FSV du GIE).
+    Scenario : TABLES
+
+==> 2/7  Anciens logiciels metiers detectes sur ce poste
+    Ces logiciels se disputent le lecteur de cartes avec JuxtaLink. S'ils ne servent plus au medecin (il facture avec Odaiji), ils sont coupes
+    puis desinstalles (hors briques partagees FSV/Cryptolib/MICA, sans redemarrage). S'ils servent encore : on n'y touche pas.
+    - Cegedim : MICA x64 (empeche le MICA x86 de Juxta), processus ClmLive / demon jFSE sur le lecteur
+    [OK]  Cegedim : plus utilise -> sera coupe puis desinstalle
+    - Affid : fsenxt.exe occupe le port 1234 de JuxtaLink
+    [OK]  Affid : plus utilise -> sera coupe puis desinstalle
+
+==> 3/7  Corrections automatiques sures (une fenetre s'ouvre, la laisser finir) : NO_TABLES, GALSS_MISMATCH_CPS, GALSS_ABSENT_READER, OLD_CEGEDIM, OLD_AFFID, GARDIEN_ABSENT, FSV_MSI_SOURCE
+    [KO]   Tables sts introuvables des deux cotes
+    [OK]   mica.dll x86 : C:\Program Files (x86)\santesocial\mica\mica.dll
+    [KO]   [05/10/2026 14:49:33] - [ERROR] - [SSV] [EXEC] Exception lors de l'appel à ssv.liredroitsvitale
+    [KO]   Tables FSV manquantes (srt/ssv/sts) : lecture et facturation impossibles. Correction : -Fix (MSI FSV du GIE).
+    --- 7s. Demarrage de JuxtaLink sans UAC
+    >> Installer le gardien : veille de JuxtaLink toutes les 10 min, relance s'il est arrete ? -> oui (auto)
+    >> Copier le MSI FSV du kit dans C:\ProgramData\MadeForMed\FSV et le declarer comme source de Windows Installer (sans reinstaller) ? -> oui (auto)
+    --- 7n. Anciens logiciels metiers
+    >> Cegedim n'est plus utilise -> neutralisation puis desinstallation (hors briques partagees, sans redemarrage)
+    >> Affid n'est plus utilise -> services et programmes coupes SEULEMENT (dossiers patients possibles : ni desinstallation ni quarantaine)
+    --- 7t. Tables FSV manquantes : installation du MSI FSV officiel (GIE)
+    >> Installer les FSV du GIE pour recuperer les tables manquantes ? -> oui (auto)
+    [KO]   Tables srt toujours absentes apres MSI
+    --- 7a. sesam.ini (FSV 1.40.14, x86)
+    >> Recreer C:\Windows\sesam.ini et ses repertoires ? -> oui (auto)
+    [OK]   sesam.ini ecrit
+    >> Lancer msiexec /i (installation ou reparation silencieuse) ? -> ignore en mode auto (a valider par un humain)
+    --- 7b. Realigner galss.ini sur le lecteur reel
+    >> Realigner galss.ini (CANAL1 CPS / CANAL2 Vitale) sur le lecteur branche (sauvegarde .bak) ? -> oui (auto)
+    --- 7e. Relancer JuxtaLink
+    >> Relancer JuxtaLink pour recharger la configuration ? -> oui (auto)
+    --- 7v. CertPropSvc (lecture des certificats a chaque insertion de CPS)
+    >> Passer CertPropSvc en demarrage Manuel (reversible, accelere la lecture CPS) ? -> ignore en mode auto (a valider par un humain)
+
+==> 4a/7  Reparation du lecteur pour DMP Connect / iCanopee (CPS + Vitale inserees dans le lecteur)
+    >>> Inserer la CPS ET la Vitale dans le lecteur (les laisser jusqu'a la fin de cette etape).
+    2026-10-05 14:53:55 Analyse des lecteurs et des cartes (CPS + Vitale inserees) - 45 s maximum...
+    2026-10-05 14:53:58 OK : galss.ini deja aligne (CPS='Identive CLOUD 2700 R Smart Card Reader 0', Vitale='Identive CLOUD 2700 R Smart Card Reader 1').
+    [OK]  Service redemarre : DmpConnect-JS2
+    [OK]  DMP Connect actif : DmpConnect-JS2
+
+==> 5/7  Redemarrage de JuxtaLink (recharge la configuration)
+    [OK]  JuxtaLink en cours d'execution
+    [OK]  JuxtaLink ecoute sur le port 1234
+
+==> 6a/7  Lecture de la carte CPS plus rapide : service Windows CertPropSvc passe en Manuel (automatique, reversible)
+    Par defaut, Windows relit TOUS les certificats de la CPS a chaque insertion ; en Manuel il ne le fait plus : sans effet sur Odaiji ni la facturation.
+    [OK]  CertPropSvc : Manuel (retour arriere : Set-Service CertPropSvc -StartupType Automatic)
+
+==> 7/7  Diagnostic APRES
+    [OK]  Rapport : C:\Users\utilisateur-21\Desktop\Apres_POSTE-18_20261005-1454.txt
+
+    Scenario : UNKNOWN
+
+    Reste a traiter :
+    [KO]     canal Vitale = 'Identive CLOUD 2700 R Smart Card Reader 0' mais la Vitale est dans 'Identive CLOUD 2700 R Smart Card Reader 1'
+    [KO]   [05/10/2026 14:53:45] - [ERROR] - [SSV] [EXEC] Exception lors de l'appel à ssv.liredroitsvitale
+
+    PROCHAINE ETAPE : dans Odaiji, une facture avec une carte Vitale puis une facture sans Vitale (valider l'appel ADRi), puis 3-Diag-seul.bat si un doute persiste.
+    A ENVOYER dans le channel Claude pour faire evoluer le kit :
+      - C:\Users\utilisateur-21\Desktop\Avant_POSTE-18_20261005-1451.txt
+      - C:\Users\utilisateur-21\Desktop\Apres_POSTE-18_20261005-1454.txt
+      - C:\Users\utilisateur-21\Desktop\Depannage_POSTE-18_20261005-1451.txt  (journal de ce depannage : actions et reponses)
+**********************
+Fin de la transcription Windows PowerShell
+Heure de fin : 20261005145448
+**********************

@@ -1,0 +1,178 @@
+
+
+======================================================================
+  OdaijiJuxta v0.3.37 - 01/10/2026 14:49
+======================================================================
+         Poste : POSTE-03   Utilisateur : utilisateur-09   Mode : DIAGNOSTIC
+         Rapport : C:\Users\utilisateur-09\Desktop\Avant_POSTE-03_20261001-1449.txt
+
+======================================================================
+  1. SYSTEME
+======================================================================
+         Windows : Microsoft Windows 11 Famille 10.0.26300 (64 bits)   Boot : 30/09 08:06
+  [OK]   SCardSvr : Running
+  [OK]   Smart App Control desactive
+         CertPropSvc : Running / Manual  (lit tous les certificats CPS a l'insertion ; source de lenteur possible)
+         Antivirus : Windows Defender
+
+======================================================================
+  2. LECTEURS ET CARTES
+======================================================================
+         PnP : Lecteur de carte à puce Microsoft Usbccid (WUDF) [OK]
+         PnP : Lecteur de carte à puce Microsoft Usbccid (WUDF) [OK]
+         PnP : Lecteur de carte à puce Microsoft Usbccid (WUDF) [OK]
+
+--- certutil -scinfo (resume)
+         Lecteur : Kapelse CCID Interface CLESS slot2 0
+           --- Statut : SCARD_STATE_PRESENT | SCARD_STATE_MUTE
+         Lecteur : Kapelse CCID Interface slot0 0
+           --- Statut : SCARD_STATE_PRESENT | SCARD_STATE_INUSE
+  [OK]     CPS dans 'Kapelse CCID Interface slot0 0'
+         Lecteur : Kapelse CCID Interface slot1 0
+           --- Statut : SCARD_STATE_EMPTY
+         Lecteur : Kapelse CCID Interface slot0 0
+  [OK]     CPS dans 'Kapelse CCID Interface slot0 0'
+  [WARN] Vitale non identifiee par certutil (peut etre presente mais non reconnue : voir statut PRESENT ci-dessus)
+
+======================================================================
+  3. PILE SESAM-VITALE
+======================================================================
+
+--- Dossiers
+         C:\Program Files (x86)\santesocial -> CPS, diagAM, srvsvcnam
+         C:\Program Files\santesocial -> CPS, fsv, mica
+  [KO]   FSV x86 absentes
+  [WARN] Pile 64 bits presente (Program Files\santesocial)
+
+--- Tables FSV disponibles (donnees identiques x86/x64)
+         ssv  x86: absent   x64: 22 fich. -> C:\Program Files\santesocial\fsv\1.40.14\ssv
+  [WARN] Tables ssv uniquement en x64 : sesam.ini doit pointer sur Program Files\ (pas x86)
+         srt  x86: absent   x64: 1 fich.  -> C:\Program Files\santesocial\fsv\1.40.14\srt
+  [WARN] Tables srt uniquement en x64 : sesam.ini doit pointer sur Program Files\ (pas x86)
+         sts  x86: absent   x64: 45 fich. -> C:\Program Files\santesocial\fsv\1.40.14\sts
+  [WARN] Tables sts uniquement en x64 : sesam.ini doit pointer sur Program Files\ (pas x86)
+
+--- MICA
+  [KO]   mica.dll x86 ABSENT
+
+--- Produits GIE / Cryptolib / GALSS inscrits
+         fsv-1.40.1413_x64            1.40.1413    {6CBB8D6D-3787-4CC8-8BBA-E99C5FCC5AD6}
+             src : C:\Users\utilisateur-08\AppData\Local\Temp\RarSFX0\Resources\
+         Composants Cryptographiques CPS v5.2.6 (x64) 5.2.6        {CF3BEBDD-16A0-4AE8-8764-ADDF9A104998}
+             src : C:\Program Files (x86)\DmpConnect-JS2\cryptolib\x64\
+         mica x64                     4.01.00      {e01e10c5-2079-4835-940a-[n]f4}
+             src : C:\Users\utilisateur-08\AppData\Local\Temp\RarSFX0\Resources\
+         Composant SrvSvCnam 5.10.04  5.10.04      {306912f2-76f5-4ba3-9260-e9f581c886dd}
+             src : C:\Users\utilisateur-08\AppData\Local\Temp\{DEDAF6FD-DAE6-49A3-82C3-FEA01143B0B9}\{132EB661-CC19-4038-8A75-06CACC38588D}\
+         amelipro connect             2.3.3        amelipro-connect
+         DiagAM V3 : collecte de suivi de parc et diagnostic poste 3.1.15       DiagAM_V3
+  [WARN] MICA x64 inscrit (bloque l'installation de MICA x86 : erreur 1638)
+
+--- GALSS Juxta (x86) - politique Full PC/SC
+         GALSS x86 absent (mode Full PC/SC)
+         BLOQUERINSTALLEGALSS dans le plugin SSV : (plugin non installe)
+
+--- sesam.ini
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\fsv\1.40.14\conf\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] C:\Windows\sesam.ini absent, mais celui de la FSV 1.40.14 est present (C:\ProgramData\santesocial\fsv\1.40.14\conf\sesam.ini) : non bloquant
+
+--- Inscription FSV (registre GIE) et MSI disponibles
+         Registre GIE FSV : 1.40.13 (x64), 1.40.14 (x64)
+         MSI FSV disponibles a cote du script : fsv-1.40.1413_x64.msi
+
+--- galss.ini (canaux vs lecteurs reels)
+  [WARN] galss.ini absent
+
+--- Processus concurrents sur le lecteur
+         actif : dmpconnectjs_monitor  DMP Connect / iCanopee
+  [WARN] actif : java                  Java (jFSE ?)  <- residu (Neutraliser-Cegedim.bat)
+
+--- Anciens logiciels metiers detectes (catalogue editeurs.psd1)
+  [WARN] Cegedim : processus actif, produit inscrit -> usage a confirmer  [bloquants connus : MICA x64 (empeche le MICA x86 de Juxta), processus ClmLive / demon jFSE sur le lecteur]
+         Catalogue : Cegedim, Affid, Shaman, Weda, Pyxvital, DrSante, HelloDoc
+
+--- Autres logiciels actifs (inventaire, a signaler si concurrent)
+         Port local 1998 : compagnonApicrypt (C:\Program Files\APICEM\CompagnonApicrypt\compagnonApicrypt.exe)
+         Port local 1999 : compagnonApicrypt (C:\Program Files\APICEM\CompagnonApicrypt\compagnonApicrypt.exe)
+         Port local 5939 : TeamViewer_Service (C:\Program Files\TeamViewer\TeamViewer_Service.exe)
+         Port local 6313 : MonSisra2 (C:\Users\utilisateur-09\AppData\Local\Programs\monsisra\MonSisra2.exe)
+         Port local 8083 : javaw (C:\Program Files\RESIP\JFSE\Lecteur\jre\bin\javaw.exe)   <- a verifier (concurrent ?)
+         Port local 8888 : javaw (C:\Program Files\RESIP\JFSE\Lecteur\jre\bin\javaw.exe)   <- a verifier (concurrent ?)
+         Port local 9982 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 9983 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 9984 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 27015 : AppleMobileDeviceProcess (C:\Program Files\WindowsApps\AppleInc.iTunes_12139.11001.62009.0_x64__nzyj5cx40ttqa\AMDS64\AppleMobileDeviceProcess.exe)
+         Port local 37014 : TeamViewer_Service (C:\Program Files\TeamViewer\TeamViewer_Service.exe)
+         Port local 37114 : TeamViewer_Service (C:\Program Files\TeamViewer\TeamViewer_Service.exe)
+         Port local 37531 : winspace (C:\Program Files (x86)\Lenovo\Smart Storage\winspace.exe)
+         Port local 40500 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 42050 : OneDrive.Sync.Service (C:\Users\utilisateur-09\AppData\Local\Microsoft\OneDrive\26.168.0830.0006\OneDrive.Sync.Service.exe)
+         Demarrage auto : MonSisra -> C:\Users\utilisateur-09\AppData\Local\Programs\monsisra\MonSisra2.exe
+         Demarrage auto : electron.app.BlueStacks Services -> C:\Users\utilisateur-09\AppData\Local\Programs\bluestacks-services\BlueStacksServices.exe --hidden
+         Produit sante : Lecteur cartes 3.31 3.31 (RESIP)   <- a verifier (concurrent ?)
+         Produit sante : M-TracePC Base version 4.69 4.69 (M4Medical Sp. z o.o.)   <- a verifier (concurrent ?)
+
+======================================================================
+  3b. DMP CONNECT / ICANOPEE (doit fonctionner en parallele de JuxtaLink)
+======================================================================
+  [OK]   Installe : DmpConnect-JS2 - Service d'accès au DMP 1.11.14
+  [OK]   dmpconnectjs_monitor actif
+  [OK]   dmpconnect-js2 actif (3 processus)
+  [OK]   Ecoute locale sur port(s) : 9982, 9983, 9984, 40500
+         Demarrage auto : dmpconnectjs_monitoring
+         Pile 64 bits DMP Connect : GALSS absent / Cryptolib 5.2.6
+         Log recent : C:\Program Files (x86)\DmpConnect-JS2\dmp-connect.log (01/10 14:39)
+  [WARN]   850    [00000cbc] INFO : Synchronization using DmpConnect NTP client legacy failed:
+  [OK]   DMP Connect / iCanopee operationnel (processus + port)
+
+         Rappel : ne jamais desinstaller 'GALSS' ou 'Cryptolib' en bloc ; le x64 appartient a DMP Connect / iCanopee, le x86 a Juxta.
+
+======================================================================
+  3c. NAVIGATEURS - Local Network Access (erreurs DRC a la teletransmission)
+======================================================================
+  [KO]   Chrome 154.0.8037.58 : Local Network Access actif et Odaiji non autorise -> erreurs DRC possibles (Autoriser-Odaiji-Chrome.bat)
+  [KO]   Edge 154.0.4258.48 : Local Network Access actif et Odaiji non autorise -> erreurs DRC possibles (Autoriser-Odaiji-Chrome.bat)
+
+======================================================================
+  4. JUXTALINK
+======================================================================
+  [KO]   JuxtaLink.exe introuvable
+  [WARN] JuxtaLink non lance
+  [WARN] Aucun programme n'ecoute sur le port 1234 (JuxtaLink arrete ou n'a pas pu demarrer)
+  [WARN] trace.txt absent : lancer une lecture depuis Odaiji puis relancer le diag
+
+======================================================================
+  5. PERFORMANCE (durees mesurees dans le log JuxtaLink)
+======================================================================
+         Pas de log
+
+--- Causes de lenteur presentes sur ce poste (a traiter si les lectures sont lentes)
+  [WARN] Programmes qui se disputent le lecteur avec JuxtaLink / DMP Connect : javaw (C:\Program Files\RESIP\JFSE\Lecteur\jre\bin\javaw.exe), LecteurSV (C:\Program Files\RESIP\JFSE\Lecteur\LecteurSV.exe) -> a couper si l'ancien logiciel n'est plus utilise (question 7n)
+
+======================================================================
+  6. VERDICT
+======================================================================
+  [KO]   MICA x86 absent
+
+Scenario : MICA
+Constats :
+           NO_FSV_X86            KO    FSV 32 bits absentes
+           STACK_X64             WARN  Pile 64 bits presente
+           TABLES_X64_ONLY       WARN  Tables ssv seulement en 64 bits
+           TABLES_X64_ONLY       WARN  Tables srt seulement en 64 bits
+           TABLES_X64_ONLY       WARN  Tables sts seulement en 64 bits
+           NO_MICA_X86           KO    mica.dll 32 bits absent
+           MICA_X64              WARN  MICA x64 inscrit
+           SESAM_WIN_ABSENT      WARN  sesam.ini Windows absent (celui de la FSV suffit)
+           PROC_JAVA             WARN  Java (jFSE ?) actif
+           OLD_CEGEDIM           WARN  Cegedim detecte (processus actif, produit inscrit)
+           LNA_CHROME            KO    Chrome sans politique Local Network Access
+           LNA_EDGE              KO    Edge sans politique Local Network Access
+           NO_JUXTA              KO    JuxtaLink absent
+           PROC_READER           WARN  Autres programmes sur le lecteur
+
+======================================================================
+  FIN
+======================================================================
+Rapport : C:\Users\utilisateur-09\Desktop\Avant_POSTE-03_20261001-1449.txt
+Copier son contenu dans le channel Claude pour analyse.

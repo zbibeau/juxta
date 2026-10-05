@@ -1,0 +1,200 @@
+
+======================================================================
+  OdaijiJuxta-Mac v0.3.19 - 05/10/2026 14:10
+======================================================================
+         Mac         : MAC-04   Utilisateur : utilisateur-26
+         Rapport     : /Users/utilisateur-26/Desktop/Avant_MAC-04_20261005-1410.txt
+         Mode        : DIAGNOSTIC (lecture seule)
+
+
+======================================================================
+  1. SYSTEME
+======================================================================
+         macOS       : macOS 26.6 (build 25G72)
+         Architecture: arm64   Modele : MacBookPro18,3
+  [OK]   Rosetta 2 installe
+         Gatekeeper  : assessments enabled
+
+======================================================================
+  2. LECTEURS ET CARTES
+======================================================================
+
+--- Lecteurs vus par macOS
+               #01: Ingenico TL TELIUM(2) (no card present)
+               #02: FEI USB Card Reader/QR Scanner (ATR:{length = 17, bytes = 0x3bac00402a[n]})
+               #03: FEI USB Card Reader/QR Scanner 02 (no card present)
+               #04: FEI USB Card Reader/QR Scanner 01 (no card present)
+               #05: Ingenico TL TELIUM(1) (no card present)
+               #06: Ingenico TL TELIUM(3) (no card present)
+  [OK]   CPS presente
+  [WARN] Vitale non vue (absente du lecteur ? inserer la carte et relancer)
+
+--- Pilotes lecteur
+               #01: fr.apdu.ccid.smartcardccid:1.5.1 (/usr/libexec/SmartCardServices/drivers/ifd-ccid.bundle)
+               #02: IngenicoSVReader:1.0.4 (/usr/local/libexec/SmartCardServices/drivers/IngenicoSVReader.bundle)
+               #03: org.debian.alioth.pcsclite.smartcardccid:1.4.31 (/usr/local/libexec/SmartCardServices/drivers/ifd-ccid-Kapelse.bundle)
+
+--- Processus clients du lecteur (en ce moment)
+           607 05:28:32 /usr/local/dmpconnectjs2/dmpconnect-js2
+           767 05:28:28 /Applications/DmpConnectJS2.app/Contents/MacOS/dmpconnectjs_monitor
+           859 05:28:26 /Applications/jFSE/Lecteur/Gestion Lecteur SV.app/Contents/MacOS/JavaAppLauncher
+           877 05:28:25 /Applications/JuxtaLink.app/Contents/MacOS/JuxtaLink
+           977 05:28:22 /Applications/jFSE/Lecteur/Gestion Lecteur SV.app/Contents/Frameworks/jcef Helper (GPU).app/Contents/MacOS/jcef Helper (GPU)
+          1008 05:28:22 /Applications/jFSE/Lecteur/Gestion Lecteur SV.app/Contents/Frameworks/jcef Helper.app/Contents/MacOS/jcef Helper
+          1010 05:28:22 /System/Library/Frameworks/PCSC.framework/Versions/A/XPCServices/com.apple.ctkpcscd.xpc/Contents/MacOS/com.apple.ctkpcscd
+          1077 05:28:15 /System/Library/Frameworks/PCSC.framework/Versions/A/XPCServices/com.apple.ctkpcscd.xpc/Contents/MacOS/com.apple.ctkpcscd
+          1132 05:28:13 /System/Library/Frameworks/PCSC.framework/Versions/A/XPCServices/com.apple.ctkpcscd.xpc/Contents/MacOS/com.apple.ctkpcscd
+          2026 05:27:12 /usr/local/dmpconnectjs2/dmpconnect-js2
+          2166 05:27:02 /System/Library/Frameworks/PCSC.framework/Versions/A/XPCServices/com.apple.ctkpcscd.xpc/Contents/MacOS/com.apple.ctkpcscd
+          2307 05:26:51 /usr/local/dmpconnectjs2/dmpconnect-js2
+          2359 05:26:47 /System/Library/Frameworks/PCSC.framework/Versions/A/XPCServices/com.apple.ctkpcscd.xpc/Contents/MacOS/com.apple.ctkpcscd
+          4142 05:24:30 /System/Library/Frameworks/PCSC.framework/Versions/A/XPCServices/com.apple.ctkpcscd.xpc/Contents/MacOS/com.apple.ctkpcscd
+         dmpconnect-js2 : 3 instance(s)   ctkpcscd : 6   agent jFSE : 3
+  [WARN] Plusieurs dmpconnect-js2 simultanes
+  [KO]   Agent jFSE 'Gestion Lecteur SV' EN COURS D'EXECUTION
+
+======================================================================
+  3. PILE SESAM-VITALE ET EDITEURS
+======================================================================
+
+--- Paquets installes (pkgutil) - * = fichiers absents (recu orphelin)
+          fr.sesamvitale.mica.pkg                              v4.01.00     23/09/2026  /
+         *fr.omnidoc.local-services                            v1.3.1       17/06/2026  tmp/__omnidoc__/
+          org.icanopee.dmpcjs2                                 v1.11.14     31/07/2026  /
+          org.Juxta.JuxtaLink                                  v2.2.3       23/09/2026  Applications/JuxtaLink.app
+          fr.sesamvitale.fsv-1.40.1413.pkg                     v1.40.1413   23/09/2026  /
+          fr.asip.esante.cpsgestion.dev                        v1.7.1       18/06/2026  Applications
+          fr.sesamvitale.diagAM.pkg                            v2.01.19     09/08/2024  /
+          org.icanopee.dmpcjs2.uninstaller                     v1.8.6       31/08/2023  /
+          fr.sesamvitale.galss.pkg                             v3.43.02     23/09/2026  /
+          org.icanopee.printer                                 v1.0.0       31/07/2026  /
+          fr.asipsante.pkg.cryptolibCPS                        v5.2.6       31/07/2026  /
+          fr.sesam-vitale.navigateur-amelipro                  v2.04.04     31/07/2026  /
+
+--- jFSE (Cegedim / Medimust / MediStory)
+  [KO]   Agent de demarrage jFSE : /Library/LaunchAgents/org.clm.jfse.demon.launchd.plist
+  [WARN] /Applications/jFSE present
+
+--- Anciens logiciels metiers (MediMust, MediStory...)
+  [OK]   MediMust absent
+  [OK]   MediStory (Prokov) absent
+
+--- GALSS Juxta - politique Full PC/SC
+         GALSS installe : fr.sesamvitale.galss.pkg v3.43.02
+         galssosx.framework present
+         BLOQUERINSTALLEGALSS dans le plugin SSV : false
+
+--- DmpConnect-JS2 (Icanopee)
+         Installe : v1.11.14
+         /Library/LaunchAgents/com.icanopee.dmpcjsmonitor2.plist
+         /Library/LaunchDaemons/com.icanopee.dmpcjs2.plist
+
+--- diagAM (telemetrie GIE)
+  [WARN] diagAM installe (inutile pour la facturation)
+
+--- Fichiers de configuration GIE
+  [OK]   /Library/Preferences/galss.ini (889 octets)
+
+--- Bibliotheques MICA / GALSS et leur architecture
+         /usr/local/lib/libmica.dylib                                                                    arm64/x86_64
+         /Library/Frameworks/galssosx.framework/Versions/A/galssosx                                      x86_64
+         /usr/local/dmpconnectjs2/assets/mica/libmica.dylib                                              arm64/x86_64
+
+--- Applications metier
+         DiagAM.app
+         DmpConnectJS2.app
+         DmpConnectJS2.localized
+         jFSE
+         JuxtaLink.app
+
+======================================================================
+  4. SERVICES launchd (col.2 = dernier code de sortie ; negatif = crash par signal)
+======================================================================
+         877    0     application.org.Juxta.JuxtaLink.[n].[n]
+         607    0     com.icanopee.dmpcjs2
+         767    0     com.icanopee.dmpcjsmonitor2
+         -      0     fr.Juxta.JuxtaLink
+         -      0     org.clm.jfse.launchd
+
+--- Crash reports (30 derniers jours)
+  [WARN] JavaAppLauncher : 1 crash(s), dernier : 
+
+======================================================================
+  4b. NAVIGATEURS - Local Network Access (erreurs DRC a la teletransmission)
+======================================================================
+  [KO]   Google Chrome 154.0.8037.95 : Local Network Access actif et Odaiji non autorise -> erreurs DRC possibles (Autoriser-Odaiji-Chrome.command)
+         Microsoft Edge non installe
+
+======================================================================
+  5. JUXTALINK
+======================================================================
+  [OK]   /Applications/JuxtaLink.app  v2.2.3  (x86_64 )
+  [OK]   Plugin SSV present : 4.1.1.0 
+  [OK]   user.config MadeForMed (serveurs token/update)
+         Dossier Plugins non inscriptible par l'utilisateur (normal : le plugin est deja installe)
+  [WARN] Gardien JuxtaLink absent : JuxtaLink ne serait pas relance s'il est ferme ou plante (2-Depanner.command)
+
+--- Log JuxtaLink : /Applications/JuxtaLink.app/Contents/Resources/logs/trace.txt (40 dernieres lignes)
+         [05/10/2026 14:06:21] - [INFO] - [JuxtaLink] [EXEC] Lancement d'un plugin correspondant ? une requ?te
+         [05/10/2026 14:06:21] - [INFO] - [JuxtaLink] [SSV Plugin] V?rification de la version des fournitures
+         [05/10/2026 14:06:21] - [INFO] - [JuxtaLink] [SSV Plugin] D?finition de la version des fournitures ? charger.
+         [05/10/2026 14:06:21] - [INFO] - [JuxtaLink] [SSV Plugin] Version d?finie dans la requ?te : 1.40.14
+         [05/10/2026 14:06:21] - [INFO] - [JuxtaLink] [SSV Plugin] V?rification de la version d?j? charg?e dans dllmap
+         [05/10/2026 14:06:21] - [INFO] - [JuxtaLink] [SSV Plugin] La version des fournitures ? charger dans dllmap est d?j? en m?moire.
+         [05/10/2026 14:06:21] - [INFO] - [JuxtaLink] [SSV Plugin] D?finition de la version des fournitures ? charger.
+         [05/10/2026 14:06:21] - [INFO] - [JuxtaLink] [SSV Plugin] Version d?finie dans la requ?te : 1.40.14
+         [05/10/2026 14:06:21] - [INFO] - [SSV] [EXEC] Recherche de la version des API charg?e
+         [05/10/2026 14:06:21] - [INFO] - [SSV] [EXEC] Version des API charg?e : 
+         [05/10/2026 14:06:21] - [INFO] - [JuxtaLink] [EXEC] Pas besoin de changer de version FSV
+         [05/10/2026 14:06:21] - [INFO] - [SSV] [EXEC] Execution : SSV v4.1.1.0, Action : facturersilent
+         [05/10/2026 14:06:21] - [INFO] - [SSV] [EXEC] Recherche de la m?thode correspondant ? la requ?te
+         [05/10/2026 14:06:21] - [INFO] - [SSV] [EXEC] M?thode FacturerSilent : analyse
+         [05/10/2026 14:06:21] - [INFO] - [SSV] [EXEC] Param?tre url : compatible
+         [05/10/2026 14:06:21] - [INFO] - [SSV] [EXEC] Param?tre idFacture : compatible
+         [05/10/2026 14:06:21] - [INFO] - [SSV] [EXEC] Param?tre finess : [masque]
+         [05/10/2026 14:06:21] - [INFO] - [SSV] [EXEC] Param?tre numNatPs : [masque]
+         [05/10/2026 14:06:21] - [INFO] - [SSV] [EXEC] Param?tre modeHomologue : compatible
+         [05/10/2026 14:06:21] - [INFO] - [SSV] [EXEC] Param?tre codeCPS : compatible
+         [05/10/2026 14:06:21] - [INFO] - [SSV] [EXEC] Param?tre optionnel retourConsulterFacture : compatible
+         [05/10/2026 14:06:21] - [INFO] - [SSV] [EXEC] Param?tre strVersionSv : compatible
+         [05/10/2026 14:06:21] - [INFO] - [SSV] [EXEC] Protocoles de s?curit? : Tls, Tls11, Tls12
+         [05/10/2026 14:06:21] - [INFO] - [SSV] [EXEC] M?thode FacturerSilent : compatible
+         [05/10/2026 14:06:21] - [DEBUG] - [SSV] FacturerSilent
+         [05/10/2026 14:06:21] - [DEBUG] - [SSV] Url : https://madeformed-intellioediteur.juxta.cloud/Pages/EspacePatient/Facturation/Fsv_Facturation.aspx
+         [05/10/2026 14:06:21] - [DEBUG] - [SSV] Appel FSV 1 avec comme donn?es : {'idFacture':'67712','finess':'[masque]','numNatPs':'[masque]', 'bolRetourConsulterFacture':'False'}
+         [05/10/2026 14:06:23] - [DEBUG] - [SSV] Facturation silent en 1.40.14
+         [05/10/2026 14:06:23] - [DEBUG] - [SSV] Mode de s?curisation 5
+         [05/10/2026 14:06:23] - [DEBUG] - [SSV] SignerFactureAvecCps seulement
+         [05/10/2026 14:06:23] - [DEBUG] - [SSV] TestPresenceCarte D?but de requ?te
+         [05/10/2026 14:06:23] - [DEBUG] - [SSV] TestPresenceCarte CPS
+         [05/10/2026 14:06:23] - [INFO] - [SSV] Slot de carte trouv? : 6
+         [05/10/2026 14:06:23] - [DEBUG] - [SSV] TestPresenceCarte Carte CPS absente
+         [05/10/2026 14:06:23] - [DEBUG] - [SSV] CPS pr?sente : False
+         [05/10/2026 14:06:23] - [DEBUG] - [SSV] Appel FSV 2 avec comme donn?es : {'idFacture':'67712', 'xmlSortie':'eyJYbWxSZXRvdXIiOm51bGwsIk1lc3NhZ2VSZXRvdXIiOm51bGwsIkFzc2VydGlvblBzIjpudWxsLCJBc3NlcnRpb25WaXRhbGUiOm51bGwsIm51bWVyb0FwcGVsIjpudWxsLCJDYXJ0ZVBzUHJlc2VudGUiOmZhbHNlLCJDYXJ0ZVZpdGFsZVByZXNlbnRlIjpmYWxzZSwicmV0b3VyRE1QIjpudWxsLCJkeW5hbWljUmV0b3VyIjpudWxsLCJFcnJvciI6ZmFsc2UsIkNvZGVSZXRvdXIiOm51bGwsIlJlcG9uc2UiOnt9fQ==', 'modeHomologue':'False'}
+         [05/10/2026 14:06:23] - [INFO] - [JuxtaLink] [EXEC] Plugin execut? : ewogICJYbWxSZXRvdXIiOiAie1wiZmxhZ1wiOlwiRlNFXCIsXCJtb250YW50QW1jXCI6XCIwXCIsXCJtb250YW50QW1vXCI6XCIyMVwiLFwibW9udGFudFRvdGFsXCI6XCIzMFwiLFwibnVtRnNlXCI6XCI2NFwifSIsCiAgIk1lc3NhZ2VSZXRvdXIiOiBudWxsLAogICJBc3NlcnRpb25QcyI6IG51bGwsCiAgIkFzc2VydGlvblZpdGFsZSI6IG51bGwsCiAgIm51bWVyb0FwcGVsIjogbnVsbCwKICAiQ2FydGVQc1ByZXNlbnRlIjogZmFsc2UsCiAgIkNhcnRlVml0YWxlUHJlc2VudGUiOiBmYWxzZSwKICAicmV0b3VyRE1QIjogbnVsbCwKICAiZHluYW1pY1JldG91ciI6IG51bGwsCiAgIkVycm9yIjogZmFsc2UsCiAgIkNvZGVSZXRvdXIiOiAiMCIsCiAgIlJlcG9uc2UiOiB7fQp9
+         [05/10/2026 14:06:23] - [INFO] - [JuxtaLink] [CLIENT] Reponse (format de sortie : json) : ewogICJYbWxSZXRvdXIiOiAie1wiZmxhZ1wiOlwiRlNFXCIsXCJtb250YW50QW1jXCI6XCIwXCIsXCJtb250YW50QW1vXCI6XCIyMVwiLFwibW9udGFudFRvdGFsXCI6XCIzMFwiLFwibnVtRnNlXCI6XCI2NFwifSIsCiAgIk1lc3NhZ2VSZXRvdXIiOiBudWxsLAogICJBc3NlcnRpb25QcyI6IG51bGwsCiAgIkFzc2VydGlvblZpdGFsZSI6IG51bGwsCiAgIm51bWVyb0FwcGVsIjogbnVsbCwKICAiQ2FydGVQc1ByZXNlbnRlIjogZmFsc2UsCiAgIkNhcnRlVml0YWxlUHJlc2VudGUiOiBmYWxzZSwKICAicmV0b3VyRE1QIjogbnVsbCwKICAiZHluYW1pY1JldG91ciI6IG51bGwsCiAgIkVycm9yIjogZmFsc2UsCiAgIkNvZGVSZXRvdXIiOiAiMCIsCiAgIlJlcG9uc2UiOiB7fQp9
+         [05/10/2026 14:06:23] - [INFO] - [JuxtaLink] [CLIENT] r?ponse en HTTPS
+         [05/10/2026 14:06:23] - [INFO] - [JuxtaLink] [CLIENT] Reponse envoy?e
+
+======================================================================
+  6. VERDICT
+======================================================================
+  [KO]   Agent jFSE 'Gestion Lecteur SV' present : il gere le lecteur pour Cegedim et entre en concurrence avec JuxtaLink.
+         Correction : --fix (suppression jFSE si le medecin ne facture plus avec Medimust/MediStory).
+
+Scenario : JFSE_AGENT
+Constats :
+         VITALE_ABSENT                          WARN  Vitale non inseree ou non lue
+         DMP_MULTI                              WARN  3 instances dmpconnect-js2
+         JFSE_RUN                               KO    Agent jFSE actif (tient le lecteur)
+         JFSE_AGENT                             KO    Agent launchd jFSE present
+         JFSE_DIR                               WARN  /Applications/jFSE present
+         DIAGAM                                 WARN  diagAM present
+         LNA_Google_Chrome                      KO    Google Chrome sans politique Local Network Access
+         GARDIEN_ABSENT                         WARN  Pas de gardien : JuxtaLink n'est pas relance s'il s'arrete
+
+======================================================================
+  FIN
+======================================================================
+Rapport : /Users/utilisateur-26/Desktop/Avant_MAC-04_20261005-1410.txt
+Envoi automatique impossible : envoyer ce fichier via la bulle Intercom.

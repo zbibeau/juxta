@@ -1,0 +1,186 @@
+
+======================================================================
+  OdaijiJuxta-Mac v0.3.18 - 05/10/2026 11:34
+======================================================================
+         Mac         : MAC-02   Utilisateur : utilisateur-24
+         Rapport     : /Users/utilisateur-24/Desktop/Apres_MAC-02_20261005-1134.txt
+         Mode        : DIAGNOSTIC (lecture seule)
+
+
+======================================================================
+  1. SYSTEME
+======================================================================
+         macOS       : macOS 26.6.2 (build 25G83)
+         Architecture: arm64   Modele : Mac14,2
+  [OK]   Rosetta 2 installe
+         Gatekeeper  : assessments enabled
+
+======================================================================
+  2. LECTEURS ET CARTES
+======================================================================
+
+--- Lecteurs vus par macOS
+               #01: FEI USB Card Reader/QR Scanner (ATR:{length = 10, bytes = 0x3b[n]ea9000})
+               #02: FEI USB Card Reader/QR Scanner 01 (ATR:{length = 17, bytes = 0x3bac00402a[n]})
+  [OK]   CPS presente
+  [OK]   Vitale presente
+
+--- Pilotes lecteur
+               #01: fr.apdu.ccid.smartcardccid:1.5.1 (/usr/libexec/SmartCardServices/drivers/ifd-ccid.bundle)
+               #02: fr.apdu.ccid.smartcardccid:1.5.2 (/usr/local/libexec/SmartCardServices/drivers/ifd-ccid-Sensyl.bundle)
+
+--- Processus clients du lecteur (en ce moment)
+          1039 07-01:30:01 /Applications/DmpConnectJS2.app/Contents/MacOS/dmpconnectjs_monitor
+         51883 02-22:40:04 /usr/local/dmpconnectjs2/dmpconnect-js2
+         54318       00:44 /Applications/JuxtaLink.app/Contents/MacOS/JuxtaLink
+         79947    01:34:14 /usr/local/dmpconnectjs2/dmpconnect-js2
+         80028    01:34:08 /System/Library/Frameworks/PCSC.framework/Versions/A/XPCServices/com.apple.ctkpcscd.xpc/Contents/MacOS/com.apple.ctkpcscd
+         80132    01:34:00 /usr/local/dmpconnectjs2/dmpconnect-js2
+         80165    01:33:57 /System/Library/Frameworks/PCSC.framework/Versions/A/XPCServices/com.apple.ctkpcscd.xpc/Contents/MacOS/com.apple.ctkpcscd
+         dmpconnect-js2 : 3 instance(s)   ctkpcscd : 2   agent jFSE : 0
+  [WARN] Plusieurs dmpconnect-js2 simultanes
+
+======================================================================
+  3. PILE SESAM-VITALE ET EDITEURS
+======================================================================
+
+--- Paquets installes (pkgutil) - * = fichiers absents (recu orphelin)
+          com.sensyl.sensylDriver.SmartCardServices.pkg        v1.0         02/01/2024  
+          fr.sesamvitale.mica.pkg                              v4.01.00     23/09/2025  /
+         *fr.omnidoc.local-services                            v1.3.1       17/08/2026  tmp/__omnidoc__/
+          org.icanopee.dmpcjs2                                 v1.11.14     26/08/2026  /
+          org.Juxta.JuxtaLink                                  v2.2.3       26/08/2026  Applications/JuxtaLink.app
+          fr.asip.esante.cpsgestion.dev                        v1.7.1       23/04/2026  Applications
+          com.medimust.pkg.InstallerSauvegardeMdimust          v3.7.210503  17/01/2023  Applications/dossier MediMust
+          fr.sesamvitale.galss.pkg                             v3.43.02     26/08/2026  /
+          org.icanopee.printer                                 v1.0.0       26/08/2026  /
+          com.medimust.pkg.MajMedimust                         v14.05a      09/12/2024  Applications
+          com.cgs.medimust.pkg.majtarif[n]                v1.0         02/11/2023  
+          com.mygreatcompany.pkg.MajJFSE                       v1.0         01/07/2025  
+          fr.asipsante.pkg.cryptolibCPS                        v5.2.5       09/09/2026  /
+          fr.sesam-vitale.navigateur-amelipro                  v2.04.04     24/04/2026  /
+
+--- jFSE (Cegedim / Medimust / MediStory)
+  [OK]   Pas d'agent launchd jFSE
+  [OK]   /Applications/jFSE absent
+
+--- Anciens logiciels metiers (MediMust, MediStory...)
+  [OK]   MediMust installe mais inactif (rien ne se lance)
+  [OK]   MediStory (Prokov) absent
+
+--- GALSS Juxta - politique Full PC/SC
+         GALSS installe : fr.sesamvitale.galss.pkg v3.43.02
+         galssosx.framework present
+         BLOQUERINSTALLEGALSS dans le plugin SSV : false
+
+--- DmpConnect-JS2 (Icanopee)
+         Installe : v1.11.14
+         /Library/LaunchAgents/com.icanopee.dmpcjsmonitor2.plist
+         /Library/LaunchDaemons/com.icanopee.dmpcjs2.plist
+
+--- diagAM (telemetrie GIE)
+  [OK]   diagAM absent
+
+--- Fichiers de configuration GIE
+  [OK]   /Library/Preferences/galss.ini (679 octets)
+             NomLib=pssinosx.framework
+             NomLib=pcscosx.framework
+             Caracteristiques=FEI USB Card Reader/QR Scanner
+             NomLAD=CPS
+             Caracteristiques=FEI USB Card Reader/QR Scanner 01
+             NomLAD=Vitale
+
+--- Bibliotheques MICA / GALSS et leur architecture
+         /usr/local/lib/libmica.dylib                                                                    arm64/x86_64
+         /Library/Frameworks/galssosx.framework/Versions/A/galssosx                                      x86_64
+         /usr/local/dmpconnectjs2/assets/mica/libmica.dylib                                              arm64/x86_64
+
+--- Applications metier
+         DmpConnectJS2.app
+         dossier MediMust
+         JuxtaLink.app
+
+======================================================================
+  4. SERVICES launchd (col.2 = dernier code de sortie ; negatif = crash par signal)
+======================================================================
+         54318  0     application.org.Juxta.JuxtaLink.[n].[n]
+         51883  0     com.icanopee.dmpcjs2
+         1039   0     com.icanopee.dmpcjsmonitor2
+         -      0     fr.Juxta.JuxtaLink
+         -      0     fr.madeformed.juxtalink-gardien
+
+--- Crash reports (30 derniers jours)
+  [WARN] dmpconnect : 1 crash(s), dernier : dmpconnect-js2-2026-09-29-113627.ips
+
+======================================================================
+  4b. NAVIGATEURS - Local Network Access (erreurs DRC a la teletransmission)
+======================================================================
+  [KO]   Google Chrome 154.0.8037.95 : Local Network Access actif et Odaiji non autorise -> erreurs DRC possibles (Autoriser-Odaiji-Chrome.command)
+         Microsoft Edge non installe
+
+======================================================================
+  5. JUXTALINK
+======================================================================
+  [OK]   /Applications/JuxtaLink.app  v2.2.3  (x86_64 )
+  [OK]   Plugin SSV present : 4.1.1.0 
+  [OK]   user.config MadeForMed (serveurs token/update)
+         Dossier Plugins non inscriptible par l'utilisateur (normal : le plugin est deja installe)
+  [OK]   Gardien JuxtaLink : veille toutes les 10 min
+
+--- Log JuxtaLink : /Applications/JuxtaLink.app/Contents/Resources/logs/trace.txt (40 dernieres lignes)
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Suppression du fichier : /Library/Application Support/santesocial/fsv/1.40.14/ssv/certamct.pem
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Copie du fichier : /Library/Application Support/santesocial/fsv/1.40.14/ssv/certamct.pem
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Nom du fichier : certamoamcr.pem
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Suppression du fichier : /Library/Application Support/santesocial/fsv/1.40.14/ssv/certamoamcr.pem
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Copie du fichier : /Library/Application Support/santesocial/fsv/1.40.14/ssv/certamoamcr.pem
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Nom du fichier : certamoamct.pem
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Suppression du fichier : /Library/Application Support/santesocial/fsv/1.40.14/ssv/certamoamct.pem
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Copie du fichier : /Library/Application Support/santesocial/fsv/1.40.14/ssv/certamoamct.pem
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Nom du fichier : certamor.pem
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Suppression du fichier : /Library/Application Support/santesocial/fsv/1.40.14/ssv/certamor.pem
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Copie du fichier : /Library/Application Support/santesocial/fsv/1.40.14/ssv/certamor.pem
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Nom du fichier : certamot.pem
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Suppression du fichier : /Library/Application Support/santesocial/fsv/1.40.14/ssv/certamot.pem
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Copie du fichier : /Library/Application Support/santesocial/fsv/1.40.14/ssv/certamot.pem
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Nom du fichier : certbabusr.pem
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Suppression du fichier : /Library/Application Support/santesocial/fsv/1.40.14/ssv/certbabusr.pem
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Copie du fichier : /Library/Application Support/santesocial/fsv/1.40.14/ssv/certbabusr.pem
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Nom du fichier : certbabust.pem
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Suppression du fichier : /Library/Application Support/santesocial/fsv/1.40.14/ssv/certbabust.pem
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Copie du fichier : /Library/Application Support/santesocial/fsv/1.40.14/ssv/certbabust.pem
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Nom du fichier : certgier.pem
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Suppression du fichier : /Library/Application Support/santesocial/fsv/1.40.14/ssv/certgier.pem
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Copie du fichier : /Library/Application Support/santesocial/fsv/1.40.14/ssv/certgier.pem
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Nom du fichier : certgiet.pem
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Suppression du fichier : /Library/Application Support/santesocial/fsv/1.40.14/ssv/certgiet.pem
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Copie du fichier : /Library/Application Support/santesocial/fsv/1.40.14/ssv/certgiet.pem
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Nom du fichier : crl.crl
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Suppression du fichier : /Library/Application Support/santesocial/fsv/1.40.14/ssv/crl.crl
+         [05/10/2026 11:34:04] - [INFO] - [SSV] Copie du fichier : /Library/Application Support/santesocial/fsv/1.40.14/ssv/crl.crl
+         [05/10/2026 11:34:04] - [INFO] - [SSV] [LOAD] SSVPlugin : Installation réussie
+         [05/10/2026 11:34:04] - [DEBUG] - [SSV] Socle FSV de base :  1.40.14
+         [05/10/2026 11:34:04] - [DEBUG] - [SSV] Socle FSV défini en config :  1.40.14
+         [05/10/2026 11:34:04] - [INFO] - [SSV] [LOAD] SSVPlugin : Chargement réussi
+         [05/10/2026 11:34:04] - [INFO] - [JuxtaLink] [LOAD] Plugin trouvés
+         [05/10/2026 11:34:04] - [INFO] - [JuxtaLink] [LOAD] Chargement du fichier /Applications/JuxtaLink.app/Contents/Resources/Plugins/SSV/4.1.1.0/Newtonsoft.Json.dll
+         [05/10/2026 11:34:04] - [INFO] - [JuxtaLink] [LOAD] Aucun plugin trouvés, déchargement du domaine.
+         [05/10/2026 11:34:04] - [INFO] - [JuxtaLink] [LOAD] Chargement du fichier /Applications/JuxtaLink.app/Contents/Resources/Plugins/SSV/4.1.1.0/BouncyCastle.Crypto.dll
+         [05/10/2026 11:34:05] - [INFO] - [JuxtaLink] [LOAD] Aucun plugin trouvés, déchargement du domaine.
+         [05/10/2026 11:34:05] - [INFO] - [JuxtaLink] [SERVER] Serveur démarré sur le port : 1234
+         [05/10/2026 11:34:05] - [INFO] - [JuxtaLink] Le serveur est démarré
+
+======================================================================
+  6. VERDICT
+======================================================================
+  [WARN] DmpConnect-JS2 instable (crash / instances multiples) : suspect principal de l'intermittence.
+         Test : --fix propose un arret temporaire.
+
+Scenario : DMPCONNECT
+Constats :
+         DMP_MULTI                              WARN  3 instances dmpconnect-js2
+         LNA_Google_Chrome                      KO    Google Chrome sans politique Local Network Access
+
+======================================================================
+  FIN
+======================================================================
+Rapport : /Users/utilisateur-24/Desktop/Apres_MAC-02_20261005-1134.txt

@@ -1,0 +1,76 @@
+**********************
+Début de la transcription Windows PowerShell
+Heure de début : 20261005145912
+Nom d'utilisateur : POSTE-18\utilisateur-21
+Utilisateur runAs :  POSTE-18\utilisateur-21
+Nom de la configuration : 
+Ordinateur : POSTE-18 (Microsoft Windows NT 10.0.26200.0)
+Application hôte : C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\utilisateur-21\Downloads\Odaiji_Juxta_PC (3)\Odaiji_Juxta_PC\Depannage.ps1
+ID de processus : 2360
+PSVersion: 5.1.26100.8972
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.8972
+BuildVersion: 10.0.26100.8972
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Odaiji_Juxta - DEPANNAGE sur POSTE-18 pour l'utilisateur utilisateur-21  (kit v0.3.66)
+
+==> 1/7  Diagnostic AVANT (lecture seule)
+    [OK]  Rapport : C:\Users\utilisateur-21\Desktop\Avant_POSTE-18_20261005-1459.txt
+    [KO]     canal Vitale = 'Identive CLOUD 2700 R Smart Card Reader 0' mais la Vitale est dans 'Identive CLOUD 2700 R Smart Card Reader 1'
+    [KO]   [05/10/2026 14:54:55] - [ERROR] - [SSV] [EXEC] Exception lors de l'appel à ssv.lirecarteps
+    [KO]   [05/10/2026 14:57:34] - [ERROR] - [SSV] [EXEC] Exception lors de l'appel à ssv.lirecarteps
+    Scenario : UNKNOWN
+
+==> 2/7  Anciens logiciels metiers detectes sur ce poste
+    Ces logiciels se disputent le lecteur de cartes avec JuxtaLink. S'ils ne servent plus au medecin (il facture avec Odaiji), ils sont coupes
+    puis desinstalles (hors briques partagees FSV/Cryptolib/MICA, sans redemarrage). S'ils servent encore : on n'y touche pas.
+    - Cegedim : MICA x64 (empeche le MICA x86 de Juxta), processus ClmLive / demon jFSE sur le lecteur
+    [OK]  Cegedim : plus utilise -> sera coupe puis desinstalle
+    - Affid : fsenxt.exe occupe le port 1234 de JuxtaLink
+    [OK]  Affid : plus utilise -> sera coupe puis desinstalle
+
+==> 3/7  Corrections automatiques sures (une fenetre s'ouvre, la laisser finir) : [masque]_X86_INCOMPLET, TABLES_X64_ONLY, GALSS_MISMATCH, GALSS_ABSENT_READER, OLD_CEGEDIM, OLD_AFFID, FSV_MSI_SOURCE, FSV_MSI_SOURCE
+    [OK]   mica.dll x86 : C:\Program Files (x86)\santesocial\mica\mica.dll
+    [KO]     canal Vitale = 'Identive CLOUD 2700 R Smart Card Reader 0' mais la Vitale est dans 'Identive CLOUD 2700 R Smart Card Reader 1'
+    [KO]   [05/10/2026 14:54:55] - [ERROR] - [SSV] [EXEC] Exception lors de l'appel à ssv.lirecarteps
+    [KO]   [05/10/2026 14:57:34] - [ERROR] - [SSV] [EXEC] Exception lors de l'appel à ssv.lirecarteps
+    >> Copier le MSI FSV du kit dans C:\ProgramData\MadeForMed\FSV et le declarer comme source de Windows Installer (sans reinstaller) ? -> oui (auto)
+    --- 7n. Anciens logiciels metiers
+    >> Cegedim n'est plus utilise -> neutralisation puis desinstallation (hors briques partagees, sans redemarrage)
+    >> Affid n'est plus utilise -> services et programmes coupes SEULEMENT (dossiers patients possibles : ni desinstallation ni quarantaine)
+    --- 7b. Realigner galss.ini sur le lecteur reel
+    >> Realigner galss.ini (CANAL1 CPS / CANAL2 Vitale) sur le lecteur branche (sauvegarde .bak) ? -> oui (auto)
+    >> Copier dans les tables x86 les fichiers qui n'existent qu'en x64 (aucun fichier existant n'est ecrase) ? -> oui (auto)
+
+==> 4a/7  Reparation du lecteur pour DMP Connect / iCanopee (CPS + Vitale inserees dans le lecteur)
+    >>> Inserer la CPS ET la Vitale dans le lecteur (les laisser jusqu'a la fin de cette etape).
+    2026-10-05 15:01:09 Analyse des lecteurs et des cartes (CPS + Vitale inserees) - 45 s maximum...
+    2026-10-05 15:01:12 OK : galss.ini deja aligne (CPS='Identive CLOUD 2700 R Smart Card Reader 0', Vitale='Identive CLOUD 2700 R Smart Card Reader 1').
+    [OK]  Service redemarre : DmpConnect-JS2
+    [OK]  DMP Connect actif : DmpConnect-JS2
+
+==> 5/7  Redemarrage de JuxtaLink (recharge la configuration)
+    [OK]  JuxtaLink en cours d'execution
+    [OK]  JuxtaLink ecoute sur le port 1234
+
+==> 7/7  Diagnostic APRES
+    [OK]  Rapport : C:\Users\utilisateur-21\Desktop\Apres_POSTE-18_20261005-1501.txt
+
+    Scenario : UNKNOWN
+
+    Reste a traiter :
+    [KO]     canal Vitale = 'Identive CLOUD 2700 R Smart Card Reader 0' mais la Vitale est dans 'Identive CLOUD 2700 R Smart Card Reader 1'
+
+    PROCHAINE ETAPE : dans Odaiji, une facture avec une carte Vitale puis une facture sans Vitale (valider l'appel ADRi), puis 3-Diag-seul.bat si un doute persiste.
+    A ENVOYER dans le channel Claude pour faire evoluer le kit :
+      - C:\Users\utilisateur-21\Desktop\Avant_POSTE-18_20261005-1459.txt
+      - C:\Users\utilisateur-21\Desktop\Apres_POSTE-18_20261005-1501.txt
+      - C:\Users\utilisateur-21\Desktop\Depannage_POSTE-18_20261005-1459.txt  (journal de ce depannage : actions et reponses)
+**********************
+Fin de la transcription Windows PowerShell
+Heure de fin : 20261005150158
+**********************

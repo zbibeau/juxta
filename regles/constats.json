@@ -1,0 +1,888 @@
+{
+ "_doc": "Catalogue des constats du kit Odaiji_Juxta : une entree par code. Cle finissant par * = prefixe (LNA_CHROME, OLD_CEGEDIM...). origine : poste | lecteur | logiciel_tiers | service_distant | reseau | kit. reparation : auto (le kit corrige) | guide (action manuelle) | aucune (informatif). Partage par parc.py, la synthese des rapports et les tests.",
+ "constats": {
+  "ADRI_REJET": {
+   "niveau": "KO",
+   "origine": "service_distant",
+   "titre": "Rejet renvoye par le serveur ADRi",
+   "action": "Lire le diagnostic ADR du rapport. Si siram_40 / FASIBEN : voir ADR_SERVEUR. Sinon verifier les droits du PS.",
+   "reparation": "aucune",
+   "os": [
+    "pc"
+   ]
+  },
+  "ADR_SERVEUR": {
+   "niveau": "INFO",
+   "origine": "service_distant",
+   "titre": "Erreur ADR cote Assurance Maladie (siram_40 / FASIBEN / MOWD)",
+   "action": "Service amont indisponible : reessayer plus tard, ne rien changer sur le poste. Si persistant : support Assurance Maladie.",
+   "reparation": "aucune",
+   "os": [
+    "pc"
+   ]
+  },
+  "AV_TIERS": {
+   "niveau": "INFO",
+   "origine": "logiciel_tiers",
+   "titre": "Antivirus tiers present",
+   "action": "Si blocages : ajouter des exclusions (JuxtaLink, dossiers santesocial) dans l'antivirus.",
+   "reparation": "aucune",
+   "os": [
+    "pc"
+   ]
+  },
+  "CARD_SHARED": {
+   "niveau": "WARN",
+   "origine": "lecteur",
+   "titre": "Carte partagee avec un autre programme",
+   "action": "Fermer l'autre logiciel qui tient le lecteur (voir PROC_READER).",
+   "reparation": "guide",
+   "os": [
+    "pc"
+   ]
+  },
+  "CERTPROP_AUTO": {
+   "niveau": "WARN",
+   "origine": "poste",
+   "titre": "Service CertPropSvc automatique",
+   "action": "Informatif : source de lenteur possible a l'insertion de la CPS. Non bloquant.",
+   "reparation": "aucune",
+   "os": [
+    "pc"
+   ]
+  },
+  "CPS_SLOT_ABSENT": {
+   "niveau": "KO",
+   "origine": "lecteur",
+   "titre": "CPS vue par macOS mais absente pour le SSV",
+   "action": "Retirer / reinserer la CPS, relancer JuxtaLink ; verifier qu'aucun agent jFSE ne tient le lecteur.",
+   "reparation": "guide",
+   "os": [
+    "mac"
+   ]
+  },
+  "CRYPTO_GALSS": {
+   "niveau": "WARN",
+   "origine": "poste",
+   "titre": "Cryptolib en mode GALSS",
+   "action": "Passer la Cryptolib en PC/SC (le kit le fait avec --fix).",
+   "reparation": "auto",
+   "os": [
+    "pc",
+    "mac"
+   ]
+  },
+  "CRYPTO_MULTI": {
+   "niveau": "INFO",
+   "origine": "poste",
+   "titre": "Plusieurs Cryptolib installees",
+   "action": "Proposer le menage des Cryptolib en doublon (Nettoyage).",
+   "reparation": "guide",
+   "os": [
+    "pc"
+   ]
+  },
+  "DIAGAM": {
+   "niveau": "WARN",
+   "origine": "logiciel_tiers",
+   "titre": "diagAM installe (telemetrie GIE, inutile pour la facturation)",
+   "action": "Aucune action requise.",
+   "reparation": "aucune",
+   "os": [
+    "mac"
+   ]
+  },
+  "DMP_KO": {
+   "niveau": "KO",
+   "origine": "logiciel_tiers",
+   "titre": "DmpConnect-JS2 non operationnel",
+   "action": "Lancer Reparer-DMP (PC) / Relancer-DMP (Mac).",
+   "reparation": "guide",
+   "os": [
+    "pc"
+   ]
+  },
+  "DMP_MULTI": {
+   "niveau": "WARN",
+   "origine": "logiciel_tiers",
+   "titre": "Plusieurs instances de dmpconnect-js2",
+   "action": "Relancer DMP Connect (Relancer-DMP.command).",
+   "reparation": "guide",
+   "os": [
+    "pc",
+    "mac"
+   ]
+  },
+  "DMP_PCSC_ERR": {
+   "niveau": "WARN",
+   "origine": "logiciel_tiers",
+   "titre": "DMP Connect n'arrive plus a lister les lecteurs PC/SC (getPcscResourcesList)",
+   "action": "Redemarrer le service DmpConnect-JS2 : Reparer-DMP.bat / Relancer-DMP.command.",
+   "reparation": "guide",
+   "os": [
+    "pc"
+   ]
+  },
+  "DMP_TIMEOUT": {
+   "niveau": "WARN",
+   "origine": "logiciel_tiers",
+   "titre": "DMP Connect en timeout",
+   "action": "Verifier galss.ini (Reparer-lecteur), puis redemarrer DMP Connect.",
+   "reparation": "guide",
+   "os": [
+    "pc"
+   ]
+  },
+  "DMP_TIMEOUT_GALSS": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "DMP Connect en timeout : canal galss.ini sur un lecteur absent",
+   "action": "Reparer-lecteur (realigne galss.ini sur le lecteur reel).",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "FACTURE_INEXISTANTE": {
+   "niveau": "KO",
+   "origine": "service_distant",
+   "titre": "Intellio : la facture demandee n'existe pas",
+   "action": "Probleme cote Odaiji / Intellio (identifiant de facture), pas cote poste : verifier la facture dans le logiciel.",
+   "reparation": "aucune",
+   "os": [
+    "mac"
+   ]
+  },
+  "FSV_MSI_SOURCE": {
+   "niveau": "WARN",
+   "origine": "poste",
+   "titre": "Source MSI du FSV dans un dossier temporaire ou utilisateur",
+   "action": "Risque de fenetres 'package introuvable'. Le kit declare une source stable ; si le constat persiste apres Depannage, a investiguer.",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "FSV_NOREG": {
+   "niveau": "INFO",
+   "origine": "poste",
+   "titre": "FSV non inscrites au registre GIE",
+   "action": "Informatif tant que la lecture fonctionne.",
+   "reparation": "aucune",
+   "os": [
+    "pc"
+   ]
+  },
+  "GALSS_ABSENT_READER": {
+   "niveau": "WARN",
+   "origine": "poste",
+   "titre": "Canal galss.ini sur un lecteur absent",
+   "action": "Sans effet sur Odaiji (PC/SC direct) ; Reparer-lecteur si DMP Connect / iCanopee ne lit pas la CPS.",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "GALSS_BACK": {
+   "niveau": "WARN",
+   "origine": "kit",
+   "titre": "GALSS reinstalle malgre le blocage",
+   "action": "Relancer le kit ; verifier qui reinstalle GALSS (mise a jour GIE).",
+   "reparation": "guide",
+   "os": [
+    "mac"
+   ]
+  },
+  "GALSS_EMPTY": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "galss.ini vide",
+   "action": "Le kit recree galss.ini (--fix).",
+   "reparation": "auto",
+   "os": [
+    "mac"
+   ]
+  },
+  "GALSS_MISMATCH": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "galss.ini : la Vitale est sur le mauvais lecteur",
+   "action": "Reparer-lecteur (CPS + Vitale inserees).",
+   "reparation": "auto",
+   "os": [
+    "pc",
+    "mac"
+   ]
+  },
+  "GALSS_MISMATCH_CPS": {
+   "niveau": "WARN",
+   "origine": "poste",
+   "titre": "galss.ini : la CPS est sur le mauvais lecteur",
+   "action": "Reparer-lecteur (CPS + Vitale inserees).",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "GALSS_MISSING": {
+   "niveau": "WARN",
+   "origine": "poste",
+   "titre": "galss.ini absent (DMP Connect / iCanopee)",
+   "action": "Le kit recree galss.ini en PC/SC si DMP Connect est installe.",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "GALSS_REVERT": {
+   "niveau": "WARN",
+   "origine": "kit",
+   "titre": "Blocage GALSS annule automatiquement (lecture en echec)",
+   "action": "Retour arriere automatique du kit : le GALSS Juxta est conserve ; analyser pourquoi la lecture a echoue.",
+   "reparation": "aucune",
+   "os": [
+    "pc",
+    "mac"
+   ]
+  },
+  "GALSS_SERIE": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "galss.ini en mode serie (ancien logiciel)",
+   "action": "Converti en PC/SC par le kit (--fix), sauvegarde .bak.",
+   "reparation": "auto",
+   "os": [
+    "mac"
+   ]
+  },
+  "GALSS_VITALE_CL": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "Vitale declaree sur une interface sans contact",
+   "action": "Le kit realigne galss.ini sur l'interface contact.",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "GALSS_X86_BACK": {
+   "niveau": "WARN",
+   "origine": "kit",
+   "titre": "GALSS x86 reinstalle malgre le blocage",
+   "action": "Relancer le kit (-SansGalss).",
+   "reparation": "guide",
+   "os": [
+    "pc"
+   ]
+  },
+  "GALSS_X86_TODO": {
+   "niveau": "INFO",
+   "origine": "kit",
+   "titre": "GALSS x86 a desinstaller (-SansGalss)",
+   "action": "Fait par le kit lors du Depannage / de l'installation.",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "GARDIEN_ABSENT": {
+   "niveau": "WARN",
+   "origine": "poste",
+   "titre": "Pas de gardien : JuxtaLink n'est pas relance s'il s'arrete",
+   "action": "Installer le gardien (2-Depanner / 1-Installer).",
+   "reparation": "auto",
+   "os": [
+    "pc",
+    "mac"
+   ]
+  },
+  "GATEKEEPER_OFF": {
+   "niveau": "WARN",
+   "origine": "poste",
+   "titre": "Gatekeeper desactive",
+   "action": "Le kit le reactive apres le pkg Juxta.",
+   "reparation": "auto",
+   "os": [
+    "mac"
+   ]
+  },
+  "JFSE_AGENT": {
+   "niveau": "KO",
+   "origine": "logiciel_tiers",
+   "titre": "Agent launchd jFSE present",
+   "action": "Neutraliser jFSE (Cegedim / Medimust) : question posee par 2-Depanner.",
+   "reparation": "auto",
+   "os": [
+    "mac"
+   ]
+  },
+  "JFSE_DIR": {
+   "niveau": "WARN",
+   "origine": "logiciel_tiers",
+   "titre": "jFSE present sur le disque",
+   "action": "Informatif tant qu'aucun agent ne tourne.",
+   "reparation": "aucune",
+   "os": [
+    "pc",
+    "mac"
+   ]
+  },
+  "JFSE_RUN": {
+   "niveau": "KO",
+   "origine": "logiciel_tiers",
+   "titre": "Agent jFSE actif : il tient le lecteur",
+   "action": "Neutraliser jFSE (Cegedim / Medimust).",
+   "reparation": "auto",
+   "os": [
+    "mac"
+   ]
+  },
+  "JUXTA_STOPPED": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "JuxtaLink arrete (pas relance apres redemarrage ?)",
+   "action": "Relance par le kit ; installer le gardien.",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "JX_MOVED": {
+   "niveau": "WARN",
+   "origine": "kit",
+   "titre": "Elements de demarrage JuxtaLink deplaces par le kit",
+   "action": "A remettre en place (voir journal).",
+   "reparation": "guide",
+   "os": [
+    "pc"
+   ]
+  },
+  "JX_MSI_REPAIR": {
+   "niveau": "WARN",
+   "origine": "poste",
+   "titre": "Fenetres 'package d'installation introuvable' au lancement de JuxtaLink",
+   "action": "Declarer une source MSI stable pour JuxtaLink (kit).",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "JX_MSI_SOURCE": {
+   "niveau": "WARN",
+   "origine": "poste",
+   "titre": "Source d'installation MSI de JuxtaLink disparue (dossier temporaire purge)",
+   "action": "Declarer une source MSI stable (kit).",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "LNA_*": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "Navigateur sans politique Local Network Access (erreurs DRC)",
+   "action": "Autoriser-Odaiji-Chrome (PC .bat / Mac .command) : politique Chrome / Edge.",
+   "reparation": "auto",
+   "os": [
+    "pc",
+    "mac"
+   ]
+  },
+  "MGC_ERREUR": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "Erreur MGC renvoyee par la FSV",
+   "action": "Verifier la section [MGC] des sesam.ini (SESAM_MGC).",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "MICA_KEPT": {
+   "niveau": "KO",
+   "origine": "logiciel_tiers",
+   "titre": "MICA x64 conserve (Cegedim)",
+   "action": "Decision manuelle : le retrait casse Cegedim.",
+   "reparation": "guide",
+   "os": [
+    "pc"
+   ]
+  },
+  "MICA_X64": {
+   "niveau": "WARN",
+   "origine": "poste",
+   "titre": "MICA x64 inscrit",
+   "action": "Informatif ; retire par le kit si plus necessaire.",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "MSI_ECHEC": {
+   "niveau": "INFO",
+   "origine": "poste",
+   "titre": "Installation(s) MSI en echec (voir section 4)",
+   "action": "Informatif (peut etre ancien).",
+   "reparation": "aucune",
+   "os": [
+    "pc"
+   ]
+  },
+  "NO_AUTOSTART": {
+   "niveau": "WARN",
+   "origine": "poste",
+   "titre": "Pas de demarrage automatique de JuxtaLink sans UAC",
+   "action": "Le kit cree la tache planifiee \\Odaiji\\JuxtaLink.",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "NO_CPS": {
+   "niveau": "KO",
+   "origine": "lecteur",
+   "titre": "CPS non detectee",
+   "action": "Inserer la CPS ; verifier le lecteur / le cable.",
+   "reparation": "guide",
+   "os": [
+    "pc",
+    "mac"
+   ]
+  },
+  "NO_FSV_X86": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "FSV 32 bits absentes",
+   "action": "Reinstallation des FSV x86 par le kit.",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "NO_JUXTA": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "JuxtaLink absent",
+   "action": "Installation par le kit.",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "NO_MICA_X86": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "mica.dll 32 bits absent",
+   "action": "Reinstallation par le kit.",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "NO_PLUGIN": {
+   "niveau": "INFO",
+   "origine": "poste",
+   "titre": "Premiere lecture jamais faite (plugin SSV absent)",
+   "action": "Faire une premiere lecture Vitale dans Odaiji (telecharge le plugin).",
+   "reparation": "guide",
+   "os": [
+    "pc",
+    "mac"
+   ]
+  },
+  "NO_READER": {
+   "niveau": "KO",
+   "origine": "lecteur",
+   "titre": "Aucun lecteur smartcard vu par macOS",
+   "action": "Lecteur / cable / pilote : tester sur un autre poste. JuxtaLink hors de cause.",
+   "reparation": "guide",
+   "os": [
+    "mac"
+   ]
+  },
+  "NO_TABLES": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "Tables FSV absentes",
+   "action": "Copie / reinstallation des tables par le kit.",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "NO_VITALE": {
+   "niveau": "KO",
+   "origine": "lecteur",
+   "titre": "Vitale non detectee",
+   "action": "Inserer la carte Vitale.",
+   "reparation": "guide",
+   "os": [
+    "mac"
+   ]
+  },
+  "OLD_*": {
+   "niveau": "WARN",
+   "origine": "logiciel_tiers",
+   "titre": "Ancien logiciel de facturation detecte (Cegedim, Affid, HelloDoc, Weda, Shaman, Pyxvital...)",
+   "action": "Neutraliser l'ancien logiciel (Neutraliser-Ancien-Logiciel) si le medecin ne facture plus avec.",
+   "reparation": "guide",
+   "os": [
+    "pc",
+    "mac"
+   ]
+  },
+  "PORT_CFG": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "JuxtaLink configure sur un port non standard",
+   "action": "Corrige par le kit (port 1234).",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "PORT_CONFLICT": {
+   "niveau": "KO",
+   "origine": "logiciel_tiers",
+   "titre": "Port 1234 occupe par un autre programme",
+   "action": "Liberer le port (-LibererPort).",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "PROC_*": {
+   "niveau": "WARN",
+   "origine": "logiciel_tiers",
+   "titre": "Autre programme actif sur le lecteur / Java (jFSE ?)",
+   "action": "Fermer le programme concerne.",
+   "reparation": "guide",
+   "os": [
+    "pc",
+    "mac"
+   ]
+  },
+  "ROSETTA": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "Rosetta 2 absent",
+   "action": "Installer Rosetta 2 (kit).",
+   "reparation": "auto",
+   "os": [
+    "mac"
+   ]
+  },
+  "SAC_EVAL": {
+   "niveau": "WARN",
+   "origine": "poste",
+   "titre": "Smart App Control en evaluation (peut bloquer mica.dll plus tard)",
+   "action": "Desactiver Smart App Control.",
+   "reparation": "guide",
+   "os": [
+    "pc"
+   ]
+  },
+  "SAC_ON": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "Smart App Control actif (bloque mica.dll)",
+   "action": "Desactiver Smart App Control (irreversible : prevenir le medecin).",
+   "reparation": "guide",
+   "os": [
+    "pc"
+   ]
+  },
+  "SCARDSVR": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "Service carte a puce non demarre",
+   "action": "Demarrer le service (kit).",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "SESAM_EMPTY": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "sesam.ini vide",
+   "action": "Recree par le kit.",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "SESAM_MGC": {
+   "niveau": "WARN",
+   "origine": "poste",
+   "titre": "Section [MGC] manquante dans un sesam.ini",
+   "action": "Corrige par le kit.",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "SESAM_MISSING": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "sesam.ini absent",
+   "action": "Recree par le kit.",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "SESAM_PATH": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "Repertoire sesam.ini absent",
+   "action": "Recree par le kit.",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "SESAM_SSV_TABLE": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "sesam.ini : tables SSV mal declarees",
+   "action": "Corrige par le kit.",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "SESAM_WIN_ABSENT": {
+   "niveau": "WARN",
+   "origine": "poste",
+   "titre": "sesam.ini Windows absent (celui de la FSV suffit)",
+   "action": "Informatif.",
+   "reparation": "aucune",
+   "os": [
+    "pc"
+   ]
+  },
+  "SESAM_WRONG_ARCH": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "sesam.ini pointe sur la mauvaise arborescence (x86 / x64)",
+   "action": "Corrige par le kit.",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "SIG_1638": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "Erreur MSI 1638 (autre version deja installee)",
+   "action": "Voir le journal MSI ; desinstaller la version en conflit.",
+   "reparation": "guide",
+   "os": [
+    "pc"
+   ]
+  },
+  "SIG_MICA": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "Erreur Mica dans le log JuxtaLink",
+   "action": "Verifier MICA / GALSS / Cryptolib (kit --fix).",
+   "reparation": "auto",
+   "os": [
+    "pc",
+    "mac"
+   ]
+  },
+  "SLOW_*": {
+   "niveau": "INFO",
+   "origine": "poste",
+   "titre": "Facteur de lenteur detecte",
+   "action": "Informatif.",
+   "reparation": "aucune",
+   "os": [
+    "pc"
+   ]
+  },
+  "SRT_DIR_ABSENT": {
+   "niveau": "WARN",
+   "origine": "poste",
+   "titre": "Repertoire des tables srt absent",
+   "action": "Cree par le kit.",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "SRT_EMPTY": {
+   "niveau": "WARN",
+   "origine": "poste",
+   "titre": "Tables srt vides (non bloquant sur installation recente)",
+   "action": "Informatif.",
+   "reparation": "aucune",
+   "os": [
+    "pc"
+   ]
+  },
+  "SRV_*": {
+   "niveau": "WARN",
+   "origine": "logiciel_tiers",
+   "titre": "Base d'un ancien logiciel hebergee sur ce poste (ex. Cegedim)",
+   "action": "Ne pas toucher sans accord : poste serveur de l'ancien logiciel.",
+   "reparation": "guide",
+   "os": [
+    "pc"
+   ]
+  },
+  "SSV_TABLES_ERR": {
+   "niveau": "WARN",
+   "origine": "poste",
+   "titre": "Erreur tables SSV et sesam.ini Windows absent",
+   "action": "Corrige par le kit.",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "SSV_TABLES_PERSIST": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "Erreur tables SSV persistante malgre sesam.ini corrects",
+   "action": "Verifier que les tables sont completes en x86 (copie x64 vers x86) ; sinon a investiguer.",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "STACK_X64": {
+   "niveau": "WARN",
+   "origine": "poste",
+   "titre": "Pile Sesam-Vitale 64 bits presente",
+   "action": "Informatif.",
+   "reparation": "aucune",
+   "os": [
+    "pc"
+   ]
+  },
+  "TABLES_X64_ONLY": {
+   "niveau": "WARN",
+   "origine": "poste",
+   "titre": "Tables seulement en 64 bits",
+   "action": "Copie x64 vers x86 sans ecrasement par le kit.",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "TABLES_X86_INCOMPLET": {
+   "niveau": "WARN",
+   "origine": "poste",
+   "titre": "Fichiers de tables absents en x86",
+   "action": "Copie x64 vers x86 par le kit.",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "UC_ABSENT": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "user.config JuxtaLink absent du profil",
+   "action": "Cree par le kit (serveurs MadeForMed).",
+   "reparation": "auto",
+   "os": [
+    "pc",
+    "mac"
+   ]
+  },
+  "UC_ADMIN": {
+   "niveau": "WARN",
+   "origine": "poste",
+   "titre": "user.config absent du profil admin",
+   "action": "Copie par le kit.",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "UC_INCOMPLET": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "user.config sans serveurs token / update (erreurs 1100 / 1200)",
+   "action": "Corrige par le kit.",
+   "reparation": "auto",
+   "os": [
+    "pc"
+   ]
+  },
+  "UC_NOT_MFM": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "user.config sans les serveurs MadeForMed (erreurs token 1100 / update 1200)",
+   "action": "1-Installer.command.",
+   "reparation": "auto",
+   "os": [
+    "mac"
+   ]
+  },
+  "UPD_UNREACHABLE": {
+   "niveau": "WARN",
+   "origine": "reseau",
+   "titre": "Serveur de mise a jour Juxta injoignable (proxy / reseau ?)",
+   "action": "Verifier le reseau / proxy du cabinet.",
+   "reparation": "guide",
+   "os": [
+    "mac"
+   ]
+  },
+  "USB_NO_READER": {
+   "niveau": "KO",
+   "origine": "lecteur",
+   "titre": "Lecteur absent du bus USB",
+   "action": "Adaptateur, cable ou lecteur HS : tester sur un autre poste. A la 1re connexion macOS 15+ : accepter 'Autoriser l'accessoire'.",
+   "reparation": "guide",
+   "os": [
+    "mac"
+   ]
+  },
+  "USB_READER_NOT_SC": {
+   "niveau": "WARN",
+   "origine": "lecteur",
+   "titre": "Lecteur vu en USB mais pas comme lecteur de cartes",
+   "action": "Pilote CCID / lecteur incompatible.",
+   "reparation": "guide",
+   "os": [
+    "mac"
+   ]
+  },
+  "VITALE_ABSENT": {
+   "niveau": "WARN",
+   "origine": "lecteur",
+   "titre": "Vitale non inseree ou non lue",
+   "action": "Inserer la carte Vitale dans le lecteur.",
+   "reparation": "guide",
+   "os": [
+    "mac"
+   ]
+  },
+  "VITALE_ABSENTE": {
+   "niveau": "INFO",
+   "origine": "lecteur",
+   "titre": "Lecture demandee sans carte Vitale dans le lecteur (ADR : La Carte Vitale est absente)",
+   "action": "Inserer la carte Vitale ; pas un probleme du poste.",
+   "reparation": "aucune",
+   "os": [
+    "pc"
+   ]
+  },
+  "VPN_ACTIF": {
+   "niveau": "WARN",
+   "origine": "reseau",
+   "titre": "VPN connecte (lenteur possible)",
+   "action": "Informatif.",
+   "reparation": "aucune",
+   "os": [
+    "pc"
+   ]
+  }
+ }
+}

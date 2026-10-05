@@ -30,4 +30,5 @@ TJ=$(mktemp); printf 'ligne "q" \\ tab\there\r\nr\xe9ponse \xff fin\r\n\001\014o
 JT=$(eval "$JL")
 if printf '{"rapport":"%s"}' "$JT" | python3 -c 'import sys,json;json.load(sys.stdin)' 2>/dev/null; then echo "  ok   JSON valide"; else echo "  ECHEC JSON d'envoi invalide (le serveur repondrait 400)"; FAIL=1; fi
 rm -f "$TJ"
+python3 tests/corpus_test.py || FAIL=1
 echo; [ $FAIL = 0 ] && echo "TOUS LES TESTS PASSENT" || { echo "TESTS EN ECHEC : ne pas publier"; exit 1; }

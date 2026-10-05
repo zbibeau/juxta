@@ -1,0 +1,175 @@
+
+
+======================================================================
+  OdaijiJuxta v0.3.33 - 30/09/2026 19:29
+======================================================================
+         Poste : POSTE-15   Utilisateur : utilisateur-21   Mode : DIAGNOSTIC
+         Rapport : C:\Users\utilisateur-21\Desktop\Avant_POSTE-15_20260930-1929.txt
+
+======================================================================
+  1. SYSTEME
+======================================================================
+         Windows : Microsoft Windows 11 Professionnel 10.0.26200 (64 bits)   Boot : 31/08 22:50
+  [OK]   SCardSvr : Running
+  [OK]   Smart App Control desactive
+         CertPropSvc : Running / Automatic  (lit tous les certificats CPS a l'insertion ; source de lenteur possible)
+         Antivirus : Windows Defender
+
+======================================================================
+  2. LECTEURS ET CARTES
+======================================================================
+         PnP : uTrust 2700 R Smart Card Reader [OK]
+         PnP : uTrust 2700 R Smart Card Reader [OK]
+
+--- certutil -scinfo (resume)
+         Lecteur : Identive CLOUD 2700 R Smart Card Reader 1
+           --- Statut : SCARD_STATE_EMPTY
+         Lecteur : Identive CLOUD 2700 R Smart Card Reader 2
+           --- Statut : SCARD_STATE_EMPTY
+  [KO]   CPS non vue par Windows
+  [WARN] Vitale non identifiee par certutil (peut etre presente mais non reconnue : voir statut PRESENT ci-dessus)
+
+======================================================================
+  3. PILE SESAM-VITALE
+======================================================================
+
+--- Dossiers
+         C:\Program Files (x86)\santesocial -> CPS, fsv, srvsvcnam
+         C:\Program Files\santesocial -> CPS, galss
+  [OK]   FSV x86 : 1.40.14  (utilisee : 1.40.14)
+  [WARN] Pile 64 bits presente (Program Files\santesocial)
+
+--- Tables FSV disponibles (donnees identiques x86/x64)
+         ssv  x86: 5 fich.  x64: absent   -> C:\Program Files (x86)\santesocial\fsv\1.40.14\ssv
+         srt  x86: absent   x64: absent   -> AUCUNE TABLE
+  [KO]   Tables srt introuvables des deux cotes
+         sts  x86: 3 fich.  x64: absent   -> C:\Program Files (x86)\santesocial\fsv\1.40.14\sts
+
+--- MICA
+  [KO]   mica.dll x86 ABSENT
+
+--- Produits GIE / Cryptolib / GALSS inscrits
+         Composants Cryptographiques CPS v5.1.7 (x64) 5.1.7        {297EFD05-38C7-479C-BC34-BC269DCDE018}
+             src : C:\Users\utilisateur-07\AppData\Local\Temp\is-O09MG.tmp\
+         GALSS v3.45 x64              3.45.01      {82AB7DB2-140E-4166-A04E-1FD805EE0A74}  [DMP Connect / iCanopee - x64]
+             src : C:\Users\utilisateur-07\AppData\Local\Temp\is-O09MG.tmp\
+         Composants Cryptographiques CPS v5.2.6 (x64) 5.2.6        {CF3BEBDD-16A0-4AE8-8764-ADDF9A104998}
+             src : C:\ProgramData\santesocial\cps\
+         Composant SrvSvCnam 5.10.04  5.10.04      {306912f2-76f5-4ba3-9260-e9f581c886dd}
+             src : C:\Users\utilisateur-07\AppData\Local\Temp\{52219D81-5309-46D6-90FD-45E63AF582DB}\{132EB661-CC19-4038-8A75-06CACC38588D}\
+         amelipro connect             2.3.3        amelipro-connect
+         DiagAM V3 : collecte de suivi de parc et diagnostic poste 3.2.16       DiagAM_V3
+
+--- GALSS Juxta (x86) - politique Full PC/SC
+         GALSS x86 absent (mode Full PC/SC)
+         BLOQUERINSTALLEGALSS dans le plugin SSV : (plugin non installe)
+
+--- sesam.ini
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\fsv\1.40.13\conf\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\fsv\1.40.14\conf\sesam.ini (verifier lequel la FSV utilise)
+  [WARN]   C:\ProgramData\santesocial\fsv\1.40.13\conf\sesam.ini : section [MGC] absente ou log4crc.xml introuvable
+  [WARN]   C:\ProgramData\santesocial\fsv\1.40.14\conf\sesam.ini : section [MGC] absente ou log4crc.xml introuvable
+  [WARN] C:\Windows\sesam.ini absent, mais celui de la FSV 1.40.14 est present (C:\ProgramData\santesocial\fsv\1.40.14\conf\sesam.ini) : non bloquant
+
+--- Inscription FSV (registre GIE) et MSI disponibles
+  [WARN] Aucune cle HKLM\SOFTWARE\GIE SESAM VITALE\FSV (FSV jamais installees par MSI officiel)
+         MSI FSV disponibles a cote du script : fsv-1.40.1413_x64.msi
+
+--- galss.ini (canaux vs lecteurs reels)
+         CANAL1 : '9600,1,8,0,0' [ABSENT]  LAD: CPS,Log_SV,Vitale
+  [WARN]   canal declare sur un lecteur absent -> timeouts GALSS
+         NomLib=PSSINW64.DLL
+
+--- Processus concurrents sur le lecteur
+         actif : dmpconnectjs_monitor  DMP Connect / iCanopee
+         actif : SRVSVCNAM             amelipro CNAM
+
+--- Anciens logiciels metiers detectes (catalogue editeurs.psd1)
+  [WARN] Affid : dossier, produit inscrit -> usage a confirmer  [bloquants connus : fsenxt.exe occupe le port 1234 de JuxtaLink]
+         Catalogue : Cegedim, Affid, Shaman, Weda, Pyxvital, DrSante, HelloDoc
+
+--- Autres logiciels actifs (inventaire, a signaler si concurrent)
+         Port local 1922 : SRVSVCNAM (C:\Program Files (x86)\santesocial\srvsvcnam\SRVSVCNAM.exe)
+         Port local 1943 : SRVSVCNAM (C:\Program Files (x86)\santesocial\srvsvcnam\SRVSVCNAM.exe)
+         Port local 5939 : TeamViewer_Service (C:\Program Files (x86)\TeamViewer\TeamViewer_Service.exe)
+         Port local 9982 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 9986 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 9987 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 37014 : TeamViewer_Service (C:\Program Files (x86)\TeamViewer\TeamViewer_Service.exe)
+         Port local 37114 : TeamViewer_Service (C:\Program Files (x86)\TeamViewer\TeamViewer_Service.exe)
+         Port local 40500 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Demarrage auto : WavesSvc -> "C:\Program Files\Waves\MaxxAudio\WavesSvc64.exe" -Jack
+         Demarrage auto : OpenVPN-GUI -> C:\Program Files\OpenVPN\bin\openvpn-gui.exe
+         Service : Foxit PDF Reader Update Service (FoxitReaderUpdateService)   <- a verifier (concurrent ?)
+         Service : OpenVPN Interactive Service (OpenVPNServiceInteractive)
+         Service : Waves Audio Services (WavesSysSvc)
+         Produit sante : Foxit PDF Reader 2025.2.1.33197 (Foxit Software Inc.)   <- a verifier (concurrent ?)
+
+======================================================================
+  3b. DMP CONNECT / ICANOPEE (doit fonctionner en parallele de JuxtaLink)
+======================================================================
+  [OK]   Installe : DmpConnect-JS2 - Service d'accès au DMP 1.11.14
+  [OK]   dmpconnectjs_monitor actif
+  [OK]   dmpconnect-js2 actif (3 processus)
+  [OK]   Ecoute locale sur port(s) : 9982, 9986, 9987, 40500
+         Demarrage auto : dmpconnectjs_monitoring
+         Pile 64 bits DMP Connect : GALSS 3.45.01 / Cryptolib 5.1.7 5.2.6
+         Log recent : C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.log (30/09 19:23)
+  [WARN]   260929:082949 [204] [E] [UNHDLEX] Poco exception: Timeout.
+  [WARN]   260929:085246 [434] [E] [UNHDLEX] Poco exception: Timeout.
+  [WARN]   260929:091352 [435] [E] [UNHDLEX] Poco exception: Timeout.
+  [KO]   DMP Connect : 8 'Timeout' recents ET galss.ini declare un lecteur absent -> le DMP ne lit plus la CPS. Correction : Reparer-lecteur.bat puis redemarrage du service DMP Connect (-Fix le fait)
+  [OK]   DMP Connect / iCanopee operationnel (processus + port)
+
+         Rappel : ne jamais desinstaller 'GALSS' ou 'Cryptolib' en bloc ; le x64 appartient a DMP Connect / iCanopee, le x86 a Juxta.
+
+======================================================================
+  3c. NAVIGATEURS - Local Network Access (erreurs DRC a la teletransmission)
+======================================================================
+  [KO]   Chrome 154.0.8037.58 : Local Network Access actif et Odaiji non autorise -> erreurs DRC possibles (Autoriser-Odaiji-Chrome.bat)
+  [KO]   Edge 154.0.4258.37 : Local Network Access actif et Odaiji non autorise -> erreurs DRC possibles (Autoriser-Odaiji-Chrome.bat)
+
+======================================================================
+  4. JUXTALINK
+======================================================================
+  [KO]   JuxtaLink.exe introuvable
+  [WARN] JuxtaLink non lance
+  [WARN] Aucun programme n'ecoute sur le port 1234 (JuxtaLink arrete ou n'a pas pu demarrer)
+  [WARN] trace.txt absent : lancer une lecture depuis Odaiji puis relancer le diag
+
+======================================================================
+  5. PERFORMANCE (durees mesurees dans le log JuxtaLink)
+======================================================================
+         Pas de log
+
+--- Causes de lenteur presentes sur ce poste (a traiter si les lectures sont lentes)
+  [WARN] CertPropSvc en demarrage automatique : relit tous les certificats de la CPS a chaque insertion -> passer en Manuel (-Fix 7v)
+
+======================================================================
+  6. VERDICT
+======================================================================
+  [KO]   Windows ne voit pas la CPS -> lecteur / USB / pilote.
+  [KO]   En plus : DMP Connect / iCanopee en timeout a cause de galss.ini (lecteur absent) : Reparer-lecteur.bat puis redemarrer le service DMP Connect.
+
+Scenario : READER
+Constats :
+           NO_CPS                KO    CPS non detectee
+           STACK_X64             WARN  Pile 64 bits presente
+           NO_TABLES             KO    Tables FSV srt absentes
+           NO_MICA_X86           KO    mica.dll 32 bits absent
+           SESAM_MGC             WARN  [MGC] manquante dans 2 autre(s) sesam.ini
+           SESAM_WIN_ABSENT      WARN  sesam.ini Windows absent (celui de la FSV suffit)
+           FSV_NOREG             INFO  FSV non inscrites au registre GIE
+           GALSS_ABSENT_READER   WARN  CANAL1 sur lecteur absent : 9600,1,8,0,0
+           OLD_AFFID             WARN  Affid detecte (dossier, produit inscrit)
+           DMP_TIMEOUT_GALSS     KO    DMP Connect en timeout : canal galss.ini sur un lecteur absent
+           LNA_CHROME            KO    Chrome sans politique Local Network Access
+           LNA_EDGE              KO    Edge sans politique Local Network Access
+           NO_JUXTA              KO    JuxtaLink absent
+           CERTPROP_AUTO         WARN  CertPropSvc automatique
+
+======================================================================
+  FIN
+======================================================================
+Rapport : C:\Users\utilisateur-21\Desktop\Avant_POSTE-15_20260930-1929.txt
+Copier son contenu dans le channel Claude pour analyse.

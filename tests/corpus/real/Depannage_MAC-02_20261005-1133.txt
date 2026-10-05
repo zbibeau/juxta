@@ -1,0 +1,84 @@
+Odaiji_Juxta - DEPANNAGE sur MAC-02
+Mot de passe administrateur requis.
+
+[1;36m==> 1/7  Diagnostic AVANT (lecture seule)[0m
+    (cartes CPS + Vitale inserees)
+    (Analyse du Mac en cours (1 a 2 min) : 2 s)
+    [32m[OK][0m Rapport : /Users/utilisateur-24/Desktop/Avant_MAC-02_20261005-1133.txt
+    Scenario : DMPCONNECT
+  [KO]   Google Chrome 154.0.8037.95 : Local Network Access actif et Odaiji non autorise -> erreurs DRC possibles (Autoriser-Odaiji-Chrome.command)
+
+[1;36m==> 2/7  Anciens logiciels de facturation[0m
+    Rien a couper.
+
+[1;36m==> 3/7  Corrections automatiques sures[0m
+    (Corrections en cours (1 a 2 min) : 2 s)
+  [OK]   Rosetta 2 installe
+  [OK]   CPS presente
+  [OK]   Vitale presente
+  [WARN] Plusieurs dmpconnect-js2 simultanes
+  [OK]   Pas d'agent launchd jFSE
+  [OK]   /Applications/jFSE absent
+  [OK]   MediMust installe mais inactif (rien ne se lance)
+  [OK]   MediStory (Prokov) absent
+  [OK]   diagAM absent
+  [OK]   /Library/Preferences/galss.ini (679 octets)
+  [WARN] dmpconnect : 1 crash(s), dernier : dmpconnect-js2-2026-09-29-113627.ips
+  [KO]   Google Chrome 154.0.8037.95 : Local Network Access actif et Odaiji non autorise -> erreurs DRC possibles (Autoriser-Odaiji-Chrome.command)
+  [OK]   /Applications/JuxtaLink.app  v2.2.3  (x86_64 )
+  [OK]   Plugin SSV present : 4.1.1.0 
+  [OK]   user.config MadeForMed (serveurs token/update)
+  [OK]   Gardien JuxtaLink : veille toutes les 10 min
+  [WARN] DmpConnect-JS2 instable (crash / instances multiples) : suspect principal de l'intermittence.
+>> Arreter DmpConnect jusqu'au prochain redemarrage pour tester la lecture Vitale ? -> ignore en mode auto (action a valider par un humain)
+  >>> Redemarrer le Mac, puis 10 lectures Vitale dans Odaiji. Relancer le diag apres.
+
+[1;36m==> 4/7  Lecteur de cartes et navigateurs[0m
+    [32m[OK][0m galss.ini : rien a realigner
+    Chrome / Edge : autoriser Odaiji a joindre JuxtaLink (Local Network Access)
+    2026-10-05 11:33:32.863 defaults[53401:7448252] Could not parse: https://[*.]odaiji.co.  Try single-quoting it.
+    2026-10-05 11:33:32.878 defaults[53404:7448258] Could not parse: https://[*.]odaiji.co.  Try single-quoting it.
+    2026-10-05 11:33:32.906 defaults[53410:7448270] Could not parse: https://[*.]odaiji.co.  Try single-quoting it.
+    2026-10-05 11:33:32.921 defaults[53413:7448276] Could not parse: https://[*.]odaiji.co.  Try single-quoting it.
+    Politique ecrite (Firefox) : app.odaiji.co *.odaiji.co *.madeformed.fr *.juxta.cloud localhost 127.0.0.1  -> verification : about:policies
+    Politiques ecrites (Chrome + Edge) : https://app.odaiji.co https://[*.]odaiji.co https://[*.]madeformed.fr https://[*.]juxta.cloud
+    Relancer le navigateur. Verification : chrome://policy doit lister LocalNetworkAccessAllowedForUrls.
+    [31m[KO][0m Politique absente (com.google.Chrome) : nouvelle tentative
+2026-10-05 11:33:36.044 defaults[53471:7448424] Could not parse: https://[*.]odaiji.co.  Try single-quoting it.
+    [33m[WARN][0m Fermer puis rouvrir Chrome / Edge pour que la politique soit prise en compte
+
+[1;36m==> 5/7  Full PC/SC (retrait du GALSS Juxta)[0m
+    (Passage Full PC/SC en cours : 2 s)
+--- GALSS Juxta - politique Full PC/SC
+         GALSS installe : fr.sesamvitale.galss.pkg v3.43.02
+         BLOQUERINSTALLEGALSS dans le plugin SSV : false
+--- Bibliotheques MICA / GALSS et leur architecture
+--- 7g. Passage en Full PC/SC : retrait du GALSS Juxta
+  [OK]   DMP Connect / iCanopee installe : GALSS conserve (il l'utilise). galss.ini regenere en PC/SC suffit.
+  >>> Redemarrer le Mac, puis 10 lectures Vitale dans Odaiji. Relancer le diag apres.
+
+[1;36m==> 6/7  user.config MadeForMed + redemarrage de JuxtaLink[0m
+cp: /Applications/JuxtaLink.app/Contents/Resources/user.config.bak-20261005-1133: Operation not permitted
+cp: /Applications/JuxtaLink.app/Contents/Resources/user.config: Operation not permitted
+    [32m[OK][0m user.config MadeForMed charge
+    [32m[OK][0m JuxtaLink en cours d'execution
+    [32m[OK][0m JuxtaLink ecoute sur le port 1234
+    [32m[OK][0m Gardien installe : veille de JuxtaLink toutes les 10 min, relance s'il est arrete (journal ~/Library/Logs/juxtalink-gardien.log)
+    >>> CONTROLE dans Odaiji : une facture avec une carte Vitale, puis une facture sans Vitale (valider l'appel ADRi).
+    Entree une fois les deux factures faites 
+[1;36m==> 7/7  Diagnostic APRES[0m
+    (Analyse du Mac en cours (1 a 2 min) : 2 s)
+    [32m[OK][0m Rapport : /Users/utilisateur-24/Desktop/Apres_MAC-02_20261005-1134.txt
+
+    AVANT : Scenario : DMPCONNECT
+    APRES : Scenario : DMPCONNECT
+  [WARN] Plusieurs dmpconnect-js2 simultanes
+  [WARN] dmpconnect : 1 crash(s), dernier : dmpconnect-js2-2026-09-29-113627.ips
+  [KO]   Google Chrome 154.0.8037.95 : Local Network Access actif et Odaiji non autorise -> erreurs DRC possibles (Autoriser-Odaiji-Chrome.command)
+  [WARN] DmpConnect-JS2 instable (crash / instances multiples) : suspect principal de l'intermittence.
+
+A envoyer dans le channel Claude si le scenario n'est pas OK :
+    /Users/utilisateur-24/Desktop/Avant_MAC-02_20261005-1133.txt
+    /Users/utilisateur-24/Desktop/Apres_MAC-02_20261005-1134.txt
+    /Users/utilisateur-24/Desktop/Depannage_MAC-02_20261005-1133.txt
+Ensuite, si un doute persiste : 3-Diag-seul.command apres ces deux factures.

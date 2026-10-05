@@ -1,0 +1,237 @@
+
+
+======================================================================
+  OdaijiJuxta v0.3.41 - 02/10/2026 11:09
+======================================================================
+         Poste : POSTE-20   Utilisateur : utilisateur-20   Mode : DIAGNOSTIC
+         Rapport : C:\Users\utilisateur-20\Desktop\Avant_POSTE-20_20261002-1109.txt
+
+======================================================================
+  1. SYSTEME
+======================================================================
+         Windows : Microsoft Windows 11 Professionnel 10.0.22631 (64 bits)   Boot : 24/09 16:21
+  [OK]   SCardSvr : Running
+  [OK]   Smart App Control desactive
+         CertPropSvc : Running / Automatic  (lit tous les certificats CPS a l'insertion ; source de lenteur possible)
+         Antivirus : Windows Defender, Kaspersky
+
+======================================================================
+  2. LECTEURS ET CARTES
+======================================================================
+         PnP : Lecteur de carte à puce Microsoft Usbccid (WUDF) [Unknown]
+         PnP : Lecteur de carte à puce Microsoft Usbccid (WUDF) [Unknown]
+         PnP : Lecteur de carte à puce Microsoft Usbccid (WUDF) [Unknown]
+         PnP : Lecteur de carte à puce Microsoft Usbccid (WUDF) [Unknown]
+         PnP : Olaqin SESAM-VITALE reader [OK]
+
+--- certutil -scinfo (resume)
+         Lecteur : Ingenico [n] TL TELIUM 1 0
+           --- Statut : SCARD_STATE_PRESENT | SCARD_STATE_INUSE
+  [OK]     CPS dans 'Ingenico [n] TL TELIUM 1 0'
+         Lecteur : Ingenico [n] TL TELIUM 2 0
+           --- Statut : SCARD_STATE_EMPTY
+         Lecteur : Ingenico [n] TL TELIUM 3 0
+           --- Statut : SCARD_STATE_EMPTY
+         Lecteur : Ingenico [n] TL TELIUM 1 0
+  [OK]     CPS dans 'Ingenico [n] TL TELIUM 1 0'
+  [WARN] Vitale non identifiee par certutil (peut etre presente mais non reconnue : voir statut PRESENT ci-dessus)
+
+======================================================================
+  3. PILE SESAM-VITALE
+======================================================================
+
+--- Dossiers
+         C:\Program Files (x86)\santesocial -> amelipro, CPS, diagAM, FSV, srvsvcnam
+         C:\Program Files\santesocial -> CPS, fsv, mica
+  [OK]   FSV x86 : 1.40.10  (utilisee : 1.40.10)
+  [WARN] Pile 64 bits presente (Program Files\santesocial)
+
+--- Tables FSV disponibles (donnees identiques x86/x64)
+         ssv  x86: 26 fich. x64: absent   -> C:\Program Files (x86)\santesocial\fsv\1.40.10\ssv
+         srt  x86: absent   x64: absent   -> AUCUNE TABLE
+  [KO]   Tables srt introuvables des deux cotes
+         sts  x86: 17 fich. x64: absent   -> C:\Program Files (x86)\santesocial\fsv\1.40.10\sts
+
+--- MICA
+  [KO]   mica.dll x86 ABSENT
+
+--- Produits GIE / Cryptolib / GALSS inscrits
+         fsv-1.40.1413_x64            1.40.1413    {6CBB8D6D-3787-4CC8-8BBA-E99C5FCC5AD6}
+             src : C:\ProgramData\Package Cache\{6CBB8D6D-3787-4CC8-8BBA-E99C5FCC5AD6}v1.40.1413\
+         Composants Cryptographiques CPS v5.2.5 (x64) 5.2.5        {8E7E05AF-341D-412A-937E-B80867AE8D2B}
+             src : C:\ProgramData\santesocial\cps\
+         mica x64                     3.03.04      {bd34dc72-10e9-4857-b198-6aabaf0506cb}
+             src : C:\ProgramData\Package Cache\{bd34dc72-10e9-4857-b198-6aabaf0506cb}v3.03.04\
+         Composant SrvSvCnam 5.10.04  5.10.04      {306912f2-76f5-4ba3-9260-e9f581c886dd}
+             src : C:\Users\utilisateur-20\AppData\Local\Temp\{655CC6BE-BA20-4632-B09C-7CBE9379C4FB}\{132EB661-CC19-4038-8A75-06CACC38588D}\
+         amelipro connect             2.3.3        amelipro-connect
+         DiagAM V3 : collecte de suivi de parc et diagnostic poste 3.2.16       DiagAM_V3
+  [WARN] MICA x64 inscrit (bloque l'installation de MICA x86 : erreur 1638)
+
+--- GALSS Juxta (x86) - politique Full PC/SC
+         GALSS x86 absent (mode Full PC/SC)
+         BLOQUERINSTALLEGALSS dans le plugin SSV : (plugin non installe)
+
+--- sesam.ini
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf_003\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf_004\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf_005\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf_006\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf_007\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf_008\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf_009\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf_010\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf_011\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf_012\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf_013\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf_014\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf_015\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.10\conf_016\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\FSV\1.40.14\conf\sesam.ini (verifier lequel la FSV utilise)
+  [WARN]   C:\ProgramData\santesocial\FSV\1.40.10\conf\sesam.ini : section [MGC] absente ou log4crc.xml introuvable
+  [WARN] C:\Windows\sesam.ini absent, mais celui de la FSV 1.40.10 est present (C:\ProgramData\santesocial\fsv\1.40.10\conf\sesam.ini) : non bloquant
+
+--- Inscription FSV (registre GIE) et MSI disponibles
+         Registre GIE FSV : 1.40.14 (x64)
+         MSI FSV disponibles a cote du script : fsv-1.40.1413_x64.msi
+
+--- galss.ini (canaux vs lecteurs reels)
+  [WARN] galss.ini absent
+  [WARN]   DMP Connect / iCanopee a besoin de galss.ini : Reparer-lecteur.bat le recree (CPS + Vitale inserees)
+
+--- Processus concurrents sur le lecteur
+         actif : dmpconnectjs_monitor  DMP Connect / iCanopee
+         actif : SRVSVCNAM             amelipro CNAM
+  [WARN] actif : java                  Java (jFSE ?)  <- residu (Neutraliser-Cegedim.bat)
+
+--- Anciens logiciels metiers detectes (catalogue editeurs.psd1)
+  [WARN] HelloDoc : produit inscrit -> usage a confirmer  [bloquants connus : module SESAM-Vitale HelloDoc sur le lecteur quand il est ouvert ; a installe 4 Cryptolib (C:\Program Files (x86)\Imagine Editions\Technique)]
+         Catalogue : Cegedim, Affid, Shaman, Weda, Pyxvital, DrSante, HelloDoc
+
+--- Autres logiciels actifs (inventaire, a signaler si concurrent)
+         Port local 1922 : SRVSVCNAM (C:\Program Files (x86)\santesocial\srvsvcnam\SRVSVCNAM.exe)
+         Port local 1943 : SRVSVCNAM (C:\Program Files (x86)\santesocial\srvsvcnam\SRVSVCNAM.exe)
+         Port local 3000 : cdp-connector (C:\Program Files\cdp-connector\cdp-connector.exe)
+         Port local 3001 : cdp-connector (C:\Program Files\cdp-connector\cdp-connector.exe)
+         Port local 3055 : fbserver (C:\Program Files (x86)\Firebird\Firebird_2_0\bin\fbserver.exe)
+         Port local 3066 : AxiDBSafe (C:\Program Files (x86)\AxiSoftware\AxiDBSafe\AxiDBSafe.exe)
+         Port local 4661 : CGM.CLICKDOC.Api (C:\CGM\CGMHubClickdoc\CGM.CLICKDOC.Api.exe)
+         Port local 5050 : CGM.Canopee.AgentWorker (C:\Program Files (x86)\CGM\CGM.Canopee.AgentWorker\CGM.Canopee.AgentWorker.exe)
+         Port local 6039 : TeamViewer (C:\Users\utilisateur-20\AppData\Local\Temp\TeamViewer\TeamViewer.exe)
+         Port local 7070 : AnyDesk-d1e33812 (C:\Program Files (x86)\AnyDesk-d1e33812\AnyDesk-d1e33812.exe)
+         Port local 9982 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 9983 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 9984 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 11123 : CGMHub (C:\Program Files (x86)\CGM\CGMHub\CGMHub.exe)
+         Port local 12203 : java (C:\Program Files\Eclipse Adoptium\jre-8.0.345.1-hotspot\bin\java.exe)
+         Port local 30025 : fbserver (C:\Program Files (x86)\Firebird\Firebird_2_5\bin\fbserver.exe)
+         Port local 37014 : TeamViewer (C:\Users\utilisateur-20\AppData\Local\Temp\TeamViewer\TeamViewer.exe)
+         Port local 37114 : TeamViewer (C:\Users\utilisateur-20\AppData\Local\Temp\TeamViewer\TeamViewer.exe)
+         Port local 40500 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Demarrage auto : AxilogNotify -> C:\Program Files (x86)\AxiSoftware\LiveUpdate\AxilogNotifier.exe
+         Demarrage auto : ControlCenter4 -> C:\Program Files (x86)\ControlCenter4\BrCcBoot.exe /autorun
+         Demarrage auto : BrStsMon00 -> C:\Program Files (x86)\Browny02\Brother\BrStMonW.exe /AUTORUN
+         Demarrage auto : BrotherSoftwareUpdateNotification -> C:\Program Files (x86)\Brother\SoftwareUpdateNotification\SoftwareUpdateNotificationService.exe /Autorun
+         Demarrage auto : SunJavaUpdateSched -> "C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe"
+         Demarrage auto : VipUpdateManager -> C:\Program Files (x86)\Intermedix\Vip\VipUpdateManager.exe
+         Demarrage auto : AxiDBSafe -> "C:\Program Files (x86)\AxiSoftware\AxiDBSafe\AxiDBSafe.exe"
+         Demarrage auto : BeeBEEP -> C:\Program Files (x86)\BeeBEEP\beebeep.exe
+         Service : AxiDBSafe (AxiDBSafe)
+         Service : AxiDBSafe Watchdog (AxiDBSafeWatchdog)
+         Service : AxilogAxi5Service - Service Axisanté5 (AxilogAxisante5Service)   <- a verifier (concurrent ?)
+         Service : AxilogUpdate - Service de mise à jour CGM (AxilogUpdateService)
+         Service : AxiTaskManager (AxiTaskManager)
+         Service : BrYNSvc (BrYNSvc)
+         Service : CDPConnector (CDPConnector)
+         Service : CDPConnectorUpdater (CDPConnectorUpdater)
+         Service : CGM.Canopee.AgentWorker (CGM.Canopee.AgentWorker)
+         Service : CGM.CLICKDOC.Api (CGM.CLICKDOC.Api)
+         Service : CGM.CLICKDOC.Watchdog (CGM.CLICKDOC.Watchdog)
+         Service : CGM.ePrescription.LogEmitter (CGM.ePrescription.LogEmitter)
+         Service : CGM.MerlinWatchdogService (Cgm.Has.Merlin.MerlinWatchdogService)
+         Service : CGMHub (CGMHub)
+         Service : Firebird Guardian - DefaultInstance (FirebirdGuardianDefaultInstance)
+         Service : Firebird Server - 2.5 (FirebirdServer2.5)
+         Service : Firebird Server - DefaultInstance (FirebirdServerDefaultInstance)
+         Service : Brother USB Application Controller (USBAppControl)
+         Service : Brother Workflow Application Controller (WorkflowAppControl)
+         Produit sante : CLICKDOCpro 25.5.1 25.5.1 (CompuGroup Medical Deutschland AG)   <- a verifier (concurrent ?)
+         Produit sante : cdp-connector 24.9.0 24.9.0 (CompuGroup Medical Software GmbH)   <- a verifier (concurrent ?)
+         Produit sante : CGMeVITALE.SanteSocialFiles 26.1.0.02394 (Imagine Editions SAS)   <- a verifier (concurrent ?)
+         Produit sante : ComposantCDP 3.83.0.5 ()   <- a verifier (concurrent ?)
+         Produit sante : CLICKDOC version 2.x.x.x.x 2.x.x.x.x (CompuGroup Medical Solutions)   <- a verifier (concurrent ?)
+         Produit sante : CGM eVITALE Client 26.1.0.02394 26.1.0.2394 (Imagine Editions SAS)   <- a verifier (concurrent ?)
+         Produit sante : LiveUpdate version 2.0.70.0 2.0.70.0 (CompuGroup Medical Solutions)   <- a verifier (concurrent ?)
+         Produit sante : AxiSanté version 5.6.0.8253 5.6.0.8253 ()   <- a verifier (concurrent ?)
+         Produit sante : CGM eVitale Client 26.1.0.02394 26.1.0.02394 (CGM France)   <- a verifier (concurrent ?)
+         Produit sante : AxiDBSafe version 4.9.0.59 4.9.0.59 (CompuGroup Medical Solutions)   <- a verifier (concurrent ?)
+
+======================================================================
+  3b. DMP CONNECT / ICANOPEE (doit fonctionner en parallele de JuxtaLink)
+======================================================================
+  [OK]   Installe : DmpConnect-JS2 - Service d'accés au DMP 1.11.9
+  [OK]   dmpconnectjs_monitor actif
+  [OK]   dmpconnect-js2 actif (3 processus)
+  [OK]   Ecoute locale sur port(s) : 9982, 9983, 9984, 40500
+         Demarrage auto : dmpconnectjs_monitoring
+         Pile 64 bits DMP Connect : GALSS absent / Cryptolib 5.2.5
+         Log recent : C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.log (02/10 09:51)
+  [WARN]   261001:133203 [1768] [E] [REQUEST] #2472: Network exception: Software caused connection abort.
+  [WARN]   261002:074525 [1541] [E] [REQUEST] #2716: Network exception: Software caused connection abort.
+  [WARN]   261002:075124 [2043] [E] [UNHDLEX] Poco exception: Software caused connection abort.
+  [OK]   DMP Connect / iCanopee operationnel (processus + port)
+
+         Rappel : ne jamais desinstaller 'GALSS' ou 'Cryptolib' en bloc ; le x64 appartient a DMP Connect / iCanopee, le x86 a Juxta.
+
+======================================================================
+  3c. NAVIGATEURS - Local Network Access (erreurs DRC a la teletransmission)
+======================================================================
+  [KO]   Chrome 154.0.8037.98 : Local Network Access actif et Odaiji non autorise -> erreurs DRC possibles (Autoriser-Odaiji-Chrome.bat)
+  [KO]   Edge 154.0.4258.48 : Local Network Access actif et Odaiji non autorise -> erreurs DRC possibles (Autoriser-Odaiji-Chrome.bat)
+
+======================================================================
+  4. JUXTALINK
+======================================================================
+  [KO]   JuxtaLink.exe introuvable
+  [WARN] JuxtaLink non lance
+  [WARN] Aucun programme n'ecoute sur le port 1234 (JuxtaLink arrete ou n'a pas pu demarrer)
+  [WARN] trace.txt absent : lancer une lecture depuis Odaiji puis relancer le diag
+
+======================================================================
+  5. PERFORMANCE (durees mesurees dans le log JuxtaLink)
+======================================================================
+         Pas de log
+
+--- Causes de lenteur presentes sur ce poste (a traiter si les lectures sont lentes)
+  [WARN] CertPropSvc en demarrage automatique : relit tous les certificats de la CPS a chaque insertion -> passer en Manuel (-Fix 7v)
+  [WARN] Antivirus tiers : demander les exclusions C:\Program Files (x86)\santesocial, C:\Program Files (x86)\Juxta, C:\Program Files (x86)\DmpConnect-JS2 (et le processus JuxtaLink.exe)
+
+======================================================================
+  6. VERDICT
+======================================================================
+  [KO]   MICA x86 absent
+  [WARN] galss.ini ABSENT : DMP Connect / iCanopee ne lit pas la CPS. Reparer-lecteur.bat (CPS + Vitale inserees) le recree, puis redemarrer le service DMP Connect.
+
+Scenario : MICA
+Constats :
+           AV_TIERS              INFO  Antivirus tiers : Windows Defender, Kaspersky
+           STACK_X64             WARN  Pile 64 bits presente
+           NO_TABLES             KO    Tables FSV srt absentes
+           NO_MICA_X86           KO    mica.dll 32 bits absent
+           MICA_X64              WARN  MICA x64 inscrit
+           SESAM_MGC             WARN  [MGC] manquante dans 1 autre(s) sesam.ini
+           SESAM_WIN_ABSENT      WARN  sesam.ini Windows absent (celui de la FSV suffit)
+           GALSS_MISSING         WARN  galss.ini absent (DMP Connect / iCanopee)
+           PROC_JAVA             WARN  Java (jFSE ?) actif
+           OLD_HELLODOC          WARN  HelloDoc detecte (produit inscrit)
+           LNA_CHROME            KO    Chrome sans politique Local Network Access
+           LNA_EDGE              KO    Edge sans politique Local Network Access
+           NO_JUXTA              KO    JuxtaLink absent
+           CERTPROP_AUTO         WARN  CertPropSvc automatique
+
+======================================================================
+  FIN
+======================================================================
+Rapport : C:\Users\utilisateur-20\Desktop\Avant_POSTE-20_20261002-1109.txt
+Copier son contenu dans le channel Claude pour analyse.

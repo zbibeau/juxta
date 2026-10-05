@@ -1,0 +1,196 @@
+
+
+======================================================================
+  OdaijiJuxta v0.3.51 - 05/10/2026 09:30
+======================================================================
+         Poste : POSTE-05   Utilisateur : Admin   Mode : DIAGNOSTIC
+         Rapport : C:\Users\Admin\Desktop\Avant_POSTE-05_20261005-0930.txt
+
+======================================================================
+  1. SYSTEME
+======================================================================
+         Windows : Microsoft Windows 11 Professionnel 10.0.26300 (64 bits)   Boot : 05/10 09:24
+  [OK]   SCardSvr : Running
+  [WARN] Smart App Control en EVALUATION : Windows l'activera seul et bloquera mica.dll. Le desactiver maintenant (Securite Windows > Controle des applications)
+         CertPropSvc : Stopped / Manual  (lit tous les certificats CPS a l'insertion ; source de lenteur possible)
+         Antivirus : Windows Defender
+
+======================================================================
+  2. LECTEURS ET CARTES
+======================================================================
+         PnP : Olaqin SESAM-VITALE reader [OK]
+         PnP : Lecteur de carte à puce Microsoft Usbccid (WUDF) [Unknown]
+         PnP : uTrust 2700 R Smart Card Reader [Unknown]
+
+--- certutil -scinfo (resume)
+         Lecteur : Ingenico [n] TL TELIUM 1 0
+           --- Statut : SCARD_STATE_PRESENT | SCARD_STATE_INUSE
+  [OK]     CPS dans 'Ingenico [n] TL TELIUM 1 0'
+         Lecteur : Ingenico [n] TL TELIUM 2 0
+           --- Statut : SCARD_STATE_PRESENT
+  [OK]     Vitale dans 'Ingenico [n] TL TELIUM 2 0'
+         Lecteur : Ingenico [n] TL TELIUM 3 0
+           --- Statut : SCARD_STATE_EMPTY
+         Lecteur : Windows Hello for Business 1
+           --- Statut : SCARD_STATE_PRESENT
+         Lecteur : Ingenico [n] TL TELIUM 1 0
+  [OK]     CPS dans 'Ingenico [n] TL TELIUM 1 0'
+         Lecteur : Windows Hello for Business 1
+         Lecteur : Windows Hello for Business 1
+
+======================================================================
+  3. PILE SESAM-VITALE
+======================================================================
+
+--- Dossiers
+         C:\Program Files (x86)\santesocial -> CPS, fsv, srvsvcnam
+         C:\Program Files\santesocial -> CPS, fsv
+  [OK]   FSV x86 : 1.40.14  (utilisee : 1.40.14)
+  [WARN] Pile 64 bits presente (Program Files\santesocial)
+
+--- Tables FSV disponibles (donnees identiques x86/x64)
+         ssv  x86: absent   x64: 5 fich.  -> C:\Program Files\santesocial\fsv\1.40.14\ssv
+  [WARN] Tables ssv uniquement en x64 : sesam.ini doit pointer sur Program Files\ (pas x86)
+         srt  x86: 0 fich.  x64: 0 fich.  -> AUCUNE TABLE
+  [WARN] Tables srt vides : normal sur une installation recente (remplies par les mises a jour), pas un blocage
+         sts  x86: absent   x64: 3 fich.  -> C:\Program Files\santesocial\fsv\1.40.14\sts
+  [WARN] Tables sts uniquement en x64 : sesam.ini doit pointer sur Program Files\ (pas x86)
+
+--- MICA
+  [KO]   mica.dll x86 ABSENT
+
+--- Produits GIE / Cryptolib / GALSS inscrits
+         fsv-1.40.1413_x64            1.40.1413    {6CBB8D6D-3787-4CC8-8BBA-E99C5FCC5AD6}
+             src : C:\Users\Admin\Downloads\Odaiji_Juxta_PC (2)\Odaiji_Juxta_PC\installeurs\
+         Composants Cryptographiques CPS v5.2.5 (x64) 5.2.5        {8E7E05AF-341D-412A-937E-B80867AE8D2B}
+             src : C:\Users\Admin\AppData\Local\Temp\{EC232F5D-BCC8-41AB-AA3E-525BF8F8B0CF}\{19A3FCE2-8108-4F83-9E30-BD3CD8ADA6B4}\
+         Composant SrvSvCnam 5.10.04  5.10.04      {306912f2-76f5-4ba3-9260-e9f581c886dd}
+             src : C:\Users\Admin\AppData\Local\Temp\{EC232F5D-BCC8-41AB-AA3E-525BF8F8B0CF}\{19A3FCE2-8108-4F83-9E30-BD3CD8ADA6B4}\
+         DiagAM V3 : collecte de suivi de parc et diagnostic poste 3.1.15       DiagAM_V3
+
+--- GALSS Juxta (x86) - politique Full PC/SC
+         GALSS x86 absent (mode Full PC/SC)
+         BLOQUERINSTALLEGALSS dans le plugin SSV : (plugin non installe)
+
+--- sesam.ini
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\fsv\1.40.14\conf\sesam.ini (verifier lequel la FSV utilise)
+  [OK]   RepertoireTravail -> C:\ProgramData\santesocial\fsv\1.40.14\adm
+  [OK]   RepertoireTable -> C:\Program Files\santesocial\fsv\1.40.14\ssv
+  [OK]   RepertoireConfigTrace -> C:\ProgramData\santesocial\fsv\1.40.14\conf
+  [OK]   RepertoireTable -> C:\Program Files\santesocial\fsv\1.40.14\ssv
+  [OK]   RepertoireConfigTrace -> C:\ProgramData\santesocial\fsv\1.40.14\conf
+  [OK]   RepertoireTable -> C:\Program Files (x86)\santesocial\fsv\1.40.14\srt
+  [OK]   repertoiremodification -> C:\ProgramData\santesocial\fsv\1.40.14\srt
+  [OK]   RepertoireTable -> C:\Program Files\santesocial\fsv\1.40.14\sts
+  [OK]   [MGC] RepertoireConfigTrace -> C:\ProgramData\santesocial\fsv\1.40.14\conf (log4crc.xml present)
+
+--- Inscription FSV (registre GIE) et MSI disponibles
+         Registre GIE FSV : 1.40.14 (x86), 1.40.14 (x64)
+         MSI FSV disponibles a cote du script : fsv-1.40.1413_x64.msi
+
+--- galss.ini (canaux vs lecteurs reels)
+         CANAL1 : 'Ingenico [n] TL TELIUM 1 0' [present]  LAD: CPS
+         CANAL2 : 'Ingenico [n] TL TELIUM 2 0' [present]  LAD: Vitale
+  [OK]   galss.ini coherent avec les lecteurs presents
+         NomLib=PSSINW64.DLL
+         NomLib=PCSCW64.DLL
+
+--- Processus concurrents sur le lecteur
+         actif : dmpconnectjs_monitor  DMP Connect / iCanopee
+         actif : SRVSVCNAM             amelipro CNAM
+         actif : JuxtaLink             JuxtaLink
+
+--- Anciens logiciels metiers detectes (catalogue editeurs.psd1)
+  [OK]   Aucun ancien logiciel metier du catalogue
+         Catalogue : Cegedim, Affid, Shaman, Weda, Pyxvital, DrSante, HelloDoc
+
+--- Autres logiciels actifs (inventaire, a signaler si concurrent)
+         Port local 623 : LMS (C:\WINDOWS\System32\DriverStore\FileRepository\lms.inf_amd64_84c8651a9ebb25c9\LMS.exe)
+         Port local 1234 : JuxtaLink (C:\Program Files (x86)\Juxta\JuxtaLink\JuxtaLink.exe)
+         Port local 1922 : SRVSVCNAM (C:\Program Files (x86)\santesocial\srvsvcnam\SRVSVCNAM.exe)
+         Port local 1943 : SRVSVCNAM (C:\Program Files (x86)\santesocial\srvsvcnam\SRVSVCNAM.exe)
+         Port local 5939 : TeamViewer_Service (C:\Program Files\TeamViewer\TeamViewer_Service.exe)
+         Port local 9982 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 9983 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 9984 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 16992 : LMS (C:\WINDOWS\System32\DriverStore\FileRepository\lms.inf_amd64_84c8651a9ebb25c9\LMS.exe)
+         Port local 37014 : TeamViewer_Service (C:\Program Files\TeamViewer\TeamViewer_Service.exe)
+         Port local 37114 : TeamViewer_Service (C:\Program Files\TeamViewer\TeamViewer_Service.exe)
+         Port local 40500 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Demarrage auto : Logi Download Assistant -> "C:\Program Files\LogiDownloadAssistant\bin\logi_download_assistant.exe" -system-restarted
+         Demarrage auto : ScanSnap Home Pfussmon -> C:\Program Files (x86)\PFU\ScanSnap\Home\pfuSSMon.exe
+         Demarrage auto : ScanSnap WIA Service Checker -> C:\Program Files (x86)\PFU\ScanSnap\Home\SSDriver\fi5110\SsWiaChecker.exe
+         Demarrage auto : SshCloudMonitor -> C:\Program Files (x86)\PFU\ScanSnap\Home\SshCloudMonitor.exe
+         Demarrage auto : SshRegister -> C:\Program Files (x86)\PFU\ScanSnap\Home\SshRegister.exe
+         Demarrage auto : pfuSshMain -> "C:\Program Files (x86)\PFU\ScanSnap\Home\pfuSshMain.exe" -backgroundstartup
+         Demarrage auto : ScanSnap OnlineUpdate Watcher -> "C:\Program Files (x86)\PFU\ScanSnap\Update\SsUWatcher.exe" -StartOS
+         Service : Express Connect Dynamic Bandwidth Management (ECDBWM)
+         Service : ExpressConnect Analytics Service (ExpressConnect Analytics Service)
+         Service : ExpressConnect Network Service (ExpressConnect Network Service)
+         Service : ExpressConnect AP Selector Service (ExpressConnectService)
+         Service : ScanSnap Home WIA restart service (SshWiaRestart)
+
+======================================================================
+  3b. DMP CONNECT / ICANOPEE (doit fonctionner en parallele de JuxtaLink)
+======================================================================
+  [OK]   Installe : DmpConnect-JS2 - Service d'accès au DMP 1.11.14
+  [OK]   dmpconnectjs_monitor actif
+  [OK]   dmpconnect-js2 actif (3 processus)
+  [OK]   Ecoute locale sur port(s) : 9982, 9983, 9984, 40500
+         Demarrage auto : dmpconnectjs_monitoring
+         Pile 64 bits DMP Connect : GALSS absent / Cryptolib 5.2.5
+         Log recent : C:\Program Files (x86)\DmpConnect-JS2\dmp-connect.log (05/10 09:26)
+  [WARN]   6261   [[n]] INFO : Synchronization using DmpConnect NTP client legacy failed:
+  [OK]   DMP Connect / iCanopee operationnel (processus + port)
+
+         Rappel : ne jamais desinstaller 'GALSS' ou 'Cryptolib' en bloc ; le x64 appartient a DMP Connect / iCanopee, le x86 a Juxta.
+
+======================================================================
+  3c. NAVIGATEURS - Local Network Access (erreurs DRC a la teletransmission)
+======================================================================
+  [OK]   Chrome 154.0.8037.98 : politique Local Network Access OK (https://app.odaiji.co, https://[*.]odaiji.co, https://[*.]madeformed.fr, https://[*.]juxta.cloud)
+  [OK]   Edge 154.0.4258.53 : politique Local Network Access OK (https://app.odaiji.co, https://[*.]odaiji.co, https://[*.]madeformed.fr, https://[*.]juxta.cloud)
+
+======================================================================
+  4. JUXTALINK
+======================================================================
+  [OK]   JuxtaLink 2.2.3.0
+  [OK]   JuxtaLink en cours d'execution
+  [OK]   Demarrage auto sans UAC : tache \Odaiji\JuxtaLink (compte Admin, niveau Highest, Running)
+  [OK]   Gardien JuxtaLink : veille toutes les 10 min, compte SYSTEM
+         Autre lancement auto : Run 'JuxtaLink' -> C:\Program Files (x86)\Juxta\JuxtaLink\JuxtaLink.exe  (desactive par Odaiji)
+  [OK]   Source d'installation JuxtaLink presente (SetupJuxtaLinkx86.msi)
+  [OK]   Port 1234 : JuxtaLink
+  [WARN] Plugin SSV pas encore installe : aucune lecture faite depuis Odaiji (normal sur un poste neuf)
+         Plugins : 
+  [WARN] trace.txt absent : lancer une lecture depuis Odaiji puis relancer le diag
+
+======================================================================
+  5. PERFORMANCE (durees mesurees dans le log JuxtaLink)
+======================================================================
+         Pas de log
+
+--- Causes de lenteur presentes sur ce poste (a traiter si les lectures sont lentes)
+  [OK]   Aucune cause de lenteur connue sur ce poste
+
+======================================================================
+  6. VERDICT
+======================================================================
+  [OK]   Poste neuf : aucune lecture faite depuis Odaiji. FSV/MICA/tables/sesam.ini arrivent a la 1re lecture CPS + Vitale : lancer 1-Installer.bat (ou faire une lecture) puis refaire le diag.
+  [WARN] Smart App Control en evaluation : le desactiver maintenant, sinon Windows bloquera mica.dll dans quelques jours.
+
+Scenario : PREMIERE_LECTURE
+Constats :
+           SAC_EVAL              WARN  Smart App Control en evaluation (bombe a retardement)
+           STACK_X64             WARN  Pile 64 bits presente
+           TABLES_X64_ONLY       WARN  Tables ssv seulement en 64 bits
+           SRT_EMPTY             WARN  Tables srt vides (non bloquant)
+           TABLES_X64_ONLY       WARN  Tables sts seulement en 64 bits
+           NO_MICA_X86           KO    mica.dll 32 bits absent
+           NO_PLUGIN             INFO  Premiere lecture jamais faite (plugin SSV absent)
+
+======================================================================
+  FIN
+======================================================================
+Rapport : C:\Users\Admin\Desktop\Avant_POSTE-05_20261005-0930.txt
+Copier son contenu dans le channel Claude pour analyse.

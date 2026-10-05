@@ -1,0 +1,222 @@
+
+
+======================================================================
+  OdaijiJuxta v0.3.50 - 04/10/2026 20:52
+======================================================================
+         Poste : POSTE-14   Utilisateur : utilisateur-25   Mode : DIAGNOSTIC
+         Rapport : C:\Users\utilisateur-25\Desktop\Apres_POSTE-14_20261004-2052.txt
+
+======================================================================
+  1. SYSTEME
+======================================================================
+         Windows : Microsoft Windows 11 Professionnel 10.0.26300 (64 bits)   Boot : 03/10 12:10
+  [OK]   SCardSvr : Running
+  [OK]   Smart App Control desactive
+         CertPropSvc : Stopped / Manual  (lit tous les certificats CPS a l'insertion ; source de lenteur possible)
+         Antivirus : Windows Defender, Avast Antivirus
+
+======================================================================
+  2. LECTEURS ET CARTES
+======================================================================
+         PnP : Olaqin SESAM-VITALE reader [Unknown]
+         PnP : Lecteur de carte à puce Microsoft Usbccid (WUDF) [OK]
+         PnP : Lecteur de carte à puce Microsoft Usbccid (WUDF) [OK]
+         PnP : Lecteur de carte à puce Microsoft Usbccid (WUDF) [OK]
+
+--- certutil -scinfo (resume)
+         Lecteur : FEI Smart Card CPS 0
+           --- Statut : SCARD_STATE_EMPTY
+         Lecteur : FEI Smart Card CV1/CV2 0
+           --- Statut : SCARD_STATE_EMPTY
+         Lecteur : FEI Smart Card NFC 0
+           --- Statut : SCARD_STATE_EMPTY
+  [KO]   CPS non vue par Windows
+  [WARN] Vitale non identifiee par certutil (peut etre presente mais non reconnue : voir statut PRESENT ci-dessus)
+
+======================================================================
+  3. PILE SESAM-VITALE
+======================================================================
+
+--- Dossiers
+         C:\Program Files (x86)\santesocial -> CPS, diagAM, fsv, mica, srvsvcnam
+         C:\Program Files\santesocial -> CPS, galss
+  [OK]   FSV x86 : 1.40.14  (utilisee : 1.40.14)
+  [WARN] Pile 64 bits presente (Program Files\santesocial)
+
+--- Tables FSV disponibles (donnees identiques x86/x64)
+         ssv  x86: 18 fich. x64: absent   -> C:\Program Files (x86)\santesocial\fsv\1.40.14\ssv
+         srt  x86: 0 fich.  x64: absent   -> AUCUNE TABLE
+  [WARN] Tables srt vides : normal sur une installation recente (remplies par les mises a jour), pas un blocage
+         sts  x86: 3 fich.  x64: absent   -> C:\Program Files (x86)\santesocial\fsv\1.40.14\sts
+
+--- MICA
+  [OK]   mica.dll x86 : C:\Program Files (x86)\santesocial\mica\mica.dll
+
+--- Produits GIE / Cryptolib / GALSS inscrits
+         GALSS v3.45 x64              3.45.01      {82AB7DB2-140E-4166-A04E-1FD805EE0A74}  [DMP Connect / iCanopee - x64]
+             src : C:\Users\utilisateur-25\AppData\Local\Temp\
+         Composants Cryptographiques CPS v5.2.6 (x64) 5.2.6        {CF3BEBDD-16A0-4AE8-8764-ADDF9A104998}
+             src : C:\Program Files (x86)\DmpConnect-JS2\cryptolib\x64\
+         Composant SrvSvCnam 5.10.04  5.10.04      {306912f2-76f5-4ba3-9260-e9f581c886dd}
+             src : C:\Users\utilisateur-25\AppData\Local\Temp\{973006F7-EB0A-456E-BB31-F[n]BF}\{132EB661-CC19-4038-8A75-06CACC38588D}\
+         fsv-1.40.1413_x86            1.40.1413    {9EF61CC2-74F6-48B8-9E78-4A577D6C9108}
+             src : C:\Users\utilisateur-25\AppData\Local\Temp\
+         mica                         4.01.00      {e01e10c5-2079-4835-940a-[n]f4}
+             src : C:\Users\utilisateur-25\AppData\Local\Temp\
+         amelipro connect             2.3.3        amelipro-connect
+         DiagAM V3 : collecte de suivi de parc et diagnostic poste 3.2.16       DiagAM_V3
+
+--- GALSS Juxta (x86) - politique Full PC/SC
+         GALSS x86 absent (mode Full PC/SC)
+         BLOQUERINSTALLEGALSS dans le plugin SSV : true
+
+--- sesam.ini
+  [WARN] Autre sesam.ini sur le poste : C:\ProgramData\santesocial\fsv\1.40.14\conf\sesam.ini (verifier lequel la FSV utilise)
+  [WARN] C:\Windows\sesam.ini absent, mais celui de la FSV 1.40.14 est present (C:\ProgramData\santesocial\fsv\1.40.14\conf\sesam.ini) : non bloquant
+
+--- Inscription FSV (registre GIE) et POSTE-14 disponibles
+         Registre GIE FSV : 1.40.14 (x86)
+         POSTE-14 FSV disponibles a cote du script : fsv-1.40.1413_x64.msi
+
+--- galss.ini (canaux vs lecteurs reels)
+  [WARN] galss.ini absent
+  [WARN]   DMP Connect / iCanopee a besoin de galss.ini : Reparer-lecteur.bat le recree (CPS + Vitale inserees)
+
+--- Processus concurrents sur le lecteur
+         actif : dmpconnectjs_monitor  DMP Connect / iCanopee
+         actif : SRVSVCNAM             amelipro CNAM
+         actif : JuxtaLink             JuxtaLink
+
+--- Anciens logiciels metiers detectes (catalogue editeurs.psd1)
+  [OK]   Aucun ancien logiciel metier du catalogue
+         Catalogue : Cegedim, Affid, Shaman, Weda, Pyxvital, DrSante, HelloDoc
+
+--- Autres logiciels actifs (inventaire, a signaler si concurrent)
+         Port local 21 : filezilla-server (C:\Program Files\FileZilla Server\filezilla-server.exe)
+         Port local 1234 : JuxtaLink (C:\Program Files (x86)\Juxta\JuxtaLink\JuxtaLink.exe)
+         Port local 1922 : SRVSVCNAM (C:\Program Files (x86)\santesocial\srvsvcnam\SRVSVCNAM.exe)
+         Port local 1943 : SRVSVCNAM (C:\Program Files (x86)\santesocial\srvsvcnam\SRVSVCNAM.exe)
+         Port local 5939 : TeamViewer_Service (C:\Program Files\TeamViewer\TeamViewer_Service.exe)
+         Port local 9010 : lghub_agent (C:\Program Files\LGHUB\lghub_agent.exe)
+         Port local 9080 : NahimicService (C:\Windows\System32\NahimicService.exe)
+         Port local 9180 : lghub_updater (C:\Program Files\LGHUB\lghub_updater.exe)
+         Port local 9982 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 12119 : AvastSvc ()
+         Port local 12423 : AvastSvc ()
+         Port local 12563 : AvastSvc ()
+         Port local 14148 : filezilla-server (C:\Program Files\FileZilla Server\filezilla-server.exe)
+         Port local 26822 : MSI.TerminalServer (C:\Program Files (x86)\POSTE-14\POSTE-14 Center\MSI.TerminalServer.exe)
+         Port local 27275 : AvastSvc ()
+         Port local 32683 : MSI.CentralServer (C:\Program Files (x86)\POSTE-14\POSTE-14 Center\MSI.CentralServer.exe)
+         Port local 33683 : MSI.CentralServer (C:\Program Files (x86)\POSTE-14\POSTE-14 Center\MSI.CentralServer.exe)
+         Port local 40500 : dmpconnect-js2 (C:\Program Files (x86)\DmpConnect-JS2\dmpconnect-js2.exe)
+         Port local 45654 : lghub_agent (C:\Program Files\LGHUB\lghub_agent.exe)
+         Demarrage auto : AvastUI.exe -> "C:\Program Files\Avast Software\Avast\AvLaunch.exe" /gui
+         Demarrage auto : FileZilla Server -> "C:\Program Files\FileZilla Server\filezilla-server-gui.exe"
+         Demarrage auto : PDF24 -> "C:\Program Files\PDF24\pdf24.exe"
+         Demarrage auto : BrotherSoftwareUpdateNotification -> C:\Program Files (x86)\Brother\SoftwareUpdateNotification\SoftwareUpdateNotificationService.exe /Autorun
+         Demarrage auto : LGHUB -> "C:\Program Files\LGHUB\system_tray\lghub_system_tray.exe" --minimized
+         Demarrage auto : org.whispersystems.signal-desktop -> C:\Users\utilisateur-25\AppData\Local\Programs\signal-desktop\Signal.exe --start-in-tray
+         Service : aswbIDSAgent (aswbIDSAgent)
+         Service : Avast Antivirus (avast! Antivirus)
+         Service : Avast Firewall Service (avast! Firewall)
+         Service : Avast Tools (avast! Tools)
+         Service : Avast Cleanup service (AvastCleanupSvc)
+         Service : Avast Driver Updater service (AvastDriverUpdSvc)
+         Service : AvastWscReporter (AvastWscReporter)
+         Service : BrYNSvc (BrYNSvc)
+         Service : filezilla-server (filezilla-server)
+         Service : LGHUB Updater Service (LGHUBUpdaterService)
+         Service : LightKeeperService (LightKeeperService)
+         Service : POSTE-14 Foundation Service (POSTE-14 Foundation Service)
+         Service : Sensor dev service (POSTE-14 Sendevsvc)
+         Service : POSTE-14 Center Service (MSI_Center_Service)
+         Service : Mystic_Light_Service (Mystic_Light_Service)
+         Service : Logi Options+ (OptionsPlusUpdaterService)
+         Service : PDF24 (PDF24)
+         Service : Avast SecureLine VPN (SecureLine)
+         Service : Synology Drive VSS Service x64 (Synology Drive VSS Service x64)
+         Service : Brother USB Application Controller (USBAppControl)
+         Service : Brother Workflow Application Controller (WorkflowAppControl)
+
+======================================================================
+  3b. DMP CONNECT / ICANOPEE (doit fonctionner en parallele de JuxtaLink)
+======================================================================
+  [OK]   Installe : DmpConnect-JS2 - Service d'accès au DMP 1.11.14
+  [OK]   dmpconnectjs_monitor actif
+  [OK]   dmpconnect-js2 actif (1 processus)
+  [OK]   Ecoute locale sur port(s) : 9982, 40500
+         Demarrage auto : dmpconnectjs_monitoring
+         Pile 64 bits DMP Connect : GALSS 3.45.01 / Cryptolib 5.2.6
+         Log recent : C:\Program Files (x86)\DmpConnect-JS2\dmp-connect.log (04/10 20:52)
+  [WARN]   842    [000049d0] INFO : Synchronization using DmpConnect NTP client legacy failed:
+  [OK]   DMP Connect / iCanopee operationnel (processus + port)
+
+         Rappel : ne jamais desinstaller 'GALSS' ou 'Cryptolib' en bloc ; le x64 appartient a DMP Connect / iCanopee, le x86 a Juxta.
+
+======================================================================
+  3c. NAVIGATEURS - Local Network Access (erreurs DRC a la teletransmission)
+======================================================================
+  [OK]   Chrome 154.0.8037.93 : politique Local Network Access OK (https://app.odaiji.co, https://[*.]odaiji.co, https://[*.]madeformed.fr, https://[*.]juxta.cloud)
+  [OK]   Edge 154.0.4258.53 : politique Local Network Access OK (https://app.odaiji.co, https://[*.]odaiji.co, https://[*.]madeformed.fr, https://[*.]juxta.cloud)
+
+======================================================================
+  4. JUXTALINK
+======================================================================
+  [OK]   JuxtaLink 2.2.3.0
+  [OK]   JuxtaLink en cours d'execution
+  [OK]   Demarrage auto sans UAC : tache \Odaiji\JuxtaLink (compte utilisateur-25, niveau Highest, Running)
+  [OK]   Gardien JuxtaLink : veille toutes les 10 min, compte SYSTEM
+         Autre lancement auto : Run 'JuxtaLink' -> C:\Program Files (x86)\Juxta\JuxtaLink\JuxtaLink.exe  (desactive par Odaiji)
+  [OK]   Source d'installation JuxtaLink presente (SetupJuxtaLinkx86.msi)
+  [OK]   Port 1234 : JuxtaLink
+         Plugins : SSV 4.1.0.0
+
+--- Derniers etats de lecture
+
+--- Erreurs recentes
+  [KO]   [04/10/2026 20:52:19] - [ERROR] - [SSV] L'installation a échoué avec le code de sortie 1603
+         Windows Installer (echecs des 3 derniers jours, produit en cause) :
+           04/10 20:52 [1033] Windows Installer a installé le produit. Nom du produit : Composants Cryptographiques CPS v5.2.2 (x64). Version du produit : 5.2.2. Langue du produit : 1036. Fabricant : Agence du Numérique en Santé. Réussite de l’installation ou état d’err...
+           04/10 20:52 [11708] Produit : Composants Cryptographiques CPS v5.2.2 (x64) -- L'installation a échoué.
+           04/10 20:51 [1033] Windows Installer a installé le produit. Nom du produit : Composants Cryptographiques CPS v5.2.2 (x64). Version du produit : 5.2.2. Langue du produit : 1036. Fabricant : Agence du Numérique en Santé. Réussite de l’installation ou état d’err...
+           04/10 20:51 [11708] Produit : Composants Cryptographiques CPS v5.2.2 (x64) -- L'installation a échoué.
+           04/10 20:51 [1033] Windows Installer a installé le produit. Nom du produit : Composants Cryptographiques CPS v5.2.2 (x64). Version du produit : 5.2.2. Langue du produit : 1036. Fabricant : Agence du Numérique en Santé. Réussite de l’installation ou état d’err...
+           04/10 20:51 [11708] Produit : Composants Cryptographiques CPS v5.2.2 (x64) -- L'installation a échoué.
+           04/10 20:51 [1033] Windows Installer a installé le produit. Nom du produit : Composants Cryptographiques CPS v5.2.2 (x64). Version du produit : 5.2.2. Langue du produit : 1036. Fabricant : Agence du Numérique en Santé. Réussite de l’installation ou état d’err...
+           04/10 20:51 [11708] Produit : Composants Cryptographiques CPS v5.2.2 (x64) -- L'installation a échoué.
+
+--- Diagnostics decodes des reponses (base64)
+         Aucun message d'erreur serveur dans les dernieres reponses
+
+======================================================================
+  5. PERFORMANCE (durees mesurees dans le log JuxtaLink)
+======================================================================
+
+--- Par action
+         Aucune paire requete/reponse trouvee
+
+--- Causes de lenteur presentes sur ce poste (a traiter si les lectures sont lentes)
+  [WARN] Antivirus tiers : demander les exclusions C:\Program Files (x86)\santesocial, C:\Program Files (x86)\Juxta, C:\Program Files (x86)\DmpConnect-JS2 (et le processus JuxtaLink.exe)
+
+======================================================================
+  6. VERDICT
+======================================================================
+  [KO]   Windows ne voit pas la CPS -> lecteur / USB / pilote.
+  [WARN] galss.ini ABSENT : DMP Connect / iCanopee ne lit pas la CPS. Reparer-lecteur.bat (CPS + Vitale inserees) le recree, puis redemarrer le service DMP Connect.
+
+Scenario : READER
+Constats :
+           AV_TIERS              INFO  Antivirus tiers : Windows Defender, Avast Antivirus
+           NO_CPS                KO    CPS non detectee
+           STACK_X64             WARN  Pile 64 bits presente
+           SRT_EMPTY             WARN  Tables srt vides (non bloquant)
+           SESAM_WIN_ABSENT      WARN  sesam.ini Windows absent (celui de la FSV suffit)
+           GALSS_MISSING         WARN  galss.ini absent (DMP Connect / iCanopee)
+           MSI_ECHEC             INFO  Installation(s) POSTE-14 en echec (detail section 4)
+
+======================================================================
+  FIN
+======================================================================
+Rapport : C:\Users\utilisateur-25\Desktop\Apres_POSTE-14_20261004-2052.txt
+Copier son contenu dans le channel Claude pour analyse.

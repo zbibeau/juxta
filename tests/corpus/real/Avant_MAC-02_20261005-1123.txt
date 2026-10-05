@@ -1,0 +1,186 @@
+
+======================================================================
+  OdaijiJuxta-Mac v0.3.16 - 05/10/2026 11:23
+======================================================================
+         Mac         : MAC-02   Utilisateur : utilisateur-24
+         Rapport     : /Users/utilisateur-24/Desktop/Avant_MAC-02_20261005-1123.txt
+         Mode        : DIAGNOSTIC (lecture seule)
+
+
+======================================================================
+  1. SYSTEME
+======================================================================
+         macOS       : macOS 26.6.2 (build 25G83)
+         Architecture: arm64   Modele : Mac14,2
+  [OK]   Rosetta 2 installe
+         Gatekeeper  : assessments enabled
+
+======================================================================
+  2. LECTEURS ET CARTES
+======================================================================
+
+--- Lecteurs vus par macOS
+               #01: FEI USB Card Reader/QR Scanner 01 (ATR:{length = 17, bytes = 0x3bac00402a[n]})
+               #02: FEI USB Card Reader/QR Scanner (no card present)
+  [OK]   CPS presente
+  [WARN] Vitale non vue (absente du lecteur ? inserer la carte et relancer)
+
+--- Pilotes lecteur
+               #01: fr.apdu.ccid.smartcardccid:1.5.1 (/usr/libexec/SmartCardServices/drivers/ifd-ccid.bundle)
+               #02: fr.apdu.ccid.smartcardccid:1.5.2 (/usr/local/libexec/SmartCardServices/drivers/ifd-ccid-Sensyl.bundle)
+
+--- Processus clients du lecteur (en ce moment)
+          1039 07-01:19:00 /Applications/DmpConnectJS2.app/Contents/MacOS/dmpconnectjs_monitor
+         50541 03-16:54:37 /Applications/JuxtaLink.app/Contents/MacOS/JuxtaLink
+         51883 02-22:29:03 /usr/local/dmpconnectjs2/dmpconnect-js2
+         79947    01:23:13 /usr/local/dmpconnectjs2/dmpconnect-js2
+         80028    01:23:07 /System/Library/Frameworks/PCSC.framework/Versions/A/XPCServices/com.apple.ctkpcscd.xpc/Contents/MacOS/com.apple.ctkpcscd
+         80132    01:22:59 /usr/local/dmpconnectjs2/dmpconnect-js2
+         80165    01:22:56 /System/Library/Frameworks/PCSC.framework/Versions/A/XPCServices/com.apple.ctkpcscd.xpc/Contents/MacOS/com.apple.ctkpcscd
+         dmpconnect-js2 : 3 instance(s)   ctkpcscd : 2   agent jFSE : 0
+  [WARN] Plusieurs dmpconnect-js2 simultanes
+
+======================================================================
+  3. PILE SESAM-VITALE ET EDITEURS
+======================================================================
+
+--- Paquets installes (pkgutil) - * = fichiers absents (recu orphelin)
+          com.sensyl.sensylDriver.SmartCardServices.pkg        v1.0         02/01/2024  
+          fr.sesamvitale.mica.pkg                              v4.01.00     23/09/2025  /
+         *fr.omnidoc.local-services                            v1.3.1       17/08/2026  tmp/__omnidoc__/
+          org.icanopee.dmpcjs2                                 v1.11.14     26/08/2026  /
+          org.Juxta.JuxtaLink                                  v2.2.3       26/08/2026  Applications/JuxtaLink.app
+          fr.asip.esante.cpsgestion.dev                        v1.7.1       23/04/2026  Applications
+          com.medimust.pkg.InstallerSauvegardeMdimust          v3.7.210503  17/01/2023  Applications/dossier MediMust
+          fr.sesamvitale.galss.pkg                             v3.43.02     26/08/2026  /
+          org.icanopee.printer                                 v1.0.0       26/08/2026  /
+          com.medimust.pkg.MajMedimust                         v14.05a      09/12/2024  Applications
+          com.cgs.medimust.pkg.majtarif[n]                v1.0         02/11/2023  
+          com.mygreatcompany.pkg.MajJFSE                       v1.0         01/07/2025  
+          fr.asipsante.pkg.cryptolibCPS                        v5.2.5       09/09/2026  /
+          fr.sesam-vitale.navigateur-amelipro                  v2.04.04     24/04/2026  /
+
+--- jFSE (Cegedim / Medimust / MediStory)
+  [OK]   Pas d'agent launchd jFSE
+  [OK]   /Applications/jFSE absent
+
+--- Anciens logiciels metiers (MediMust, MediStory...)
+  [OK]   MediMust installe mais inactif (rien ne se lance)
+  [OK]   MediStory (Prokov) absent
+
+--- GALSS Juxta - politique Full PC/SC
+         GALSS installe : fr.sesamvitale.galss.pkg v3.43.02
+         galssosx.framework present
+         BLOQUERINSTALLEGALSS dans le plugin SSV : false
+
+--- DmpConnect-JS2 (Icanopee)
+         Installe : v1.11.14
+         /Library/LaunchAgents/com.icanopee.dmpcjsmonitor2.plist
+         /Library/LaunchDaemons/com.icanopee.dmpcjs2.plist
+
+--- diagAM (telemetrie GIE)
+  [OK]   diagAM absent
+
+--- Fichiers de configuration GIE
+  [OK]   /Library/Preferences/galss.ini (679 octets)
+             NomLib=pssinosx.framework
+             NomLib=pcscosx.framework
+             Caracteristiques=FEI USB Card Reader/QR Scanner
+             NomLAD=CPS
+             Caracteristiques=FEI USB Card Reader/QR Scanner 01
+             NomLAD=Vitale
+
+--- Bibliotheques MICA / GALSS et leur architecture
+         /usr/local/lib/libmica.dylib                                                                    arm64/x86_64
+         /Library/Frameworks/galssosx.framework/Versions/A/galssosx                                      x86_64
+         /usr/local/dmpconnectjs2/assets/mica/libmica.dylib                                              arm64/x86_64
+
+--- Applications metier
+         DmpConnectJS2.app
+         dossier MediMust
+         JuxtaLink.app
+
+======================================================================
+  4. SERVICES launchd (col.2 = dernier code de sortie ; negatif = crash par signal)
+======================================================================
+         50541  0     application.org.Juxta.JuxtaLink.[n].[n]
+         51883  0     com.icanopee.dmpcjs2
+         1039   0     com.icanopee.dmpcjsmonitor2
+         -      0     fr.Juxta.JuxtaLink
+
+--- Crash reports (30 derniers jours)
+  [WARN] dmpconnect : 1 crash(s), dernier : dmpconnect-js2-2026-09-29-113627.ips
+
+======================================================================
+  4b. NAVIGATEURS - Local Network Access (erreurs DRC a la teletransmission)
+======================================================================
+  [KO]   Google Chrome 154.0.8037.95 : Local Network Access actif et Odaiji non autorise -> erreurs DRC possibles (Autoriser-Odaiji-Chrome.command)
+         Microsoft Edge non installe
+
+======================================================================
+  5. JUXTALINK
+======================================================================
+  [OK]   /Applications/JuxtaLink.app  v2.2.3  (x86_64 )
+  [OK]   Plugin SSV present : 4.1.1.0 
+  [OK]   user.config MadeForMed (serveurs token/update)
+  [WARN] Gardien JuxtaLink absent : JuxtaLink ne serait pas relance s'il est ferme ou plante (2-Depanner.command)
+
+--- Log JuxtaLink : /Applications/JuxtaLink.app/Contents/Resources/logs/trace.txt (40 dernieres lignes)
+         [05/10/2026 11:02:31] - [DEBUG] - [SSV] Nom Ressource: CPS
+         [05/10/2026 11:02:31] - [DEBUG] - [SSV] Nom Ressource Lecteur: Log_SV
+         [05/10/2026 11:02:31] - [DEBUG] - [SSV] *****RETOUR DU 20261005 110231*****
+         [05/10/2026 11:02:31] - [DEBUG] - [SSV] Retour : 0
+         [05/10/2026 11:02:31] - [DEBUG] - [SSV] *****APPEL DU 20261005 110231*****
+         [05/10/2026 11:02:31] - [DEBUG] - [SSV] Nom Ressource: CPS
+         [05/10/2026 11:02:31] - [DEBUG] - [SSV] Nom Ressource Lecteur: Log_SV
+         [05/10/2026 11:02:31] - [DEBUG] - [SSV] *****RETOUR DU 20261005 110231*****
+         [05/10/2026 11:02:31] - [DEBUG] - [SSV] Retour : 0
+         [05/10/2026 11:02:31] - [DEBUG] - [SSV] Appel ? SignerFactureAvecVitale()
+         [05/10/2026 11:02:31] - [DEBUG] - [SSV] *****APPEL DU 20261005 110231*****
+         [05/10/2026 11:02:31] - [DEBUG] - [SSV] Nom Ressource: CPS
+         [05/10/2026 11:02:31] - [DEBUG] - [SSV] Nom Ressource Lecteur: Log_SV
+         [05/10/2026 11:02:31] - [DEBUG] - [SSV] *****RETOUR DU 20261005 110231*****
+         [05/10/2026 11:02:31] - [DEBUG] - [SSV] Retour : F023
+         [05/10/2026 11:02:31] - [DEBUG] - [SSV] Pas de r?initialisation des SSV.
+         [05/10/2026 11:02:31] - [DEBUG] - [SSV] *****APPEL DU 20261005 110231*****
+         [05/10/2026 11:02:31] - [DEBUG] - [SSV] Nom Ressource: CPS
+         [05/10/2026 11:02:31] - [DEBUG] - [SSV] Nom Ressource Lecteur: Log_SV
+         [05/10/2026 11:02:31] - [DEBUG] - [SSV]  code : 61475
+         [05/10/2026 11:02:31] - [DEBUG] - [SSV]  diagnostic : Le num?ro national d'immatriculation de l'assur? fourni dans la zone de m?moire pr?sent?e en entr?e diff?re de celui qui figure sur sa carte Vitale.
+         [05/10/2026 11:02:31] - [DEBUG] - [SSV]  solution : Faites v?rifier ? l'utilisateur que la carte Vitale introduite dans le lecteur est bien celle du b?n?ficiaire des soins et au besoin faites changer la carte Vitale. Une fois la carte du b?n?ficiaire introduite dans la fente du lecteur, appelez la fonction Lire P?riodes Droits Vitale et reportez les informations que cette fonction fournit en sortie pour corriger le contenu de la zone de m?moire pr?sent?e en entr?e de la fonction Formater Factures qui a retourn? l'erreur. Puis rappelez cette derni?re.
+         [05/10/2026 11:02:31] - [DEBUG] - [SSV] *****RETOUR DU 20261005 110231*****
+         [05/10/2026 11:02:31] - [DEBUG] - [SSV] Retour : F023
+         [05/10/2026 11:02:31] - [DEBUG] - [SSV] Appel FSV 2 avec comme donn?es : {'idFacture':'70084', 'xmlSortie':'eyJBcmd1bWVudHMiOnsiY29kZSI6IkYwMjMiLCJkaWFnbm9zdGljIjoiTGUgbnVtw6lybyBuYXRpb25hbCBkJ2ltbWF0cmljdWxhdGlvbiBkZSBsJ2Fzc3Vyw6kgZm91cm5pIGRhbnMgbGEgem9uZSBkZSBtw6ltb2lyZSBwcsOpc2VudMOpZSBlbiBlbnRyw6llIGRpZmbDqHJlIGRlIGNlbHVpIHF1aSBmaWd1cmUgc3VyIHNhIGNhcnRlIFZpdGFsZS4iLCJzb2x1dGlvbiI6IkZhaXRlcyB2w6lyaWZpZXIgw6AgbCd1dGlsaXNhdGV1ciBxdWUgbGEgY2FydGUgVml0YWxlIGludHJvZHVpdGUgZGFucyBsZSBsZWN0ZXVyIGVzdCBiaWVuIGNlbGxlIGR1IGLDqW7DqWZpY2lhaXJlIGRlcyBzb2lucyBldCBhdSBiZXNvaW4gZmFpdGVzIGNoYW5nZXIgbGEgY2FydGUgVml0YWxlLiBVbmUgZm9pcyBsYSBjYXJ0ZSBkdSBiw6luw6lmaWNpYWlyZSBpbnRyb2R1aXRlIGRhbnMgbGEgZmVudGUgZHUgbGVjdGV1ciwgYXBwZWxleiBsYSBmb25jdGlvbiBMaXJlIFDDqXJpb2RlcyBEcm9pdHMgVml0YWxlIGV0IHJlcG9ydGV6IGxlcyBpbmZvcm1hdGlvbnMgcXVlIGNldHRlIGZvbmN0aW9uIGZvdXJuaXQgZW4gc29ydGllIHBvdXIgY29ycmlnZXIgbGUgY29udGVudSBkZSBsYSB6b25lIGRlIG3DqW1vaXJlIHByw6lzZW50w6llIGVuIGVudHLDqWUgZGUgbGEgZm9uY3Rpb24gRm9ybWF0ZXIgRmFjdHVyZXMgcXVpIGEgcmV0b3VybsOpIGwnZXJyZXVyLiBQdWlzIHJhcHBlbGV6IGNldHRlIGRlcm5pw6hyZS4iLCJjYXRlZ29yaWUiOiJFcnJldXJzIHJlbGF0aXZlcyBhdSBsZWN0ZXVyIGRlIGNhcnRlcyJ9LCJDb2RlIjo2MTQ3NSwiTWVzc2FnZSI6IkVycmV1ciBsb3JzIGRlIGwnYXBwZWwgw6AgU1NWIFNpZ25lckZhY3R1cmVWaXRhbGUiLCJSZXF1ZXN0IjpudWxsLCJFcnJvciI6dHJ1ZSwiQ29kZVJldG91ciI6bnVsbCwiUmVwb25zZSI6eyJBX1NpZ25lckZhY3R1cmVWaXRhbGUiOiI8ZnNlPjxncm91cGUgbnVtPVwiMTUwXCI+XHJcbjxjaGFtcD4zNzEwMDIxMDZFUjAxMzcxMDVTQVIwNjIwMDcgICAgICAgICAgICBGPC9jaGFtcD5cclxuPGNoYW1wPk1qTTNNVEF3TWpFd05pQXlPREF3TVRjMU1URTBOREkzTVRnd01EQXdNREF5TXpSQlVpQXhNall4TURBMUlFWWdNREV6TnpFeU1ETXhOQ0FnSUNBZ0lDQWdJREkyTVRBd05TQWdJREV3TURBd01EQXdNREF3TURBd01EQXdNQ0E0TURBeE1qRXhJQ0FnSUNBZ0lDQWdJREF3TURVd01DQWdJQ0FnSUNBZ0lDQXlNemN4TURBeU1UQTJJREk0TURBeE56VXhNVFEwTWpjeE9EQXdNREF3TURJek5GTWdJQ0FnSUNBZ0lDQWdJQ0FnSUNBZ0lDQWdJQ0FnSUNBZ0lEQXdNREF3TURBd1QwZEpVa0ZWUkNBZ0lDQWdJQ0FnSUNBZ0lDQWdJQ0FnSUNCUVNFbE1TVkJRUlNBZ0lDQWdJQ0F3TURBd01EQXdNREJQSUNBZ0lDQWdJREl6TnpFd01ESXhNRFlnTWpnd01ERTNOVEV4TkRReU56RTRNREF3TURBd01qTTBSU0FnSUNBZ0lDQWdJQ0FnTVRBeE1EQTBOamc1TURnd01EVWdJQ0FnSUNBZ0lDQWdJQ0FnSUNBZ0lDQWdJQ0FnSUNBZ0lDQWdJQ0FnSUNBZ0lDQWdJQ0FnSUNBZ0lDQWdJQ0FnSUNBZ0lDQWdJQ0FnSUNBZ0lDQWdJQ0FnTWpNM01UQXdNakV3TmlBeU9EQXdNVGMxTVRFME5ESTNNVGd3TURBd01EQXlNelJOSUNBZ0lDQWdJQ0FnSUNBZ0lDQWdJQ0FnSUNBZ0lDQWdJQ0FnSUNBZ0lDQWdJQ0FnSUNBZ0lDQWdJQ0FnSUNBZ0lDQWdJQ0FnSUNBZ0lDQWdJQ0FnSUNBZ0lDQWdJQ0FnSUNBZ0lDQWdJQ0FnSUNBZ0lDQWdJQ0FnSUNBME16Y3hNREF5TVRBMklESTRNREF4TnpVeE1UUTBNamN4T0RBd01EQXdNREl6TkVFd01EQXdNREF3TURBd01EQXdPU0FnSUNBek56RXdNREl4TURZek5ETXpNall4TURBMVExQWdJQ0F3TVRBd01ERXdNREF4TURBd05ESTFNREF3TURReU5UQXhNREF3TURBME1qVXdNREF3T1RVd01DQXdNREF3TURBd01EUXpOekV3TURJeE1EWWdNamd3TURFM05URXhORFF5TnpFNE1EQXdNREF3TWpNMFV6QXhJQ0F3TURBME1qVXdJREF3TURBd01EQWdJQ0FnSUNBZ0lDQWdJQ0FnSUNBZ01EQXdNREF3TURBd01EQXdNREF3TURBd01EQXdNREF3TURBd01DQXdNREF3TURBd01EQXdNREF3TURBd01EQXdNREF3TUNBZ0lDQWdORE0zTVRBd01qRXdOaUF5T0RBd01UYzFNVEUwTkRJM01UZ3dNREF3TURBeU16UkZNREV3TURBd01EQXdNREF3TUNBZ0lDQWdJQ0FnSUNBZ0lDQWdJQ0FnSUNBZ0lDQWdJQ0F4TURFd01EUTJPRGt3T0RBd05TQWdJQ0FnSUNBZ0lDQWdJQ0FnSUNBZ0lDQWdJQ0FnSUNBZ0lDQWdJQ0FnSUNBZ0lDQWdJQ0ExTXpjeE1EQXlNVEEySURJNE1EQXhOelV4TVRRME1qY3hPREF3TURBd01ESXpOQ0FnSURBd015QWdJQ0FnSUNBZ0lDQWdJQ0FnSUNBd01EQXdPVFV3TURBd01EQTBNalV3TURBd01EVXlOVEF3TURBd01EQXdNQ0FnSUNBZ0lDQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBSDRMQUVNeEFtRjBjMlZ5YVdGc0lEMDBSa0UwUTBSRU16VkVSak01TjBKQ1JFRkNNMFF5UWtVMlFUUXpORGhFTXpZM01rTTVRalU0SUdsemMzVmxjajB2UXoxR1VpOVBQVWRKUlMxVFJWTkJUUzFXU1ZSQlRFVXZUMVU5TURBd01sOHpPVEUzTWpJNE9ERXZRMDQ5UVVNdFJrRkRWRlZTUVZSSlQwNEI2akNDQWVZR1F6RUNZUWtxaGtpRzl3MEJCd09nZ2dIWE1JSUIwd0lCQURHQ0FZNHdnZ0dLQWdFQU1ISXdXakVMTUFrR0ExVUVCaE1DUmxJeEdUQVhCZ05WQkFvTUVFZEpSUzFUUlZOQlRTMVdTVlJCVEVVeEZ6QVZCZ05WQkFzTURqQXdNREpmTXpreE56SXlPRGd4TVJjd0ZRWURWUVFEREE1QlF5MUdRVU5VVlZKQlZFbERNUUpoVDA0Q0ZFK2t6ZE5kODVlNzJyUFN2bXBEU05ObkxKdFlNQTBHQ1NxR1NJYjNEUUVCQVFVQUJJSUJBSjhnaEVrTVMvYTZkL1hCL3VzVEVCOVIxNkVnNU1uQlFDNHY2TTFkOWVHYUFaN1dkc2pmWDB4cHJqelcxNlM2aXl1MCt2RytpT0pqZlB0azhWcDFhM3BXbmVsV3hXQlMzTGpObUd3OVdSamJ1ME14QW1HSkdnMy9pT2lIcHdkK085em15L29VR0YrRDVrYXYxRG10M21uUTI0QUJZQ1VHVEtmQTVjV3laSXR4cE94TmtldW5TbTVGUnFHVTRvY0MvWWZpVnRTS2d5VE5OK1didWhnOEVQR1RjaGpJSmZRZU1JSVVXQmxwQUp0U0RaY0czNm4xa0EzZVQ4bkJPV0JFVHB4UUdOWWVBVWE4bnBnck56Zis1aDFaUXpFQ1lTcVcvMkVDZW9OU0QvK1ZuQzNPUHgzS2JnMFJGa3FRazM5U3U4QXFlQ1cwWitBZzYxdmxEbFRvdXp4T2t1aGpYbGQ0SXpBOEJna3Foa2lHOXcwQkJ3RXdIUVlKWUlaSUFXVURCQUVDQkJDNkc4UXVUejdnV1RxVGl5Wlo2aXNWZ0JDczhwSy9EY3ZwMFRaUXhFOUloMjlWQUFBQUFBQUFBQUFBQUFCRE13S0JkSE5sY21saGJDQTlNamN4UlVSQ1JFVTRORFUyUmprMlFqWTJRell5TWtZNVFVSTFRVFEwTVVORVJERkRRa0k0UXlCcGMzTjFaWEk5TDBNOVJsSXZUejFIU1VVdFUwVlRRVTB0VmtsVVFVeEZMMDlWUFRBd01ESmZNemt4TnpJeU9EZ3hMME5PUFVGRExVWkJRMVJWVWtGVVNVOU9BZ293Z2dJR0JrTXpBb0VKS29aSWh2Y05BUWNEb0lJQjl6Q0NBZk1DQVFBeGdnR09NSUlCaWdJQkFEQnlNRm94Q3pBSkJnTlZCQVlUQWtaU01Sa3dGd1lEVlFRS0RCQkhTVVV0VTBWVFFVMHRWa2xVUVV4Rk1SY3dGUVlEVlFRTERBNHdNREF5WHpNNU1UY3lNamc0TVRFWE1CVUdBMVVFQXd3T1FVTXRSa0ZEVkZWU1FWUkpRek1DZ1U5T0FoUW5IdHZlaEZiNWEyYkdJdm1yV2tRYzNSeTdqREFOQmdrcWhraUc5dzBCQVFFRkFBU0NBUUNGSHR6ams2UkpXdkp1RHZsWllmT0w1OXNySVNBTDZINUNDbEZKV09STjIwUXBQS1FvK1VGN2tGeE5PUVJSQ1hSR3h2N05xTSsxR3ZYYXR3YXMzV2QrOTUybVU5NC9oajRlMERhVkxHZVJkUHhETXdLQmFRUXhXWHRYanZicG92N1Y4Tyt0S2dVL1c2Z3UyV2I5UlNiZCtONXlFOTQyanVvZFlIVGVFNU1HUGFXQWJMeDNSTVJmYk5SRHduK0k1MWE0QWZyUTJ4ajc2N3ZLRUlnclhyMnFLM3d6b3ZSeGpSTThHd3ROdWk0UzFNUUd2TEVja1NidEdKOUY2c1laV1VuNUtmbUQzMFJqVDB6NGUwYldCTldIL0VNekFvSG1zY0VENmlIRkI1WnBSUVdVQ05nck1Da3czb0JNZ09xTGdFbTBFUUhSZFZFUXRxbU1GM1J4K1ZPV2FXZjRkRm1lVGlNd1hBWUpLb1pJaHZjTkFRY0JNQjBHQ1dDR1NBRmxBd1FCQWdRUTRTSkRJNy9pTWZNbW01eWhFS3AwSVlBd2dwZnl5STRhMkNxWnI0RFpmMzNKNXV6ZG1qZG1qSVJzdVlOQVF6TUNnZkpCKzA1b2pyMVRKSjBBU3pydlNQY2J5TGFPcXdBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQkROQUtCZEhObGNtbGhiQ0E5TlRORVFUZ3lPRFJDUkRVNU1rVTNOa1JDTmtJNVFqa3dPRGxETVRrNFF6YzROMFl4Umprek55QnBjM04xWlhJOUwwTTlSbEl2VHoxSFNVVXRVMFZUUVUwdFZrbFVRVXhGTDA5VlBUQXdNREpmTXpreE56SXlPRGd4TDBOT1BVRkRMVVpCUTFSVlVrRlVTVTlPQWdvd2dnSUdCa00wQW9FSktvWklodmNOQVFjRG9JSUI5ekNDQWZNQ0FRQXhnZ0dPTUlJQmlnSUJBREJ5TUZveEN6QUpCZ05WQkFZVEFrWlNNUmt3RndZRFZRUUtEQkJIU1VVdFUwVlRRVTB0VmtsVVFVeEZNUmN3RlFZRFZRUUxEQTR3TURBeVh6TTVNVGN5TWpnNE1URVhNQlVHQTFVRUF3d09RVU10UmtGRFZGVlNRVlJKUXpRQ2dVOU9BaFJUMm9LRXZWa3VkdHRybTVDSndaakhoL0g1TnpBTkJna3Foa2lHOXcwQkFRRUZBQVNDQVFDSUZKbm1iWmZmY0NCMjlLUDJZVkJOSzJFS3lzMUI4S2lBaWZvMGJVdzl6MmZha2pRRlNDVXNMM2dyY0Y3d1Z4Y2xEY3k3SXBSUWhkUERSa0p6V3RoRTgyTms1c2dBcGJlSUhydGhGN2xvaEdwRE5BS0I2RDArdjNROHpJaGZtcEtaSlNQM0pIM1I4K1c5N3dHZ3JjemRTUmdjOEZ6SUNhM09UaGtMVGZ1SWJndVB3cVlpaThWaFprQ09SNWpQSlh0dlNmK1F5MWxhcVlHdEhVYzdxSDBWdUV1N1NmT1FjSXU2NE03dFdZWXBWdmt4Mm91b0pKM0V3RzV1TlNzaTN6T1dLdUJCeFBJZDBkVWkzeXJOYzdEaVNrTTBBb0cvWWtnN2NtbWE1a04wU3hZMXJ5NUV0NGxBbnpIRVExWW5STDlHVHFXR1RRVWF0ZFp0S2FGa1AzbXpNYXFoY2FpckdvSXdYQVlKS29aSWh2Y05BUWNCTUIwR0NXQ0dTQUZsQXdRQkFnUVF6eEtLQms5YTdnVmQ1SzZMd21BNDlvQXdMSW1ISkxxL2JhME45QVNKUHBsN2UzSUZuVGxyd3VycWZLbHBRelFDZ2ZJeWoyRTgwMlUvakdHUitJRWxrcnZidEhpZmNBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUE9PC9jaGFtcD5cclxuPGNoYW1wPnFSOUFEY3ZJSk5oMG9FN2cwMzZNd2xmaitkNFIxVzlKeHl5SzNreDA0b0U9PC9jaGFtcD5cclxuPGNoYW1wPjwvY2hhbXA+XHJcbjwvZ3JvdXBlPlxyXG48L2ZzZT4ifX0=', 'modeHomologue':'False'}
+         [05/10/2026 11:02:31] - [DEBUG] - [SSV] APIException Erreur lors de l'appel ? SSV_Silent facturerSilent
+         [05/10/2026 11:02:31] - [ERROR] - [SSV] [EXEC] Exception lors de l'appel ? ssv.facturersilent
+         System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> SSV.Commun.APIException: Erreur lors de l'appel ? SSV_Silent facturerSilent
+           at SSV.SSVPlugin.verificationErreurSSV_Silent (System.Collections.Generic.Dictionary`2[TKey,TValue] dicoRetour, System.String nomMethode, SSV.SSVPlugin+typeErreur typeErreur) [0x00133] in <0eb62ee7be23415aa49335ad1ae8c541>:0 
+           at SSV.SSVPlugin.FacturerSilent (System.String url, System.String idFacture, System.String finess, [masque].String numNatPs, [masque].Boolean modeHomologue, System.String codeCPS, System.Boolean retourConsulterFacture, System.String strVersionSv) [0x00435] in <0eb62ee7be23415aa49335ad1ae8c541>:0 
+           at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+           at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <f9d1b832704f410aa8ec771f4fe80552>:0 
+            --- End of inner exception stack trace ---
+           at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00083] in <f9d1b832704f410aa8ec771f4fe80552>:0 
+           at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <f9d1b832704f410aa8ec771f4fe80552>:0 
+           at JuxtaLink.Loader.PluginLoader.execute (DRC.Common.PluginInfo pi, DRC.Common.Request req) [0x00376] in <da0ed7a[n]b4a[n]fefa>:0 
+         [05/10/2026 11:02:31] - [INFO] - [JuxtaLink] [EXEC] Plugin execut? : ewogICJBcmd1bWVudHMiOiB7CiAgICAiY29kZSI6ICIwIiwKICAgICJkaWFnbm9zdGljIjogIkVycmV1cnMgcmVsYXRpdmVzIGF1IGxlY3RldXIgZGUgY2FydGVzIChGMDIzKSA6IExlIG51bcOpcm8gbmF0aW9uYWwgZCdpbW1hdHJpY3VsYXRpb24gZGUgbCdhc3N1csOpIGZvdXJuaSBkYW5zIGxhIHpvbmUgZGUgbcOpbW9pcmUgcHLDqXNlbnTDqWUgZW4gZW50csOpZSBkaWZmw6hyZSBkZSBjZWx1aSBxdWkgZmlndXJlIHN1ciBzYSBjYXJ0ZSBWaXRhbGUuIEZhaXRlcyB2w6lyaWZpZXIgw6AgbCd1dGlsaXNhdGV1ciBxdWUgbGEgY2FydGUgVml0YWxlIGludHJvZHVpdGUgZGFucyBsZSBsZWN0ZXVyIGVzdCBiaWVuIGNlbGxlIGR1IGLDqW7DqWZpY2lhaXJlIGRlcyBzb2lucyBldCBhdSBiZXNvaW4gZmFpdGVzIGNoYW5nZXIgbGEgY2FydGUgVml0YWxlLiBVbmUgZm9pcyBsYSBjYXJ0ZSBkdSBiw6luw6lmaWNpYWlyZSBpbnRyb2R1aXRlIGRhbnMgbGEgZmVudGUgZHUgbGVjdGV1ciwgYXBwZWxleiBsYSBmb25jdGlvbiBMaXJlIFDDqXJpb2RlcyBEcm9pdHMgVml0YWxlIGV0IHJlcG9ydGV6IGxlcyBpbmZvcm1hdGlvbnMgcXVlIGNldHRlIGZvbmN0aW9uIGZvdXJuaXQgZW4gc29ydGllIHBvdXIgY29ycmlnZXIgbGUgY29udGVudSBkZSBsYSB6b25lIGRlIG3DqW1vaXJlIHByw6lzZW50w6llIGVuIGVudHLDqWUgZGUgbGEgZm9uY3Rpb24gRm9ybWF0ZXIgRmFjdHVyZXMgcXVpIGEgcmV0b3VybsOpIGwnZXJyZXVyLiBQdWlzIHJhcHBlbGV6IGNldHRlIGRlcm5pw6hyZS4iLAogICAgInNvbHV0aW9uIjogIiIsCiAgICAiY2F0ZWdvcmllIjogIkVycmV1cnMgU1NWIFNpbGVudCIKICB9LAogICJDb2RlIjogMCwKICAiTWVzc2FnZSI6ICJFcnJldXIgbG9ycyBkZSBsJ2FwcGVsIMOgIFNTVl9TaWxlbnQgZmFjdHVyZXJTaWxlbnQiLAogICJSZXF1ZXN0IjogewogICAgIlBsdWdpbiI6ICJzc3YiLAogICAgIkFjdGlvbiI6ICJmYWN0dXJlcnNpbGVudCIsCiAgICAiTWluTWFqb3IiOiAxLAogICAgIk1pbk1pbm9yIjogOCwKICAgICJNaW5CdWlsZCI6IDAsCiAgICAiTWluUmV2aXNpb24iOiAzLAogICAgIlRva2VuIjogInZwQnp6b2dGMkdPVzU0SnJSZkVPVFpvcEM0Rjh1bng3IiwKICAgICJQYXJhbWV0ZXJzIjogewogICAgICAidXJsIjogImh0dHBzOi8vbWFkZWZvcm1lZC1pbnRlbGxpb2VkaXRldXIuanV4dGEuY2xvdWQvUGFnZXMvRXNwYWNlUGF0aWVudC9GYWN0dXJhdGlvbi9Gc3ZfRmFjdHVyYXRpb24uYXNweCIsCiAgICAgICJpZGZhY3R1cmUiOiAiNzAwODQiLAogICAgICAiZmluZXNzIjogIjM3MTAwMjEwNiIsCiAgICAgICJudW1uYXRwcyI6ICIxMDEwMDQ2ODkwODgiLAogICAgICAibW9kZWhvbW9sb2d1ZSI6ICJmYWxzZSIsCiAgICAgICJjb2RlY3BzIjogIjg0ODkiLAogICAgICAic3RydmVyc2lvbnN2IjogIjEuNDAuMTQiLAogICAgICAiZm9ybWF0ZGVzb3J0aWUiOiAianNvbiIKICAgIH0sCiAgICAiX2NhbGxiYWNrIjogIl9qcWpzcCIKICB9LAogICJFcnJvciI6IHRydWUsCiAgIkNvZGVSZXRvdXIiOiBudWxsLAogICJSZXBvbnNlIjoge30KfQ==
+         [05/10/2026 11:02:31] - [INFO] - [JuxtaLink] [CLIENT] Reponse (format de sortie : json) : ewogICJBcmd1bWVudHMiOiB7CiAgICAiY29kZSI6ICIwIiwKICAgICJkaWFnbm9zdGljIjogIkVycmV1cnMgcmVsYXRpdmVzIGF1IGxlY3RldXIgZGUgY2FydGVzIChGMDIzKSA6IExlIG51bcOpcm8gbmF0aW9uYWwgZCdpbW1hdHJpY3VsYXRpb24gZGUgbCdhc3N1csOpIGZvdXJuaSBkYW5zIGxhIHpvbmUgZGUgbcOpbW9pcmUgcHLDqXNlbnTDqWUgZW4gZW50csOpZSBkaWZmw6hyZSBkZSBjZWx1aSBxdWkgZmlndXJlIHN1ciBzYSBjYXJ0ZSBWaXRhbGUuIEZhaXRlcyB2w6lyaWZpZXIgw6AgbCd1dGlsaXNhdGV1ciBxdWUgbGEgY2FydGUgVml0YWxlIGludHJvZHVpdGUgZGFucyBsZSBsZWN0ZXVyIGVzdCBiaWVuIGNlbGxlIGR1IGLDqW7DqWZpY2lhaXJlIGRlcyBzb2lucyBldCBhdSBiZXNvaW4gZmFpdGVzIGNoYW5nZXIgbGEgY2FydGUgVml0YWxlLiBVbmUgZm9pcyBsYSBjYXJ0ZSBkdSBiw6luw6lmaWNpYWlyZSBpbnRyb2R1aXRlIGRhbnMgbGEgZmVudGUgZHUgbGVjdGV1ciwgYXBwZWxleiBsYSBmb25jdGlvbiBMaXJlIFDDqXJpb2RlcyBEcm9pdHMgVml0YWxlIGV0IHJlcG9ydGV6IGxlcyBpbmZvcm1hdGlvbnMgcXVlIGNldHRlIGZvbmN0aW9uIGZvdXJuaXQgZW4gc29ydGllIHBvdXIgY29ycmlnZXIgbGUgY29udGVudSBkZSBsYSB6b25lIGRlIG3DqW1vaXJlIHByw6lzZW50w6llIGVuIGVudHLDqWUgZGUgbGEgZm9uY3Rpb24gRm9ybWF0ZXIgRmFjdHVyZXMgcXVpIGEgcmV0b3VybsOpIGwnZXJyZXVyLiBQdWlzIHJhcHBlbGV6IGNldHRlIGRlcm5pw6hyZS4iLAogICAgInNvbHV0aW9uIjogIiIsCiAgICAiY2F0ZWdvcmllIjogIkVycmV1cnMgU1NWIFNpbGVudCIKICB9LAogICJDb2RlIjogMCwKICAiTWVzc2FnZSI6ICJFcnJldXIgbG9ycyBkZSBsJ2FwcGVsIMOgIFNTVl9TaWxlbnQgZmFjdHVyZXJTaWxlbnQiLAogICJSZXF1ZXN0IjogewogICAgIlBsdWdpbiI6ICJzc3YiLAogICAgIkFjdGlvbiI6ICJmYWN0dXJlcnNpbGVudCIsCiAgICAiTWluTWFqb3IiOiAxLAogICAgIk1pbk1pbm9yIjogOCwKICAgICJNaW5CdWlsZCI6IDAsCiAgICAiTWluUmV2aXNpb24iOiAzLAogICAgIlRva2VuIjogInZwQnp6b2dGMkdPVzU0SnJSZkVPVFpvcEM0Rjh1bng3IiwKICAgICJQYXJhbWV0ZXJzIjogewogICAgICAidXJsIjogImh0dHBzOi8vbWFkZWZvcm1lZC1pbnRlbGxpb2VkaXRldXIuanV4dGEuY2xvdWQvUGFnZXMvRXNwYWNlUGF0aWVudC9GYWN0dXJhdGlvbi9Gc3ZfRmFjdHVyYXRpb24uYXNweCIsCiAgICAgICJpZGZhY3R1cmUiOiAiNzAwODQiLAogICAgICAiZmluZXNzIjogIjM3MTAwMjEwNiIsCiAgICAgICJudW1uYXRwcyI6ICIxMDEwMDQ2ODkwODgiLAogICAgICAibW9kZWhvbW9sb2d1ZSI6ICJmYWxzZSIsCiAgICAgICJjb2RlY3BzIjogIjg0ODkiLAogICAgICAic3RydmVyc2lvbnN2IjogIjEuNDAuMTQiLAogICAgICAiZm9ybWF0ZGVzb3J0aWUiOiAianNvbiIKICAgIH0sCiAgICAiX2NhbGxiYWNrIjogIl9qcWpzcCIKICB9LAogICJFcnJvciI6IHRydWUsCiAgIkNvZGVSZXRvdXIiOiBudWxsLAogICJSZXBvbnNlIjoge30KfQ==
+         [05/10/2026 11:02:31] - [INFO] - [JuxtaLink] [CLIENT] r?ponse en HTTPS
+         [05/10/2026 11:02:31] - [INFO] - [JuxtaLink] [CLIENT] Reponse envoy?e
+
+======================================================================
+  6. VERDICT
+======================================================================
+  [WARN] DmpConnect-JS2 instable (crash / instances multiples) : suspect principal de l'intermittence.
+         Test : --fix propose un arret temporaire.
+
+Scenario : DMPCONNECT
+Constats :
+         VITALE_ABSENT                          WARN  Vitale non inseree ou non lue
+         DMP_MULTI                              WARN  3 instances dmpconnect-js2
+         LNA_Google_Chrome                      KO    Google Chrome sans politique Local Network Access
+         GARDIEN_ABSENT                         WARN  Pas de gardien : JuxtaLink n'est pas relance s'il s'arrete
+
+======================================================================
+  FIN
+======================================================================
+Rapport : /Users/utilisateur-24/Desktop/Avant_MAC-02_20261005-1123.txt
