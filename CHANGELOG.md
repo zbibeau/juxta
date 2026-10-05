@@ -487,3 +487,6 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
 ## 2026-10-05 — PC v0.3.63
 - PC26-FILLATRE : le log montre que le plugin SSV charge `C:\ProgramData\santesocial\fsv\1.40.14\conf\sesam.ini` (retour F680 / « tables binaires ») ; ce fichier avait [SSV] RepertoireTable mais ni [COMMUN] ni son contenu d'origine (1056 octets pour ~15 lignes visibles). Le diag affiche maintenant le chemin chargé par le plugin, les premiers octets du fichier (BOM/UTF-16), le nombre de NUL et de lignes. Nouvelle correction 7a-septies (sur `SSV_TABLES_PERSIST`) : ce sesam.ini est remplacé par une copie du C:\Windows\sesam.ini généré et vérifié par le kit (sauvegarde .bak), puis JuxtaLink est relancé.
+
+## 2026-10-05 — PC v0.3.64
+- PC26-FILLATRE résolu : remplacer le sesam.ini de `ProgramData\santesocial\fsv\1.40.14\conf` par le modèle Windows (avec `[COMMUN] RepertoireTable`) a débloqué la lecture. Cause la plus probable : `[COMMUN] RepertoireTable` absent de ce fichier. Le diag vérifie maintenant `[COMMUN] RepertoireTable` (en plus de `[SSV]`) dans chaque sesam.ini (`SESAM_SSV_TABLE`), et la correction 7a-quinquies pose les deux clés. Tests de non-régression étendus (cas PC26-FILLATRE, réparation `[SSV]` + `[COMMUN]`).
