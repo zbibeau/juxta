@@ -3,6 +3,9 @@
 Page de téléchargement : `index.html` (détection Mac / Windows).
 Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
+## Mac 1.0.2 - 05/10/2026
+- Envoi automatique du rapport : les retours chariot (CR) restaient dans le JSON, le serveur repondait 400 "JSON invalide". Ils sont maintenant retires. Nouveau test 6 (JSON d'envoi valide avec CR, tabulations, guillemets, octets non UTF-8).
+
 ## Mac 1.0.1 - 05/10/2026
 - Envoi automatique du rapport : JSON construit en LC_ALL=C + iconv -c (octets non UTF-8 du log JuxtaLink), et le message d'echec affiche maintenant le code HTTP / l'erreur curl pour diagnostiquer.
 

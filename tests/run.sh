@@ -24,4 +24,10 @@ SEDM=$(grep -m1 "base64-omis" "$MAC/OdaijiJuxta-Mac.sh" | grep -oE "sed -E '[^']
 B64=$(printf '{"Request":{"Parameters":{"codecps":"0000","idfacture":"1"}},"Arguments":{"diagnostic":"La facture demandee n existe pas."}}' | base64 | tr -d '\n')
 OUT=$(printf '[x] Plugin execute : %s\n[y] codecps": "0000"\n' "$B64" | eval "$SEDM")
 case "$OUT" in *0000*|*"$B64"*) echo "  ECHEC code CPS ou base64 visible dans l'extrait de log"; FAIL=1;; *) echo "  ok   extrait de log masque (code CPS, base64)";; esac
+echo "== 6. Mac : le JSON d'envoi du rapport reste valide (CR, tabulations, guillemets, octets non UTF-8)"
+JL=$(grep -m1 'JSON_TXT=' "$MAC/OdaijiJuxta-Mac.sh" | sed -e 's/^ *JSON_TXT=\$(//' -e 's/)$//' -e 's#tail -c 240000 "\$REPORT"#cat "$TJ"#')
+TJ=$(mktemp); printf 'ligne "q" \\ tab\there\r\nr\xe9ponse \xff fin\r\n\001\014ok\n' > "$TJ"
+JT=$(eval "$JL")
+if printf '{"rapport":"%s"}' "$JT" | python3 -c 'import sys,json;json.load(sys.stdin)' 2>/dev/null; then echo "  ok   JSON valide"; else echo "  ECHEC JSON d'envoi invalide (le serveur repondrait 400)"; FAIL=1; fi
+rm -f "$TJ"
 echo; [ $FAIL = 0 ] && echo "TOUS LES TESTS PASSENT" || { echo "TESTS EN ECHEC : ne pas publier"; exit 1; }
