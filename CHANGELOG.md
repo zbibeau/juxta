@@ -460,3 +460,7 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
 ## 2026-10-05 — PC v0.3.55
 - Erreur « Le chemin des tables binaires des SSV est absent du fichier sesam.ini » (PC26-FILLATRE) : le diag contrôle maintenant `[SSV] RepertoireTable` dans TOUS les sesam.ini lus par la FSV (dont `C:\ProgramData\santesocial\fsv\<ver>\conf\sesam.ini`, réécrit par le MSI x64 sans cette clé). Constat `SESAM_SSV_TABLE` (KO, scénario SESAM) ; la réparation (7a-quinquies) pose la clé (et [SRT]/[STS] s'ils manquent), avec sauvegarde .bak, puis relance JuxtaLink.
+
+## 2026-10-05 — PC v0.3.56
+- Si l'erreur « tables binaires des SSV » est encore dans les dernières réponses alors que `C:\Windows\sesam.ini` n'existe pas, la réparation recrée ce fichier (7a, chemins de tables résolus sur le poste) en plus du correctif v0.3.55 sur le sesam.ini de ProgramData. Constat `SSV_TABLES_ERR`.
+- 2-Depanner.bat affichait « kit v0.3.51 » en dur : il affiche maintenant la bonne version.
