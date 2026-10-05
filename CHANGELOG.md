@@ -476,5 +476,8 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - PC26-FILLATRE : tous les sesam.ini de santesocial étaient corrects mais l'erreur « tables binaires des SSV » persistait → la FSV lit un autre fichier. Le diag cherche maintenant sesam.ini aussi dans le dossier JuxtaLink, ProgramData\Juxta/MadeForMed, le profil utilisateur, SysWOW64/System32 et la racine C:\ ; ceux-ci sont corrigés comme les autres, et le contenu de chaque sesam.ini (+ variables SESAM*) est écrit dans le rapport.
 
 ## 2026-10-05 — PC v0.3.60
-- PC26-FILLATRE (sesam.ini tous corrects, erreur « tables binaires des SSV » persistante) : le diag compare les tables x86 et x64 fichier par fichier (`TABLES_X86_INCOMPLET`) ; ici ssv x86 = 18 fichiers contre 22 en x64, sts 3 contre 45. `-Fix` (7a-sexies) copie dans le x86 les seuls fichiers manquants (rien n'est écrasé) puis relance JuxtaLink.
+- PC26-FILLATRE (sesam.ini tous corrects, erreur « tables binaires des SSV » persistante) : le diag compare les tables x86 et x64 fichier par fichier (`TABLES_X86_INCOMPLET`) ; ici ssv x86 = 18 fichiers contre 22 en x64, sts 3 contre 45. `-Fix` (7a-sexies) fait pointer les sesam.ini sur le dossier x64 complet (un seul jeu de tables cohérent, aucune copie ni mélange x86/x64) lorsque le x86 n'est qu'un sous-ensemble du x64, puis relance JuxtaLink.
 - Nouveau constat KO `SSV_TABLES_PERSIST` : erreur tables SSV à la dernière lecture alors que tous les sesam.ini sont corrects (déclenche l'envoi automatique du rapport).
+
+## 2026-10-05 — PC v0.3.61
+- Correction de 7a-sexies : au lieu de copier des fichiers x64 dans le x86 (risque de mélanger deux versions de tables), les sesam.ini (`[SSV]`, `[COMMUN]`, `[STS]`, `[SRT]`) pointent sur le dossier x64 quand celui-ci contient tous les fichiers du x86 et plus. Sauvegarde .bak de chaque sesam.ini.
