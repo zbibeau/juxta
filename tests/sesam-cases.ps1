@@ -5,6 +5,7 @@ $ps = Join-Path $Kit "OdaijiJuxta.ps1"
 . ([scriptblock]::Create((Get-KitFunction $ps "Get-SesamIniState")))
 . ([scriptblock]::Create((Get-KitFunction $ps "Set-SesamKey")))
 . ([scriptblock]::Create((Get-KitFunction $ps "Get-TableMissing")))
+. ([scriptblock]::Create((Get-KitFunction $ps "Get-DmpPcscHits")))
 $fail = 0
 function Check { param($ok, $msg) if ($ok) { Write-Host ("  ok   " + $msg) } else { Write-Host ("  ECHEC " + $msg) -ForegroundColor Red; $script:fail++ } }
 $pd = "C:\ProgramData\santesocial\fsv\1.40.14"; $ssv = "C:\Program Files (x86)\santesocial\fsv\1.40.14\ssv"
@@ -51,4 +52,7 @@ $m = @(Get-TableMissing -Rel86 $p2x86 -Rel64 $p2x64)
 Check (($m.Count -eq 4) -and ($m -contains "tablebin.ssv") -and ($m -contains "scripts.ssv")) ("POSTE2 : fichiers a copier = " + ($m -join ","))
 $m = @(Get-TableMissing -Rel86 @("A.pem","TABLEBIN.SSV","scripts.ssv") -Rel64 @("tablebin.ssv","scripts.ssv"))
 Check ($m.Count -eq 0) "PC26-FILLATRE : x86 complet (casse ignoree) -> rien a copier"
+# DMP Connect : Efficience "Lecteurs de cartes introuvables" (CABINET 05/10) -> lignes de log a detecter ; lignes banales -> rien
+$h = @(Get-DmpPcscHits @("261005:104045 [247] [E] Failed to get the list of connected PC/SC readers. Error #2", "x getPcscResourcesList failed", "INFO : Synchronization using DmpConnect NTP client legacy failed:", "[E] [UNHDLEX] Poco exception: SSL connection unexpectedly closed"))
+Check ($h.Count -eq 2) ("DMP PC/SC : " + $h.Count + " ligne(s) detectee(s) sur 4 (attendu 2)")
 exit $(if ($fail) { 1 } else { 0 })

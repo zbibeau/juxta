@@ -503,3 +503,10 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
 ## 2026-10-05 — PC v0.3.67
 - Correctif « Rapport Avant introuvable » (poste CABINET) : quand le Bureau est redirigé vers OneDrive (`C:\Users\x\OneDrive\Desktop`), le diag écrivait le rapport dans le vrai Bureau mais `Depannage.ps1` et `Install-OdaijiJuxta.ps1` le cherchaient dans `C:\Users\x\Desktop`. Ils résolvent maintenant le Bureau comme le diag (dossier connu de Windows, repli OneDrive\Desktop ou OneDrive\Bureau).
+
+## 2026-10-05 — PC v0.3.68 / Mac v0.3.21
+- **Efficience « Lecteurs de cartes introuvables » (`getPcscResourcesList`, CABINET)** : le redémarrage de DMP Connect a suffi.
+  - PC : le diag repère les erreurs PC/SC dans le log de DMP Connect (constat `DMP_PCSC_ERR`, avec la dernière ligne) et indique depuis quand `dmpconnect-js2` tourne. `-Fix` / `2-Depanner.bat` redémarrent alors le service. Nouveau `Reparer-DMP.bat` (double-clic, UAC) qui ne fait que ça.
+  - Mac : nouveau `Relancer-DMP.command` (relance les services launchd `com.icanopee.*`, sinon arrête `dmpconnect-js2` pour que le moniteur le relance).
+- PC : nouveaux constats `ADR_SERVEUR` (erreurs ADR `siram_40` / `FASIBEN` = service de l'Assurance Maladie indisponible, pas le poste) et `VITALE_ABSENTE` (« La Carte Vitale est absente » = carte non insérée), avec message explicite dans le verdict.
+- Test : détection des lignes de log PC/SC (`Get-DmpPcscHits`).
