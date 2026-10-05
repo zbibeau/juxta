@@ -500,3 +500,6 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - POSTE2 : erreur « tables SSV, identifié par 0, inaccessible » = le dossier `ssv` x86 ne contenait que les certificats (.pem), alors que `tablebin.ssv`, `scripts.ssv`, `tablebin.smc`, `tablebin.ssp` avaient été posés côté x64 par le MSI x64.
 - Correctif 7a-sexies : copie des fichiers manquants x64 → x86, sans jamais écraser un fichier existant, puis relance de JuxtaLink.
 - Nouvelle fonction `Get-TableMissing` (constat `TABLES_X86_INCOMPLET`) + cas de test POSTE2 / PC26.
+
+## 2026-10-05 — PC v0.3.67
+- Correctif « Rapport Avant introuvable » (poste CABINET) : quand le Bureau est redirigé vers OneDrive (`C:\Users\x\OneDrive\Desktop`), le diag écrivait le rapport dans le vrai Bureau mais `Depannage.ps1` et `Install-OdaijiJuxta.ps1` le cherchaient dans `C:\Users\x\Desktop`. Ils résolvent maintenant le Bureau comme le diag (dossier connu de Windows, repli OneDrive\Desktop ou OneDrive\Bureau).
