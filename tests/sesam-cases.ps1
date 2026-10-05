@@ -18,6 +18,7 @@ $cases = @(
   @("29/09 : chemin SSV x86 inexistant (existe seulement en x64)", @("[SSV]","RepertoireTable=C:\Program Files (x86)\santesocial\fsv\1.40.14\ssvX","[MGC]","RepertoireConfigTrace=$pd\conf"), $true, $false),
   @("Dr Plongeron 29/09 : [MGC] absent, tables OK", @("[SSV]","RepertoireTable=$ssv"), $false, $true),
   @("casse differente des sections et des cles", @("[ssv]","repertoiretable=$ssv","[mgc]","repertoireconfigtrace=$pd\conf"), $true, $true),
+  @("PC26-FILLATRE 05/10 apres reparation : tous les ini corrects (l'erreur persiste -> ini lu ailleurs)", @("[COMMUN]","RepertoireTable=$ssv","[SSV]","RepertoireTable=$ssv","[MGC]","RepertoireConfigTrace=$pd\conf"), $true, $true),
   @("fichier vide", @(), $false, $false)
 )
 foreach ($c in $cases) {

@@ -471,3 +471,6 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 ## 2026-10-05 — PC v0.3.58
 - Le contrôle de sesam.ini (chemin des tables SSV, journal MGC) est isolé dans `Get-SesamIniState` (même comportement, désormais testable).
 - Nouveau jeu de tests de non-régression : `bash tests/run.sh` (syntaxe/ASCII/CRLF des .ps1, `bash -n` Mac, cas réels de sesam.ini rejoués sur les vraies fonctions du kit, lecture des constats Mac). À passer avant chaque publication ; chaque poste vu sur le terrain y est ajouté comme cas permanent (`tests/sesam-cases.ps1`, `tests/corpus/`).
+
+## 2026-10-05 — PC v0.3.59
+- PC26-FILLATRE : tous les sesam.ini de santesocial étaient corrects mais l'erreur « tables binaires des SSV » persistait → la FSV lit un autre fichier. Le diag cherche maintenant sesam.ini aussi dans le dossier JuxtaLink, ProgramData\Juxta/MadeForMed, le profil utilisateur, SysWOW64/System32 et la racine C:\ ; ceux-ci sont corrigés comme les autres, et le contenu de chaque sesam.ini (+ variables SESAM*) est écrit dans le rapport.
