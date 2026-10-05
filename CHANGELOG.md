@@ -444,3 +444,6 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
 ## 2026-10-05 — PC v0.3.53
 - FSV : si sa source d'installation Windows Installer est fragile (dossier Téléchargements/Temp/profil utilisateur, ou disparue), le diag le signale (FSV_MSI_SOURCE) et la réparation copie le MSI FSV du kit dans C:\ProgramData\MadeForMed\FSV puis le déclare comme source (sans réinstaller). Rien n'est fait sur les postes où la source est durable.
+
+## 2026-10-05 — PC v0.3.54 / Mac v0.3.16
+- Envoi automatique du rapport à assistance.odaiji@madeformed.com (via une fonction Netlify `netlify/functions/rapport.mjs` + Resend), sans question à l'utilisateur, uniquement si un [KO] reste (PC : ou scénario inconnu). Échec silencieux, avec message de repli (Intercom). Aucune clé dans le kit : RESEND_API_KEY / REPORT_TO / REPORT_FROM sont des variables d'environnement Netlify.
