@@ -3,6 +3,9 @@
 Page de téléchargement : `index.html` (détection Mac / Windows).
 Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
+## PC 1.0.2 / Mac 1.0.2 - 05/10/2026
+- TOUT ce que le kit emet part maintenant a MadeForMed : rapports Avant / Apres / diag seul / Fix / Galss / Nettoyage, journal du depannage, journal de l'installation (nouveau), reparation DMP et reparation lecteur (nouveau). Nouveaux fichiers : Envoyer-journal.ps1 / Reparer-lecteur.ps1 (PC), envoyer-journal.sh (Mac).
+
 ## PC 1.0.1 - 05/10/2026
 - Envoi automatique du rapport : en cas d'echec, le message affiche la cause (erreur HTTP / reseau) au lieu d'un echec silencieux.
 
