@@ -447,3 +447,7 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
 ## 2026-10-05 — PC v0.3.54 / Mac v0.3.16
 - Envoi automatique du rapport à assistance.odaiji@madeformed.com (via une fonction Netlify `netlify/functions/rapport.mjs` + Resend), sans question à l'utilisateur, uniquement si un [KO] reste (PC : ou scénario inconnu). Échec silencieux, avec message de repli (Intercom). Aucune clé dans le kit : RESEND_API_KEY / REPORT_TO / REPORT_FROM sont des variables d'environnement Netlify.
+
+## 2026-10-05 — Mac v0.3.17
+- 2-Depanner.command : bug corrigé — les constats dont le code contient des minuscules (ex. LNA_Google_Chrome) n'étaient pas lus, donc l'autorisation Chrome/Edge (Local Network Access) n'était jamais appliquée par le dépannage (« Navigateurs : rien à faire » alors que le diag signalait un [KO]).
+- 2-Depanner.command : demande d'insérer CPS + Vitale juste avant le réalignement de galss.ini (sans les deux cartes, galss-autofix ne peut pas identifier les fentes).
