@@ -457,3 +457,6 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
 ## 2026-10-05 — Mac v0.3.19
 - Autoriser-Odaiji-Chrome.command v1.2 : la politique Local Network Access de Chrome/Edge n'était pas écrite (« defaults : Could not parse https://[*.]odaiji.co »). Chaque motif est maintenant guillemeté, avec repli PlistBuddy si la clé reste absente. Même correction dans le repli de 2-Depanner.command. (Vu sur MacBook Air de mathieu, Chrome 154.)
+
+## 2026-10-05 — PC v0.3.55
+- Erreur « Le chemin des tables binaires des SSV est absent du fichier sesam.ini » (PC26-FILLATRE) : le diag contrôle maintenant `[SSV] RepertoireTable` dans TOUS les sesam.ini lus par la FSV (dont `C:\ProgramData\santesocial\fsv\<ver>\conf\sesam.ini`, réécrit par le MSI x64 sans cette clé). Constat `SESAM_SSV_TABLE` (KO, scénario SESAM) ; la réparation (7a-quinquies) pose la clé (et [SRT]/[STS] s'ils manquent), avec sauvegarde .bak, puis relance JuxtaLink.
