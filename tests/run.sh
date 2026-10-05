@@ -28,4 +28,7 @@ python3 tests/corpus_test.py || FAIL=1
 node tests/function.test.mjs || FAIL=1
 bash tests/envoi-test.sh || FAIL=1
 bash tests/envoi-mac-test.sh || FAIL=1
+bash tests/sentinelle-test.sh || FAIL=1
+bash tests/sentinelle-mac-test.sh || FAIL=1
+python3 tests/parc_test.py || FAIL=1
 echo; [ $FAIL = 0 ] && echo "TOUS LES TESTS PASSENT" || { echo "TESTS EN ECHEC : ne pas publier"; exit 1; }

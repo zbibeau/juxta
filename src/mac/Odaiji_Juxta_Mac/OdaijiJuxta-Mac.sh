@@ -40,16 +40,18 @@
 #    0.1  Premiere version : inventaire.
 # =====================================================================
 
-VERSION="1.0.3"
+VERSION="1.1.0"
 export LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8   # accents des logs JuxtaLink conserves (sudo/terminal en locale C)
-FIX=0; AUTO=0; SANSGALSS=0; SANSLIST=","
-for a in "$@"; do [ "$a" = "--fix" ] && FIX=1; [ "$a" = "--auto" ] && { FIX=1; AUTO=1; }; [ "$a" = "--sans-galss" ] && { FIX=1; SANSGALSS=1; }; case "$a" in --sans-*) SANSLIST="$SANSLIST${a#--sans-},";; esac; done
+FIX=0; AUTO=0; SANSGALSS=0; SANSLIST=","; LEGER=0
+for a in "$@"; do [ "$a" = "--leger" ] && LEGER=1; [ "$a" = "--fix" ] && FIX=1; [ "$a" = "--auto" ] && { FIX=1; AUTO=1; }; [ "$a" = "--sans-galss" ] && { FIX=1; SANSGALSS=1; }; case "$a" in --sans-*) SANSLIST="$SANSLIST${a#--sans-},";; esac; done
 # Anciens logiciels metiers Mac (cle | libelle | motif) - meme principe que editeurs.psd1 sur PC
 OLD_KEYS=(medimust prokov); OLD_LBL=("MediMust" "MediStory (Prokov)"); OLD_PAT=("medimust" "prokov|medistory|m.distory")
 KITDIR="$(cd "$(dirname "$0")" && pwd)"
 STAMP=$(date +%Y%m%d-%H%M)
 HOST=$(scutil --get ComputerName 2>/dev/null | tr ' ' '_'); [ -z "$HOST" ] && HOST=$(hostname -s)
 REPORT="$HOME/Desktop/${JDPREFIX:-OdaijiJuxta-Mac}_${HOST}_${STAMP}.txt"
+# --leger (sentinelle) : diagnostic passif. Jamais de reparation, aucune sonde du lecteur / des cartes, rapport hors du Bureau.
+if [ "$LEGER" = 1 ]; then FIX=0; AUTO=0; SANSGALSS=0; LDIR="${ODAIJI_REPORT_DIR:-/Library/Application Support/MadeForMed/sentinelle}"; mkdir -p "$LDIR" 2>/dev/null; REPORT="$LDIR/${JDPREFIX:-Sentinelle}_${HOST}_${STAMP}.txt"; fi
 UID_=$(id -u)
 PAT='sesam|santesocial|galss|mica|cryptolib|cps|fsv|ssv|juxta|prokov|medistory|médistory|medimust|médimust|cegedim|clm|jfse|icanopee|dmpconnect|omnidoc|olaqin|ingenico|sensyl|vitale|diagam'
 PROCPAT='galss|mica|prokov|medistory|medimust|cegedim|jfse|JavaAppLauncher|Gestion Lecteur|dmpconnect|icanopee|omnidoc|juxta|pcscd|ctkpcscd|diagam|java'
@@ -90,29 +92,33 @@ echo "$GK" | grep -qi disabled && { warn "Gatekeeper DESACTIVE sur tout le Mac (
 h1 "2. LECTEURS ET CARTES"
 # =====================================================================
 h2 "Lecteurs vus par macOS"
-SC=$(system_profiler SPSmartCardsDataType 2>/dev/null)
-READERS=$(echo "$SC" | sed -n '/Readers:/,/Reader Drivers:/p' | grep -E '^[[:space:]]+#')
-if [ -n "$READERS" ]; then
-    echo "$READERS" | sed 's/^/         /' | tee -a "$REPORT"
-    CPS_R=$(echo "$READERS" | grep -ciE '0x3bac00402a|0x3b7b18|0x3bdc18|12250064800')
-    VIT_R=$(echo "$READERS" | grep -c '0x3b7513')
-    if [ "$CPS_R" -gt 0 ]; then ok "CPS presente"; else ko "CPS non vue"; finding NO_CPS KO "CPS non detectee"; fi
-    if [ "$VIT_R" -gt 0 ]; then ok "Vitale presente"
-    elif [ "$CPS_R" -gt 0 ]; then warn "Vitale non vue (absente du lecteur ? inserer la carte et relancer)"; finding VITALE_ABSENT WARN "Vitale non inseree ou non lue"
-    else ko "Vitale non vue"; finding NO_VITALE KO "Vitale non detectee"; fi
+if [ "$LEGER" = 1 ]; then
+    SC=""; info "Mode leger (sentinelle) : lecteur et cartes non sondes (aucun acces a la carte)"
 else
-    ko "Aucun lecteur vu par macOS"; finding NO_READER KO "Aucun lecteur smartcard"
-    # 28/09 (1er Mac) : SPUSBDataType vide sur macOS 15+ -> ioreg ; lecteur HS / branche sur le clavier
-    h2 "Appareils USB branches (ioreg)"
-    USBL=$(ioreg -p IOUSB -w0 2>/dev/null | grep -o '+-o [^<@]*' | sed 's/+-o //; s/ *$//' | grep -viE '^Root$|XHCI')
-    if [ -n "$USBL" ]; then echo "$USBL" | sed 's/^/         /' | tee -a "$REPORT"; else info "(aucun appareil USB)"; fi
-    if echo "$USBL" | grep -qiE 'reader|lecteur|sensyl|fei|ingenico|olaqin|kapelse|identive|gemalto|ccid|smart ?card|xiring|telium'; then
-        warn "Un lecteur est branche en USB mais n'apparait pas comme lecteur de cartes : autorisation des accessoires (Reglages Systeme > Confidentialite et securite > Autoriser les accessoires a se connecter : Toujours) ou pilote"; finding USB_READER_NOT_SC WARN "Lecteur vu en USB mais pas comme lecteur de cartes"
+    SC=$(system_profiler SPSmartCardsDataType 2>/dev/null)
+    READERS=$(echo "$SC" | sed -n '/Readers:/,/Reader Drivers:/p' | grep -E '^[[:space:]]+#')
+    if [ -n "$READERS" ]; then
+        echo "$READERS" | sed 's/^/         /' | tee -a "$REPORT"
+        CPS_R=$(echo "$READERS" | grep -ciE '0x3bac00402a|0x3b7b18|0x3bdc18|12250064800')
+        VIT_R=$(echo "$READERS" | grep -c '0x3b7513')
+        if [ "$CPS_R" -gt 0 ]; then ok "CPS presente"; else ko "CPS non vue"; finding NO_CPS KO "CPS non detectee"; fi
+        if [ "$VIT_R" -gt 0 ]; then ok "Vitale presente"
+        elif [ "$CPS_R" -gt 0 ]; then warn "Vitale non vue (absente du lecteur ? inserer la carte et relancer)"; finding VITALE_ABSENT WARN "Vitale non inseree ou non lue"
+        else ko "Vitale non vue"; finding NO_VITALE KO "Vitale non detectee"; fi
     else
-        ko "Aucun lecteur sur le bus USB : adaptateur USB-C, cable ou lecteur HS (tester le lecteur sur un autre poste)"; finding USB_NO_READER KO "Lecteur absent du bus USB"
+        ko "Aucun lecteur vu par macOS"; finding NO_READER KO "Aucun lecteur smartcard"
+        # 28/09 (1er Mac) : SPUSBDataType vide sur macOS 15+ -> ioreg ; lecteur HS / branche sur le clavier
+        h2 "Appareils USB branches (ioreg)"
+        USBL=$(ioreg -p IOUSB -w0 2>/dev/null | grep -o '+-o [^<@]*' | sed 's/+-o //; s/ *$//' | grep -viE '^Root$|XHCI')
+        if [ -n "$USBL" ]; then echo "$USBL" | sed 's/^/         /' | tee -a "$REPORT"; else info "(aucun appareil USB)"; fi
+        if echo "$USBL" | grep -qiE 'reader|lecteur|sensyl|fei|ingenico|olaqin|kapelse|identive|gemalto|ccid|smart ?card|xiring|telium'; then
+            warn "Un lecteur est branche en USB mais n'apparait pas comme lecteur de cartes : autorisation des accessoires (Reglages Systeme > Confidentialite et securite > Autoriser les accessoires a se connecter : Toujours) ou pilote"; finding USB_READER_NOT_SC WARN "Lecteur vu en USB mais pas comme lecteur de cartes"
+        else
+            ko "Aucun lecteur sur le bus USB : adaptateur USB-C, cable ou lecteur HS (tester le lecteur sur un autre poste)"; finding USB_NO_READER KO "Lecteur absent du bus USB"
+        fi
+        echo "$USBL" | grep -qi 'Keyboard Hub' && warn "Clavier avec hub USB branche : ne PAS y brancher le lecteur (courant insuffisant)"
+        info "macOS 15+ : a la 1re connexion d'un lecteur, accepter 'Autoriser l'accessoire a se connecter ?' (Mac deverrouille)"
     fi
-    echo "$USBL" | grep -qi 'Keyboard Hub' && warn "Clavier avec hub USB branche : ne PAS y brancher le lecteur (courant insuffisant)"
-    info "macOS 15+ : a la 1re connexion d'un lecteur, accepter 'Autoriser l'accessoire a se connecter ?' (Mac deverrouille)"
 fi
 h2 "Pilotes lecteur"
 echo "$SC" | sed -n '/Reader Drivers:/,/SmartCard Drivers:/p' | grep -E '^[[:space:]]+#' | sed 's/^/         /' | tee -a "$REPORT"
@@ -420,9 +426,10 @@ RAISON=""
 KOC=$(grep -E '^[[:space:]]+[A-Z0-9_]+[[:space:]]+KO[[:space:]]' "$REPORT" 2>/dev/null | awk '{print $1}' | head -4 | paste -sd, -)
 [ -n "$KOC" ] && RAISON="KO $KOC" || RAISON="systematique"
 # 1.0.2 : on envoie TOUS les rapports (Avant / Apres / Fix / Galss / diag seul)
+[ "$LEGER" = 1 ] && RAISON=""   # sentinelle : c'est elle qui decide quoi envoyer
 if [ -n "$RAISON" ]; then
     # 1.1.0 : envoi via odaiji-commun.sh (cle du cabinet, file d'attente si pas de reseau, JSON propre)
     if . "$KITDIR/odaiji-commun.sh" 2>/dev/null; then oj_envoyer_rapport "$REPORT" "$RAISON"; w "$(oj_message Rapport)"
     else w "Envoi automatique impossible (odaiji-commun.sh absent) : recuperer ce fichier par le transfert de fichiers TeamViewer et l'envoyer a l'equipe."; fi
 fi
-open -R "$REPORT" 2>/dev/null
+[ "$LEGER" = 1 ] || open -R "$REPORT" 2>/dev/null

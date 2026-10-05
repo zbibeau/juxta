@@ -1,4 +1,4 @@
-Odaiji_Juxta (Mac) - v1.0.3
+Odaiji_Juxta (Mac) - v1.1.0
 
 >>> LIRE D'ABORD : 0-AVANT-DE-COMMENCER.txt (droits d'execution + quarantaine, une fois par kit)
 
@@ -86,3 +86,19 @@ ENVOI AUTOMATIQUE DU RAPPORT
 Quand un rapport montre un probleme qui reste (un [KO]) ou un cas inconnu, il est transmis automatiquement a MadeForMed
 (nom du poste, liste des logiciels et resultats des controles ; aucune donnee patient). Aucune question n'est posee.
 Si l'envoi echoue (pas de reseau), le message demande de recuperer le fichier par le transfert de fichiers TeamViewer.
+
+  Installer-Sentinelle.command    -> SURVEILLANCE DU PARC (optionnel, pilote) : diagnostic PASSIF une fois par jour, remonte l'etat a MadeForMed
+  Desinstaller-Sentinelle.command -> retire la sentinelle (ou creer "/Library/Application Support/MadeForMed/sentinelle.off" pour la mettre en pause)
+RAPPORTS TRANSMIS, CLE D'ENVOI, FILE D'ATTENTE
+  Chaque rapport / journal du kit part automatiquement chez MadeForMed (message "transmis automatiquement" a la fin).
+  Pas d'Internet au moment de l'envoi : le rapport est mis en FILE D'ATTENTE (/Library/Application Support/MadeForMed/spool) et repart tout seul
+  au prochain passage du kit. Cle d'envoi du cabinet : fichier cle-envoi.txt (fourni par MadeForMed, une ligne) a poser dans le dossier
+  du kit ou dans /Library/Application Support/MadeForMed. Sans cle, les rapports partent "non identifies". Identifiant du poste (Poste ID) :
+  /Library/Application Support/MadeForMed/poste-id.txt (cree automatiquement, identique d'un rapport a l'autre).
+  Donnees envoyees : le rapport tel que ecrit sur le Bureau (codes CPS, base64, FINESS / numero PS et NIR sont masques). Aucun fichier du medecin.
+
+SENTINELLE (surveillance passive, optionnelle)
+  Installer-Sentinelle.command charge le LaunchDaemon fr.madeformed.sentinelle (root, tous les jours 12:30, priorite basse).
+  Elle lance le diagnostic en mode leger (--leger) : AUCUNE reparation, AUCUN acces au lecteur ni aux cartes, aucun fichier sur le Bureau.
+  Elle envoie un petit battement (scenario, constats, version) et le rapport complet seulement si l'etat change (ou une fois par semaine).
+  Elle ne se met jamais a jour toute seule : MadeForMed voit les kits en retard. Pause : sentinelle.off ; retrait : Desinstaller-Sentinelle.command.

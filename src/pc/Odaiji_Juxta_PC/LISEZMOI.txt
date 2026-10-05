@@ -1,4 +1,4 @@
-Odaiji_Juxta (PC) - v1.0.3
+Odaiji_Juxta (PC) - v1.1.0
 
 >>> AVANT TOUT : clic droit sur le zip > "Extraire tout..." puis travailler dans le dossier extrait.
 >>> Ne jamais double-cliquer un .bat directement dans le zip.
@@ -30,6 +30,8 @@ CONTENU (tout est deja inclus)
   Autoriser-Odaiji-Chrome.bat  -> erreurs DRC (Local Network Access) : Chrome, Edge, Firefox
   Reparer-DMP.bat              -> Efficience "Lecteurs de cartes introuvables" : redemarre le service DMP Connect / iCanopee
   (tous les rapports et journaux du kit sont transmis automatiquement a MadeForMed)
+  Installer-Sentinelle.bat     -> SURVEILLANCE DU PARC (optionnel, pilote) : diagnostic PASSIF une fois par jour, remonte l'etat a MadeForMed
+  Desinstaller-Sentinelle.bat  -> retire la sentinelle (ou creer C:\ProgramData\MadeForMed\sentinelle.off pour la mettre en pause)
   Reparer-lecteur.bat          -> lecteur change / "une fois sur deux" : realigne galss.ini
   Neutraliser-Cegedim.bat      -> ancien logiciel encore actif mais plus utilise (sans desinstaller)
   SansGalss.bat                -> passage PC/SC direct (retour arriere automatique)
@@ -46,6 +48,20 @@ DEROULE DE L'INSTALLATION (environ 10 min)
   5a corrections rejouees   5b PC/SC direct   5c redemarrage de JuxtaLink + lecture de controle   6 diag APRES
   Rapports : Bureau\Avant_<poste>_<date>.txt et Apres_<poste>_<date>.txt
   Scenario OK -> poste pret. Sinon : envoyer les deux rapports a Claude.
+
+RAPPORTS TRANSMIS, CLE D'ENVOI, FILE D'ATTENTE
+  Chaque rapport / journal du kit part automatiquement chez MadeForMed (message "transmis automatiquement" a la fin).
+  Pas d'Internet au moment de l'envoi : le rapport est mis en FILE D'ATTENTE (C:\ProgramData\MadeForMed\spool) et repart tout seul
+  au prochain passage du kit. Cle d'envoi du cabinet : fichier cle-envoi.txt (fourni par MadeForMed, une ligne) a poser dans le dossier
+  du kit ou dans C:\ProgramData\MadeForMed. Sans cle, les rapports partent "non identifies". Identifiant du poste (Poste ID) :
+  C:\ProgramData\MadeForMed\poste-id.txt (cree automatiquement, identique d'un rapport a l'autre).
+  Donnees envoyees : le rapport tel que ecrit sur le Bureau (codes CPS, base64, FINESS / numero PS et NIR sont masques). Aucun fichier du medecin.
+
+SENTINELLE (surveillance passive, optionnelle)
+  Installer-Sentinelle.bat cree la tache \Odaiji\Sentinelle (SYSTEM, tous les jours 12:30 + 10 min apres le demarrage, priorite basse).
+  Elle lance le diagnostic en mode leger (-Leger) : AUCUNE reparation, AUCUN acces au lecteur ni aux cartes, aucun fichier sur le Bureau.
+  Elle envoie un petit battement (scenario, constats, version) et le rapport complet seulement si l'etat change (ou une fois par semaine).
+  Elle ne se met jamais a jour toute seule : MadeForMed voit les kits en retard. Pause : sentinelle.off ; retrait : Desinstaller-Sentinelle.bat.
 
 JUXTALINK ET L'UAC
   JuxtaLink exige les droits administrateur ("Voulez-vous autoriser cette application...").

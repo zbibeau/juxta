@@ -1,7 +1,7 @@
 #!/bin/bash
 # =====================================================================
 #  Odaiji_Juxta - DEPANNAGE d'un Mac deja equipe (diag -> bons outils -> diag)
-#  MadeForMed / Odaiji - v1.0.3 (06/10/2026)
+#  MadeForMed / Odaiji - v1.1.0 (06/10/2026)
 # =====================================================================
 #  Double-clic depuis le Finder (ou : bash 2-Depanner.command)
 #  A utiliser quand JuxtaLink est DEJA installe. Sinon : 1-Installer.command.
@@ -164,6 +164,7 @@ say_ "7/7  Diagnostic APRES"
 spin_ "Analyse du Mac en cours (1 a 2 min)" env JDPREFIX=Apres bash "$KIT/OdaijiJuxta-Mac.sh"
 APRES=$(ls -t "$HOME/Desktop"/Apres_*.txt 2>/dev/null | head -1); ok_ "Rapport : $APRES"
 echo; echo "    AVANT : $SCEN"; echo "    APRES : $(grep -m1 'Scenario :' "$APRES")"
+[ -f "$KIT/odaiji-commun.sh" ] && [ -n "${AVANT:-}" ] && [ -f "$AVANT" ] && { . "$KIT/odaiji-commun.sh" 2>/dev/null; oj_delta "$AVANT" "$APRES"; }
 grep -E '^\s*\[KO\]|^\s*\[WARN\]' "$APRES" | head -10
 echo
 echo "A envoyer dans le channel Claude si le scenario n'est pas OK :"

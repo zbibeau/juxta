@@ -4,9 +4,10 @@ la synthese des rapports et les tests. Tolerant : un rapport ancien (sans bloc '
 import re, sys, json
 
 RE_HEAD = re.compile(r'OdaijiJuxta(-Mac)? v(\d+\.\d+\.\d+)\s+-\s+(\d\d/\d\d/\d{4}) (\d\d:\d\d)')
-RE_CONST = re.compile(r'^\s{4,}([A-Z][A-Z0-9_]+)\s+(KO|WARN|INFO|OK)\s+(.*\S)?\s*$')
+RE_CONST = re.compile(r'^\s{4,}([A-Z][A-Za-z0-9_]+)\s+(KO|WARN|INFO|OK)\s+(.*\S)?\s*$')
 RE_POSTE = re.compile(r'^\s+(?:Poste|Mac)\s*:\s*(\S+)')
-RE_POSTE_ID = re.compile(r'Poste ID\s*:\s*([0-9a-fA-F-]{8,})')
+RE_POSTE_ID = re.compile(r'(?:Poste ID|poste_id)\s*:\s*([0-9a-fA-F-]{8,40})')
+RE_CABINET = re.compile(r'^cabinet : (.+)$', re.M)
 RE_SCEN = re.compile(r'^Scenario\s*:\s*(\S+)')
 
 
@@ -17,7 +18,7 @@ def prefix_of(nom):
 
 def parse(text, nom=''):
     d = {'nom': nom, 'prefix': prefix_of(nom), 'kit': None, 'version': None, 'date': None, 'heure': None,
-         'poste': None, 'poste_id': None, 'type': 'inconnu', 'scenario': None, 'constats': []}
+         'poste': None, 'poste_id': None, 'cabinet': None, 'type': 'inconnu', 'scenario': None, 'constats': []}
     lines = text.replace('\r', '').split('\n')
     for ln in lines[:15]:
         m = RE_HEAD.search(ln)
@@ -29,6 +30,8 @@ def parse(text, nom=''):
         d['type'] = 'journal'
     m = RE_POSTE_ID.search(text[:2000])
     if m: d['poste_id'] = m.group(1).lower()
+    m = RE_CABINET.search(text[:600])
+    if m: d['cabinet'] = m.group(1).strip()
     in_c = False
     for ln in lines:
         m = RE_SCEN.match(ln)

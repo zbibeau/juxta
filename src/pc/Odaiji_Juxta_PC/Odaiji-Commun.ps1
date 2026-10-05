@@ -97,3 +97,40 @@ function Format-OjStatut {
         default { return ("Envoi automatique impossible (" + $R.err + ") : recuperer ce fichier par le transfert de fichiers TeamViewer et l'envoyer a l'equipe.") }
     }
 }
+
+# ---- Sentinelle : fonctions pures (testees contre le corpus de rapports reels)
+# Resume d'un rapport du kit : @{ scenario; constats = @(@{code;niveau}) }
+function Get-RapportResume {
+    param([string]$Texte)
+    $sc = $null; $cs = @(); $in = $false
+    foreach ($l in ($Texte -split "`r?`n")) {
+        if ($l -match '^Scenario\s*:\s*(\S+)') { $sc = $Matches[1]; continue }
+        if ($l -match '^Constats') { $in = $true; continue }
+        if ($in) {
+            if ($l -cmatch '^\s{4,}([A-Z][A-Za-z0-9_]+)\s+(KO|WARN|INFO|OK)\s+') { $cs += @{ code = $Matches[1]; niveau = $Matches[2] } }
+            elseif ($l.Trim() -eq "" -or $l.StartsWith("====")) { $in = $false }
+        }
+    }
+    return @{ scenario = $sc; constats = $cs }
+}
+# Faut-il envoyer le rapport COMPLET (sinon : battement seul) ?  $Etat = objet lu dans etat.json ou $null.
+# Retourne @{ complet = bool ; raison = texte }.  Regles : premier passage ; scenario change ; nouveau code KO / WARN ; rapport complet vieux de 7 jours.
+function Get-DecisionEnvoi {
+    param($Etat, [string]$Scenario, [string[]]$Codes, [datetime]$Maintenant)
+    if (-not $Etat) { return @{ complet = $true; raison = "premier passage" } }
+    $avant = @($Etat.codes)
+    $nouveaux = @($Codes | Where-Object { $avant -notcontains $_ })
+    if ($nouveaux.Count) { return @{ complet = $true; raison = ("nouveau constat " + ($nouveaux -join ",")) } }
+    if ($Etat.scenario -ne $Scenario) { return @{ complet = $true; raison = ("scenario " + $Etat.scenario + " -> " + $Scenario) } }
+    $d = [datetime]::MinValue; try { $d = [datetime]::ParseExact([string]$Etat.dernier_rapport, "yyyy-MM-dd", [Globalization.CultureInfo]::InvariantCulture) } catch {}
+    if (($Maintenant - $d).TotalDays -ge 7) { return @{ complet = $true; raison = "rapport hebdomadaire" } }
+    return @{ complet = $false; raison = "inchange" }
+}
+
+# Delta Avant / Apres (KO + WARN) : @{ corriges; restent; nouveaux } (listes de codes triees)
+function Compare-Constats {
+    param($Avant, $Apres)
+    $a = @($Avant.constats | Where-Object { $_.niveau -in "KO", "WARN" } | ForEach-Object { $_.code } | Sort-Object -Unique)
+    $b = @($Apres.constats | Where-Object { $_.niveau -in "KO", "WARN" } | ForEach-Object { $_.code } | Sort-Object -Unique)
+    return @{ corriges = @($a | Where-Object { $b -notcontains $_ }); restent = @($a | Where-Object { $b -contains $_ }); nouveaux = @($b | Where-Object { $a -notcontains $_ }) }
+}

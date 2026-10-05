@@ -10,6 +10,14 @@
     "WARN"
    ],
    [
+    "CRASH_fr_sesam_vitale_diagam_collecteur",
+    "KO"
+   ],
+   [
+    "LNA_Google_Chrome",
+    "KO"
+   ],
+   [
     "SIG_MICA",
     "KO"
    ]
@@ -25,6 +33,10 @@
    [
     "DMP_MULTI",
     "WARN"
+   ],
+   [
+    "LNA_Google_Chrome",
+    "KO"
    ]
   ],
   "kit": "mac",
@@ -38,6 +50,10 @@
    [
     "DMP_MULTI",
     "WARN"
+   ],
+   [
+    "LNA_Google_Chrome",
+    "KO"
    ]
   ],
   "kit": "mac",
@@ -66,6 +82,10 @@
    ],
    [
     "GALSS_SERIE",
+    "KO"
+   ],
+   [
+    "LNA_Google_Chrome",
     "KO"
    ],
    [
@@ -133,6 +153,14 @@
    [
     "DIAGAM",
     "WARN"
+   ],
+   [
+    "CRASH_fr_sesam_vitale_diagam_collecteur",
+    "KO"
+   ],
+   [
+    "LNA_Google_Chrome",
+    "KO"
    ]
   ],
   "kit": "mac",
@@ -1006,6 +1034,14 @@
    [
     "GALSS_SERIE",
     "KO"
+   ],
+   [
+    "CRASH_fr_sesam_vitale_diagam_collecteur",
+    "KO"
+   ],
+   [
+    "LNA_Google_Chrome",
+    "KO"
    ]
   ],
   "kit": "mac",
@@ -1025,6 +1061,10 @@
     "WARN"
    ],
    [
+    "LNA_Google_Chrome",
+    "KO"
+   ],
+   [
     "GARDIEN_ABSENT",
     "WARN"
    ]
@@ -1040,6 +1080,10 @@
    [
     "DMP_MULTI",
     "WARN"
+   ],
+   [
+    "LNA_Google_Chrome",
+    "KO"
    ]
   ],
   "kit": "mac",
@@ -1064,6 +1108,10 @@
    ],
    [
     "GALSS_SERIE",
+    "KO"
+   ],
+   [
+    "LNA_Google_Chrome",
     "KO"
    ]
   ],
@@ -1100,6 +1148,10 @@
     "WARN"
    ],
    [
+    "LNA_Google_Chrome",
+    "KO"
+   ],
+   [
     "GARDIEN_ABSENT",
     "WARN"
    ]
@@ -1131,6 +1183,14 @@
    [
     "DIAGAM",
     "WARN"
+   ],
+   [
+    "CRASH_fr_sesam_vitale_diagam_collecteur",
+    "KO"
+   ],
+   [
+    "LNA_Google_Chrome",
+    "KO"
    ]
   ],
   "kit": "mac",
@@ -2842,6 +2902,10 @@
    [
     "DIAGAM",
     "WARN"
+   ],
+   [
+    "LNA_Google_Chrome",
+    "KO"
    ]
   ],
   "kit": "mac",

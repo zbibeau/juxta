@@ -1,7 +1,7 @@
 #!/bin/bash
 # =====================================================================
 #  Odaiji_Juxta - Installation propre de JuxtaLink + plugin SSV sur macOS
-#  MadeForMed / Odaiji - v1.0.3 (06/10/2026)
+#  MadeForMed / Odaiji - v1.1.0 (06/10/2026)
 # =====================================================================
 #  Double-clic depuis le Finder (ou : bash 1-Installer.command)
 #
@@ -287,6 +287,7 @@ say_ "6/6  Diagnostic APRES"
 spin_ "Analyse du Mac en cours (1 a 2 min)" env JDPREFIX=Apres bash "$KIT/OdaijiJuxta-Mac.sh"
 APRES=$(ls -t "$HOME/Desktop"/Apres_*.txt 2>/dev/null | head -1); ok_ "Rapport : $APRES"
 echo; grep -E 'Scenario :' "$APRES"; grep -E '^\s*\[KO\]|^\s*\[WARN\]' "$APRES" | head -10
+[ -f "$KIT/odaiji-commun.sh" ] && [ -n "${AVANT:-}" ] && [ -f "$AVANT" ] && { . "$KIT/odaiji-commun.sh" 2>/dev/null; oj_delta "$AVANT" "$APRES"; }
 echo
 echo "Termine. Si le scenario n'est pas OK : envoyer Avant_*.txt et Apres_*.txt dans le channel Claude."
 open -R "$APRES" 2>/dev/null

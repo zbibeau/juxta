@@ -87,3 +87,43 @@ oj_message() {  # <Rapport|Journal>
         *) echo "Envoi automatique impossible ($OJ_ERR) : recuperer ce fichier par le transfert de fichiers TeamViewer et l'envoyer a l'equipe.";;
     esac
 }
+
+# ---- Sentinelle : fonctions pures (testees contre le corpus de rapports reels)
+# oj_resume <rapport> -> "scenario|KO1,KO2|WARN1,WARN2"
+oj_resume() {
+    local sc ko warn
+    sc=$(grep -m1 '^Scenario :' "$1" 2>/dev/null | awk '{print $3}')
+    ko=$(awk '/^Constats/{c=1;next} c&&/^[[:space:]]+[A-Z][A-Za-z0-9_]+[[:space:]]+KO[[:space:]]/{print $1} c&&(/^$/||/^====/){c=0}' "$1" 2>/dev/null | sort -u | paste -sd, -)
+    warn=$(awk '/^Constats/{c=1;next} c&&/^[[:space:]]+[A-Z][A-Za-z0-9_]+[[:space:]]+WARN[[:space:]]/{print $1} c&&(/^$/||/^====/){c=0}' "$1" 2>/dev/null | sort -u | paste -sd, -)
+    printf '%s|%s|%s' "$sc" "$ko" "$warn"
+}
+# oj_decision <fichier_etat> <scenario> <codes_csv> <maintenant_epoch> -> OJ_COMPLET (1/0) et OJ_RAISON
+# Regles : premier passage ; nouveau code KO / WARN ; scenario change ; rapport complet vieux de 7 jours.
+oj_decision() {
+    local f="$1" sc="$2" codes="$3" now="$4" old_sc old_codes old_ts c nouveaux=""
+    OJ_COMPLET=1; OJ_RAISON="premier passage"
+    [ -f "$f" ] || return 0
+    old_sc=$(sed -n 's/^scenario=//p' "$f"); old_codes=$(sed -n 's/^codes=//p' "$f"); old_ts=$(sed -n 's/^dernier_rapport_ts=//p' "$f")
+    local IFS=','
+    for c in $codes; do [ -z "$c" ] && continue; case ",$old_codes," in *",$c,"*) ;; *) nouveaux="$nouveaux${nouveaux:+,}$c";; esac; done
+    unset IFS
+    if [ -n "$nouveaux" ]; then OJ_RAISON="nouveau constat $nouveaux"; return 0; fi
+    if [ "$old_sc" != "$sc" ]; then OJ_RAISON="scenario $old_sc -> $sc"; return 0; fi
+    if [ $((now - ${old_ts:-0})) -ge 604800 ]; then OJ_RAISON="rapport hebdomadaire"; return 0; fi
+    OJ_COMPLET=0; OJ_RAISON="inchange"
+}
+oj_csv_json() { local out="" x; local IFS=','; for x in $1; do [ -n "$x" ] && out="$out${out:+,}\"$x\""; done; printf '[%s]' "$out"; }
+oj_version_gt() {  # a > b ? (x.y.z)
+    local IFS=.; set -- $1 $2; [ "$(( ${1:-0}*1000000 + ${2:-0}*1000 + ${3:-0} ))" -gt "$(( ${4:-0}*1000000 + ${5:-0}*1000 + ${6:-0} ))" ]
+}
+# oj_delta <avant> <apres> : affiche les codes KO+WARN corriges / restants / nouveaux (compare deux rapports)
+oj_delta() {
+    local a b x ca="" cb="" corr="" rest="" nouv="" IFS
+    a=$(oj_resume "$1"); b=$(oj_resume "$2")
+    ca=$(printf '%s' "${a#*|}" | tr '|' ','); cb=$(printf '%s' "${b#*|}" | tr '|' ',')
+    IFS=','
+    for x in $ca; do [ -z "$x" ] && continue; case ",$cb," in *",$x,"*) rest="$rest${rest:+, }$x";; *) corr="$corr${corr:+, }$x";; esac; done
+    for x in $cb; do [ -z "$x" ] && continue; case ",$ca," in *",$x,"*) ;; *) nouv="$nouv${nouv:+, }$x";; esac; done
+    unset IFS
+    echo "    AVANT -> APRES (KO + WARN) :"; echo "      Corriges : ${corr:-aucun}"; echo "      Restent  : ${rest:-aucun}"; echo "      Nouveaux : ${nouv:-aucun}"
+}

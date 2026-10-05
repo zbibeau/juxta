@@ -3,6 +3,13 @@
 Page de téléchargement : `index.html` (détection Mac / Windows).
 Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
+## PC / Mac 1.1.0 - 06/10/2026
+- **Envoi des rapports robuste** : fichier d'attente local si pas de reseau (reprise automatique au passage suivant), identifiant de poste stable (Poste ID dans l'en-tete du rapport), cle d'envoi par cabinet (cle-envoi.txt, jamais dans le zip), JSON propre cote Mac, erreurs lisibles. Nouveaux : Odaiji-Commun.ps1 (PC), odaiji-commun.sh (Mac). Fonction de reception : authentification par cle (ODAIJI_KEYS / REQUIRE_KEY), idempotente, limitee, battements.
+- **Sentinelle (pilote, optionnelle)** : Installer-Sentinelle.bat / .command. Diagnostic PASSIF (`-Leger` / `--leger` : aucune reparation, aucun acces au lecteur ni aux cartes, rien sur le Bureau) une fois par jour ; battement + rapport complet seulement si l'etat change ; pause par sentinelle.off ; jamais de mise a jour automatique.
+- **Delta Avant -> Apres** affiche en fin de depannage / d'installation (corriges / restent / nouveaux).
+- Masquage renforce des rapports : FINESS, numero PS (RPPS), NIR, dates de naissance, noms de patients (kits et serveur).
+- Depot : catalogue des constats (regles/constats.json), parseur de rapports (outils/rapport_parse.py), tableau de bord du parc (outils/parc.py), corpus de 90 rapports reels anonymises (tests/corpus/real) et tests 7 a 14.
+
 ## PC / Mac 1.0.3 - 06/10/2026
 - Mac : envoyer-journal.sh laissait les retours chariot dans le JSON (meme defaut que le rapport en 1.0.1, HTTP 400). Corrige.
 - Depot : les sources des kits sont maintenant dans src/ ; `bash build.sh` tamponne la version (src/VERSION), controle (ASCII, CRLF, syntaxe, droits) et produit les zips. Les zips ne s'editent plus a la main.

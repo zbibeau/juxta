@@ -883,6 +883,16 @@
    "os": [
     "pc"
    ]
+  },
+  "CRASH_*": {
+   "niveau": "KO",
+   "origine": "logiciel_tiers",
+   "titre": "Un composant Sesam-Vitale / Juxta a plante (rapport de crash macOS recent)",
+   "action": "Lire le rapport de crash (DiagnosticReports) ; relancer le composant ; si repetitif, a investiguer.",
+   "reparation": "guide",
+   "os": [
+    "mac"
+   ]
   }
  }
 }

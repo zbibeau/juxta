@@ -96,16 +96,16 @@
 =====================================================================
 #>
 [CmdletBinding()]
-param([switch]$Fix, [switch]$NoPause, [switch]$Auto, [switch]$SansGalss, [switch]$Nettoyage, [switch]$SansCegedim, [switch]$LibererPort, [string]$SansEditeurs = "", [string]$GardeEditeurs = "", [string]$Prefix = "OdaijiJuxta", [string]$UserAppData = "")
+param([switch]$Fix, [switch]$NoPause, [switch]$Auto, [switch]$SansGalss, [switch]$Nettoyage, [switch]$SansCegedim, [switch]$LibererPort, [switch]$Leger, [string]$SansEditeurs = "", [string]$GardeEditeurs = "", [string]$Prefix = "OdaijiJuxta", [string]$UserAppData = "")
 
 trap { Write-Host ("`nERREUR : " + $_.Exception.Message) -ForegroundColor Red; Write-Host ($_.InvocationInfo.PositionMessage) -ForegroundColor DarkGray; try { Add-Content -Path $Report -Value ("ERREUR SCRIPT : " + $_.Exception.Message + " | " + $_.InvocationInfo.PositionMessage) } catch {}; if (-not ($Auto -or $NoPause)) { Read-Host "Envoyer cette capture dans le channel Claude. Entree pour fermer" }; exit 1 }
 
-$Script:Version = "1.0.3"
+$Script:Version = "1.1.0"
 
 # --- Auto-elevation
 $isAdmin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 if (-not $isAdmin) {
-    $a = @("-NoProfile","-ExecutionPolicy","Bypass","-File","`"$PSCommandPath`""); if ($Fix) { $a += "-Fix" }; if ($NoPause) { $a += "-NoPause" }; if ($Auto) { $a += "-Auto" }; if ($SansGalss) { $a += "-SansGalss" }; if ($Nettoyage) { $a += "-Nettoyage" }; if ($SansCegedim) { $a += "-SansCegedim" }; if ($LibererPort) { $a += "-LibererPort" }; if ($SansEditeurs) { $a += @("-SansEditeurs","`"$SansEditeurs`"") }; if ($GardeEditeurs) { $a += @("-GardeEditeurs","`"$GardeEditeurs`"") }; $a += @("-Prefix",$Prefix); if ($UserAppData) { $a += @("-UserAppData","`"$UserAppData`"") }
+    $a = @("-NoProfile","-ExecutionPolicy","Bypass","-File","`"$PSCommandPath`""); if ($Fix) { $a += "-Fix" }; if ($NoPause) { $a += "-NoPause" }; if ($Auto) { $a += "-Auto" }; if ($SansGalss) { $a += "-SansGalss" }; if ($Nettoyage) { $a += "-Nettoyage" }; if ($SansCegedim) { $a += "-SansCegedim" }; if ($LibererPort) { $a += "-LibererPort" }; if ($Leger) { $a += "-Leger" }; if ($SansEditeurs) { $a += @("-SansEditeurs","`"$SansEditeurs`"") }; if ($GardeEditeurs) { $a += @("-GardeEditeurs","`"$GardeEditeurs`"") }; $a += @("-Prefix",$Prefix); if ($UserAppData) { $a += @("-UserAppData","`"$UserAppData`"") }
     Start-Process powershell.exe -Verb RunAs -ArgumentList $a; exit
 }
 
@@ -125,6 +125,8 @@ if (-not $UserAppData) {
 }
 if ($Auto -or $Nettoyage) { $Fix = $true }
 $Report  = Join-Path $Desktop ("{0}_{1}_{2}.txt" -f $Prefix, $env:COMPUTERNAME, $Stamp)
+# -Leger (sentinelle) : diagnostic passif. Jamais de reparation, aucune sonde du lecteur / des cartes, rapport hors du Bureau du medecin.
+if ($Leger) { $Fix = $false; $Auto = $false; $NoPause = $true; $ld = Join-Path $env:ProgramData "MadeForMed\sentinelle"; New-Item -ItemType Directory -Force -Path $ld | Out-Null; $Report = Join-Path $ld ("{0}_{1}_{2}.txt" -f $Prefix, $env:COMPUTERNAME, $Stamp) }
 $Script:Findings = @()
 # 05/10 : jamais de blob base64 (les reponses d'erreur contiennent la requete, donc le code CPS) ni de code CPS dans un rapport
 function W    { param([string]$t="", [string]$c="Gray") $t = [regex]::Replace([string]$t, '[A-Za-z0-9+/=]{80,}', '[base64-omis]'); $t = [regex]::Replace($t, '(?i)(codecps[^0-9]{0,6})\d{4,8}', '$1****'); $t = [regex]::Replace($t, '(?i)((?:numNatPs|numeroNatPs|finess|nir|numSecu\w*|numeroSecu\w*|dateNaissance|nomPatient|prenomPatient|rpps|adeli)\W{1,6})[A-Za-z0-9]{3,}', '$1[masque]'); $t = [regex]::Replace($t, '\d{13,15}', '[nir-masque]'); Write-Host $t -ForegroundColor $c; Add-Content -Path $Report -Value $t -Encoding UTF8 }
@@ -270,18 +272,23 @@ try { $av = Get-CimInstance -Namespace root\SecurityCenter2 -ClassName AntiVirus
 H1 "2. LECTEURS ET CARTES"
 # ====================================================================
 Get-PnpDevice -Class SmartCardReader -ErrorAction SilentlyContinue | ForEach-Object { INFO ("PnP : " + $_.FriendlyName + " [" + $_.Status + "]") }
-H2 "certutil -scinfo (resume)"
-$sc = (& certutil -silent -scinfo 2>&1 | Out-String) -replace '[\u00A0\u00E1\u00FF]', ' '
-$Script:Readers = @(); $Script:CpsReader = ""; $Script:VitReader = ""; $cur = ""
-foreach ($line in ($sc -split "`r?`n")) {
-    if     ($line -match '^\s*---\s*Lecteur\W*:\s*(.+?)\s*$') { $cur = $Matches[1]; $Script:Readers += $cur; INFO ("Lecteur : " + $cur) }
-    elseif ($line -match 'Carte\W*:\s*(.*CPS.*)$')           { $Script:CpsReader = $cur; OK ("  CPS dans '" + $cur + "'") }
-    elseif ($line -match 'Carte\W*:\s*(.*Vitale.*)$')        { $Script:VitReader = $cur; OK ("  Vitale dans '" + $cur + "'") }
-    elseif ($line -match 'SCARD_STATE_(PRESENT|INUSE|EMPTY|UNPOWERED)') { INFO ("  " + $line.Trim()) }
-    elseif ($line -match 'partag\W+e par un autre processus') { WARN ("  '" + $cur + "' : carte tenue par un autre processus (acces exclusif SSV retarde)"); Finding "CARD_SHARED" "WARN" ("Carte partagee dans " + $cur) }
+if ($Leger) {
+    $Script:Readers = @(); $Script:CpsReader = ""; $Script:VitReader = ""
+    INFO "Mode leger (sentinelle) : lecteur et cartes non sondes (aucun acces a la carte)"
+} else {
+    H2 "certutil -scinfo (resume)"
+    $sc = (& certutil -silent -scinfo 2>&1 | Out-String) -replace '[\u00A0\u00E1\u00FF]', ' '
+    $Script:Readers = @(); $Script:CpsReader = ""; $Script:VitReader = ""; $cur = ""
+    foreach ($line in ($sc -split "`r?`n")) {
+        if     ($line -match '^\s*---\s*Lecteur\W*:\s*(.+?)\s*$') { $cur = $Matches[1]; $Script:Readers += $cur; INFO ("Lecteur : " + $cur) }
+        elseif ($line -match 'Carte\W*:\s*(.*CPS.*)$')           { $Script:CpsReader = $cur; OK ("  CPS dans '" + $cur + "'") }
+        elseif ($line -match 'Carte\W*:\s*(.*Vitale.*)$')        { $Script:VitReader = $cur; OK ("  Vitale dans '" + $cur + "'") }
+        elseif ($line -match 'SCARD_STATE_(PRESENT|INUSE|EMPTY|UNPOWERED)') { INFO ("  " + $line.Trim()) }
+        elseif ($line -match 'partag\W+e par un autre processus') { WARN ("  '" + $cur + "' : carte tenue par un autre processus (acces exclusif SSV retarde)"); Finding "CARD_SHARED" "WARN" ("Carte partagee dans " + $cur) }
+    }
+    if (-not $Script:CpsReader) { KO "CPS non vue par Windows"; Finding "NO_CPS" "KO" "CPS non detectee" }
+    if (-not $Script:VitReader) { WARN "Vitale non identifiee par certutil (peut etre presente mais non reconnue : voir statut PRESENT ci-dessus)" }
 }
-if (-not $Script:CpsReader) { KO "CPS non vue par Windows"; Finding "NO_CPS" "KO" "CPS non detectee" }
-if (-not $Script:VitReader) { WARN "Vitale non identifiee par certutil (peut etre presente mais non reconnue : voir statut PRESENT ci-dessus)" }
 
 # ====================================================================
 H1 "3. PILE SESAM-VITALE"

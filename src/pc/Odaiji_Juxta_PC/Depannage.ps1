@@ -1,7 +1,7 @@
 <#
 =====================================================================
  Odaiji_Juxta - DEPANNAGE d'un poste ou JuxtaLink est DEJA installe
- MadeForMed / Odaiji - v1.0.3 (06/10/2026)
+ MadeForMed / Odaiji - v1.1.0 (06/10/2026)
 =====================================================================
  Lance par 2-Depanner.bat (elevation UAC automatique). Un seul double-clic :
    1 diag AVANT -> 2 questions (anciens logiciels, port 1234) -> 3 corrections sures automatiques (-Fix -Auto)
@@ -47,7 +47,7 @@ $diagArgs = @("-NoProfile","-ExecutionPolicy","Bypass","-File","`"$Kit\OdaijiJux
 $Stamp = Get-Date -Format "yyyyMMdd-HHmm"
 $Journal = Join-Path $Desktop ("Depannage_" + $env:COMPUTERNAME + "_" + $Stamp + ".txt")
 try { Start-Transcript -Path $Journal -Force | Out-Null } catch {}
-Write-Host "Odaiji_Juxta - DEPANNAGE sur $env:COMPUTERNAME pour l'utilisateur $($owner.User)  (kit v1.0.3)"
+Write-Host "Odaiji_Juxta - DEPANNAGE sur $env:COMPUTERNAME pour l'utilisateur $($owner.User)  (kit v1.1.0)"
 
 if (-not (Test-Path $exe)) {
     KO "JuxtaLink n'est pas installe sur ce poste : utiliser 1-Installer.bat (poste neuf)."
@@ -199,6 +199,16 @@ if ($apres) {
     Write-Host ""; Get-Content $apres.FullName | Select-String 'Scenario :' | ForEach-Object { Write-Host "    $($_.Line.Trim())" }
     $reste = @(Get-Content $apres.FullName | Select-String '^\s*\[KO\]' | ForEach-Object { $_.Line.Trim() } | Select-Object -First 10)
     if ($reste.Count) { Write-Host "`n    Reste a traiter :" -ForegroundColor Yellow; $reste | ForEach-Object { Write-Host "    $_" -ForegroundColor Red } } else { OK "Aucun [KO] dans le rapport Apres" }
+    try {
+        . (Join-Path $Kit "Odaiji-Commun.ps1")
+        if ($avant) {
+            $dl = Compare-Constats (Get-RapportResume ([IO.File]::ReadAllText($avant.FullName))) (Get-RapportResume ([IO.File]::ReadAllText($apres.FullName)))
+            Write-Host "`n    AVANT -> APRES (KO + WARN) :" -ForegroundColor Cyan
+            Write-Host ("      Corriges : " + $(if ($dl.corriges.Count) { $dl.corriges -join ", " } else { "aucun" })) -ForegroundColor Green
+            Write-Host ("      Restent  : " + $(if ($dl.restent.Count) { $dl.restent -join ", " } else { "aucun" })) -ForegroundColor Yellow
+            Write-Host ("      Nouveaux : " + $(if ($dl.nouveaux.Count) { $dl.nouveaux -join ", " } else { "aucun" })) -ForegroundColor $(if ($dl.nouveaux.Count) { "Red" } else { "Gray" })
+        }
+    } catch {}
 }
 Write-Host "`n    PROCHAINE ETAPE : dans Odaiji, une facture avec une carte Vitale puis une facture sans Vitale (valider l'appel ADRi), puis 3-Diag-seul.bat si un doute persiste." -ForegroundColor Cyan
 Write-Host "    Ces fichiers sont transmis automatiquement a MadeForMed ; si 'Envoi automatique impossible' s'affiche, les recuperer par le transfert de fichiers TeamViewer :" -ForegroundColor Cyan

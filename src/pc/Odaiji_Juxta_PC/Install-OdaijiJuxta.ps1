@@ -270,6 +270,16 @@ Say "6/6  Diagnostic APRES"
 Run-Diag ($diagArgs + @("-Prefix","Apres"))
 $apres = Get-ChildItem "$Desktop\Apres_*.txt" -ErrorAction SilentlyContinue | Sort-Object LastWriteTime -Descending | Select-Object -First 1
 if ($apres) { OK "Rapport : $($apres.FullName)"; Get-Content $apres.FullName | Select-String 'Scenario :|^\s*\[KO\]|^\s*\[WARN\]' | Select-Object -First 12 | ForEach-Object { Write-Host "    $($_.Line.Trim())" } }
+if ($apres -and $avant) {
+    try {
+        . (Join-Path $Kit "Odaiji-Commun.ps1")
+        $dl = Compare-Constats (Get-RapportResume ([IO.File]::ReadAllText($avant.FullName))) (Get-RapportResume ([IO.File]::ReadAllText($apres.FullName)))
+        Write-Host "`n    AVANT -> APRES (KO + WARN) :" -ForegroundColor Cyan
+        Write-Host ("      Corriges : " + $(if ($dl.corriges.Count) { $dl.corriges -join ", " } else { "aucun" })) -ForegroundColor Green
+        Write-Host ("      Restent  : " + $(if ($dl.restent.Count) { $dl.restent -join ", " } else { "aucun" })) -ForegroundColor Yellow
+        Write-Host ("      Nouveaux : " + $(if ($dl.nouveaux.Count) { $dl.nouveaux -join ", " } else { "aucun" })) -ForegroundColor $(if ($dl.nouveaux.Count) { "Red" } else { "Gray" })
+    } catch {}
+}
 Write-Host "`nTermine. Si le scenario n'est pas OK : envoyer Avant_*.txt et Apres_*.txt dans le channel Claude."
 try { Stop-Transcript | Out-Null } catch {}
 try { & (Join-Path $Kit "Envoyer-journal.ps1") -Fichier $Journal -Raison "journal installation" } catch {}
