@@ -454,3 +454,6 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
 ## 2026-10-05 — Mac v0.3.18
 - Gardien Mac v1.1 : à chaque veille (10 min), galss-autofix vérifie que galss.ini suit les fentes réelles du lecteur. Si le médecin inverse ou déplace sa CPS / sa Vitale, galss.ini est réaligné et JuxtaLink relancé tout seul (2 réalignements max en 30 min, tracé dans ~/Library/Logs/juxtalink-gardien.log). L'installateur et le dépannage copient galss-autofix.sh et rendent galss.ini modifiable sans mot de passe.
+
+## 2026-10-05 — Mac v0.3.19
+- Autoriser-Odaiji-Chrome.command v1.2 : la politique Local Network Access de Chrome/Edge n'était pas écrite (« defaults : Could not parse https://[*.]odaiji.co »). Chaque motif est maintenant guillemeté, avec repli PlistBuddy si la clé reste absente. Même correction dans le repli de 2-Depanner.command. (Vu sur MacBook Air de mathieu, Chrome 154.)
