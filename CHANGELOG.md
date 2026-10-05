@@ -3,6 +3,9 @@
 Page de téléchargement : `index.html` (détection Mac / Windows).
 Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
+## PC 1.0.1 - 05/10/2026
+- Envoi automatique du rapport : en cas d'echec, le message affiche la cause (erreur HTTP / reseau) au lieu d'un echec silencieux.
+
 ## Mac 1.0.2 - 05/10/2026
 - Envoi automatique du rapport : les retours chariot (CR) restaient dans le JSON, le serveur repondait 400 "JSON invalide". Ils sont maintenant retires. Nouveau test 6 (JSON d'envoi valide avec CR, tabulations, guillemets, octets non UTF-8).
 
