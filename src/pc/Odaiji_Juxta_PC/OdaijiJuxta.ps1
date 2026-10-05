@@ -244,7 +244,8 @@ $Hives = @("HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*","HKLM:\
 
 "" | Set-Content -Path $Report -Encoding UTF8
 H1 ("OdaijiJuxta v" + $Script:Version + " - " + (Get-Date -Format "dd/MM/yyyy HH:mm"))
-INFO ("Poste : " + $env:COMPUTERNAME + "   Utilisateur : " + $env:USERNAME + "   Mode : " + $(if ($Fix) { "REPARATION" } else { "DIAGNOSTIC" }))
+try { . (Join-Path $PSScriptRoot "Odaiji-Commun.ps1"); $Script:PosteId = Get-PosteId } catch { $Script:PosteId = "" }
+INFO ("Poste : " + $env:COMPUTERNAME + "   Utilisateur : " + $env:USERNAME + "   Mode : " + $(if ($Fix) { "REPARATION" } else { "DIAGNOSTIC" }) + $(if ($Script:PosteId) { "   Poste ID : " + $Script:PosteId } else { "" }))
 INFO ("Rapport : " + $Report)
 
 # ====================================================================
@@ -1302,18 +1303,12 @@ H1 "FIN"
 W ("Rapport : " + $Report) "Cyan"
 # 05/10 : envoi automatique a MadeForMed, SANS question. 1.0.0 : systematique (Avant / Apres / diag seul).
 # (un [KO] qui reste ou un scenario inconnu). Jamais bloquant ; echec silencieux -> repli : transfert de fichiers TeamViewer.
-$envoye = $false
+$statutEnvoi = $null
 try {
     $ko = @($Script:Findings | Where-Object { $_.Level -eq "KO" })
     $raison = if ($ko.Count) { "KO " + ((($ko | Select-Object -First 4 | ForEach-Object Code)) -join ",") } elseif ($Script:Scenario -eq "UNKNOWN" -and $Script:Findings.Count) { "scenario inconnu" } else { "systematique " + $Script:Scenario }
-    # 1.0.2 : on envoie TOUS les rapports (Avant / Apres / Fix / Galss / Nettoyage / diag seul) : corpus de cas reels
-    if ($raison) {
-        [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-        $txt = [IO.File]::ReadAllText($Report); if ($txt.Length -gt 240000) { $txt = $txt.Substring($txt.Length - 240000) }
-        $body = [Text.Encoding]::UTF8.GetBytes((@{ kit = "odaiji-juxta"; os = "pc"; version = $Script:Version; poste = $env:COMPUTERNAME; nom = (Split-Path $Report -Leaf); raison = $raison; rapport = $txt } | ConvertTo-Json -Compress))
-        [void](Invoke-RestMethod -Uri "https://odaiji-juxta.netlify.app/.netlify/functions/rapport" -Method Post -Body $body -ContentType "application/json; charset=utf-8" -TimeoutSec 25 -ErrorAction Stop)
-        $envoye = $true
-    }
-} catch { $errEnvoi = ($_.Exception.Message -replace "[\r\n]+", " "); if ($errEnvoi.Length -gt 120) { $errEnvoi = $errEnvoi.Substring(0, 120) } }
-if ($envoye) { W "Rapport transmis automatiquement a MadeForMed." "Cyan" } elseif ($raison) { W ("Envoi automatique impossible (" + $errEnvoi + ") : recuperer ce fichier par le transfert de fichiers TeamViewer et l'envoyer a l'equipe.") "Cyan" }
+    # 1.1.0 : TOUS les rapports partent (Avant / Apres / Fix / Galss / Nettoyage / diag seul) via Odaiji-Commun.ps1 (cle, file d'attente si pas de reseau)
+    if ($raison) { $statutEnvoi = Send-OjRapport -Fichier $Report -Raison $raison }
+} catch { $statutEnvoi = @{ statut = "refuse"; err = ([string]$_.Exception.Message) -replace "[\r\n]+", " " } }
+if ($statutEnvoi) { try { W (Format-OjStatut $statutEnvoi "Rapport") "Cyan" } catch { W "Envoi automatique impossible : recuperer ce fichier par le transfert de fichiers TeamViewer et l'envoyer a l'equipe." "Cyan" } }
 if (-not $NoPause) { Read-Host "`nEntree pour fermer" }

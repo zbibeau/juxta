@@ -1,0 +1,35 @@
+// Tests de la fonction Netlify de reception (netlify/functions/rapport.mjs) avec un faux GitHub. Lancer : node tests/function.test.mjs
+import handler, { mask } from "../netlify/functions/rapport.mjs";
+let fail = 0; const ok = (c, m) => { if (c) console.log("  ok   " + m); else { fail = 1; console.log("  ECHEC " + m); } };
+const puts = []; let putStatus = 201, shaExiste = false;
+globalThis.fetch = async (url, opt = {}) => {
+  if ((opt.method || "GET") === "GET") return new Response(shaExiste ? JSON.stringify({ sha: "abc" }) : "{}", { status: shaExiste ? 200 : 404 });
+  const body = JSON.parse(opt.body); puts.push({ url, body, texte: Buffer.from(body.content, "base64").toString("utf8") });
+  return new Response("{}", { status: putStatus });
+};
+process.env.GITHUB_TOKEN = "t"; process.env.GITHUB_REPO = "x/y";
+const req = (obj, headers = {}, method = "POST", raw) => new Request("https://x/f", { method, headers: { "content-type": "application/json", "x-nf-client-connection-ip": headers.ip || "1.1.1.1", ...headers }, body: method === "POST" ? (raw ?? JSON.stringify(obj)) : undefined });
+const base = { kit: "odaiji-juxta", os: "pc", version: "1.1.0", poste: "POSTE-01", nom: "Avant_POSTE-01_20261006-0900.txt", raison: "systematique OK", rapport: "ligne 1\nnumNatPs':'100040351344' finess\":\"221036023\" NIR 1234567890123\n" };
+console.log("== 9. Fonction de reception (faux GitHub)");
+let r = await handler(req(null, {}, "GET")); ok(r.status === 405, "GET refuse (405)");
+r = await handler(req(base)); ok(r.status === 200, "sans cle, sans REQUIRE_KEY : accepte"); ok(/cabinet : non-identifie/.test(puts.at(-1).texte), "marque non-identifie");
+ok(!/100040351344|221036023|1234567890123/.test(puts.at(-1).texte), "FINESS / numero PS / NIR masques cote serveur");
+ok(/^rapports\/\d{4}-\d\d-\d\d\/\d{6}_POSTE-01_pc_v1\.1\.0_systematique_OK_[0-9a-f]{6}\.txt$/.test(puts.at(-1).url.split("/contents/")[1]), "chemin rapports/AAAA-MM-JJ/...");
+process.env.ODAIJI_KEYS = "kA=cabinet-a, kB=cabinet-b";
+r = await handler(req(base, { "x-odaiji-key": "zzz" })); ok(r.status === 401, "cle inconnue : 401");
+r = await handler(req(base, { "x-odaiji-key": "kB" })); ok(r.status === 200 && /cabinet : cabinet-b/.test(puts.at(-1).texte), "cle valide : cabinet identifie");
+process.env.REQUIRE_KEY = "1";
+r = await handler(req(base)); ok(r.status === 401, "REQUIRE_KEY : sans cle refuse");
+r = await handler(req(base, { "x-odaiji-key": "kA" })); ok(r.status === 200, "REQUIRE_KEY : avec cle accepte");
+delete process.env.REQUIRE_KEY;
+r = await handler(req(null, {}, "POST", "{pas du json")); ok(r.status === 400, "JSON invalide : 400");
+r = await handler(req({ ...base, kit: "autre" })); ok(r.status === 400, "mauvais kit : 400");
+r = await handler(req({ ...base, rapport: "x".repeat(260000) })); ok(r.status === 413, "trop gros : 413");
+putStatus = 422; r = await handler(req(base)); ok(r.status === 200, "renvoi du meme rapport (422 GitHub) : succes idempotent"); putStatus = 201;
+const id = "0123abcd-4567-89ab-cdef-0123456789ab";
+shaExiste = true; r = await handler(req({ ...base, type: "battement", poste_id: id, rapport: JSON.stringify({ scenario: "OK" }) }));
+ok(r.status === 200 && puts.at(-1).url.endsWith(`/parc/battements/${id}.json`) && puts.at(-1).body.sha === "abc", "battement : un fichier par poste, ecrase (sha)"); shaExiste = false;
+r = await handler(req({ ...base, type: "battement", rapport: "x".repeat(9000) })); ok(r.status === 413, "battement trop gros : 413");
+ok(mask("a codecps: 12345 b") === "a codecps: **** b", "mask : code CPS");
+let n429 = 0; for (let i = 0; i < 70; i++) { const x = await handler(req(base, { ip: "9.9.9.9" })); if (x.status === 429) n429++; } ok(n429 >= 9, "limitation : 429 au-dela de 60 envois / heure / IP");
+process.exit(fail);

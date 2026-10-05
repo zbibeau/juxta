@@ -68,7 +68,8 @@ confirm(){ local r; if [ $AUTO = 1 ]; then [ "$2" = "safe" ] && { w ">> $1 -> ou
 
 : > "$REPORT"
 h1 "OdaijiJuxta-Mac v$VERSION - $(date '+%d/%m/%Y %H:%M')"
-info "Mac         : $HOST   Utilisateur : $USER"
+POSTE_ID=""; [ -f "$KITDIR/odaiji-commun.sh" ] && { . "$KITDIR/odaiji-commun.sh" 2>/dev/null && POSTE_ID=$(oj_poste_id); }
+info "Mac         : $HOST   Utilisateur : $USER${POSTE_ID:+   Poste ID : $POSTE_ID}"
 info "Rapport     : $REPORT"
 if [ $FIX = 1 ]; then info "Mode        : REPARATION"; else info "Mode        : DIAGNOSTIC (lecture seule)"; fi
 w ""
@@ -419,17 +420,9 @@ RAISON=""
 KOC=$(grep -E '^[[:space:]]+[A-Z0-9_]+[[:space:]]+KO[[:space:]]' "$REPORT" 2>/dev/null | awk '{print $1}' | head -4 | paste -sd, -)
 [ -n "$KOC" ] && RAISON="KO $KOC" || RAISON="systematique"
 # 1.0.2 : on envoie TOUS les rapports (Avant / Apres / Fix / Galss / diag seul)
-if [ -n "$RAISON" ] && command -v curl >/dev/null 2>&1; then
-    # 1.0.1 : LC_ALL=C (tr/sed Mac plantent sur les octets non UTF-8 du log) + iconv -c (JSON toujours en UTF-8 valide)
-    JSON_TXT=$(tail -c 240000 "$REPORT" | LC_ALL=C tr -d '\000-\010\013-\037' | iconv -f UTF-8 -t UTF-8 -c 2>/dev/null | LC_ALL=C sed -e 's/\\/\\\\/g' -e 's/"/\\"/g' -e $'s/\t/\\\\t/g' | LC_ALL=C awk '{printf "%s\\n",$0}')
-    SENDOUT=$(mktemp -t juxtasend)
-    printf '{"kit":"odaiji-juxta","os":"mac","version":"%s","poste":"%s","nom":"%s","raison":"%s","rapport":"%s"}' "$VERSION" "$HOST" "$(basename "$REPORT")" "$RAISON" "$JSON_TXT" > "$SENDOUT.json"
-    HTTPC=$(curl -sS -m 40 -o "$SENDOUT.out" -w '%{http_code}' -X POST -H 'Content-Type: application/json; charset=utf-8' --data-binary @"$SENDOUT.json" https://odaiji-juxta.netlify.app/.netlify/functions/rapport 2>"$SENDOUT.err")
-    if [ "$HTTPC" = "200" ]; then
-        w "Rapport transmis automatiquement a MadeForMed."
-    else
-        w "Envoi automatique impossible (HTTP ${HTTPC:-000} $(head -c 120 "$SENDOUT.err" "$SENDOUT.out" 2>/dev/null | tr '\n' ' ')) : recuperer ce fichier par le transfert de fichiers TeamViewer et l'envoyer a l'equipe."
-    fi
-    rm -f "$SENDOUT" "$SENDOUT.json" "$SENDOUT.out" "$SENDOUT.err"
+if [ -n "$RAISON" ]; then
+    # 1.1.0 : envoi via odaiji-commun.sh (cle du cabinet, file d'attente si pas de reseau, JSON propre)
+    if . "$KITDIR/odaiji-commun.sh" 2>/dev/null; then oj_envoyer_rapport "$REPORT" "$RAISON"; w "$(oj_message Rapport)"
+    else w "Envoi automatique impossible (odaiji-commun.sh absent) : recuperer ce fichier par le transfert de fichiers TeamViewer et l'envoyer a l'equipe."; fi
 fi
 open -R "$REPORT" 2>/dev/null

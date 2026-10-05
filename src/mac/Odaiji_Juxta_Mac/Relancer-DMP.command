@@ -1,7 +1,7 @@
 #!/bin/bash
 chmod +x "$(dirname "$0")"/*.command "$(dirname "$0")"/*.sh 2>/dev/null; xattr -dr com.apple.quarantine "$(dirname "$0")" 2>/dev/null
 # Efficience "Lecteurs de cartes introuvables" (getPcscResourcesList) : relance DMP Connect / iCanopee. Ne modifie rien d'autre.
-JOURNAL=$(mktemp -t RelancerDMP); exec > >(tee "$JOURNAL") 2>&1
+JOURNAL=$(mktemp "${TMPDIR:-/tmp}/RelancerDMP.XXXXXX"); exec > >(tee "$JOURNAL") 2>&1
 echo "Odaiji_Juxta - relance de DMP Connect / iCanopee"
 echo "Mot de passe administrateur requis."
 sudo -v || { bash "$(dirname "$0")/envoyer-journal.sh" "$JOURNAL" "reparation DMP"

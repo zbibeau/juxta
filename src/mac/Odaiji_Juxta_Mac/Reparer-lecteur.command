@@ -1,7 +1,7 @@
 #!/bin/bash
 # Double-clic depuis le Finder : realigne galss.ini et relance JuxtaLink.
 cd "$(dirname "$0")"
-JOURNAL=$(mktemp -t ReparerLecteur); exec > >(tee "$JOURNAL") 2>&1
+JOURNAL=$(mktemp "${TMPDIR:-/tmp}/ReparerLecteur.XXXXXX"); exec > >(tee "$JOURNAL") 2>&1
 echo "Verification du lecteur de cartes..."
 bash "$HOME/Library/Application Support/MadeForMed/galss-autofix.sh"
 echo ""

@@ -206,13 +206,6 @@ if ($avant) { Write-Host ("      - " + $avant.FullName) }
 if ($apres) { Write-Host ("      - " + $apres.FullName) }
 Write-Host ("      - " + $Journal + "  (journal de ce depannage : actions et reponses)")
 try { Stop-Transcript | Out-Null } catch {}
-# 1.0.0 : le journal du depannage (actions et reponses) part aussi, comme les rapports Avant / Apres
-try {
-    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-    $kitVer = [regex]::Match((Get-Content (Join-Path $Kit "OdaijiJuxta.ps1") -Raw), '\$Script:Version\s*=\s*"([^"]+)"').Groups[1].Value
-    $jt = [IO.File]::ReadAllText($Journal); if ($jt.Length -gt 240000) { $jt = $jt.Substring($jt.Length - 240000) }
-    $jb = [Text.Encoding]::UTF8.GetBytes((@{ kit = "odaiji-juxta"; os = "pc"; version = $kitVer; poste = $env:COMPUTERNAME; nom = (Split-Path $Journal -Leaf); raison = "journal depannage"; rapport = $jt } | ConvertTo-Json -Compress))
-    [void](Invoke-RestMethod -Uri "https://odaiji-juxta.netlify.app/.netlify/functions/rapport" -Method Post -Body $jb -ContentType "application/json; charset=utf-8" -TimeoutSec 25 -ErrorAction Stop)
-    Write-Host "Journal transmis automatiquement a MadeForMed." -ForegroundColor Cyan
-} catch { Write-Host "Envoi automatique du journal impossible : le recuperer par le transfert de fichiers TeamViewer." -ForegroundColor Yellow }
+# 1.1.0 : le journal du depannage part aussi (Odaiji-Commun.ps1 : cle, file d'attente si pas de reseau)
+try { & (Join-Path $Kit "Envoyer-journal.ps1") -Fichier $Journal -Raison "journal depannage" } catch { Write-Host "Envoi automatique du journal impossible : le recuperer par le transfert de fichiers TeamViewer." -ForegroundColor Yellow }
 Read-Host "`nEntree pour fermer"
