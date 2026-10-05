@@ -1,0 +1,6 @@
+Scenario : DMPCONNECT
+Constats :
+         VITALE_ABSENT                          WARN  Vitale non inseree ou non lue
+         DMP_MULTI                              WARN  3 instances dmpconnect-js2
+         LNA_Google_Chrome                      KO    Google Chrome sans politique Local Network Access
+         GARDIEN_ABSENT                         WARN  Pas de gardien : JuxtaLink n'est pas relance s'il s'arrete

@@ -467,3 +467,7 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
 ## 2026-10-05 — PC v0.3.57
 - Les requêtes WMI/CIM du diag (services, profils, processus) ont un délai maximum de 30 s : sur PC26-FILLATRE, la réparation est restée figée plus de 5 min dans l'inventaire des logiciels actifs (requête WMI bloquée) et bloquait tout le dépannage.
+
+## 2026-10-05 — PC v0.3.58
+- Le contrôle de sesam.ini (chemin des tables SSV, journal MGC) est isolé dans `Get-SesamIniState` (même comportement, désormais testable).
+- Nouveau jeu de tests de non-régression : `bash tests/run.sh` (syntaxe/ASCII/CRLF des .ps1, `bash -n` Mac, cas réels de sesam.ini rejoués sur les vraies fonctions du kit, lecture des constats Mac). À passer avant chaque publication ; chaque poste vu sur le terrain y est ajouté comme cas permanent (`tests/sesam-cases.ps1`, `tests/corpus/`).
