@@ -1,0 +1,100 @@
+Odaiji_Juxta (PC) - v1.0.3
+
+>>> AVANT TOUT : clic droit sur le zip > "Extraire tout..." puis travailler dans le dossier extrait.
+>>> Ne jamais double-cliquer un .bat directement dans le zip.
+>>> A lancer depuis la SESSION WINDOWS DU MEDECIN (user.config et logs sont par utilisateur).
+    v0.3.49 : les deux fichiers du quotidien sont renommes pour passer en tete du dossier : 1-Installer.bat (ex Installer-Odaiji-Juxta.bat) et 2-Depanner.bat (ex Depannage.bat).
+    v0.3.48 : Depannage.bat retire aussi automatiquement le GALSS x86 Juxta (Full PC/SC) quand il est present ou revenu ; l'installateur fait maintenant comme le depannage pour CertPropSvc (Manuel automatique) et le menage des Cryptolib en doublon (une question).
+    v0.3.47 : Depannage.bat : CertPropSvc passe en Manuel automatiquement (plus de question) ; seule la question du menage des Cryptolib reste.
+    v0.3.46 : NOUVEAU Depannage.bat (poste ou JuxtaLink est deja installe) : diag Avant, corrections sures automatiques, reparation du lecteur et autorisation Chrome/Edge si le diag les justifie, relance de JuxtaLink, questions claires (anciens logiciels, CertPropSvc, menage des Cryptolib en doublon), diag Apres, resume et journal Depannage_<poste>_<date>.txt sur le Bureau a envoyer avec les rapports Avant_/Apres_.
+    v0.3.45 : le MSI FSV reecrivait C:\ProgramData\santesocial\fsv\<version>\conf\sesam.ini sans la section [MGC] juste apres sa pose (erreur MGC "Section MGC absente" a la lecture suivante) : la section est maintenant reposee apres chaque MSI (7a-bis et 7t).
+    v0.3.44 : etape 5 de l'installateur : JuxtaLink est toujours arrete puis relance APRES la pose du user.config MadeForMed, avec controle du port 1234 (2 essais) ; le bandeau annonce le redemarrage et l'installation automatique de FSV/GALSS/MICA/Cryptolib, puis demande d'enregistrer la situation de facturation APRES l'installation.
+    v0.3.43 : si le MSI FSV echoue (ex. "Impossible de definir la securite du fichier ...\santesocial\fsv\..."), le kit repare les droits du dossier (takeown + icacls) puis relance le MSI une fois ; en fin d'installation, seul le service iCanopee (DmpConnect-JS2) est redemarre, puis verifie et relance s'il est arrete.
+    v0.3.42 : Neutraliser-Ancien-Logiciel : le choix D n'est plus affiche quand la desinstallation n'est pas proposee (logiciels medicaux).
+    v0.3.41 : Reparer-lecteur ne reste plus fige et muet : la lecture des cartes est annoncee et limitee a 45 s, avec un message clair et un journal (C:\ProgramData\MadeForMed\galss-autofix.log).
+    v0.3.40 : en fin d'installation, si galss.ini est absent ou en mode serie (DMP Connect / iCanopee installe), enchaine avec la reparation du lecteur (Reparer-lecteur) et redemarre le service DMP Connect.
+    v0.3.39 : galss.ini absent (supprime avec le GALSS x86 retire) = recree en PC/SC par Reparer-lecteur ; restaure apres le retrait de GALSS (DMP Connect / iCanopee).
+    v0.3.38 : plus de pause sur Firefox/Chrome (installation sans blocage) ; bandeau net a l'etape "Enregistrer la situation de facturation".
+    v0.3.37 : galss.ini d'un ancien logiciel (un seul canal serie) converti en PC/SC pour DMP Connect / iCanopee (sauvegarde .bak).
+    v0.3.36 : user.config pose aussi dans le profil du compte admin de l'UAC (JuxtaLink lance avec ce compte).
+    v0.3.35 : si l'UAC est validee avec un autre compte, le kit vise quand meme le profil de la session ouverte ;
+    user.config absent ou port different de 1234 = corrige (etape 7k) ; section [MGC] posee dans tous les sesam.ini (7a-ter).
+
+CONTENU (tout est deja inclus)
+  1-Installer.bat   -> NOUVEAU POSTE : installation complete : double-clic, UAC, suivre les messages
+  2-Depanner.bat    -> POSTE DEJA EQUIPE : diagnostic puis bons outils de reparation, journal sur le Bureau
+  3-Diag-seul.bat                -> diagnostic seul (rapport sur le Bureau), ne modifie rien
+  Reparer-interactif.bat       -> reparation avec confirmation a chaque etape
+  Demarrage-JuxtaLink.bat      -> JuxtaLink sans fenetre UAC + relance a chaque ouverture de session
+                                  (poste deja installe ; "Demarrage-JuxtaLink.bat retirer" pour annuler)
+  Autoriser-Odaiji-Chrome.bat  -> erreurs DRC (Local Network Access) : Chrome, Edge, Firefox
+  Reparer-DMP.bat              -> Efficience "Lecteurs de cartes introuvables" : redemarre le service DMP Connect / iCanopee
+  (tous les rapports et journaux du kit sont transmis automatiquement a MadeForMed)
+  Reparer-lecteur.bat          -> lecteur change / "une fois sur deux" : realigne galss.ini
+  Neutraliser-Cegedim.bat      -> ancien logiciel encore actif mais plus utilise (sans desinstaller)
+  SansGalss.bat                -> passage PC/SC direct (retour arriere automatique)
+  Nettoyage.bat                -> anciennes FSV / Cryptolib en double (avec le support)
+  installeurs\SetupJuxtaLinkx86.msi   JuxtaLink 2.2.3 x86 (Juxta)
+  installeurs\fsv-1.40.1413_x64.msi   FSV GIE (repli)
+  user.config                         configuration MadeForMed
+
+DEROULE DE L'INSTALLATION (environ 10 min)
+  1 diag AVANT   1b "facture-t-il ENCORE avec ... ?" pour chaque ancien logiciel detecte   1c port 1234
+  2 MSI JuxtaLink   3 user.config   3b demarrage sans UAC (tache planifiee + icone "JuxtaLink (Odaiji)")
+  4 corrections auto sures   4b navigateurs (Local Network Access)
+  5 lancement + PREMIERE LECTURE dans Odaiji (le plugin SSV installe FSV/MICA/Cryptolib : Internet requis)
+  5a corrections rejouees   5b PC/SC direct   5c redemarrage de JuxtaLink + lecture de controle   6 diag APRES
+  Rapports : Bureau\Avant_<poste>_<date>.txt et Apres_<poste>_<date>.txt
+  Scenario OK -> poste pret. Sinon : envoyer les deux rapports a Claude.
+
+JUXTALINK ET L'UAC
+  JuxtaLink exige les droits administrateur ("Voulez-vous autoriser cette application...").
+  Lance automatiquement au demarrage de Windows, il est BLOQUE en silence -> apres un redemarrage du PC,
+  plus de JuxtaLink et "carte Vitale non lue". Le kit cree la tache planifiee \Odaiji\JuxtaLink
+  (ouverture de session, privileges eleves) : JuxtaLink demarre sans question. Pour le relancer a la main :
+  icone "JuxtaLink (Odaiji)" sur le Bureau. Le compte du medecin doit etre administrateur du poste.
+
+SMART APP CONTROL (Windows 11)
+  S'il est actif, Windows bloque mica.dll (non signe) : erreur 0xc0e90002, Vitale illisible.
+  En mode evaluation, Windows l'active seul quelques jours plus tard. Le diag le signale.
+  Correction manuelle : Parametres > Confidentialite et securite > Securite Windows >
+  Controle des applications et du navigateur > Smart App Control > Desactive. Prevenir le medecin
+  (non reactivable sans reinstaller Windows sur la plupart des versions).
+
+ERREURS DRC A LA TELETRANSMISSION (Chrome 142+ / Edge / Firefox 145+ "Local Network Access")
+  Autoriser-Odaiji-Chrome.bat ecrit la politique LocalNetworkAccessAllowedForUrls (Chrome + Edge ;
+  Firefox : SkipDomains ; tous utilisateurs). Remplace chrome://flags, survit aux mises a jour.
+  Relancer le navigateur. Verifier : chrome://policy. Integre a l'installation (etape 4b).
+
+ANCIENS LOGICIELS METIERS (Cegedim, Affid, Shaman, Weda...)
+  Installeur / Reparer-interactif : "Le medecin facture-t-il ENCORE avec ... ?"
+    n = lancement coupe, puis produits MSI de l'editeur desinstalles un par un (sans redemarrage, hors briques
+        partagees FSV/Cryptolib/MICA/GALSS/Java/.NET, arret si TeamViewer/JuxtaLink/DMP Connect/MICA disparait),
+        dossiers de l'editeur deplaces dans C:\_Odaiji_a_supprimer (a vider apres validation).
+        Desinstalleurs non-MSI : listes dans le rapport, a retirer avec le support.
+    o = rien n'est modifie.
+  Neutraliser-Ancien-Logiciel.bat (EQUIPE, a la demande) : liste le catalogue (editeurs.psd1) et ce qui est detecte sur le poste,
+    puis : numero du logiciel > N (neutralisation seule : demarrage, services, taches, processus ; rien n'est desinstalle, recommande)
+    ou D (+ desinstallation MSI, dossiers en quarantaine ; jamais propose pour les logiciels medicaux du catalogue ni sur le poste
+    qui heberge la base). Le moteur montre ce qui sera coupe et demande confirmation. R = remettre en route un logiciel neutralise ;
+    S = remettre en route les elements Windows / Adobe coupes a tort. Rapport : Neutralisation_<poste>_<date>.txt sur le Bureau.
+    -Simulation (powershell -File Neutraliser-Ancien-Logiciel.ps1 -Simulation) : affiche sans rien executer.
+  Neutraliser-Cegedim.bat : ancien raccourci, Cegedim seulement (meme moteur que l'outil ci-dessus et que l'installeur).
+  Journal : C:\ProgramData\MadeForMed\CegedimNeutralise (un fichier par logiciel). Retour arriere : R.
+  Nettoyage.bat : avec le support uniquement. Prise en main a distance jamais touchee.
+
+Si la neutralisation d'un ancien logiciel (Neutraliser-Cegedim) a desactive des elements Windows / Adobe (kit v0.3.29 a v0.3.31 :
+taches « Synchronize... », service OneSyncSvc, « Adobe Acrobat Synchronizer ») : clic droit sur Neutraliser-Cegedim.ps1 > Executer avec PowerShell
+ne suffit pas : lancer Neutraliser-Ancien-Logiciel.bat puis S, ou en administrateur :  powershell -File Neutraliser-Cegedim.ps1 -Restaurer -Systeme
+(remet en route seulement les elements Windows / Microsoft / Adobe ; les elements de l'ancien logiciel restent neutralises).
+
+GARDIEN (v0.3.50)
+  Gardien-JuxtaLink.ps1 : veille de JuxtaLink toutes les 10 min (tache planifiee \Odaiji\Gardien-JuxtaLink, compte SYSTEM).
+  JuxtaLink ferme ou plante -> relance dans la session du medecin, sans UAC. Pose par 1-Installer, 2-Depanner et Demarrage-JuxtaLink.bat.
+  Garde-fous : rien si personne connecte, rien pendant une installation Windows ni un outil du kit ; 3 relances max en 30 min (puis "BOUCLE" dans le journal).
+  Journal : C:\ProgramData\MadeForMed\Gardien\gardien.log (a envoyer avec les rapports). Retrait : Demarrage-JuxtaLink.bat -Retirer.
+
+ENVOI AUTOMATIQUE DU RAPPORT
+Quand un rapport montre un probleme qui reste (un [KO]) ou un cas inconnu, il est transmis automatiquement a MadeForMed
+(nom du poste, liste des logiciels et resultats des controles ; aucune donnee patient). Aucune question n'est posee.
+Si l'envoi echoue (pas de reseau), le message demande de recuperer le fichier par le transfert de fichiers TeamViewer.

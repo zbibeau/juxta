@@ -1,0 +1,16 @@
+AVANT DE COMMENCER (Mac) - a faire UNE fois apres avoir dezippe le kit
+
+Le passage par le zip / Drive fait perdre aux scripts leur droit d'execution et
+macOS les met en quarantaine ("privileges d'acces" / "non autorise par Apple").
+
+1. Ouvrir le Terminal (Spotlight > Terminal)
+2. Taper :   cd    (avec un espace apres), puis glisser le dossier Odaiji_Juxta_Mac
+   dans la fenetre du Terminal, puis Entree
+3. Coller :
+
+   chmod +x *.command *.sh && xattr -dr com.apple.quarantine . && echo "Kit pret"
+
+4. Ensuite, double-clic sur le .command voulu (1-Installer, 2-Depanner, 3-Diag-seul ...)
+
+Alternative sans etape 3 : dans le Terminal, taper  bash  (espace) puis glisser
+le .command voulu dans la fenetre, puis Entree.

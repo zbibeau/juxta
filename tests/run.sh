@@ -2,7 +2,7 @@
 # Tests du kit avant publication :  bash tests/run.sh   (depuis la racine du depot)
 # Controles : syntaxe + ASCII + CRLF des .ps1, syntaxe bash des scripts Mac, cas sesam.ini (fonctions reelles), lecture des constats Mac.
 cd "$(dirname "$0")/.." || exit 1
-ROOT=$PWD; PC="${KIT_PC:-/tmp/w/pc/Odaiji_Juxta_PC}"; MAC="${KIT_MAC:-/tmp/w/mac/Odaiji_Juxta_Mac}"
+ROOT=$PWD; PC="${KIT_PC:-$ROOT/src/pc/Odaiji_Juxta_PC}"; MAC="${KIT_MAC:-$ROOT/src/mac/Odaiji_Juxta_Mac}"
 PWSH=$(command -v pwsh || echo /tmp/w/psh/pwsh); FAIL=0
 echo "== 1. PowerShell : syntaxe, ASCII, CRLF"
 for f in "$PC"/*.ps1; do

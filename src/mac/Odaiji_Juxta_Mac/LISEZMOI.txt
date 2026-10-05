@@ -1,0 +1,88 @@
+Odaiji_Juxta (Mac) - v1.0.3
+
+>>> LIRE D'ABORD : 0-AVANT-DE-COMMENCER.txt (droits d'execution + quarantaine, une fois par kit)
+
+A DEPOSER AVANT USAGE
+  installeurs/JuxtaLink_2.2.3_Signe.pkg      (l'installeur Juxta)
+  installeurs/SSV/4.1.1.0/                   (le plugin SSV complet, avec ComposantsSV.dll)
+  (user.config MadeForMed est deja inclus dans le kit)
+
+UTILISATION (poste du client, cartes CPS + Vitale inserees)
+  Double-clic sur 1-Installer.command   -> mot de passe admin
+  Relancer-DMP.command                  -> Efficience "Lecteurs de cartes introuvables" : relance DMP Connect / iCanopee
+  Options (Terminal) :
+    bash 1-Installer.command --with-autofix   (lecteur a nommage instable, ex. FEI 3 fentes)
+    bash 1-Installer.command --no-install     (poste deja installe : diag + corrections)
+
+POSTE DEJA EQUIPE (JuxtaLink deja installe)
+  Double-clic sur 2-Depanner.command    -> diag Avant, questions anciens logiciels, corrections auto,
+                                           lecteur (galss), Chrome/Edge (LNA), Full PC/SC, relance JuxtaLink, diag Apres
+  Bureau : Avant_, Apres_ et Depannage_<mac>_<date>.txt (journal) -> a envoyer ensemble.
+  3-Diag-seul.command : diagnostic seul, ne modifie rien.
+
+RESULTAT
+  Bureau : Avant_<mac>_<date>.txt et Apres_<mac>_<date>.txt
+  Scenario OK dans Apres -> poste pret. Sinon, envoyer les deux rapports a Claude.
+
+OUTILS SEPARES
+  bash OdaijiJuxta-Mac.sh          diagnostic seul
+  bash OdaijiJuxta-Mac.sh --fix    reparation interactive (jFSE, diagAM, DmpConnect...)
+
+PILOTE "SANS GALSS" (Full PC/SC, demande de Juxta)
+  Poste neuf   : bash 1-Installer.command --sans-galss
+  Poste equipe : bash OdaijiJuxta-Mac.sh --sans-galss   (interactif)
+  Prerequis verifies : lecteur vu en PC/SC, Cryptolib pas en filiere GALSS. galss.ini conserve.
+  Blocage de la reinstallation via BLOQUERINSTALLEGALSS=true (ecrase a chaque MAJ du plugin).
+
+NE PLUS GLISSER LES INSTALLEURS A LA MAIN
+  Option 1 - telechargement : renseigner PKG_URL et SSV_URL dans sources.conf (lien Drive partage
+             ou URL serveur). Le kit reste petit ; changer de version = changer l'URL.
+  Option 2 - Construire-kit.command (sur le Mac MadeForMed) : va chercher le .pkg et le dossier
+             plugin dans le Drive synchronise, assemble et zippe le kit complet sur le Bureau.
+
+ERREURS DRC A LA TELETRANSMISSION (Chrome 142+ / Edge / Firefox 145+ "Local Network Access")
+  Autoriser-Odaiji-Chrome.command : politique LocalNetworkAccessAllowedForUrls pour app.odaiji.co
+  (Chrome + Edge, tous utilisateurs ; Firefox : LocalNetworkAccess.SkipDomains). Remplace chrome://flags. Integre a l'installation (4b).
+
+NOUVEAU v0.3.3 (1er Mac terrain, 28/09)
+  - Aucun lecteur : le diag liste les appareils USB. Lecteur absent du bus = adaptateur USB-C, cable ou lecteur HS.
+    Ne pas brancher le lecteur sur le clavier. Reglages Systeme > Confidentialite et securite >
+    "Autoriser les accessoires a se connecter" : Toujours.
+  - MediMust : question "Le medecin facture-t-il ENCORE avec MediMust ?" (n = demarrage coupe, rien supprime,
+    sauvegarde dans Bureau/_Odaiji_a_supprimer).
+  - GALSS jamais retire si DMP Connect / iCanopee est installe (il l'utilise) : galss.ini regenere suffit.
+
+NOUVEAU v0.3.12 (03/10) : Installer-Odaiji-Juxta.command devient 1-Installer.command (premier fichier du dossier).
+
+NOUVEAU v0.3.11 (02/10) : le bandeau de l'etape 5 annonce le redemarrage de JuxtaLink et l'installation automatique de FSV, GALSS, MICA, Cryptolib ; la situation de facturation se fait APRES cette installation.\n\nNOUVEAU v0.3.10 (02/10) : etape 5 = user.config MadeForMed ecrit d'abord, puis JuxtaLink arrete et relance (le plugin SSV installe ses prerequis tout seul) ; si JuxtaLink remet sa propre config, 3 essais dont un avec fichier verrouille, et le contenu reel est affiche.\n\nNOUVEAU v0.3.9 (02/10) : l'installateur affiche une animation avec le temps ecoule pendant les analyses, l'installation du pkg (1 a 3 min) et les corrections, avec barre de progression des telechargements : plus de fausse impression de blocage.
+
+NOUVEAU v0.3.8 (01/10)
+  - Diag : une erreur Mica du log anterieure au dernier demarrage de JuxtaLink n'est plus comptee KO.
+  - Installateur : verifie la politique Local Network Access de Chrome/Edge et la repose (avec affichage des erreurs) si absente.
+
+v0.3.7 (01/10)
+  - Plus de demandes macOS iCloud / OneDrive / Photos (le diagnostic ne parcourt plus ~/Library).
+  - Etape 5 : JuxtaLink est relance avec le user.config MadeForMed et verifie (port 1234) AVANT le bandeau
+    "Enregistrer la situation de facturation".
+
+v0.3.6 (01/10)
+  Le user.config MadeForMed est pose apres arret de JuxtaLink et verifie a la fin ; le diag le controle.
+
+v0.3.5 (30/09)
+  - Version DmpConnect affichee ; accents des logs conserves ; avertissement "Plugins non inscriptible" supprime quand le plugin est installe.
+
+v0.3.4 (28/09)
+  - CPS lue par un Ingenico Telium (ATR 3bdc...) reconnue : plus de faux "CPS non vue".
+  - galss.ini enregistre avec des fins de ligne Mac (CR) : lu correctement par le diag et Reparer-lecteur.
+  - MediStory (Prokov) : question "facture-t-il ENCORE avec MediStory ?" (n = demarrage coupe, rien supprime).
+
+GARDIEN (v0.3.14)
+  juxtalink-gardien.sh + agent fr.madeformed.juxtalink-gardien : veille de JuxtaLink toutes les 10 min.
+  JuxtaLink ferme ou plante -> relance. Pose par 1-Installer.command et 2-Depanner.command.
+  Garde-fous : rien pendant un outil du kit ; 3 relances max en 30 min (puis "BOUCLE" dans le journal).
+  Journal : ~/Library/Logs/juxtalink-gardien.log. Retrait : launchctl bootout gui/$(id -u)/fr.madeformed.juxtalink-gardien et supprimer le plist dans ~/Library/LaunchAgents.
+
+ENVOI AUTOMATIQUE DU RAPPORT
+Quand un rapport montre un probleme qui reste (un [KO]) ou un cas inconnu, il est transmis automatiquement a MadeForMed
+(nom du poste, liste des logiciels et resultats des controles ; aucune donnee patient). Aucune question n'est posee.
+Si l'envoi echoue (pas de reseau), le message demande de recuperer le fichier par le transfert de fichiers TeamViewer.
