@@ -484,3 +484,6 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
 ## 2026-10-05 — PC v0.3.62
 - PC26-FILLATRE : après v0.3.61 les tables x86 étaient complètes (ssv 25, sts 45) et tous les sesam.ini corrects, mais l'erreur « tables binaires des SSV » persistait → l'hypothèse « tables incomplètes » n'explique pas ce poste. Le diag liste maintenant les fichiers (noms et tailles) des dossiers ssv/sts x86 et x64, et affiche le contexte du log JuxtaLink autour de la dernière erreur SSV (NIR et base64 masqués) pour voir quel chemin la FSV tente d'ouvrir.
+
+## 2026-10-05 — PC v0.3.63
+- PC26-FILLATRE : le log montre que le plugin SSV charge `C:\ProgramData\santesocial\fsv\1.40.14\conf\sesam.ini` (retour F680 / « tables binaires ») ; ce fichier avait [SSV] RepertoireTable mais ni [COMMUN] ni son contenu d'origine (1056 octets pour ~15 lignes visibles). Le diag affiche maintenant le chemin chargé par le plugin, les premiers octets du fichier (BOM/UTF-16), le nombre de NUL et de lignes. Nouvelle correction 7a-septies (sur `SSV_TABLES_PERSIST`) : ce sesam.ini est remplacé par une copie du C:\Windows\sesam.ini généré et vérifié par le kit (sauvegarde .bak), puis JuxtaLink est relancé.
