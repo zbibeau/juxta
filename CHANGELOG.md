@@ -464,3 +464,6 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 ## 2026-10-05 — PC v0.3.56
 - Si l'erreur « tables binaires des SSV » est encore dans les dernières réponses alors que `C:\Windows\sesam.ini` n'existe pas, la réparation recrée ce fichier (7a, chemins de tables résolus sur le poste) en plus du correctif v0.3.55 sur le sesam.ini de ProgramData. Constat `SSV_TABLES_ERR`.
 - 2-Depanner.bat affichait « kit v0.3.51 » en dur : il affiche maintenant la bonne version.
+
+## 2026-10-05 — PC v0.3.57
+- Les requêtes WMI/CIM du diag (services, profils, processus) ont un délai maximum de 30 s : sur PC26-FILLATRE, la réparation est restée figée plus de 5 min dans l'inventaire des logiciels actifs (requête WMI bloquée) et bloquait tout le dépannage.
