@@ -495,3 +495,8 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 - **Sécurité des rapports** : les réponses d'erreur du log JuxtaLink (base64) contiennent la requête d'origine, donc le **code CPS**. Les rapports PC et Mac masquent désormais tout blob base64 et tout `codecps`. Test de non-régression ajouté (`tests/run.sh`, section 5). À faire absolument avant l'envoi automatique des rapports.
 - Mac (MacBook Pro SACHOT) : nouveau constat `CPS_SLOT_ABSENT` (CPS vue par macOS mais « Carte CPS absente » pour le SSV, avec la fente cherchée, l'ordre des lecteurs et le contenu de galss.ini) et `FACTURE_INEXISTANTE` (le serveur Intellio répond « La facture demandée n'existe pas » : ni la CPS ni le lecteur).
 - Mac : `2-Depanner.command` demande maintenant si le médecin facture encore avec Cegedim (jFSE) quand l'agent jFSE est présent ; si non, jFSE est arrêté et supprimé (comme sur PC), sans demande supplémentaire.
+
+## 2026-10-05 — PC v0.3.66
+- POSTE2 : erreur « tables SSV, identifié par 0, inaccessible » = le dossier `ssv` x86 ne contenait que les certificats (.pem), alors que `tablebin.ssv`, `scripts.ssv`, `tablebin.smc`, `tablebin.ssp` avaient été posés côté x64 par le MSI x64.
+- Correctif 7a-sexies : copie des fichiers manquants x64 → x86, sans jamais écraser un fichier existant, puis relance de JuxtaLink.
+- Nouvelle fonction `Get-TableMissing` (constat `TABLES_X86_INCOMPLET`) + cas de test POSTE2 / PC26.
