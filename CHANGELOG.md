@@ -490,3 +490,8 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
 ## 2026-10-05 — PC v0.3.64
 - PC26-FILLATRE résolu : remplacer le sesam.ini de `ProgramData\santesocial\fsv\1.40.14\conf` par le modèle Windows (avec `[COMMUN] RepertoireTable`) a débloqué la lecture. Cause la plus probable : `[COMMUN] RepertoireTable` absent de ce fichier. Le diag vérifie maintenant `[COMMUN] RepertoireTable` (en plus de `[SSV]`) dans chaque sesam.ini (`SESAM_SSV_TABLE`), et la correction 7a-quinquies pose les deux clés. Tests de non-régression étendus (cas PC26-FILLATRE, réparation `[SSV]` + `[COMMUN]`).
+
+## 2026-10-05 — PC v0.3.65 / Mac v0.3.20
+- **Sécurité des rapports** : les réponses d'erreur du log JuxtaLink (base64) contiennent la requête d'origine, donc le **code CPS**. Les rapports PC et Mac masquent désormais tout blob base64 et tout `codecps`. Test de non-régression ajouté (`tests/run.sh`, section 5). À faire absolument avant l'envoi automatique des rapports.
+- Mac (MacBook Pro SACHOT) : nouveau constat `CPS_SLOT_ABSENT` (CPS vue par macOS mais « Carte CPS absente » pour le SSV, avec la fente cherchée, l'ordre des lecteurs et le contenu de galss.ini) et `FACTURE_INEXISTANTE` (le serveur Intellio répond « La facture demandée n'existe pas » : ni la CPS ni le lecteur).
+- Mac : `2-Depanner.command` demande maintenant si le médecin facture encore avec Cegedim (jFSE) quand l'agent jFSE est présent ; si non, jFSE est arrêté et supprimé (comme sur PC), sans demande supplémentaire.

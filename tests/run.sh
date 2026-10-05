@@ -19,4 +19,9 @@ echo "== 4. Mac : codes de constats lus (minuscules comprises)"
 eval "$(grep -m1 '^codes_()' "$MAC/2-Depanner.command")"
 C=$(codes_ tests/corpus/mac-avant-constats.txt | tr '\n' ' ')
 for k in LNA_Google_Chrome DMP_MULTI GARDIEN_ABSENT VITALE_ABSENT; do case " $C" in *" $k "*) echo "  ok   $k";; *) echo "  ECHEC code non lu : $k"; FAIL=1;; esac; done
+echo "== 5. Mac : le code CPS et les blobs base64 ne sortent jamais dans un rapport"
+SEDM=$(grep -m1 "base64-omis" "$MAC/OdaijiJuxta-Mac.sh" | grep -oE "sed -E '[^']*'" | head -1)
+B64=$(printf '{"Request":{"Parameters":{"codecps":"0000","idfacture":"1"}},"Arguments":{"diagnostic":"La facture demandee n existe pas."}}' | base64 | tr -d '\n')
+OUT=$(printf '[x] Plugin execute : %s\n[y] codecps": "0000"\n' "$B64" | eval "$SEDM")
+case "$OUT" in *0000*|*"$B64"*) echo "  ECHEC code CPS ou base64 visible dans l'extrait de log"; FAIL=1;; *) echo "  ok   extrait de log masque (code CPS, base64)";; esac
 echo; [ $FAIL = 0 ] && echo "TOUS LES TESTS PASSENT" || { echo "TESTS EN ECHEC : ne pas publier"; exit 1; }
