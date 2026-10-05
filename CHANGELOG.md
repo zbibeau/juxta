@@ -441,3 +441,6 @@ Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
 ## 2026-10-05 — PC v0.3.52 / Mac v0.3.15
 - Messages alignés sur l'Installateur : l'installation des SSV démarre à « Enregistrer la situation de facturation » ; le contrôle final = une facture avec une carte Vitale, puis une facture sans Vitale (valider l'appel ADRi). Bannière et textes PC/Mac, page de téléchargement.
+
+## 2026-10-05 — PC v0.3.53
+- FSV : si sa source d'installation Windows Installer est fragile (dossier Téléchargements/Temp/profil utilisateur, ou disparue), le diag le signale (FSV_MSI_SOURCE) et la réparation copie le MSI FSV du kit dans C:\ProgramData\MadeForMed\FSV puis le déclare comme source (sans réinstaller). Rien n'est fait sur les postes où la source est durable.
