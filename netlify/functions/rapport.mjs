@@ -1,6 +1,6 @@
 // Reception des rapports du kit Odaiji_Juxta. Le kit les ENVOIE DEPUIS LE POSTE DU CLIENT (diag, depannage, installation, sentinelle).
 // Stockage (au choix, les deux possibles) :
-//   - depot GitHub PRIVE : GITHUB_TOKEN (Contents: read/write sur ce depot seul), GITHUB_REPO (ex. zbibeau/odaiji-rapports), GITHUB_BRANCH (defaut main)
+//   - depot GitHub PRIVE : GITHUB_TOKEN (Contents: read/write sur ce depot seul), GITHUB_REPO (proprietaire/nom du depot prive), GITHUB_BRANCH (defaut main)
 //   - mail Resend       : RESEND_API_KEY, REPORT_TO, REPORT_FROM
 // Authentification (v1.1) :
 //   - ODAIJI_KEYS="cle1=cabinet-a,cle2=cabinet-b" : une cle par cabinet, revocable (retirer la ligne = cle refusee).

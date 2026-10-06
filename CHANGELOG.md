@@ -3,6 +3,9 @@
 Page de téléchargement : `index.html` (détection Mac / Windows).
 Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
+## Correctif deploiement (1.1.0, sans changement de kit)
+- Le build Netlify de 1.1.0 echouait : le scan de secrets detectait le nom du depot prive (valeur de GITHUB_REPO) cite en exemple dans rapport.mjs. Exemple retire ; test 15 ajoute pour empecher la recidive.
+
 ## PC / Mac 1.1.0 - 06/10/2026
 - **Envoi des rapports robuste** : fichier d'attente local si pas de reseau (reprise automatique au passage suivant), identifiant de poste stable (Poste ID dans l'en-tete du rapport), cle d'envoi par cabinet (cle-envoi.txt, jamais dans le zip), JSON propre cote Mac, erreurs lisibles. Nouveaux : Odaiji-Commun.ps1 (PC), odaiji-commun.sh (Mac). Fonction de reception : authentification par cle (ODAIJI_KEYS / REQUIRE_KEY), idempotente, limitee, battements.
 - **Sentinelle (pilote, optionnelle)** : Installer-Sentinelle.bat / .command. Diagnostic PASSIF (`-Leger` / `--leger` : aucune reparation, aucun acces au lecteur ni aux cartes, rien sur le Bureau) une fois par jour ; battement + rapport complet seulement si l'etat change ; pause par sentinelle.off ; jamais de mise a jour automatique.

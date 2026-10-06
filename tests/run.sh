@@ -31,4 +31,7 @@ bash tests/envoi-mac-test.sh || FAIL=1
 bash tests/sentinelle-test.sh || FAIL=1
 bash tests/sentinelle-mac-test.sh || FAIL=1
 python3 tests/parc_test.py || FAIL=1
+PRIV="zbibeau/odaiji""-rapports"
+echo "== 15. Aucun nom de depot prive ni secret dans les fichiers publies (Netlify bloque le build sinon)"
+if grep -rIl "$PRIV" --exclude-dir=.git --exclude-dir=tests . | grep -q .; then echo "  ECHEC nom du depot prive present dans :"; grep -rIl "$PRIV" --exclude-dir=.git --exclude-dir=tests . | sed 's/^/    /'; FAIL=1; else echo "  ok   pas de nom de depot prive"; fi
 echo; [ $FAIL = 0 ] && echo "TOUS LES TESTS PASSENT" || { echo "TESTS EN ECHEC : ne pas publier"; exit 1; }
