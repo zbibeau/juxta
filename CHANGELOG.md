@@ -3,6 +3,12 @@
 Page de téléchargement : `index.html` (détection Mac / Windows).
 Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
+## 1.1.1 - 06/10/2026
+- PC : correction des tables SSV x86 incompletes pendant un depannage. Le MSI FSV (7t) pose les tables en x64 pendant la reparation, apres le diag initial : la copie x64 -> x86 des seuls fichiers manquants ne se declenchait donc pas (poste POSTE1 : erreur "fichier contenant les tables SSV, identifie par 0, inaccessible"). L'etat est maintenant recalcule au moment de la copie, et verifie apres (OK ou KO explicite).
+- PC : le diag liste les dates des fichiers de tables (x86/x64) et les detections Windows Defender des 3 derniers jours, pour dater une disparition de fichiers.
+- Masquage (kit PC et fonction Netlify) : un horodatage valide AAAAMMJJhhmmss (en-tete des transcriptions) n'est plus pris pour un NIR ; 13 et 15 chiffres restent masques.
+- Tests : arbre de tables reel de POSTE1, masquage de l'horodatage (kit et serveur).
+
 ## Correctif deploiement (1.1.0, sans changement de kit)
 - Le build Netlify de 1.1.0 echouait : le scan de secrets detectait le nom du depot prive (valeur de GITHUB_REPO) cite en exemple dans rapport.mjs. Exemple retire ; test 15 ajoute pour empecher la recidive.
 

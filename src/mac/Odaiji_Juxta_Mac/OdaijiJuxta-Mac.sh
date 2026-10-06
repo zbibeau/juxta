@@ -40,7 +40,7 @@
 #    0.1  Premiere version : inventaire.
 # =====================================================================
 
-VERSION="1.1.0"
+VERSION="1.1.1"
 export LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8   # accents des logs JuxtaLink conserves (sudo/terminal en locale C)
 FIX=0; AUTO=0; SANSGALSS=0; SANSLIST=","; LEGER=0
 for a in "$@"; do [ "$a" = "--leger" ] && LEGER=1; [ "$a" = "--fix" ] && FIX=1; [ "$a" = "--auto" ] && { FIX=1; AUTO=1; }; [ "$a" = "--sans-galss" ] && { FIX=1; SANSGALSS=1; }; case "$a" in --sans-*) SANSLIST="$SANSLIST${a#--sans-},";; esac; done

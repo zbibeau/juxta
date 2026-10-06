@@ -31,5 +31,8 @@ shaExiste = true; r = await handler(req({ ...base, type: "battement", poste_id: 
 ok(r.status === 200 && puts.at(-1).url.endsWith(`/parc/battements/${id}.json`) && puts.at(-1).body.sha === "abc", "battement : un fichier par poste, ecrase (sha)"); shaExiste = false;
 r = await handler(req({ ...base, type: "battement", rapport: "x".repeat(9000) })); ok(r.status === 413, "battement trop gros : 413");
 ok(mask("a codecps: 12345 b") === "a codecps: **** b", "mask : code CPS");
+ok(mask("Heure de debut : 20261006142130") === "Heure de debut : 20261006142130", "mask : horodatage de transcription conserve");
+ok(mask("suite 1850575123456 et 185057512345678") === "suite [nir-masque] et [nir-masque]", "mask : 13 et 15 chiffres masques");
+ok(mask("faux 20261306142130") === "faux [nir-masque]", "mask : 14 chiffres qui ne sont pas une date valide restent masques");
 let n429 = 0; for (let i = 0; i < 70; i++) { const x = await handler(req(base, { ip: "9.9.9.9" })); if (x.status === 429) n429++; } ok(n429 >= 9, "limitation : 429 au-dela de 60 envois / heure / IP");
 process.exit(fail);

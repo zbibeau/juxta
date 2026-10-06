@@ -5,6 +5,8 @@ $ps = Join-Path $Kit "OdaijiJuxta.ps1"
 . ([scriptblock]::Create((Get-KitFunction $ps "Get-SesamIniState")))
 . ([scriptblock]::Create((Get-KitFunction $ps "Set-SesamKey")))
 . ([scriptblock]::Create((Get-KitFunction $ps "Get-TableMissing")))
+. ([scriptblock]::Create((Get-KitFunction $ps "Get-TablesIncompletes")))
+. ([scriptblock]::Create((Get-KitFunction $ps "W")))
 . ([scriptblock]::Create((Get-KitFunction $ps "Get-DmpPcscHits")))
 $fail = 0
 function Check { param($ok, $msg) if ($ok) { Write-Host ("  ok   " + $msg) } else { Write-Host ("  ECHEC " + $msg) -ForegroundColor Red; $script:fail++ } }
@@ -52,6 +54,25 @@ $m = @(Get-TableMissing -Rel86 $p2x86 -Rel64 $p2x64)
 Check (($m.Count -eq 4) -and ($m -contains "tablebin.ssv") -and ($m -contains "scripts.ssv")) ("POSTE2 : fichiers a copier = " + ($m -join ","))
 $m = @(Get-TableMissing -Rel86 @("A.pem","TABLEBIN.SSV","scripts.ssv") -Rel64 @("tablebin.ssv","scripts.ssv"))
 Check ($m.Count -eq 0) "PC26-FILLATRE : x86 complet (casse ignoree) -> rien a copier"
+# POSTE1 06/10 : arbre reel recree dans un dossier temporaire. x86 ssv = 14 fichiers (certificats + scripts.sms), x64 ssv = 5 fichiers (dont 4 absents du x86),
+# sts x86 vide / x64 = 3 fichiers (non signale : sesam.ini pointe alors sur x64). Le MSI x64 pose les tables APRES le diag initial -> recalcul a l'execution.
+$tmp = Join-Path ([IO.Path]::GetTempPath()) ("oj-tables-" + [guid]::NewGuid().ToString("N")); $v = "1.40.14"
+$r86 = Join-Path $tmp "x86"; $r64 = Join-Path $tmp "x64"
+foreach ($d in "$r86\fsv\$v\ssv","$r86\fsv\$v\sts","$r86\fsv\$v\srt","$r64\fsv\$v\ssv","$r64\fsv\$v\sts","$r64\fsv\$v\srt") { New-Item -ItemType Directory -Force $d | Out-Null }
+foreach ($f in "acint.pem","certamcr.pem","certamct.pem","certamoamcr.pem","certamoamct.pem","certamor.pem","certamot.pem","certbabusr.pem","certbabust.pem","certgier.pem","certgiet.pem","crl.crl","crl.pem","scripts.sms") { Set-Content "$r86\fsv\$v\ssv\$f" "x" }
+foreach ($f in "scripts.sms","scripts.ssv","tablebin.smc","tablebin.ssp","tablebin.ssv") { Set-Content "$r64\fsv\$v\ssv\$f" "x" }
+foreach ($f in "scriptsi.sts","scriptsm.sts","tablesi.sts") { Set-Content "$r64\fsv\$v\sts\$f" "x" }
+$inc = Get-TablesIncompletes -Root86 $r86 -Root64 $r64 -Version $v
+Check (($inc.Keys.Count -eq 1) -and ($inc["ssv"].Count -eq 4) -and ($inc["ssv"] -contains "tablebin.ssv") -and ($inc["ssv"] -contains "scripts.ssv")) ("POSTE1 : ssv x86 incomplet, 4 fichiers a copier (" + (@($inc["ssv"]) -join ",") + "), sts/srt non signales")
+foreach ($f in $inc["ssv"]) { Copy-Item "$r64\fsv\$v\ssv\$f" "$r86\fsv\$v\ssv\$f" }
+Check ((Get-TablesIncompletes -Root86 $r86 -Root64 $r64 -Version $v).Count -eq 0) "POSTE1 : apres copie des 4 fichiers, plus rien d'incomplet"
+Check ((Get-TablesIncompletes -Root86 (Join-Path $tmp "absent") -Root64 $r64 -Version $v).Count -eq 0) "dossier x86 absent : pas d'erreur, rien a copier"
+Remove-Item $tmp -Recurse -Force -ErrorAction SilentlyContinue
+# Masquage : un horodatage de transcription n'est pas un NIR ; 13 et 15 chiffres le restent
+$Report = Join-Path ([IO.Path]::GetTempPath()) ("oj-w-" + [guid]::NewGuid().ToString("N") + ".txt")
+W "Heure de debut : 20261006142130" "Gray" | Out-Null; W "suite 1850575123456 / 185057512345678" "Gray" | Out-Null
+$wr = Get-Content $Report -Raw; Remove-Item $Report -Force -ErrorAction SilentlyContinue
+Check (($wr -match "debut : 20261006142130") -and ($wr -match "suite \[nir-masque\] / \[nir-masque\]")) "masquage kit : horodatage conserve, 13 et 15 chiffres masques"
 # DMP Connect : Efficience "Lecteurs de cartes introuvables" (CABINET 05/10) -> lignes de log a detecter ; lignes banales -> rien
 $h = @(Get-DmpPcscHits @("261005:104045 [247] [E] Failed to get the list of connected PC/SC readers. Error #2", "x getPcscResourcesList failed", "INFO : Synchronization using DmpConnect NTP client legacy failed:", "[E] [UNHDLEX] Poco exception: SSL connection unexpectedly closed"))
 Check ($h.Count -eq 2) ("DMP PC/SC : " + $h.Count + " ligne(s) detectee(s) sur 4 (attendu 2)")

@@ -100,7 +100,7 @@ param([switch]$Fix, [switch]$NoPause, [switch]$Auto, [switch]$SansGalss, [switch
 
 trap { Write-Host ("`nERREUR : " + $_.Exception.Message) -ForegroundColor Red; Write-Host ($_.InvocationInfo.PositionMessage) -ForegroundColor DarkGray; try { Add-Content -Path $Report -Value ("ERREUR SCRIPT : " + $_.Exception.Message + " | " + $_.InvocationInfo.PositionMessage) } catch {}; if (-not ($Auto -or $NoPause)) { Read-Host "Envoyer cette capture dans le channel Claude. Entree pour fermer" }; exit 1 }
 
-$Script:Version = "1.1.0"
+$Script:Version = "1.1.1"
 
 # --- Auto-elevation
 $isAdmin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
@@ -129,7 +129,7 @@ $Report  = Join-Path $Desktop ("{0}_{1}_{2}.txt" -f $Prefix, $env:COMPUTERNAME, 
 if ($Leger) { $Fix = $false; $Auto = $false; $NoPause = $true; $ld = Join-Path $env:ProgramData "MadeForMed\sentinelle"; New-Item -ItemType Directory -Force -Path $ld | Out-Null; $Report = Join-Path $ld ("{0}_{1}_{2}.txt" -f $Prefix, $env:COMPUTERNAME, $Stamp) }
 $Script:Findings = @()
 # 05/10 : jamais de blob base64 (les reponses d'erreur contiennent la requete, donc le code CPS) ni de code CPS dans un rapport
-function W    { param([string]$t="", [string]$c="Gray") $t = [regex]::Replace([string]$t, '[A-Za-z0-9+/=]{80,}', '[base64-omis]'); $t = [regex]::Replace($t, '(?i)(codecps[^0-9]{0,6})\d{4,8}', '$1****'); $t = [regex]::Replace($t, '(?i)((?:numNatPs|numeroNatPs|finess|nir|numSecu\w*|numeroSecu\w*|dateNaissance|nomPatient|prenomPatient|rpps|adeli)\W{1,6})[A-Za-z0-9]{3,}', '$1[masque]'); $t = [regex]::Replace($t, '\d{13,15}', '[nir-masque]'); Write-Host $t -ForegroundColor $c; Add-Content -Path $Report -Value $t -Encoding UTF8 }
+function W    { param([string]$t="", [string]$c="Gray") $t = [regex]::Replace([string]$t, '[A-Za-z0-9+/=]{80,}', '[base64-omis]'); $t = [regex]::Replace($t, '(?i)(codecps[^0-9]{0,6})\d{4,8}', '$1****'); $t = [regex]::Replace($t, '(?i)((?:numNatPs|numeroNatPs|finess|nir|numSecu\w*|numeroSecu\w*|dateNaissance|nomPatient|prenomPatient|rpps|adeli)\W{1,6})[A-Za-z0-9]{3,}', '$1[masque]'); $t = [regex]::Replace($t, '(?<!\d)20\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])([01]\d|2[0-3])[0-5]\d[0-5]\d(?!\d)|\d{13,15}', [System.Text.RegularExpressions.MatchEvaluator]{ param($m) if ($m.Value -match '^20\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])([01]\d|2[0-3])[0-5]\d[0-5]\d$') { $m.Value } else { '[nir-masque]' } }); Write-Host $t -ForegroundColor $c; Add-Content -Path $Report -Value $t -Encoding UTF8 }
 function H1   { param($t) W ""; W ("=" * 70) "Cyan"; W ("  " + $t) "Cyan"; W ("=" * 70) "Cyan" }
 function H2   { param($t) W ""; W ("--- " + $t) "Yellow" }
 function OK   { param($t) W ("  [OK]   " + $t) "Green" }
@@ -167,6 +167,21 @@ function Get-DmpPcscHits { param([string[]]$Lines)
 function Get-TableMissing { param([string[]]$Rel86, [string[]]$Rel64)
     $have = @($Rel86 | ForEach-Object { $_.ToLower() })
     return @($Rel64 | Where-Object { $have -notcontains $_.ToLower() })
+}
+# Tables x86 incompletes : fichiers presents en x64 et absents du x86, par table (srt/sts/ssv). Fonction parametree, testee par tests\run.sh (POSTE1 06/10 :
+# le MSI FSV a pose les tables en x64 APRES le diag initial, donc l'incompletude n'existait pas encore au moment de la detection).
+function Get-TablesIncompletes { param([string]$Root86, [string]$Root64, [string]$Version)
+    $res = @{}
+    foreach ($t in "ssv","srt","sts") {
+        $c86 = Join-Path $Root86 ("fsv\" + $Version + "\" + $t); $c64 = Join-Path $Root64 ("fsv\" + $Version + "\" + $t)
+        if (-not ((Test-Path $c86) -and (Test-Path $c64))) { continue }
+        $rel86 = @(Get-ChildItem $c86 -File -Recurse -ErrorAction SilentlyContinue | ForEach-Object { $_.FullName.Substring($c86.Length).TrimStart('\','/') })
+        $rel64 = @(Get-ChildItem $c64 -File -Recurse -ErrorAction SilentlyContinue | ForEach-Object { $_.FullName.Substring($c64.Length).TrimStart('\','/') })
+        if ($rel86.Count -le 0 -or $rel64.Count -le 0) { continue }
+        $miss = @(Get-TableMissing -Rel86 $rel86 -Rel64 $rel64)
+        if ($miss.Count) { $res[$t] = $miss }
+    }
+    return $res
 }
 function Get-SesamIniState { param([string[]]$Lines, [scriptblock]$Exists)
     $sec = ""; $tr = ""; $tb = ""; $tc = ""
@@ -320,6 +335,22 @@ foreach ($t in "ssv","srt","sts") {
         if ($miss.Count) { $Script:TblMissing[$t] = $miss; WARN ("  Tables " + $t + " x86 incompletes : " + $miss.Count + " fichier(s) presents en x64 seulement (" + (($miss | Select-Object -First 8) -join ", ") + ")"); Finding "TABLES_X86_INCOMPLET" "WARN" ($t + " : " + $miss.Count + " fichier(s) absents en x86") }
     }
 }
+
+# Chronologie (POSTE1 06/10 : facturation OK le matin, tables SSV inaccessibles a 13h41) : dates des fichiers de tables + detections Defender recentes,
+# pour savoir QUAND les fichiers ont ete poses/modifies/supprimes et si l'antivirus les a mis en quarantaine.
+foreach ($t in "ssv","srt","sts") {
+    foreach ($arch in @(@("x86",$Paths.SanteX86),@("x64",$Paths.SanteX64))) {
+        $d = Join-Path $arch[1] ("fsv\" + $FsvVersion + "\" + $t)
+        if (Test-Path $d) {
+            $fs = @(Get-ChildItem $d -File -Recurse -ErrorAction SilentlyContinue)
+            if ($fs.Count) { $nw = $fs | Sort-Object LastWriteTime -Descending | Select-Object -First 1; $od = $fs | Sort-Object LastWriteTime | Select-Object -First 1; INFO ("  dates " + $t + " " + $arch[0] + " : plus ancien " + $od.LastWriteTime.ToString("dd/MM HH:mm") + " ; plus recent " + $nw.Name + " " + $nw.LastWriteTime.ToString("dd/MM HH:mm")) }
+        }
+    }
+}
+try {
+    $det = @(Get-MpThreatDetection -ErrorAction Stop | Where-Object { $_.InitialDetectionTime -gt (Get-Date).AddDays(-3) } | Sort-Object InitialDetectionTime -Descending | Select-Object -First 5)
+    foreach ($x in $det) { WARN ("Windows Defender a detecte le " + $x.InitialDetectionTime.ToString("dd/MM HH:mm") + " : " + ((@($x.Resources) | Select-Object -First 1) -replace '^file:_','')) }
+} catch {}
 
 foreach ($t in "ssv","sts") {
     foreach ($arch in @(@("x86",$Paths.SanteX86),@("x64",$Paths.SanteX64))) {
@@ -709,7 +740,7 @@ if (Test-Path $Paths.JuxtaLog) {
     if ($iErr -ge 0) {
         H2 "Contexte du log autour de la derniere erreur SSV"
         $k0 = [math]::Max(0, $iErr - 14); $k1 = [math]::Min($Script:LogLines.Count - 1, $iErr + 2)
-        for ($k = $k0; $k -le $k1; $k++) { $x = [string]$Script:LogLines[$k]; $x = [regex]::Replace($x, '\d{13,15}', '[nir-masque]'); $x = [regex]::Replace($x, '[A-Za-z0-9+/=]{80,}', '[base64-omis]'); $x = [regex]::Replace($x, '(?i)((?:numNatPs|numeroNatPs|finess|nir|numSecu\w*|numeroSecu\w*|dateNaissance|nomPatient|prenomPatient|rpps|adeli)\W{1,6})[A-Za-z0-9]{3,}', '$1[masque]'); if ($x.Length -gt 260) { $x = $x.Substring(0, 260) + "..." }; INFO ("  | " + $x) }
+        for ($k = $k0; $k -le $k1; $k++) { $x = [string]$Script:LogLines[$k]; $x = [regex]::Replace($x, '(?<!\d)20\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])([01]\d|2[0-3])[0-5]\d[0-5]\d(?!\d)|\d{13,15}', [System.Text.RegularExpressions.MatchEvaluator]{ param($m) if ($m.Value -match '^20\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])([01]\d|2[0-3])[0-5]\d[0-5]\d$') { $m.Value } else { '[nir-masque]' } }); $x = [regex]::Replace($x, '[A-Za-z0-9+/=]{80,}', '[base64-omis]'); $x = [regex]::Replace($x, '(?i)((?:numNatPs|numeroNatPs|finess|nir|numSecu\w*|numeroSecu\w*|dateNaissance|nomPatient|prenomPatient|rpps|adeli)\W{1,6})[A-Za-z0-9]{3,}', '$1[masque]'); if ($x.Length -gt 260) { $x = $x.Substring(0, 260) + "..." }; INFO ("  | " + $x) }
     }
     # 29/09 (Dr Plongeron) : erreur MGC sur la DERNIERE reponse = la FSV ne trouve pas sa config de traces -> lecture impossible
     $lastB = $b64s | Select-Object -Last 1
@@ -1161,18 +1192,24 @@ RepertoireTable=$tSts
 
     # 7a-sexies. Tables x86 incompletes : on copie depuis le x64 les SEULS fichiers manquants (aucun ecrasement). POSTE2 05/10 : le x86 avait les .pem
     # mais pas tablebin.ssv / scripts.ssv (que le MSI x64 avait poses cote x64) -> erreur "fichier contenant les tables SSV, identifie par 0, inaccessible".
-    if ($Fix -and (Has "TABLES_X86_INCOMPLET")) {
-        H2 "7a-sexies. Completer les tables FSV 32 bits avec les fichiers manquants du 64 bits"
-        if (Confirm-Step "Copier dans les tables x86 les fichiers qui n'existent qu'en x64 (aucun fichier existant n'est ecrase) ?" -Safe) {
-            $nCop = 0
-            foreach ($t in @($Script:TblMissing.Keys)) {
-                $c86 = Join-Path $Paths.SanteX86 ("fsv\" + $FsvVersion + "\" + $t); $c64 = Join-Path $Paths.SanteX64 ("fsv\" + $FsvVersion + "\" + $t)
-                foreach ($rel in @($Script:TblMissing[$t])) {
-                    try { $dst = Join-Path $c86 $rel; if (Test-Path $dst) { continue }; New-Item -ItemType Directory -Force (Split-Path $dst) | Out-Null; Copy-Item (Join-Path $c64 $rel) $dst -ErrorAction Stop; $nCop++; INFO ("  copie : " + $t + "\" + $rel) } catch { WARN ("Non copie : " + $rel + " : " + $_.Exception.Message) }
+    # POSTE1 06/10 : le MSI FSV (7t) vient de poser les tables en x64 PENDANT ce passage : l'etat est donc recalcule ICI, pas lu dans le diag initial.
+    if ($Fix) {
+        $Script:TblMissing = Get-TablesIncompletes -Root86 $Paths.SanteX86 -Root64 $Paths.SanteX64 -Version $FsvVersion
+        if ($Script:TblMissing.Count) {
+            H2 "7a-sexies. Completer les tables FSV 32 bits avec les fichiers manquants du 64 bits"
+            foreach ($t in @($Script:TblMissing.Keys)) { INFO ("  " + $t + " : " + (@($Script:TblMissing[$t]).Count) + " fichier(s) absents en x86 (" + ((@($Script:TblMissing[$t]) | Select-Object -First 6) -join ", ") + ")") }
+            if (Confirm-Step "Copier dans les tables x86 les fichiers qui n'existent qu'en x64 (aucun fichier existant n'est ecrase) ?" -Safe) {
+                $nCop = 0
+                foreach ($t in @($Script:TblMissing.Keys)) {
+                    $c86 = Join-Path $Paths.SanteX86 ("fsv\" + $FsvVersion + "\" + $t); $c64 = Join-Path $Paths.SanteX64 ("fsv\" + $FsvVersion + "\" + $t)
+                    foreach ($rel in @($Script:TblMissing[$t])) {
+                        try { $dst = Join-Path $c86 $rel; if (Test-Path $dst) { continue }; New-Item -ItemType Directory -Force (Split-Path $dst) | Out-Null; Copy-Item (Join-Path $c64 $rel) $dst -ErrorAction Stop; $nCop++; INFO ("  copie : " + $t + "\" + $rel) } catch { WARN ("Non copie : " + $rel + " : " + $_.Exception.Message) }
+                    }
                 }
+                $reste = Get-TablesIncompletes -Root86 $Paths.SanteX86 -Root64 $Paths.SanteX64 -Version $FsvVersion
+                if ($reste.Count) { KO ($nCop + " fichier(s) copies mais tables x86 encore incompletes : " + (($reste.Keys) -join ", ")) } else { OK ($nCop + " fichier(s) copies : tables x86 completes") }
+                Get-Process JuxtaLink -ErrorAction SilentlyContinue | Stop-Process -Force; Start-Sleep 2; Start-Jx; OK "JuxtaLink relance. Refaire une lecture dans Odaiji."
             }
-            OK ($nCop + " fichier(s) copies dans les tables x86")
-            Get-Process JuxtaLink -ErrorAction SilentlyContinue | Stop-Process -Force; Start-Sleep 2; Start-Jx; OK "JuxtaLink relance. Refaire une lecture dans Odaiji."
         }
     }
 
