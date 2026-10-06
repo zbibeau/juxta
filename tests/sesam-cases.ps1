@@ -6,6 +6,7 @@ $ps = Join-Path $Kit "OdaijiJuxta.ps1"
 . ([scriptblock]::Create((Get-KitFunction $ps "Set-SesamKey")))
 . ([scriptblock]::Create((Get-KitFunction $ps "Get-TableMissing")))
 . ([scriptblock]::Create((Get-KitFunction $ps "Get-TablesIncompletes")))
+. ([scriptblock]::Create((Get-KitFunction $ps "Get-ScinfoMulti")))
 . ([scriptblock]::Create((Get-KitFunction $ps "W")))
 . ([scriptblock]::Create((Get-KitFunction $ps "Get-DmpPcscHits")))
 $fail = 0
@@ -76,6 +77,12 @@ W "laisser finir) : LNA_CHROME" "Gray" | Out-Null; W "numNatPs: 12345678" "Gray"
 $wr2 = Get-Content $Report -Raw; Remove-Item $Report -Force -ErrorAction SilentlyContinue
 Check (($wr2 -match "finir\) : LNA_CHROME") -and ($wr2 -match "numNatPs: \[masque\]")) "masquage kit : 'finir) : LNA_CHROME' conserve, numNatPs masque"
 Check (($wr -match "debut : 20261006142130") -and ($wr -match "suite \[nir-masque\] / \[nir-masque\]")) "masquage kit : horodatage conserve, 13 et 15 chiffres masques"
+# 06/10 (DESKTOP-5G0VEGR) : 2 lecteurs OLAQIN avec une CPS dans chacun -> Odaiji "Plusieurs cartes de meme type". certutil liste chaque lecteur 2 fois.
+$sc2 = "--- Lecteur: OLAQIN 90048020 TL VITALACT 1 0`r`n--- Statut: SCARD_STATE_PRESENT`r`n--- Carte: CPS`r`n--- Lecteur: OLAQIN 90048293 TL VITALACT 1 1`r`n--- Carte: CPS`r`n--- Lecteur: OLAQIN 90048020 TL VITALACT 1 0`r`n--- Carte: CPS`r`n--- Lecteur: OLAQIN 90048293 TL VITALACT 1 1`r`n--- Carte: CPS"
+$mm = Get-ScinfoMulti -Text $sc2
+Check ((@($mm.Cps).Count -eq 2) -and (@($mm.Vitale).Count -eq 0)) ("2 lecteurs avec une CPS chacun : " + @($mm.Cps).Count + " CPS distinctes (chaque lecteur compte une fois)")
+$mm = Get-ScinfoMulti -Text "--- Lecteur: A 1 0`r`n--- Carte: CPS`r`n--- Lecteur: A 1 0`r`n--- Carte: CPS`r`n--- Lecteur: B 2 0`r`n--- Carte: Vitale"
+Check ((@($mm.Cps).Count -eq 1) -and (@($mm.Vitale).Count -eq 1)) "1 CPS et 1 Vitale : aucune alerte (lecteur liste deux fois = une seule CPS)"
 # DMP Connect : Efficience "Lecteurs de cartes introuvables" (CABINET 05/10) -> lignes de log a detecter ; lignes banales -> rien
 $h = @(Get-DmpPcscHits @("261005:104045 [247] [E] Failed to get the list of connected PC/SC readers. Error #2", "x getPcscResourcesList failed", "INFO : Synchronization using DmpConnect NTP client legacy failed:", "[E] [UNHDLEX] Poco exception: SSL connection unexpectedly closed"))
 Check ($h.Count -eq 2) ("DMP PC/SC : " + $h.Count + " ligne(s) detectee(s) sur 4 (attendu 2)")

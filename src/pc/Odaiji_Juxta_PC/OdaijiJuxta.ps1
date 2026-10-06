@@ -100,7 +100,7 @@ param([switch]$Fix, [switch]$NoPause, [switch]$Auto, [switch]$SansGalss, [switch
 
 trap { Write-Host ("`nERREUR : " + $_.Exception.Message) -ForegroundColor Red; Write-Host ($_.InvocationInfo.PositionMessage) -ForegroundColor DarkGray; try { Add-Content -Path $Report -Value ("ERREUR SCRIPT : " + $_.Exception.Message + " | " + $_.InvocationInfo.PositionMessage) } catch {}; if (-not ($Auto -or $NoPause)) { Read-Host "Envoyer cette capture dans le channel Claude. Entree pour fermer" }; exit 1 }
 
-$Script:Version = "1.1.2"
+$Script:Version = "1.1.3"
 
 # --- Auto-elevation
 $isAdmin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
@@ -182,6 +182,17 @@ function Get-TablesIncompletes { param([string]$Root86, [string]$Root64, [string
         if ($miss.Count) { $res[$t] = $miss }
     }
     return $res
+}
+# Plusieurs cartes de meme type dans des lecteurs differents (06/10 : 2 lecteurs OLAQIN, 1 CPS dans chacun -> Odaiji Full PC/SC : "Plusieurs cartes de meme type
+# identifiees lors de la detection automatique"). Fonction pure sur la sortie de certutil -scinfo, testee par tests\run.sh.
+function Get-ScinfoMulti { param([string]$Text)
+    $cur = ""; $cps = @(); $vit = @()
+    foreach ($line in ($Text -split "`r?`n")) {
+        if     ($line -match '^\s*---\s*Lecteur\W*:\s*(.+?)\s*$') { $cur = $Matches[1] }
+        elseif ($line -match 'Carte\W*:\s*(.*CPS.*)$')           { if ($cur -and ($cps -notcontains $cur)) { $cps += $cur } }
+        elseif ($line -match 'Carte\W*:\s*(.*Vitale.*)$')        { if ($cur -and ($vit -notcontains $cur)) { $vit += $cur } }
+    }
+    return [pscustomobject]@{ Cps = $cps; Vitale = $vit }
 }
 function Get-SesamIniState { param([string[]]$Lines, [scriptblock]$Exists)
     $sec = ""; $tr = ""; $tb = ""; $tc = ""
@@ -302,6 +313,9 @@ if ($Leger) {
         elseif ($line -match 'partag\W+e par un autre processus') { WARN ("  '" + $cur + "' : carte tenue par un autre processus (acces exclusif SSV retarde)"); Finding "CARD_SHARED" "WARN" ("Carte partagee dans " + $cur) }
     }
     if (-not $Script:CpsReader) { KO "CPS non vue par Windows"; Finding "NO_CPS" "KO" "CPS non detectee" }
+    $multi = Get-ScinfoMulti -Text $sc
+    if (@($multi.Cps).Count -gt 1) { KO ("Plusieurs CPS inserees dans des lecteurs differents (" + (@($multi.Cps) -join " | ") + ") : Odaiji (Full PC/SC) refuse la detection automatique ('Plusieurs cartes de meme type'). Ne laisser qu'UNE CPS inseree : retirer celle du lecteur non utilise."); Finding "PCSC_MULTI_CPS" "KO" "Plusieurs CPS inserees (detection PC/SC ambigue)" }
+    if (@($multi.Vitale).Count -gt 1) { KO ("Plusieurs cartes Vitale reconnues dans des lecteurs differents (" + (@($multi.Vitale) -join " | ") + ") : Odaiji (Full PC/SC) refuse la detection automatique. Ne laisser qu'UNE Vitale inseree."); Finding "PCSC_MULTI_VITALE" "KO" "Plusieurs Vitale inserees (detection PC/SC ambigue)" }
     if (-not $Script:VitReader) { WARN "Vitale non identifiee par certutil (peut etre presente mais non reconnue : voir statut PRESENT ci-dessus)" }
 }
 

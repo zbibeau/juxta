@@ -893,6 +893,26 @@
    "os": [
     "mac"
    ]
+  },
+  "PCSC_MULTI_CPS": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "Plusieurs CPS inserees (2 lecteurs) : detection PC/SC ambigue",
+   "action": "Ne laisser qu'une seule CPS inseree (retirer celle du lecteur non utilise), puis refaire une lecture dans Odaiji.",
+   "reparation": "guide",
+   "os": [
+    "pc"
+   ]
+  },
+  "PCSC_MULTI_VITALE": {
+   "niveau": "KO",
+   "origine": "poste",
+   "titre": "Plusieurs Vitale inserees (2 lecteurs) : detection PC/SC ambigue",
+   "action": "Ne laisser qu'une seule carte Vitale inseree, puis refaire une lecture dans Odaiji.",
+   "reparation": "guide",
+   "os": [
+    "pc"
+   ]
   }
  }
 }

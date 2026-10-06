@@ -1,7 +1,7 @@
 #!/bin/bash
 # =====================================================================
 #  Odaiji_Juxta - DEPANNAGE d'un Mac deja equipe (diag -> bons outils -> diag)
-#  MadeForMed / Odaiji - v1.1.2 (06/10/2026)
+#  MadeForMed / Odaiji - v1.1.3 (06/10/2026)
 # =====================================================================
 #  Double-clic depuis le Finder (ou : bash 2-Depanner.command)
 #  A utiliser quand JuxtaLink est DEJA installe. Sinon : 1-Installer.command.

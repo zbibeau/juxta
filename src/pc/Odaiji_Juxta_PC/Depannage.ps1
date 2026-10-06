@@ -1,7 +1,7 @@
 <#
 =====================================================================
  Odaiji_Juxta - DEPANNAGE d'un poste ou JuxtaLink est DEJA installe
- MadeForMed / Odaiji - v1.1.2 (06/10/2026)
+ MadeForMed / Odaiji - v1.1.3 (06/10/2026)
 =====================================================================
  Lance par 2-Depanner.bat (elevation UAC automatique). Un seul double-clic :
    1 diag AVANT -> 2 questions (anciens logiciels, port 1234) -> 3 corrections sures automatiques (-Fix -Auto)
@@ -47,7 +47,7 @@ $diagArgs = @("-NoProfile","-ExecutionPolicy","Bypass","-File","`"$Kit\OdaijiJux
 $Stamp = Get-Date -Format "yyyyMMdd-HHmm"
 $Journal = Join-Path $Desktop ("Depannage_" + $env:COMPUTERNAME + "_" + $Stamp + ".txt")
 try { Start-Transcript -Path $Journal -Force | Out-Null } catch {}
-Write-Host "Odaiji_Juxta - DEPANNAGE sur $env:COMPUTERNAME pour l'utilisateur $($owner.User)  (kit v1.1.2)"
+Write-Host "Odaiji_Juxta - DEPANNAGE sur $env:COMPUTERNAME pour l'utilisateur $($owner.User)  (kit v1.1.3)"
 
 if (-not (Test-Path $exe)) {
     KO "JuxtaLink n'est pas installe sur ce poste : utiliser 1-Installer.bat (poste neuf)."

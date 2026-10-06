@@ -3,6 +3,9 @@
 Page de téléchargement : `index.html` (détection Mac / Windows).
 Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
+## 1.1.3 - 06/10/2026
+- PC : nouvelle detection PCSC_MULTI_CPS / PCSC_MULTI_VITALE. Deux lecteurs avec une CPS dans chacun (poste DESKTOP-5G0VEGR) font refuser a Odaiji (Full PC/SC) la detection automatique : "Plusieurs cartes de meme type identifiees (2 cartes Vitale ou 2 CPS)". Le diag le signale en KO avec l'action (ne laisser qu'une CPS inseree). Entrees ajoutees au catalogue ; tests sur la sortie certutil (un lecteur liste deux fois ne compte qu'une fois).
+
 ## 1.1.2 - 06/10/2026
 - Masquage (kit PC, kit Mac, fonction Netlify, anonymiseur) : un mot-cle (nir, rpps, finess...) doit etre un mot a part. "finir) : LNA_CHROME" devenait "finir) : [masque]_CHROME" (nir dans finir). Constate sur le journal de PCAB-1.
 - PC : la source MSI du FSV restait "fragile" apres 7r2 sur 3 postes. Le diag journalise maintenant le code de package installe et ceux des MSI du kit (la copie n'a lieu que si les codes correspondent) ; le message ATTENTION de la reparation les donne aussi. Cause a confirmer sur le prochain rapport.
