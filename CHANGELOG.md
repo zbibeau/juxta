@@ -3,6 +3,10 @@
 Page de téléchargement : `index.html` (détection Mac / Windows).
 Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
+## 1.1.2 - 06/10/2026
+- Masquage (kit PC, kit Mac, fonction Netlify, anonymiseur) : un mot-cle (nir, rpps, finess...) doit etre un mot a part. "finir) : LNA_CHROME" devenait "finir) : [masque]_CHROME" (nir dans finir). Constate sur le journal de PCAB-1.
+- PC : la source MSI du FSV restait "fragile" apres 7r2 sur 3 postes. Le diag journalise maintenant le code de package installe et ceux des MSI du kit (la copie n'a lieu que si les codes correspondent) ; le message ATTENTION de la reparation les donne aussi. Cause a confirmer sur le prochain rapport.
+
 ## 1.1.1 - 06/10/2026
 - PC : correction des tables SSV x86 incompletes pendant un depannage. Le MSI FSV (7t) pose les tables en x64 pendant la reparation, apres le diag initial : la copie x64 -> x86 des seuls fichiers manquants ne se declenchait donc pas (poste POSTE1 : erreur "fichier contenant les tables SSV, identifie par 0, inaccessible"). L'etat est maintenant recalcule au moment de la copie, et verifie apres (OK ou KO explicite).
 - PC : le diag liste les dates des fichiers de tables (x86/x64) et les detections Windows Defender des 3 derniers jours, pour dater une disparition de fichiers.

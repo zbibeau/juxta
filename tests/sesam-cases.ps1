@@ -72,6 +72,9 @@ Remove-Item $tmp -Recurse -Force -ErrorAction SilentlyContinue
 $Report = Join-Path ([IO.Path]::GetTempPath()) ("oj-w-" + [guid]::NewGuid().ToString("N") + ".txt")
 W "Heure de debut : 20261006142130" "Gray" | Out-Null; W "suite 1850575123456 / 185057512345678" "Gray" | Out-Null
 $wr = Get-Content $Report -Raw; Remove-Item $Report -Force -ErrorAction SilentlyContinue
+W "laisser finir) : LNA_CHROME" "Gray" | Out-Null; W "numNatPs: 12345678" "Gray" | Out-Null
+$wr2 = Get-Content $Report -Raw; Remove-Item $Report -Force -ErrorAction SilentlyContinue
+Check (($wr2 -match "finir\) : LNA_CHROME") -and ($wr2 -match "numNatPs: \[masque\]")) "masquage kit : 'finir) : LNA_CHROME' conserve, numNatPs masque"
 Check (($wr -match "debut : 20261006142130") -and ($wr -match "suite \[nir-masque\] / \[nir-masque\]")) "masquage kit : horodatage conserve, 13 et 15 chiffres masques"
 # DMP Connect : Efficience "Lecteurs de cartes introuvables" (CABINET 05/10) -> lignes de log a detecter ; lignes banales -> rien
 $h = @(Get-DmpPcscHits @("261005:104045 [247] [E] Failed to get the list of connected PC/SC readers. Error #2", "x getPcscResourcesList failed", "INFO : Synchronization using DmpConnect NTP client legacy failed:", "[E] [UNHDLEX] Poco exception: SSL connection unexpectedly closed"))

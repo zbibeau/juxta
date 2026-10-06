@@ -8,7 +8,7 @@ import re, sys, os, glob
 
 GENERIC_USERS = {'admin', 'administrateur', 'administrator', 'utilisateur', 'poste', 'public', 'default', 'all users', 'dr', 'user', 'root', 'system', 'default user', 'defaultuser0'}
 GENERIC_HOST_WORDS = {'MSI', 'CABINET', 'SERVEUR', 'POSTE1', 'POSTE2', 'CMIC', 'MacBook_Pro', 'MacBook_Air'}  # trop courants : remplaces seulement en contexte
-KEY_RE = re.compile(r'(?i)((?:numNatPs|numeroNatPs|finess|nir|numSecu[a-z]*|numeroSecu[a-z]*|dateNaissance|nomPatient|prenomPatient|rpps|adeli)[^A-Za-z0-9]{1,6})[A-Za-z0-9]{3,}')
+KEY_RE = re.compile(r'(?i)(?<![A-Za-z])((?:numNatPs|numeroNatPs|finess|nir|numSecu[a-z]*|numeroSecu[a-z]*|dateNaissance|nomPatient|prenomPatient|rpps|adeli)[^A-Za-z0-9]{1,6})[A-Za-z0-9]{3,}')
 
 
 def host_of(name):

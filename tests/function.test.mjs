@@ -34,5 +34,7 @@ ok(mask("a codecps: 12345 b") === "a codecps: **** b", "mask : code CPS");
 ok(mask("Heure de debut : 20261006142130") === "Heure de debut : 20261006142130", "mask : horodatage de transcription conserve");
 ok(mask("suite 1850575123456 et 185057512345678") === "suite [nir-masque] et [nir-masque]", "mask : 13 et 15 chiffres masques");
 ok(mask("faux 20261306142130") === "faux [nir-masque]", "mask : 14 chiffres qui ne sont pas une date valide restent masques");
+ok(mask("laisser finir) : LNA_CHROME, LNA_EDGE") === "laisser finir) : LNA_CHROME, LNA_EDGE", "mask : 'nir' dans 'finir' n'est pas un mot-cle (LNA_CHROME conserve)");
+ok(mask("nir 1850575 et patient_nir=ABCDE12") === "nir [masque] et patient_nir=[masque]", "mask : mot-cle isole ou apres underscore toujours masque");
 let n429 = 0; for (let i = 0; i < 70; i++) { const x = await handler(req(base, { ip: "9.9.9.9" })); if (x.status === 429) n429++; } ok(n429 >= 9, "limitation : 429 au-dela de 60 envois / heure / IP");
 process.exit(fail);

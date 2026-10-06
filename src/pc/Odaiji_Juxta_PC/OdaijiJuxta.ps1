@@ -100,7 +100,7 @@ param([switch]$Fix, [switch]$NoPause, [switch]$Auto, [switch]$SansGalss, [switch
 
 trap { Write-Host ("`nERREUR : " + $_.Exception.Message) -ForegroundColor Red; Write-Host ($_.InvocationInfo.PositionMessage) -ForegroundColor DarkGray; try { Add-Content -Path $Report -Value ("ERREUR SCRIPT : " + $_.Exception.Message + " | " + $_.InvocationInfo.PositionMessage) } catch {}; if (-not ($Auto -or $NoPause)) { Read-Host "Envoyer cette capture dans le channel Claude. Entree pour fermer" }; exit 1 }
 
-$Script:Version = "1.1.1"
+$Script:Version = "1.1.2"
 
 # --- Auto-elevation
 $isAdmin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
@@ -129,7 +129,7 @@ $Report  = Join-Path $Desktop ("{0}_{1}_{2}.txt" -f $Prefix, $env:COMPUTERNAME, 
 if ($Leger) { $Fix = $false; $Auto = $false; $NoPause = $true; $ld = Join-Path $env:ProgramData "MadeForMed\sentinelle"; New-Item -ItemType Directory -Force -Path $ld | Out-Null; $Report = Join-Path $ld ("{0}_{1}_{2}.txt" -f $Prefix, $env:COMPUTERNAME, $Stamp) }
 $Script:Findings = @()
 # 05/10 : jamais de blob base64 (les reponses d'erreur contiennent la requete, donc le code CPS) ni de code CPS dans un rapport
-function W    { param([string]$t="", [string]$c="Gray") $t = [regex]::Replace([string]$t, '[A-Za-z0-9+/=]{80,}', '[base64-omis]'); $t = [regex]::Replace($t, '(?i)(codecps[^0-9]{0,6})\d{4,8}', '$1****'); $t = [regex]::Replace($t, '(?i)((?:numNatPs|numeroNatPs|finess|nir|numSecu\w*|numeroSecu\w*|dateNaissance|nomPatient|prenomPatient|rpps|adeli)\W{1,6})[A-Za-z0-9]{3,}', '$1[masque]'); $t = [regex]::Replace($t, '(?<!\d)20\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])([01]\d|2[0-3])[0-5]\d[0-5]\d(?!\d)|\d{13,15}', [System.Text.RegularExpressions.MatchEvaluator]{ param($m) if ($m.Value -match '^20\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])([01]\d|2[0-3])[0-5]\d[0-5]\d$') { $m.Value } else { '[nir-masque]' } }); Write-Host $t -ForegroundColor $c; Add-Content -Path $Report -Value $t -Encoding UTF8 }
+function W    { param([string]$t="", [string]$c="Gray") $t = [regex]::Replace([string]$t, '[A-Za-z0-9+/=]{80,}', '[base64-omis]'); $t = [regex]::Replace($t, '(?i)(codecps[^0-9]{0,6})\d{4,8}', '$1****'); $t = [regex]::Replace($t, '(?i)(?<![A-Za-z])((?:numNatPs|numeroNatPs|finess|nir|numSecu\w*|numeroSecu\w*|dateNaissance|nomPatient|prenomPatient|rpps|adeli)\W{1,6})[A-Za-z0-9]{3,}', '$1[masque]'); $t = [regex]::Replace($t, '(?<!\d)20\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])([01]\d|2[0-3])[0-5]\d[0-5]\d(?!\d)|\d{13,15}', [System.Text.RegularExpressions.MatchEvaluator]{ param($m) if ($m.Value -match '^20\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])([01]\d|2[0-3])[0-5]\d[0-5]\d$') { $m.Value } else { '[nir-masque]' } }); Write-Host $t -ForegroundColor $c; Add-Content -Path $Report -Value $t -Encoding UTF8 }
 function H1   { param($t) W ""; W ("=" * 70) "Cyan"; W ("  " + $t) "Cyan"; W ("=" * 70) "Cyan" }
 function H2   { param($t) W ""; W ("--- " + $t) "Yellow" }
 function OK   { param($t) W ("  [OK]   " + $t) "Green" }
@@ -623,7 +623,15 @@ if ($Script:HasJxLib -and (Test-Path $Paths.JuxtaExe)) {
     # Retour terrain 29/09 : 3 fenetres au demarrage ("Aucun package d'installation...", "ressource reseau non disponible",
     # "Erreur irrecuperable") = Windows Installer veut reparer JuxtaLink (element manquant) mais sa source MSI a disparu
     # (installe depuis le zip ouvert sans extraction -> dossier Temp purge).
-    if ($Script:HasJxLib) { foreach ($x in @(Get-FsvMsiRisk)) { WARN ("Source d'installation du FSV fragile (" + (@($x.Sources) -join " ; ") + ") : une reparation Windows afficherait 'Aucun package d'installation'"); Finding "FSV_MSI_SOURCE" "WARN" "Source MSI du FSV dans un dossier temporaire/utilisateur" } }
+    if ($Script:HasJxLib) {
+        # 06/10 : sur 3 postes la source reste "fragile" apres 7r2 -> on journalise le package installe et ceux du kit pour voir si le code de package correspond (condition de la copie)
+        $kitCodes = @(Get-ChildItem (Join-Path $PSScriptRoot "installeurs\fsv*.msi"),(Join-Path $PSScriptRoot "fsv*.msi") -ErrorAction SilentlyContinue | ForEach-Object { $_.Name + "=" + (Convert-JxMsiPkgGuidSafe $_.FullName) })
+        foreach ($x in @(Get-FsvMsiRisk)) {
+            WARN ("Source d'installation du FSV fragile (" + (@($x.Sources) -join " ; ") + ") : une reparation Windows afficherait 'Aucun package d'installation'"); Finding "FSV_MSI_SOURCE" "WARN" "Source MSI du FSV dans un dossier temporaire/utilisateur"
+            $mine = ""; try { $mine = [string](Get-ItemProperty $x.ProdKey -ErrorAction SilentlyContinue).PackageCode } catch {}
+            INFO ("      produit : " + $x.Nom + " " + $x.Version + " ; package : " + $x.PackageName + " ; code installe " + (Convert-JxPackedGuid $mine) + " ; MSI du kit : " + $(if ($kitCodes.Count) { $kitCodes -join ", " } else { "aucun" }))
+        }
+    }
     $jm = Get-JxMsi
     if ($jm) {
         if ($jm.SourceOk) { OK ("Source d'installation JuxtaLink presente (" + $jm.PackageName + ")") }
@@ -740,7 +748,7 @@ if (Test-Path $Paths.JuxtaLog) {
     if ($iErr -ge 0) {
         H2 "Contexte du log autour de la derniere erreur SSV"
         $k0 = [math]::Max(0, $iErr - 14); $k1 = [math]::Min($Script:LogLines.Count - 1, $iErr + 2)
-        for ($k = $k0; $k -le $k1; $k++) { $x = [string]$Script:LogLines[$k]; $x = [regex]::Replace($x, '(?<!\d)20\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])([01]\d|2[0-3])[0-5]\d[0-5]\d(?!\d)|\d{13,15}', [System.Text.RegularExpressions.MatchEvaluator]{ param($m) if ($m.Value -match '^20\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])([01]\d|2[0-3])[0-5]\d[0-5]\d$') { $m.Value } else { '[nir-masque]' } }); $x = [regex]::Replace($x, '[A-Za-z0-9+/=]{80,}', '[base64-omis]'); $x = [regex]::Replace($x, '(?i)((?:numNatPs|numeroNatPs|finess|nir|numSecu\w*|numeroSecu\w*|dateNaissance|nomPatient|prenomPatient|rpps|adeli)\W{1,6})[A-Za-z0-9]{3,}', '$1[masque]'); if ($x.Length -gt 260) { $x = $x.Substring(0, 260) + "..." }; INFO ("  | " + $x) }
+        for ($k = $k0; $k -le $k1; $k++) { $x = [string]$Script:LogLines[$k]; $x = [regex]::Replace($x, '(?<!\d)20\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])([01]\d|2[0-3])[0-5]\d[0-5]\d(?!\d)|\d{13,15}', [System.Text.RegularExpressions.MatchEvaluator]{ param($m) if ($m.Value -match '^20\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])([01]\d|2[0-3])[0-5]\d[0-5]\d$') { $m.Value } else { '[nir-masque]' } }); $x = [regex]::Replace($x, '[A-Za-z0-9+/=]{80,}', '[base64-omis]'); $x = [regex]::Replace($x, '(?i)(?<![A-Za-z])((?:numNatPs|numeroNatPs|finess|nir|numSecu\w*|numeroSecu\w*|dateNaissance|nomPatient|prenomPatient|rpps|adeli)\W{1,6})[A-Za-z0-9]{3,}', '$1[masque]'); if ($x.Length -gt 260) { $x = $x.Substring(0, 260) + "..." }; INFO ("  | " + $x) }
     }
     # 29/09 (Dr Plongeron) : erreur MGC sur la DERNIERE reponse = la FSV ne trouve pas sa config de traces -> lecture impossible
     $lastB = $b64s | Select-Object -Last 1

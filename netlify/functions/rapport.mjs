@@ -18,7 +18,7 @@ const CLES = "numNatPs|numeroNatPs|finess|nir|numSecu\\w*|numeroSecu\\w*|dateNai
 export const mask = (t) => t
   .replace(/[A-Za-z0-9+\/=]{80,}/g, "[base64-omis]")
   .replace(/(codecps[^0-9]{0,6})\d{4,8}/gi, "$1****")
-  .replace(new RegExp(`((?:${CLES})\\W{1,6})[A-Za-z0-9]{3,}`, "gi"), "$1[masque]")
+  .replace(new RegExp(`(?<![A-Za-z])((?:${CLES})\\W{1,6})[A-Za-z0-9]{3,}`, "gi"), "$1[masque]")
   .replace(/\b\d{13,15}\b/g, (m) => (/^20\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])([01]\d|2[0-3])[0-5]\d[0-5]\d$/.test(m) ? m : "[nir-masque]"));   // un horodatage AAAAMMJJhhmmss valide (en-tete des transcriptions) n'est pas un NIR
 const rep = (status, obj) => new Response(JSON.stringify(obj), { status, headers: { "content-type": "application/json" } });
 

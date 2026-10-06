@@ -330,7 +330,7 @@ function Repair-FsvMsiSource { param([string[]]$KitMsis)
                 $out += ("Source d'installation du FSV " + $m.Version + " retablie : " + $Script:FsvMsiDir + "\" + $pkg); $done = $true; break
             }
         }
-        if (-not $done) { $out += ("ATTENTION : " + $m.Nom + " " + $m.Version + " : aucun MSI du kit ne correspond a ce package (source laissee telle quelle)") }
+        if (-not $done) { $mc = ""; try { $mc = Convert-JxPackedGuid ([string](Get-ItemProperty $m.ProdKey -ErrorAction SilentlyContinue).PackageCode) } catch {}; $out += ("ATTENTION : " + $m.Nom + " " + $m.Version + " : aucun MSI du kit ne correspond a ce package (source laissee telle quelle ; code installe " + $mc + " ; MSI du kit : " + (($KitMsis | ForEach-Object { (Split-Path $_ -Leaf) + "=" + (Convert-JxMsiPkgGuidSafe $_) }) -join ", ") + ")") }
     }
     return $out
 }

@@ -1,7 +1,7 @@
 #!/bin/bash
 # =====================================================================
 #  Odaiji_Juxta - Installation propre de JuxtaLink + plugin SSV sur macOS
-#  MadeForMed / Odaiji - v1.1.1 (06/10/2026)
+#  MadeForMed / Odaiji - v1.1.2 (06/10/2026)
 # =====================================================================
 #  Double-clic depuis le Finder (ou : bash 1-Installer.command)
 #

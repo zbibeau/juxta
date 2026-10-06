@@ -40,7 +40,7 @@
 #    0.1  Premiere version : inventaire.
 # =====================================================================
 
-VERSION="1.1.1"
+VERSION="1.1.2"
 export LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8   # accents des logs JuxtaLink conserves (sudo/terminal en locale C)
 FIX=0; AUTO=0; SANSGALSS=0; SANSLIST=","; LEGER=0
 for a in "$@"; do [ "$a" = "--leger" ] && LEGER=1; [ "$a" = "--fix" ] && FIX=1; [ "$a" = "--auto" ] && { FIX=1; AUTO=1; }; [ "$a" = "--sans-galss" ] && { FIX=1; SANSGALSS=1; }; case "$a" in --sans-*) SANSLIST="$SANSLIST${a#--sans-},";; esac; done
@@ -277,7 +277,7 @@ JLOG_OK=0
 if [ -n "$LOGF" ]; then
     h2 "Log JuxtaLink : $LOGF (40 dernieres lignes)"
     # 05/10 : les reponses d'erreur (base64) contiennent la requete d'origine, donc le code CPS : jamais dans un rapport
-    tail -40 "$LOGF" | sed -E 's/[A-Za-z0-9+\/=]{80,}/[base64-omis]/g; s/([Cc]ode[Cc][Pp][Ss][^0-9]{0,6})[0-9]{4,8}/\1****/g; s/([nN][uU][mM][nN][aA][tT][pP][sS]|[nN][uU][mM][eE][rR][oO][nN][aA][tT][pP][sS]|[fF][iI][nN][eE][sS][sS]|[nN][iI][rR]|[nN][uU][mM][sS][eE][cC][uU][A-Za-z]*|[nN][uU][mM][eE][rR][oO][sS][eE][cC][uU][A-Za-z]*|[dD][aA][tT][eE][nN][aA][iI][sS][sS][aA][nN][cC][eE]|[nN][oO][mM][pP][aA][tT][iI][eE][nN][tT]|[pP][rR][eE][nN][oO][mM][pP][aA][tT][iI][eE][nN][tT]|[rR][pP][pP][sS]|[aA][dD][eE][lL][iI])([^A-Za-z0-9]{1,6})[A-Za-z0-9]{3,}/\1\2[masque]/g; s/[0-9]{13,15}/[nir-masque]/g' | sed 's/^/         /' | tee -a "$REPORT"
+    tail -40 "$LOGF" | sed -E 's/[A-Za-z0-9+\/=]{80,}/[base64-omis]/g; s/([Cc]ode[Cc][Pp][Ss][^0-9]{0,6})[0-9]{4,8}/\1****/g; s/(^|[^A-Za-z])([nN][uU][mM][nN][aA][tT][pP][sS]|[nN][uU][mM][eE][rR][oO][nN][aA][tT][pP][sS]|[fF][iI][nN][eE][sS][sS]|[nN][iI][rR]|[nN][uU][mM][sS][eE][cC][uU][A-Za-z]*|[nN][uU][mM][eE][rR][oO][sS][eE][cC][uU][A-Za-z]*|[dD][aA][tT][eE][nN][aA][iI][sS][sS][aA][nN][cC][eE]|[nN][oO][mM][pP][aA][tT][iI][eE][nN][tT]|[pP][rR][eE][nN][oO][mM][pP][aA][tT][iI][eE][nN][tT]|[rR][pP][pP][sS]|[aA][dD][eE][lL][iI])([^A-Za-z0-9]{1,6})[A-Za-z0-9]{3,}/\1\2\3[masque]/g; s/[0-9]{13,15}/[nir-masque]/g' | sed 's/^/         /' | tee -a "$REPORT"
     # 05/10 (MacBook Pro SACHOT) : CPS vue par macOS mais 'Carte CPS absente' pour le SSV, et erreur serveur 'facture inexistante'
     SLOTL=$(tail -400 "$LOGF" | grep -E 'Slot de carte trouv' | tail -1 | grep -oE '[0-9]+$')
     if tail -400 "$LOGF" | grep -E 'CPS pr.sente : (True|False)' | tail -1 | grep -q 'False' && [ "${CPS_R:-0}" -gt 0 ]; then
