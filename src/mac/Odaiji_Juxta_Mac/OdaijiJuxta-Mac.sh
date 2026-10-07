@@ -40,7 +40,7 @@
 #    0.1  Premiere version : inventaire.
 # =====================================================================
 
-VERSION="1.1.5"
+VERSION="1.1.6"
 export LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8   # accents des logs JuxtaLink conserves (sudo/terminal en locale C)
 FIX=0; AUTO=0; SANSGALSS=0; SANSLIST=","; LEGER=0
 for a in "$@"; do [ "$a" = "--leger" ] && LEGER=1; [ "$a" = "--fix" ] && FIX=1; [ "$a" = "--auto" ] && { FIX=1; AUTO=1; }; [ "$a" = "--sans-galss" ] && { FIX=1; SANSGALSS=1; }; case "$a" in --sans-*) SANSLIST="$SANSLIST${a#--sans-},";; esac; done
@@ -49,7 +49,8 @@ OLD_KEYS=(medimust prokov); OLD_LBL=("MediMust" "MediStory (Prokov)"); OLD_PAT=(
 KITDIR="$(cd "$(dirname "$0")" && pwd)"
 STAMP=$(date +%Y%m%d-%H%M)
 HOST=$(scutil --get ComputerName 2>/dev/null | tr ' ' '_'); [ -z "$HOST" ] && HOST=$(hostname -s)
-REPORT="$HOME/Desktop/${JDPREFIX:-OdaijiJuxta-Mac}_${HOST}_${STAMP}.txt"
+RAPDIR="${ODAIJI_RAPPORTS:-$HOME/Library/Logs/Odaiji}"; mkdir -p "$RAPDIR" 2>/dev/null
+REPORT="$RAPDIR/${JDPREFIX:-OdaijiJuxta-Mac}_${HOST}_${STAMP}.txt"
 # --leger (sentinelle) : diagnostic passif. Jamais de reparation, aucune sonde du lecteur / des cartes, rapport hors du Bureau.
 if [ "$LEGER" = 1 ]; then FIX=0; AUTO=0; SANSGALSS=0; LDIR="${ODAIJI_REPORT_DIR:-/Library/Application Support/MadeForMed/sentinelle}"; mkdir -p "$LDIR" 2>/dev/null; REPORT="$LDIR/${JDPREFIX:-Sentinelle}_${HOST}_${STAMP}.txt"; fi
 UID_=$(id -u)
@@ -429,7 +430,6 @@ KOC=$(grep -E '^[[:space:]]+[A-Z0-9_]+[[:space:]]+KO[[:space:]]' "$REPORT" 2>/de
 [ "$LEGER" = 1 ] && RAISON=""   # sentinelle : c'est elle qui decide quoi envoyer
 if [ -n "$RAISON" ]; then
     # 1.1.0 : envoi via odaiji-commun.sh (cle du cabinet, file d'attente si pas de reseau, JSON propre)
-    if . "$KITDIR/odaiji-commun.sh" 2>/dev/null; then oj_envoyer_rapport "$REPORT" "$RAISON"; w "$(oj_message Rapport)"
+    if . "$KITDIR/odaiji-commun.sh" 2>/dev/null; then oj_envoyer_rapport "$REPORT" "$RAISON"; w "$(oj_message Rapport)"; oj_secours "$REPORT"
     else w "Envoi automatique impossible (odaiji-commun.sh absent) : recuperer ce fichier par le transfert de fichiers TeamViewer et l'envoyer a l'equipe."; fi
 fi
-[ "$LEGER" = 1 ] || open -R "$REPORT" 2>/dev/null

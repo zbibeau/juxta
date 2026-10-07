@@ -1,7 +1,7 @@
 #!/bin/bash
 # =====================================================================
 #  Odaiji_Juxta - Installation propre de JuxtaLink + plugin SSV sur macOS
-#  MadeForMed / Odaiji - v1.1.5 (07/10/2026)
+#  MadeForMed / Odaiji - v1.1.6 (07/10/2026)
 # =====================================================================
 #  Double-clic depuis le Finder (ou : bash 1-Installer.command)
 #
@@ -27,7 +27,8 @@
 # =====================================================================
 set -u
 KIT="$(cd "$(dirname "$0")" && pwd)"; cd "$KIT"
-JOURNAL="$HOME/Desktop/Installation_$(scutil --get ComputerName 2>/dev/null | tr ' ' '_')_$(date +%Y%m%d-%H%M).txt"
+RAPDIR="${ODAIJI_RAPPORTS:-$HOME/Library/Logs/Odaiji}"; mkdir -p "$RAPDIR" 2>/dev/null
+JOURNAL="$RAPDIR/Installation_$(scutil --get ComputerName 2>/dev/null | tr ' ' '_')_$(date +%Y%m%d-%H%M).txt"
 exec > >(tee "$JOURNAL") 2>&1
 WITH_AUTOFIX=0; NO_INSTALL=0; KEEP_GK_OFF=0; SANS_GALSS=1
 for a in "$@"; do [ "$a" = "--with-autofix" ] && WITH_AUTOFIX=1; [ "$a" = "--no-install" ] && NO_INSTALL=1; [ "$a" = "--keep-gatekeeper-off" ] && KEEP_GK_OFF=1; [ "$a" = "--sans-galss" ] && SANS_GALSS=1; [ "$a" = "--avec-galss" ] && SANS_GALSS=0; done
@@ -128,7 +129,7 @@ fi
 # ---------------------------------------------------------------- 1. AVANT
 say_ "1/6  Diagnostic AVANT installation (lecture seule)"
 spin_ "Analyse du Mac en cours (1 a 2 min)" env JDPREFIX=Avant bash "$KIT/OdaijiJuxta-Mac.sh"
-AVANT=$(ls -t "$HOME/Desktop"/Avant_*.txt 2>/dev/null | head -1); ok_ "Rapport : $AVANT"
+AVANT=$(ls -t "$RAPDIR"/Avant_*.txt 2>/dev/null | head -1); ok_ "Rapport : $AVANT"
 grep -E '^\s*\[KO\]|Scenario :' "$AVANT" | head -12
 
 # ---------------------------------------------------------------- 2. PKG
@@ -186,7 +187,7 @@ say_ "4/6  Corrections automatiques sures"
 echo "    (cartes CPS + Vitale inserees pour que galss.ini soit genere avec les bons noms de lecteur)"
 spin_ "Corrections en cours (1 a 2 min)" env JDPREFIX=Fix bash "$KIT/OdaijiJuxta-Mac.sh" --auto $MMARG
 grep -E '^\s*(\[OK\]|\[KO\]|\[WARN\]|>>)' "$SPIN_OUT" | grep -iE 'galss|quarantaine|auto|ignore|medimust|prokov|medistory|coupe' | head -16
-rm -f "$HOME/Desktop"/Fix_*.txt
+rm -f "$RAPDIR"/Fix_*.txt
 if [ $WITH_AUTOFIX = 1 ]; then
     mkdir -p "$HOME/Library/Application Support/MadeForMed" "$HOME/Library/LaunchAgents"
     cp "$KIT/galss-autofix.sh" "$HOME/Library/Application Support/MadeForMed/"; chmod +x "$HOME/Library/Application Support/MadeForMed/galss-autofix.sh"
@@ -256,7 +257,7 @@ if [ $SANS_GALSS = 1 ]; then
     say_ "5b/6  Full PC/SC (demande Juxta) : retrait du GALSS Juxta + blocage de sa reinstallation"
     spin_ "Retrait du GALSS Juxta en cours" env JDPREFIX=Galss bash "$KIT/OdaijiJuxta-Mac.sh" --auto --sans-galss
     grep -E '7g|Prerequis|BLOQUER|GALSS|>>>' "$SPIN_OUT" | head -12
-    rm -f "$HOME/Desktop"/Galss_*.txt
+    rm -f "$RAPDIR"/Galss_*.txt
     read -r -p "    Dans Odaiji : une facture avec une carte Vitale, puis une facture sans Vitale (valider l'appel ADRi), puis Entree "
 fi
 
@@ -283,10 +284,9 @@ gardien_
 # ---------------------------------------------------------------- 6. APRES
 say_ "6/6  Diagnostic APRES"
 spin_ "Analyse du Mac en cours (1 a 2 min)" env JDPREFIX=Apres bash "$KIT/OdaijiJuxta-Mac.sh"
-APRES=$(ls -t "$HOME/Desktop"/Apres_*.txt 2>/dev/null | head -1); ok_ "Rapport : $APRES"
+APRES=$(ls -t "$RAPDIR"/Apres_*.txt 2>/dev/null | head -1); ok_ "Rapport : $APRES"
 echo; grep -E 'Scenario :' "$APRES"; grep -E '^\s*\[KO\]|^\s*\[WARN\]' "$APRES" | head -10
 [ -f "$KIT/odaiji-commun.sh" ] && [ -n "${AVANT:-}" ] && [ -f "$AVANT" ] && { . "$KIT/odaiji-commun.sh" 2>/dev/null; oj_delta "$AVANT" "$APRES"; }
 echo
-echo "Termine. Si le scenario n'est pas OK : envoyer Avant_*.txt et Apres_*.txt dans le channel Claude."
-open -R "$APRES" 2>/dev/null
+echo "Termine. Rapports et journal transmis automatiquement a MadeForMed (copie locale : $RAPDIR)."
 bash "$KIT/envoyer-journal.sh" "$JOURNAL" "journal installation"

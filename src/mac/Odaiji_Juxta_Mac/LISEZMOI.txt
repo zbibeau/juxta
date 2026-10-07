@@ -1,4 +1,4 @@
-Odaiji_Juxta (Mac) - v1.1.5
+Odaiji_Juxta (Mac) - v1.1.6
 
 >>> LIRE D'ABORD : 0-AVANT-DE-COMMENCER.txt (droits d'execution + quarantaine, une fois par kit)
 
@@ -17,12 +17,12 @@ UTILISATION (poste du client, cartes CPS + Vitale inserees)
 POSTE DEJA EQUIPE (JuxtaLink deja installe)
   Double-clic sur 2-Depanner.command    -> diag Avant, questions anciens logiciels, corrections auto,
                                            lecteur (galss), Chrome/Edge (LNA), Full PC/SC, relance JuxtaLink, diag Apres
-  Bureau : Avant_, Apres_ et Depannage_<mac>_<date>.txt (journal) -> a envoyer ensemble.
+  Rapports Avant_, Apres_ et journal Depannage_ : envoyes automatiquement a MadeForMed (copie locale : ~/Library/Logs/Odaiji ; copie sur le Bureau seulement si l'envoi echoue).
   3-Diag-seul.command : diagnostic seul, ne modifie rien.
 
 RESULTAT
-  Bureau : Avant_<mac>_<date>.txt et Apres_<mac>_<date>.txt
-  Scenario OK dans Apres -> poste pret. Sinon, envoyer les deux rapports a Claude.
+  Rapports Avant_ / Apres_ : transmis automatiquement (copie : ~/Library/Logs/Odaiji).
+  Scenario OK dans Apres -> poste pret. Rien a envoyer a la main.
 
 OUTILS SEPARES
   bash OdaijiJuxta-Mac.sh          diagnostic seul
@@ -95,7 +95,7 @@ RAPPORTS TRANSMIS, CLE D'ENVOI, FILE D'ATTENTE
   au prochain passage du kit. Cle d'envoi du cabinet : fichier cle-envoi.txt (fourni par MadeForMed, une ligne) a poser dans le dossier
   du kit ou dans /Library/Application Support/MadeForMed. Sans cle, les rapports partent "non identifies". Identifiant du poste (Poste ID) :
   /Library/Application Support/MadeForMed/poste-id.txt (cree automatiquement, identique d'un rapport a l'autre).
-  Donnees envoyees : le rapport tel que ecrit sur le Bureau (codes CPS, base64, FINESS / numero PS et NIR sont masques). Aucun fichier du medecin.
+  Donnees envoyees : le rapport tel qu'ecrit dans ~/Library/Logs/Odaiji (codes CPS, base64, FINESS / numero PS et NIR sont masques). Aucun fichier du medecin.
 
 SENTINELLE (surveillance passive, optionnelle)
   Installer-Sentinelle.command charge le LaunchDaemon fr.madeformed.sentinelle (root, tous les jours 12:30, priorite basse).

@@ -183,3 +183,12 @@ oj_msg_permission() {   # une seule fois par execution
     echo "    Solution : Reglages Systeme > Confidentialite et securite > Gestion des apps (ou Acces complet au disque) > activer Terminal."
     echo "    Puis quitter Terminal (Cmd+Q), le rouvrir et relancer 1-Installer.command."
 }
+
+# 1.1.6 : les rapports ne vont plus sur le Bureau (ils partent automatiquement). Dossier de travail + repli Bureau SI l'envoi a ete refuse.
+oj_rapdir() { local d="${ODAIJI_RAPPORTS:-$HOME/Library/Logs/Odaiji}"; mkdir -p "$d" 2>/dev/null; printf '%s' "$d"; }
+oj_secours() {  # <fichier> : copie sur le Bureau uniquement si OJ_STATUT=refuse (ni envoye ni en file d'attente)
+    [ "${OJ_STATUT:-}" = refuse ] || return 0
+    [ -f "${1:-}" ] || return 0
+    cp "$1" "$HOME/Desktop/" 2>/dev/null && { echo "    Copie sur le Bureau (envoi impossible) : $HOME/Desktop/$(basename "$1")"; open -R "$HOME/Desktop/$(basename "$1")" 2>/dev/null; }
+    return 0
+}
