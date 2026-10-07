@@ -21,6 +21,7 @@
 =====================================================================
 #>
 param([switch]$NoInstall, [switch]$WithAutofix, [switch]$AvecGalss)
+if ($env:ODAIJI_GUI) { . (Join-Path (Split-Path -Parent $MyInvocation.MyCommand.Path) 'Odaiji-Ecran-Hote.ps1') }
 trap { Write-Host ("`nERREUR : " + $_.Exception.Message) -ForegroundColor Red; Write-Host ($_.InvocationInfo.PositionMessage) -ForegroundColor DarkGray; Read-Host "Envoyer cette capture dans le channel Claude. Entree pour fermer"; exit 1 }
 
 $Kit = Split-Path -Parent $MyInvocation.MyCommand.Path
@@ -36,7 +37,7 @@ $isAdmin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIden
 if (-not $isAdmin) { $a=@("-NoProfile","-ExecutionPolicy","Bypass","-File","`"$PSCommandPath`""); if ($NoInstall){$a+="-NoInstall"}; if ($WithAutofix){$a+="-WithAutofix"}; if ($AvecGalss){$a+="-AvecGalss"}; Start-Process powershell.exe -Verb RunAs -ArgumentList $a; exit }
 # Start-Process -Wait attend aussi les processus ENFANTS : si le diag relance JuxtaLink, l'installeur restait bloque
 # (etape 4, DRSAMITIER 24/09). WaitForExit() n'attend que le diag lui-meme.
-function Run-Diag { param($ArgList) $p = Start-Process powershell.exe -ArgumentList $ArgList -PassThru; $p.WaitForExit() }
+function Run-Diag { param($ArgList) $ws = if ($env:ODAIJI_GUI) { 'Hidden' } else { 'Normal' }; $p = Start-Process powershell.exe -ArgumentList $ArgList -WindowStyle $ws -PassThru; $p.WaitForExit() }
 # Lancement de JuxtaLink : via la tache \Odaiji\JuxtaLink (sans UAC, hors arbre de processus de l'installeur, etape 3b),
 # sinon via explorer.exe (session du medecin). Fonctions dans JuxtaLink-Demarrage-lib.ps1.
 try { . (Join-Path $Kit "JuxtaLink-Demarrage-lib.ps1") } catch { Write-Host ("  [WARN] Fonctions JuxtaLink-Demarrage non chargees : " + $_.Exception.Message) -ForegroundColor Yellow }

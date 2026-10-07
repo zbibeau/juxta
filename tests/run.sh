@@ -15,6 +15,8 @@ echo "== 2. Mac : bash -n"
 for f in "$MAC"/*.sh "$MAC"/*.command; do bash -n "$f" 2>/dev/null && echo "  ok   $(basename "$f")" || { echo "  ECHEC $(basename "$f")"; FAIL=1; }; done
 echo "== 3. Cas sesam.ini (fonctions reelles du kit PC)"
 "$PWSH" -NoProfile -File tests/sesam-cases.ps1 -Kit "$PC" || FAIL=1
+echo "== 3b. Fenetre du kit PC (logique + protocole de questions)"
+"$PWSH" -NoProfile -File tests/ecran-cases.ps1 -Kit "$PC" || FAIL=1
 echo "== 4. Mac : codes de constats lus (minuscules comprises)"
 eval "$(grep -m1 '^codes_()' "$MAC/2-Depanner.command")"
 C=$(codes_ tests/corpus/mac-avant-constats.txt | tr '\n' ' ')

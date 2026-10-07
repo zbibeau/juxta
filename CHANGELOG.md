@@ -3,6 +3,11 @@
 Page de téléchargement : `index.html` (détection Mac / Windows).
 Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
+## 1.2.0 - 07/10/2026
+- PC : version a ecrans (0-Ecran-Odaiji.bat, a essayer chez un client ; les .bat habituels restent le secours). Une fenetre propose Depanner / Installer / Diagnostic seul, affiche l'avancement par etapes, transforme les questions du script en boutons (plus de touche Entree) et conclut par un ecran de resultat (ok / point a traiter / erreur). Elle pilote Install-OdaijiJuxta.ps1, Depannage.ps1 et OdaijiJuxta.ps1 sans console : Odaiji-Ecran-Hote.ps1 (charge seulement si ODAIJI_GUI=1) remplace Read-Host par un echange @@ASK sur stdin / stdout, donc aucune logique de reparation n'est dupliquee ni modifiee. Run-Diag ouvre ses fenetres en mode cache dans ce cas.
+- Hors perimetre : tout ce qui concerne DMP Connect / iCanopee reste en terminal et n'apparait pas dans les titres de la fenetre.
+- Test 3b : logique (lignes, titres, questions, resume) et protocole de questions avec un faux script pilote. L'affichage WinForms n'est PAS verifiable sous Linux : a valider sur un vrai Windows.
+
 ## 1.1.6 - 07/10/2026
 - Mac : plus aucun rapport ni journal sur le Bureau (ils partent automatiquement). Ecriture dans ~/Library/Logs/Odaiji ; copie sur le Bureau uniquement si l'envoi est refuse (ni envoye ni en file d'attente), avec le chemin affiche. Les dossiers _Odaiji_a_supprimer (sauvegarde des anciens logiciels) restent sur le Bureau.
 

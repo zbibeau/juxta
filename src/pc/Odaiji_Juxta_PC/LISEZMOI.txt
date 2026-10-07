@@ -1,4 +1,4 @@
-Odaiji_Juxta (PC) - v1.1.6
+Odaiji_Juxta (PC) - v1.2.0
 
 >>> AVANT TOUT : clic droit sur le zip > "Extraire tout..." puis travailler dans le dossier extrait.
 >>> Ne jamais double-cliquer un .bat directement dans le zip.
@@ -21,6 +21,9 @@ Odaiji_Juxta (PC) - v1.1.6
     user.config absent ou port different de 1234 = corrige (etape 7k) ; section [MGC] posee dans tous les sesam.ini (7a-ter).
 
 CONTENU (tout est deja inclus)
+  0-Ecran-Odaiji.bat  -> NOUVEAU (1.2.0, a essayer) : version a ECRANS. Une fenetre propose Depanner / Installer / Diagnostic seul, montre l'avancement,
+                         pose les questions par boutons (plus de touche Entree) et affiche le resultat. Elle lance les memes scripts que les .bat ci-dessous,
+                         qui restent disponibles en secours si la fenetre ne s'ouvre pas. DMP Connect / iCanopee : toujours en terminal (Reparer-DMP.bat).
   1-Installer.bat   -> NOUVEAU POSTE : installation complete : double-clic, UAC, suivre les messages
   2-Depanner.bat    -> POSTE DEJA EQUIPE : diagnostic puis bons outils de reparation, journal sur le Bureau
   3-Diag-seul.bat                -> diagnostic seul (rapport sur le Bureau), ne modifie rien

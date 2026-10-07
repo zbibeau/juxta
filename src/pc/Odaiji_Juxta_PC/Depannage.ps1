@@ -1,7 +1,7 @@
 <#
 =====================================================================
  Odaiji_Juxta - DEPANNAGE d'un poste ou JuxtaLink est DEJA installe
- MadeForMed / Odaiji - v1.1.6 (07/10/2026)
+ MadeForMed / Odaiji - v1.2.0 (07/10/2026)
 =====================================================================
  Lance par 2-Depanner.bat (elevation UAC automatique). Un seul double-clic :
    1 diag AVANT -> 2 questions (anciens logiciels, port 1234) -> 3 corrections sures automatiques (-Fix -Auto)
@@ -13,6 +13,7 @@
 =====================================================================
 #>
 param()
+if ($env:ODAIJI_GUI) { . (Join-Path (Split-Path -Parent $MyInvocation.MyCommand.Path) 'Odaiji-Ecran-Hote.ps1') }
 trap { Write-Host ("`nERREUR : " + $_.Exception.Message) -ForegroundColor Red; Write-Host ($_.InvocationInfo.PositionMessage) -ForegroundColor DarkGray; Read-Host "Envoyer cette capture dans le channel Claude. Entree pour fermer"; exit 1 }
 
 $Kit = Split-Path -Parent $MyInvocation.MyCommand.Path
@@ -25,7 +26,7 @@ if ($Kit -match '\\AppData\\Local\\Temp\\|\\Windows\\Temp\\|\.zip\\') {
 $isAdmin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 if (-not $isAdmin) { Start-Process powershell.exe -Verb RunAs -ArgumentList @("-NoProfile","-ExecutionPolicy","Bypass","-File","`"$PSCommandPath`""); exit }
 
-function Run-Diag { param($ArgList) $p = Start-Process powershell.exe -ArgumentList $ArgList -PassThru; $p.WaitForExit() }
+function Run-Diag { param($ArgList) $ws = if ($env:ODAIJI_GUI) { 'Hidden' } else { 'Normal' }; $p = Start-Process powershell.exe -ArgumentList $ArgList -WindowStyle $ws -PassThru; $p.WaitForExit() }
 try { . (Join-Path $Kit "JuxtaLink-Demarrage-lib.ps1") } catch { Write-Host ("  [WARN] Fonctions JuxtaLink-Demarrage non chargees : " + $_.Exception.Message) -ForegroundColor Yellow }
 function Say  { param($t) Write-Host "`n==> $t" -ForegroundColor Cyan }
 function OK   { param($t) Write-Host "    [OK]  $t" -ForegroundColor Green }
@@ -47,7 +48,7 @@ $diagArgs = @("-NoProfile","-ExecutionPolicy","Bypass","-File","`"$Kit\OdaijiJux
 $Stamp = Get-Date -Format "yyyyMMdd-HHmm"
 $Journal = Join-Path $Desktop ("Depannage_" + $env:COMPUTERNAME + "_" + $Stamp + ".txt")
 try { Start-Transcript -Path $Journal -Force | Out-Null } catch {}
-Write-Host "Odaiji_Juxta - DEPANNAGE sur $env:COMPUTERNAME pour l'utilisateur $($owner.User)  (kit v1.1.6)"
+Write-Host "Odaiji_Juxta - DEPANNAGE sur $env:COMPUTERNAME pour l'utilisateur $($owner.User)  (kit v1.2.0)"
 
 if (-not (Test-Path $exe)) {
     KO "JuxtaLink n'est pas installe sur ce poste : utiliser 1-Installer.bat (poste neuf)."
