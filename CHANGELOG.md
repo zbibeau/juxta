@@ -3,6 +3,10 @@
 Page de téléchargement : `index.html` (détection Mac / Windows).
 Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
+## 1.1.4 - 07/10/2026
+- Mac : une carte Vitale 1 (ATR 3F65...) n'etait pas reconnue comme Vitale. galss-autofix la rangeait dans "autres" et attribuait la Vitale a la premiere fente numerotee vide ("Reader 01"), alors que la carte etait dans le lecteur sans numero (iMac Dr, 07/10 : galss.ini faux apres Reparer-lecteur, "CPS vue par macOS mais absente pour le SSV", "Vitale non vue"). Le diag Mac et galss-autofix reconnaissent maintenant 3F65 comme Vitale. Test 16 : faux system_profiler avec les lecteurs reels de cet iMac.
+- Mac : galss-autofix accepte OJ_GALSS_INI (tests uniquement).
+
 ## 1.1.3 - 06/10/2026
 - PC : nouvelle detection PCSC_MULTI_CPS / PCSC_MULTI_VITALE. Deux lecteurs avec une CPS dans chacun (poste DESKTOP-5G0VEGR) font refuser a Odaiji (Full PC/SC) la detection automatique : "Plusieurs cartes de meme type identifiees (2 cartes Vitale ou 2 CPS)". Le diag le signale en KO avec l'action (ne laisser qu'une CPS inseree). Entrees ajoutees au catalogue ; tests sur la sortie certutil (un lecteur liste deux fois ne compte qu'une fois).
 

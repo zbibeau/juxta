@@ -1,4 +1,4 @@
-Odaiji_Juxta (Mac) - v1.1.3
+Odaiji_Juxta (Mac) - v1.1.4
 
 >>> LIRE D'ABORD : 0-AVANT-DE-COMMENCER.txt (droits d'execution + quarantaine, une fois par kit)
 

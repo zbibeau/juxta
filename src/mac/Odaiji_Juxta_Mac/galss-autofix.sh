@@ -11,7 +11,7 @@
 #  Ne fait RIEN si la config est deja correcte.
 # =====================================================================
 
-INI="/Library/Preferences/galss.ini"
+INI="${OJ_GALSS_INI:-/Library/Preferences/galss.ini}"   # OJ_GALSS_INI : tests uniquement
 LOG="$HOME/Library/Logs/galss-autofix.log"
 mkdir -p "$(dirname "$LOG")"
 log(){ printf '%s %s\n' "$(date '+%Y-%m-%d %H:%M:%S')" "$*" >> "$LOG"; [ -t 1 ] && echo "$*"; }
@@ -27,6 +27,7 @@ while IFS= read -r line; do
     case "$atr" in
         3bac00402a*|3b7b18*|3bac*|3bdc18*|*12250064800*) CPS_RDR="$name" ;;   # CPS3 / CPS2ter / CPS via Ingenico Telium
         3b7513*|3b75*|3b1*)        VIT_RDR="$name" ;;          # Vitale 2
+        3f65*)                     VIT_RDR="$name" ;;          # Vitale 1 (ATR 3F65...) : iMac Dr 07/10, non reconnue -> Vitale attribuee a une fente vide
         *)                          OTHERS+=("$name") ;;
     esac
 done <<< "$SC"

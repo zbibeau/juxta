@@ -40,7 +40,7 @@
 #    0.1  Premiere version : inventaire.
 # =====================================================================
 
-VERSION="1.1.3"
+VERSION="1.1.4"
 export LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8   # accents des logs JuxtaLink conserves (sudo/terminal en locale C)
 FIX=0; AUTO=0; SANSGALSS=0; SANSLIST=","; LEGER=0
 for a in "$@"; do [ "$a" = "--leger" ] && LEGER=1; [ "$a" = "--fix" ] && FIX=1; [ "$a" = "--auto" ] && { FIX=1; AUTO=1; }; [ "$a" = "--sans-galss" ] && { FIX=1; SANSGALSS=1; }; case "$a" in --sans-*) SANSLIST="$SANSLIST${a#--sans-},";; esac; done
@@ -100,7 +100,7 @@ else
     if [ -n "$READERS" ]; then
         echo "$READERS" | sed 's/^/         /' | tee -a "$REPORT"
         CPS_R=$(echo "$READERS" | grep -ciE '0x3bac00402a|0x3b7b18|0x3bdc18|12250064800')
-        VIT_R=$(echo "$READERS" | grep -c '0x3b7513')
+        VIT_R=$(echo "$READERS" | grep -cE '0x3b7513|0x3f65')
         if [ "$CPS_R" -gt 0 ]; then ok "CPS presente"; else ko "CPS non vue"; finding NO_CPS KO "CPS non detectee"; fi
         if [ "$VIT_R" -gt 0 ]; then ok "Vitale presente"
         elif [ "$CPS_R" -gt 0 ]; then warn "Vitale non vue (absente du lecteur ? inserer la carte et relancer)"; finding VITALE_ABSENT WARN "Vitale non inseree ou non lue"
