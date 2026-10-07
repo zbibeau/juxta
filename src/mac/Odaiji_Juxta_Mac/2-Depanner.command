@@ -1,7 +1,7 @@
 #!/bin/bash
 # =====================================================================
 #  Odaiji_Juxta - DEPANNAGE d'un Mac deja equipe (diag -> bons outils -> diag)
-#  MadeForMed / Odaiji - v1.1.4 (07/10/2026)
+#  MadeForMed / Odaiji - v1.1.5 (07/10/2026)
 # =====================================================================
 #  Double-clic depuis le Finder (ou : bash 2-Depanner.command)
 #  A utiliser quand JuxtaLink est DEJA installe. Sinon : 1-Installer.command.
@@ -19,6 +19,7 @@
 set -u
 KIT="$(cd "$(dirname "$0")" && pwd)"; cd "$KIT"
 APP="/Applications/JuxtaLink.app"
+[ -f "$KIT/odaiji-commun.sh" ] && . "$KIT/odaiji-commun.sh" 2>/dev/null
 STAMP=$(date +%Y%m%d-%H%M); HOSTN=$(scutil --get ComputerName 2>/dev/null | tr -c 'A-Za-z0-9\n' '_')
 JOURNAL="$HOME/Desktop/Depannage_${HOSTN}_${STAMP}.txt"
 exec > >(tee "$JOURNAL") 2>&1
@@ -139,9 +140,7 @@ for essai in 1 2 3; do
     pkill -x JuxtaLink 2>/dev/null; sleep 2
     if [ -f "$KIT/user.config" ]; then
         while IFS= read -r UC_DST; do [ -z "$UC_DST" ] && continue
-            sudo chflags nouchg "$UC_DST" 2>/dev/null; sudo mkdir -p "$(dirname "$UC_DST")"
-            if ! cmp -s "$KIT/user.config" "$UC_DST"; then [ -f "$UC_DST" ] && sudo cp "$UC_DST" "$UC_DST.bak-$(date +%Y%m%d-%H%M)"; sudo cp "$KIT/user.config" "$UC_DST"; fi
-            sudo chmod a+rw "$UC_DST"
+            oj_poser_uc_dst "$KIT/user.config" "$UC_DST" >/dev/null 2>&1
         done <<< "$UC_LIST"
         [ "$essai" -ge 2 ] && sudo chflags uchg "$UCMAIN" 2>/dev/null
         sync
@@ -150,7 +149,7 @@ for essai in 1 2 3; do
     if [ ! -f "$KIT/user.config" ] || grep -q 'madeformed-drc-token' "$UCMAIN" 2>/dev/null; then break; fi
     ko_ "essai $essai : JuxtaLink a remis sa propre config (tokenServerUrl : $(grep -o 'tokenServerUrl" value="[^"]*"' "$UCMAIN" 2>/dev/null | cut -d'"' -f4))"
 done
-grep -q 'madeformed-drc-token' "$UCMAIN" 2>/dev/null && ok_ "user.config MadeForMed charge" || ko_ "user.config MadeForMed absent"
+grep -q 'madeformed-drc-token' "$UCMAIN" 2>/dev/null && ok_ "user.config MadeForMed charge" || { ko_ "user.config MadeForMed absent"; oj_msg_permission; }
 pgrep -x JuxtaLink >/dev/null && ok_ "JuxtaLink en cours d'execution" || ko_ "JuxtaLink ne s'est pas lance : l'ouvrir depuis Applications"
 for i in 1 2 3 4 5 6 7 8 9 10; do lsof -nP -iTCP:1234 -sTCP:LISTEN >/dev/null 2>&1 && break; sleep 2; done
 lsof -nP -iTCP:1234 -sTCP:LISTEN >/dev/null 2>&1 && ok_ "JuxtaLink ecoute sur le port 1234" || ko_ "Rien n'ecoute sur le port 1234 (JuxtaLink demarre encore ? sinon envoyer les rapports)"

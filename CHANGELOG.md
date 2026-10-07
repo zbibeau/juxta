@@ -3,6 +3,12 @@
 Page de téléchargement : `index.html` (détection Mac / Windows).
 Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
+## 1.1.5 - 07/10/2026
+- Mac : depot du plugin SSV et du user.config dans JuxtaLink.app. Sur macOS 14+ (constate sur macOS 27), "Gestion des apps" interdit a Terminal, meme sous sudo, de modifier le contenu d'une autre app : mkdir / cp = "Operation not permitted". Le kit affichait pourtant [OK] sans verifier, puis JuxtaLink redemarrait avec sa config d'origine (pas de serveurs MadeForMed, pas de plugin, aucun composant telecharge).
+- Le kit depose maintenant ces fichiers via un pkg local (pkgbuild + installer, que le systeme autorise), puis VERIFIE (plugin SSV.dll / ComposantsSV.dll presents, user.config MadeForMed). Un echec est un KO, plus un faux OK.
+- En cas d'echec, message unique : Reglages Systeme > Confidentialite et securite > Gestion des apps (ou Acces complet au disque) > activer Terminal, quitter Terminal (Cmd+Q), relancer 1-Installer.command.
+- Test 17 (faux sudo / pkgbuild / installer). Non verifie sur un vrai Mac.
+
 ## 1.1.4 - 07/10/2026
 - Mac : une carte Vitale 1 (ATR 3F65...) n'etait pas reconnue comme Vitale. galss-autofix la rangeait dans "autres" et attribuait la Vitale a la premiere fente numerotee vide ("Reader 01"), alors que la carte etait dans le lecteur sans numero (iMac Dr, 07/10 : galss.ini faux apres Reparer-lecteur, "CPS vue par macOS mais absente pour le SSV", "Vitale non vue"). Le diag Mac et galss-autofix reconnaissent maintenant 3F65 comme Vitale. Test 16 : faux system_profiler avec les lecteurs reels de cet iMac.
 - Mac : galss-autofix accepte OJ_GALSS_INI (tests uniquement).

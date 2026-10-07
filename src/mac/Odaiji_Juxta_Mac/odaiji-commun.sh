@@ -127,3 +127,59 @@ oj_delta() {
     unset IFS
     echo "    AVANT -> APRES (KO + WARN) :"; echo "      Corriges : ${corr:-aucun}"; echo "      Restent  : ${rest:-aucun}"; echo "      Nouveaux : ${nouv:-aucun}"
 }
+
+# ---------------------------------------------------------------------------------------------------------------------------------
+# Depot de fichiers DANS JuxtaLink.app (user.config MadeForMed, plugin SSV).
+# 07/10 (MacBook Nathan, macOS 27 ; iMac Dr, macOS 14) : "Operation not permitted" meme avec sudo. macOS (13+) interdit a Terminal de modifier le
+# contenu d'une autre application (reglage "Gestion des apps"). Le programme d'installation du systeme, lui, en a le droit : s'il ne peut pas ecrire
+# directement, on lui fait poser les fichiers par un petit pkg local (pkgbuild + installer), comme le pkg JuxtaLink l'a fait. Chaque fonction
+# verifie le resultat et renvoie 0 seulement si les fichiers sont reellement en place.
+# ---------------------------------------------------------------------------------------------------------------------------------
+oj_app() { echo "${APP:-/Applications/JuxtaLink.app}"; }
+oj_app_ecriture_ok() { local t; t="$(oj_app)/Contents/Resources/.oj-test-$$"; if sudo touch "$t" 2>/dev/null; then sudo rm -f "$t" 2>/dev/null; return 0; fi; return 1; }
+oj_pkg_poser() {   # $1 = dossier de base existant ; $2 = source (fichier ou dossier) ; $3 = chemin relatif sous la base
+    local base="$1" src="$2" rel="$3" st tmp rc top
+    command -v pkgbuild >/dev/null 2>&1 || return 1
+    st=$(mktemp -d /tmp/ojstage.XXXXXX) || return 1
+    tmp=$(mktemp -d /tmp/ojpkg.XXXXXX) || { rm -rf "$st"; return 1; }
+    mkdir -p "$st/$(dirname "$rel")" && cp -R "$src" "$st/$rel" || { rm -rf "$st" "$tmp"; return 1; }
+    top=${rel%%/*}; chmod -R a+rwX "$st/$top" 2>/dev/null; chmod 755 "$st"
+    if pkgbuild --root "$st" --identifier fr.madeformed.juxtalink-config --version "$(date +%Y%m%d.%H%M%S)" --install-location "$base" "$tmp/mfm.pkg" >/dev/null 2>&1; then
+        sudo installer -pkg "$tmp/mfm.pkg" -target / >/dev/null 2>&1; rc=$?
+    else rc=1; fi
+    rm -rf "$st" "$tmp"; return $rc
+}
+oj_uc_ok() { grep -q 'madeformed-drc-token' "$(oj_app)/Contents/Resources/user.config" 2>/dev/null; }
+oj_poser_uc() {    # $1 = user.config MadeForMed du kit -> Contents/Resources/user.config de l'app
+    local src="$1" uc; uc="$(oj_app)/Contents/Resources/user.config"
+    oj_uc_ok && return 0
+    if oj_app_ecriture_ok; then sudo chflags nouchg "$uc" 2>/dev/null; sudo cp "$src" "$uc" 2>/dev/null && sudo chmod a+rw "$uc" 2>/dev/null; fi
+    oj_uc_ok && return 0
+    oj_pkg_poser "$(oj_app)/Contents/Resources" "$src" "user.config" >/dev/null 2>&1
+    oj_uc_ok
+}
+oj_poser_uc_dst() { # $1 = user.config du kit ; $2 = destination (l'app ou un autre emplacement hors bundle)
+    local src="$1" dst="$2"
+    if [ "$dst" = "$(oj_app)/Contents/Resources/user.config" ]; then oj_poser_uc "$src"; return $?; fi
+    sudo chflags nouchg "$dst" 2>/dev/null; sudo mkdir -p "$(dirname "$dst")" 2>/dev/null
+    sudo cp "$src" "$dst" 2>/dev/null && sudo chmod a+rw "$dst" 2>/dev/null
+    cmp -s "$src" "$dst"
+}
+oj_plugin_ok() { local d; d="$(oj_app)/Contents/Resources/Plugins/SSV/$1"; [ -f "$d/SSV.dll" ] && [ -f "$d/ComposantsSV.dll" ]; }
+oj_poser_plugin() { # $1 = dossier source .../SSV/<version>
+    local src="$1" ver app; ver=$(basename "$src"); app="$(oj_app)"
+    oj_plugin_ok "$ver" && return 0
+    if oj_app_ecriture_ok; then
+        sudo mkdir -p "$app/Contents/Resources/Plugins/SSV/$ver" 2>/dev/null && sudo cp -R "$src/." "$app/Contents/Resources/Plugins/SSV/$ver/" 2>/dev/null
+        sudo chmod -R a+rwX "$app/Contents/Resources/Plugins" 2>/dev/null
+    fi
+    oj_plugin_ok "$ver" && return 0
+    oj_pkg_poser "$app/Contents/Resources/Plugins" "$src" "SSV/$ver" >/dev/null 2>&1
+    oj_plugin_ok "$ver"
+}
+oj_msg_permission() {   # une seule fois par execution
+    [ "${OJ_PERM_MSG:-0}" = 1 ] && return 0; OJ_PERM_MSG=1
+    printf '    \033[31m[KO]\033[0m macOS refuse que le kit modifie JuxtaLink.app (meme avec sudo).\n'
+    echo "    Solution : Reglages Systeme > Confidentialite et securite > Gestion des apps (ou Acces complet au disque) > activer Terminal."
+    echo "    Puis quitter Terminal (Cmd+Q), le rouvrir et relancer 1-Installer.command."
+}

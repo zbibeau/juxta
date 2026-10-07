@@ -1,7 +1,7 @@
 #!/bin/bash
 # =====================================================================
 #  Odaiji_Juxta - Installation propre de JuxtaLink + plugin SSV sur macOS
-#  MadeForMed / Odaiji - v1.1.4 (07/10/2026)
+#  MadeForMed / Odaiji - v1.1.5 (07/10/2026)
 # =====================================================================
 #  Double-clic depuis le Finder (ou : bash 1-Installer.command)
 #
@@ -32,6 +32,7 @@ exec > >(tee "$JOURNAL") 2>&1
 WITH_AUTOFIX=0; NO_INSTALL=0; KEEP_GK_OFF=0; SANS_GALSS=1
 for a in "$@"; do [ "$a" = "--with-autofix" ] && WITH_AUTOFIX=1; [ "$a" = "--no-install" ] && NO_INSTALL=1; [ "$a" = "--keep-gatekeeper-off" ] && KEEP_GK_OFF=1; [ "$a" = "--sans-galss" ] && SANS_GALSS=1; [ "$a" = "--avec-galss" ] && SANS_GALSS=0; done
 APP="/Applications/JuxtaLink.app"
+[ -f "$KIT/odaiji-commun.sh" ] && . "$KIT/odaiji-commun.sh" 2>/dev/null
 say_(){ printf '\n\033[1;36m==> %s\033[0m\n' "$*"; }
 ok_(){ printf '    \033[32m[OK]\033[0m %s\n' "$*"; }
 ko_(){ printf '    \033[31m[KO]\033[0m %s\n' "$*"; }
@@ -151,8 +152,8 @@ if [ $NO_INSTALL = 0 ]; then
     elif [ ! -f "$SSVSRC/ComposantsSV.dll" ] || [ ! -f "$SSVSRC/SSV.dll" ]; then ko_ "Dossier SSV incomplet (ComposantsSV.dll / SSV.dll manquant) : non copie"
     else
         DST="$APP/Contents/Resources/Plugins/SSV/$(basename "$SSVSRC")"
-        sudo mkdir -p "$DST" && sudo cp -R "$SSVSRC/." "$DST/" && sudo chmod -R a+rwX "$APP/Contents/Resources/Plugins" "$APP/Contents/Resources/logs" 2>/dev/null
-        ok_ "Plugin SSV $(basename "$SSVSRC") copie dans $DST"
+        if oj_poser_plugin "$SSVSRC"; then ok_ "Plugin SSV $(basename "$SSVSRC") en place dans $DST"; else ko_ "Plugin SSV NON depose dans $DST"; oj_msg_permission; fi
+        sudo chmod -R a+rwX "$APP/Contents/Resources/logs" 2>/dev/null
     fi
 else
     say_ "2-3/6  Installation sautee (--no-install)"
@@ -166,9 +167,7 @@ $c"; done
 if [ -f "$KIT/user.config" ]; then
     while IFS= read -r UC_DST; do
         [ -z "$UC_DST" ] && continue
-        sudo chflags nouchg "$UC_DST" 2>/dev/null; sudo mkdir -p "$(dirname "$UC_DST")"
-        [ -f "$UC_DST" ] && sudo cp "$UC_DST" "$UC_DST.bak-$(date +%Y%m%d-%H%M)"
-        sudo cp "$KIT/user.config" "$UC_DST" && sudo chmod a+rw "$UC_DST" && ok_ "user.config MadeForMed ecrit : $UC_DST"
+        if oj_poser_uc_dst "$KIT/user.config" "$UC_DST"; then ok_ "user.config MadeForMed ecrit : $UC_DST"; else ko_ "user.config MadeForMed NON ecrit : $UC_DST"; oj_msg_permission; fi
         grep -E 'tokenServerUrl|updateServerUrl|port"' "$UC_DST" | sed 's/^/    /'
     done <<< "$UC_LIST"
 else ko_ "user.config absent du kit : configuration Juxta non appliquee"; fi
@@ -223,8 +222,7 @@ for essai in 1 2 3; do
     pkill -x JuxtaLink 2>/dev/null; sleep 2
     if [ -f "$KIT/user.config" ]; then
         while IFS= read -r UC_DST; do [ -z "$UC_DST" ] && continue
-            sudo chflags nouchg "$UC_DST" 2>/dev/null; sudo mkdir -p "$(dirname "$UC_DST")"
-            sudo cp "$KIT/user.config" "$UC_DST" && sudo chmod a+rw "$UC_DST"
+            oj_poser_uc_dst "$KIT/user.config" "$UC_DST" >/dev/null 2>&1
         done <<< "$UC_LIST"
         [ "$essai" -ge 2 ] && sudo chflags uchg "$UCMAIN" 2>/dev/null
         sync
@@ -273,7 +271,7 @@ pgrep -x JuxtaLink >/dev/null && ok_ "JuxtaLink redemarre" || ko_ "JuxtaLink ne 
 if [ -f "$KIT/user.config" ] && ! grep -q 'madeformed-drc-token' "$APP/Contents/Resources/user.config" 2>/dev/null; then
     ko_ "user.config sans les serveurs MadeForMed : repose et relance de JuxtaLink"
     pkill -x JuxtaLink 2>/dev/null; sleep 2
-    sudo cp "$KIT/user.config" "$APP/Contents/Resources/user.config" && sudo chmod a+rw "$APP/Contents/Resources/user.config"
+    oj_poser_uc "$KIT/user.config" >/dev/null 2>&1 || oj_msg_permission
     open -a JuxtaLink 2>/dev/null; sleep 8
 else ok_ "user.config MadeForMed en place"; fi
 echo "    >>> CONTROLE dans Odaiji : une facture avec une carte Vitale, puis une facture sans Vitale (valider l'appel ADRi)."
