@@ -1,7 +1,7 @@
 <#
 =====================================================================
  Odaiji_Juxta - DEPANNAGE d'un poste ou JuxtaLink est DEJA installe
- MadeForMed / Odaiji - v1.2.1 (08/10/2026)
+ MadeForMed / Odaiji - v1.2.2 (08/10/2026)
 =====================================================================
  Lance par 2-Depanner.bat (elevation UAC automatique). Un seul double-clic :
    1 diag AVANT -> 2 questions (anciens logiciels, port 1234) -> 3 corrections sures automatiques (-Fix -Auto)
@@ -54,7 +54,7 @@ $diagArgs = @("-NoProfile","-ExecutionPolicy","Bypass","-File","`"$Kit\OdaijiJux
 $Stamp = Get-Date -Format "yyyyMMdd-HHmm"
 $Journal = Join-Path $Desktop ("Depannage_" + $env:COMPUTERNAME + "_" + $Stamp + ".txt")
 try { Start-Transcript -Path $Journal -Force | Out-Null } catch {}
-Write-Host "Odaiji_Juxta - DEPANNAGE sur $env:COMPUTERNAME pour l'utilisateur $($owner.User)  (kit v1.2.1)"
+Write-Host "Odaiji_Juxta - DEPANNAGE sur $env:COMPUTERNAME pour l'utilisateur $($owner.User)  (kit v1.2.2)"
 
 if (-not (Test-Path $exe)) {
     KO "JuxtaLink n'est pas installe sur ce poste : utiliser 1-Installer.bat (poste neuf)."
@@ -120,7 +120,7 @@ if ($aCorriger.Count -or $sans.Count) {
     Say "3/7  Corrections automatiques sures (une fenetre s'ouvre, la laisser finir) : $($aCorriger -join ', ')"
     Run-Diag ($diagArgs + @("-Prefix","Fix","-Auto"))
     $fix = Get-LastReport "Fix"
-    if ($fix) { Get-Content $fix.FullName | Select-String '^>>|7[a-z]\.|\[OK\]   (sesam|galss|MICA|user\.config)|\[KO\]' | ForEach-Object { Write-Host "    $($_.Line.Trim())" }; Remove-Item $fix.FullName -Force }
+    if ($fix) { Get-Content $fix.FullName | Select-String '^>>|7[a-z]\.|\[OK\]   (sesam|galss|MICA|user\.config)|\[KO\]' | ForEach-Object { Write-Host "    $($_.Line.Trim())" }; for ($i = 0; $i -lt 4 -and (Test-Path $fix.FullName); $i++) { Remove-Item $fix.FullName -Force -ErrorAction SilentlyContinue; if (Test-Path $fix.FullName) { Start-Sleep 2 } } }
     $changed = $true
 } else { OK "3/7  Rien a corriger automatiquement" }
 

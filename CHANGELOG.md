@@ -3,6 +3,9 @@
 Page de téléchargement : `index.html` (détection Mac / Windows).
 Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
+## 1.2.2 - 08/10/2026
+- PC : "Remove-Item : Impossible de supprimer ... Fix_<poste>_<date>.txt : acces refuse" (poste de nathalie, 08/10) : le kit supprime du Bureau le rapport Fix_ apres l'avoir lu, mais le fichier est encore verrouille a cet instant (envoi du rapport, antivirus ou synchronisation du Bureau). Sans gravite (le kit continue) mais la ligne rouge inquiete. La suppression reessaie 4 fois (2 s d'ecart) et n'affiche plus d'erreur si le fichier reste verrouille.
+
 ## 1.2.1 - 08/10/2026
 - Questions "le medecin facture-t-il ENCORE avec X ?" (anciens logiciels, logiciel qui tient le port 1234, ménage Cryptolib) : o ou n en UNE touche, sans Entree (PC : Read-ON ; Mac : read -n 1). Hors console (entree redirigee, fenetre du kit) le comportement reste Read-Host. La decision elle-meme reste humaine : le kit ne peut pas savoir si le medecin utilise encore le logiciel.
 

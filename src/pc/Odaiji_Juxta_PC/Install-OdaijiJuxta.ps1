@@ -157,7 +157,7 @@ Say "4/6  Corrections automatiques sures (sesam.ini, galss.ini, MICA x64 jFSE) -
 Write-Host "    (cartes CPS + Vitale inserees pour que galss.ini soit verifie avec les bons lecteurs)"
 Run-Diag ($diagArgs + @("-Prefix","Fix","-Auto"))
 $fix = Get-ChildItem "$Desktop\Fix_*.txt" -ErrorAction SilentlyContinue | Sort-Object LastWriteTime -Descending | Select-Object -First 1
-if ($fix) { Get-Content $fix.FullName | Select-String '^>>|7[a-e]\.|\[OK\]   (sesam|galss|MICA)' | ForEach-Object { Write-Host "    $($_.Line.Trim())" }; Remove-Item $fix.FullName -Force }
+if ($fix) { Get-Content $fix.FullName | Select-String '^>>|7[a-e]\.|\[OK\]   (sesam|galss|MICA)' | ForEach-Object { Write-Host "    $($_.Line.Trim())" }; for ($i = 0; $i -lt 4 -and (Test-Path $fix.FullName); $i++) { Remove-Item $fix.FullName -Force -ErrorAction SilentlyContinue; if (Test-Path $fix.FullName) { Start-Sleep 2 } } }
 if ($WithAutofix) {
     $dst = "C:\ProgramData\MadeForMed"; New-Item -ItemType Directory -Force $dst | Out-Null
     Copy-Item "$Kit\galss-autofix.ps1" $dst -Force; Copy-Item "$Kit\Reparer-lecteur.bat" $Desktop -Force
@@ -205,7 +205,7 @@ Read-Host "    Entree quand l'installation est terminee et la situation de factu
 Say "5a/6  Corrections apres installation des composants par le plugin (sesam.ini, tables, MICA)"
 Run-Diag ($diagArgs + @("-Prefix","Fix2","-Auto"))
 $fix2 = Get-ChildItem "$Desktop\Fix2_*.txt" -ErrorAction SilentlyContinue | Sort-Object LastWriteTime -Descending | Select-Object -First 1
-if ($fix2) { Get-Content $fix2.FullName | Select-String '^>>|7[a-e]\.|\[OK\]   (sesam|galss|MICA|mica)' | ForEach-Object { Write-Host "    $($_.Line.Trim())" }; Remove-Item $fix2.FullName -Force }
+if ($fix2) { Get-Content $fix2.FullName | Select-String '^>>|7[a-e]\.|\[OK\]   (sesam|galss|MICA|mica)' | ForEach-Object { Write-Host "    $($_.Line.Trim())" }; for ($i = 0; $i -lt 4 -and (Test-Path $fix2.FullName); $i++) { Remove-Item $fix2.FullName -Force -ErrorAction SilentlyContinue; if (Test-Path $fix2.FullName) { Start-Sleep 2 } } }
 
 # ---------------------------------------------------------------- 5b. SANS GALSS (par defaut, demande Juxta)
 if (-not $AvecGalss) {

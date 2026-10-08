@@ -1,4 +1,4 @@
-Odaiji_Juxta (PC) - v1.2.1
+Odaiji_Juxta (PC) - v1.2.2
 
 >>> AVANT TOUT : clic droit sur le zip > "Extraire tout..." puis travailler dans le dossier extrait.
 >>> Ne jamais double-cliquer un .bat directement dans le zip.
