@@ -1,7 +1,7 @@
 #!/bin/bash
 # =====================================================================
 #  Odaiji_Juxta - DEPANNAGE d'un Mac deja equipe (diag -> bons outils -> diag)
-#  MadeForMed / Odaiji - v1.2.0 (07/10/2026)
+#  MadeForMed / Odaiji - v1.2.1 (08/10/2026)
 # =====================================================================
 #  Double-clic depuis le Finder (ou : bash 2-Depanner.command)
 #  A utiliser quand JuxtaLink est DEJA installe. Sinon : 1-Installer.command.
@@ -82,12 +82,12 @@ MMARG=""
 for kp in "medimust|MediMust|medimust" "prokov|MediStory (Prokov)|prokov|medistory|m.distory"; do
     k=${kp%%|*}; rest=${kp#*|}; lbl=${rest%%|*}; pat=${rest#*|}
     if sudo grep -rqilE "$pat" /Library/LaunchDaemons /Library/LaunchAgents "$HOME/Library/LaunchAgents" 2>/dev/null || pgrep -fi "$pat" >/dev/null; then
-        r=""; while [[ ! "$r" =~ ^[oOnN] ]]; do read -r -p "    Le medecin facture-t-il ENCORE avec $lbl ? [o/n] (n = coupe, rien n'est supprime) " r; done
+        r=""; while [[ ! "$r" =~ ^[oOnN] ]]; do read -r -n 1 -p "    Le medecin facture-t-il ENCORE avec $lbl ? [o/n] (n = coupe, rien n'est supprime) " r; echo; done
         [[ "$r" =~ ^[nN] ]] && MMARG="$MMARG --sans-$k"
     fi
 done
 if has_ '^JFSE_(RUN|AGENT|DIR)'; then
-    r=""; while [[ ! "$r" =~ ^[oOnN] ]]; do read -r -p "    jFSE / Cegedim est installe et tient le lecteur : le medecin facture-t-il ENCORE avec Cegedim (jFSE, Medimust) ? [o/n] (n = jFSE est arrete puis supprime) " r; done
+    r=""; while [[ ! "$r" =~ ^[oOnN] ]]; do read -r -n 1 -p "    jFSE / Cegedim est installe et tient le lecteur : le medecin facture-t-il ENCORE avec Cegedim (jFSE, Medimust) ? [o/n] (n = jFSE est arrete puis supprime) " r; echo; done
     [[ "$r" =~ ^[nN] ]] && MMARG="$MMARG --sans-jfse"
 fi
 [ -z "$MMARG" ] && echo "    Rien a couper."

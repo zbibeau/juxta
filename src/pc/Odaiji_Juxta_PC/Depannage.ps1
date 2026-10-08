@@ -1,7 +1,7 @@
 <#
 =====================================================================
  Odaiji_Juxta - DEPANNAGE d'un poste ou JuxtaLink est DEJA installe
- MadeForMed / Odaiji - v1.2.0 (07/10/2026)
+ MadeForMed / Odaiji - v1.2.1 (08/10/2026)
 =====================================================================
  Lance par 2-Depanner.bat (elevation UAC automatique). Un seul double-clic :
    1 diag AVANT -> 2 questions (anciens logiciels, port 1234) -> 3 corrections sures automatiques (-Fix -Auto)
@@ -32,7 +32,13 @@ function Say  { param($t) Write-Host "`n==> $t" -ForegroundColor Cyan }
 function OK   { param($t) Write-Host "    [OK]  $t" -ForegroundColor Green }
 function KO   { param($t) Write-Host "    [KO]  $t" -ForegroundColor Red }
 function Warn { param($t) Write-Host "    [WARN] $t" -ForegroundColor Yellow }
-function Ask  { param([string]$q) try { $Host.UI.RawUI.FlushInputBuffer() } catch {}; do { $r = (Read-Host ($q + " [o/n]")).Trim() } while ($r -notmatch '^[oOnN]'); return ($r -match '^[oO]') }
+function Read-ON { param([string]$q)
+    # 1.2.1 : o / n en UNE touche (sans Entree). Hors console (entree redirigee, fenetre du kit) : Read-Host comme avant.
+    if (-not $env:ODAIJI_GUI) { try { Write-Host ($q + ' ') -NoNewline; while ($true) { $k = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown'); $c = [string]$k.Character; if ($c -match '^[oOnN]$') { Write-Host $c; return $c } } } catch { Write-Host '' } }
+    do { $r = (Read-Host $q).Trim() } while ($r -notmatch '^[oOnN]')
+    return $r
+}
+function Ask  { param([string]$q) try { $Host.UI.RawUI.FlushInputBuffer() } catch {}; $r = Read-ON ($q + " [o/n]"); return ($r -match '^[oO]') }
 function Test-Port1234 { try { if (Get-NetTCPConnection -LocalPort 1234 -State Listen -ErrorAction SilentlyContinue) { return $true }; throw "nolisten" } catch { return [bool](netstat -ano | Select-String ':1234\s+.*LISTENING') } }
 
 # --- Profil du medecin (session ouverte), meme si l'UAC a utilise un autre compte
@@ -48,7 +54,7 @@ $diagArgs = @("-NoProfile","-ExecutionPolicy","Bypass","-File","`"$Kit\OdaijiJux
 $Stamp = Get-Date -Format "yyyyMMdd-HHmm"
 $Journal = Join-Path $Desktop ("Depannage_" + $env:COMPUTERNAME + "_" + $Stamp + ".txt")
 try { Start-Transcript -Path $Journal -Force | Out-Null } catch {}
-Write-Host "Odaiji_Juxta - DEPANNAGE sur $env:COMPUTERNAME pour l'utilisateur $($owner.User)  (kit v1.2.0)"
+Write-Host "Odaiji_Juxta - DEPANNAGE sur $env:COMPUTERNAME pour l'utilisateur $($owner.User)  (kit v1.2.1)"
 
 if (-not (Test-Path $exe)) {
     KO "JuxtaLink n'est pas installe sur ce poste : utiliser 1-Installer.bat (poste neuf)."

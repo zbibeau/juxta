@@ -40,7 +40,7 @@
 #    0.1  Premiere version : inventaire.
 # =====================================================================
 
-VERSION="1.2.0"
+VERSION="1.2.1"
 export LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8   # accents des logs JuxtaLink conserves (sudo/terminal en locale C)
 FIX=0; AUTO=0; SANSGALSS=0; SANSLIST=","; LEGER=0
 for a in "$@"; do [ "$a" = "--leger" ] && LEGER=1; [ "$a" = "--fix" ] && FIX=1; [ "$a" = "--auto" ] && { FIX=1; AUTO=1; }; [ "$a" = "--sans-galss" ] && { FIX=1; SANSGALSS=1; }; case "$a" in --sans-*) SANSLIST="$SANSLIST${a#--sans-},";; esac; done
@@ -365,7 +365,7 @@ h1 "7. REPARATION"
         CUT=0
         if echo "$SANSLIST" | grep -q ",$k,"; then CUT=1; w ">> $lbl n'est plus utilise (reponse donnee a l'installation)"
         elif [ $AUTO = 1 ]; then w ">> Usage de $lbl non confirme en mode auto : rien n'est modifie (Reparer-interactif.command pour repondre)"
-        else r=""; while [[ ! "$r" =~ ^[oOnN] ]]; do read -r -p ">> Le medecin facture-t-il ENCORE avec $lbl ? [o/n] (n = coupe, rien n'est supprime) " r; done; w ">> Facture encore avec $lbl ? -> $r"; [[ "$r" =~ ^[nN] ]] && CUT=1; fi
+        else r=""; while [[ ! "$r" =~ ^[oOnN] ]]; do read -r -n 1 -p ">> Le medecin facture-t-il ENCORE avec $lbl ? [o/n] (n = coupe, rien n'est supprime) " r; echo; done; w ">> Facture encore avec $lbl ? -> $r"; [[ "$r" =~ ^[nN] ]] && CUT=1; fi
         if [ $CUT = 1 ]; then
             Q="$HOME/Desktop/_Odaiji_a_supprimer/$k-$STAMP"; mkdir -p "$Q"
             sudo grep -rilE "$pat" /Library/LaunchDaemons /Library/LaunchAgents "$HOME/Library/LaunchAgents" 2>/dev/null | while read -r f; do

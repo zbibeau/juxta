@@ -3,6 +3,9 @@
 Page de téléchargement : `index.html` (détection Mac / Windows).
 Kits : `kits/Odaiji_Juxta_PC.zip`, `kits/Odaiji_Juxta_Mac.zip`.
 
+## 1.2.1 - 08/10/2026
+- Questions "le medecin facture-t-il ENCORE avec X ?" (anciens logiciels, logiciel qui tient le port 1234, ménage Cryptolib) : o ou n en UNE touche, sans Entree (PC : Read-ON ; Mac : read -n 1). Hors console (entree redirigee, fenetre du kit) le comportement reste Read-Host. La decision elle-meme reste humaine : le kit ne peut pas savoir si le medecin utilise encore le logiciel.
+
 ## 1.2.0 - 07/10/2026
 - PC : version a ecrans (0-Ecran-Odaiji.bat, a essayer chez un client ; les .bat habituels restent le secours). Une fenetre propose Depanner / Installer / Diagnostic seul, affiche l'avancement par etapes, transforme les questions du script en boutons (plus de touche Entree) et conclut par un ecran de resultat (ok / point a traiter / erreur). Elle pilote Install-OdaijiJuxta.ps1, Depannage.ps1 et OdaijiJuxta.ps1 sans console : Odaiji-Ecran-Hote.ps1 (charge seulement si ODAIJI_GUI=1) remplace Read-Host par un echange @@ASK sur stdin / stdout, donc aucune logique de reparation n'est dupliquee ni modifiee. Run-Diag ouvre ses fenetres en mode cache dans ce cas.
 - Hors perimetre : tout ce qui concerne DMP Connect / iCanopee reste en terminal et n'apparait pas dans les titres de la fenetre.

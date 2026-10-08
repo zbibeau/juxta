@@ -42,6 +42,12 @@ function Run-Diag { param($ArgList) $ws = if ($env:ODAIJI_GUI) { 'Hidden' } else
 # sinon via explorer.exe (session du medecin). Fonctions dans JuxtaLink-Demarrage-lib.ps1.
 try { . (Join-Path $Kit "JuxtaLink-Demarrage-lib.ps1") } catch { Write-Host ("  [WARN] Fonctions JuxtaLink-Demarrage non chargees : " + $_.Exception.Message) -ForegroundColor Yellow }
 function Start-JuxtaUser { param($Exe) Start-JxTask | Out-Null }
+function Read-ON { param([string]$q)
+    # 1.2.1 : o / n en UNE touche (sans Entree). Hors console (entree redirigee, fenetre du kit) : Read-Host comme avant.
+    if (-not $env:ODAIJI_GUI) { try { Write-Host ($q + ' ') -NoNewline; while ($true) { $k = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown'); $c = [string]$k.Character; if ($c -match '^[oOnN]$') { Write-Host $c; return $c } } } catch { Write-Host '' } }
+    do { $r = (Read-Host $q).Trim() } while ($r -notmatch '^[oOnN]')
+    return $r
+}
 function Say { param($t) Write-Host "`n==> $t" -ForegroundColor Cyan }
 function OK  { param($t) Write-Host "    [OK]  $t" -ForegroundColor Green }
 function KO  { param($t) Write-Host "    [KO]  $t" -ForegroundColor Red }
@@ -87,7 +93,7 @@ if ($edDet) {
     foreach ($e in $edDet) {
         Write-Host ("    - " + $e.Nom + " : " + $e.Bloquants) -ForegroundColor DarkGray
         try { $Host.UI.RawUI.FlushInputBuffer() } catch {}
-        do { $r = (Read-Host ("    Le medecin facture-t-il ENCORE avec " + $e.Libelle + " ? [o/n]")).Trim() } while ($r -notmatch '^[oOnN]')
+        $r = Read-ON ("    Le medecin facture-t-il ENCORE avec " + $e.Libelle + " ? [o/n]")
         if ($r -match '^[nN]') { $sans += $e.Nom; OK ($e.Nom + " : plus utilise -> sera coupe puis desinstalle (etape 4)") }
         else { $garde += $e.Nom; Write-Host ("    " + $e.Nom + " encore utilise : on n'y touche pas (" + $e.Bloquants + " : risque de blocage)") -ForegroundColor Yellow }
     }
@@ -105,7 +111,7 @@ if ($holder -and $own) {
     $hp = try { $holder.Path } catch { "" }; $hc = try { $holder.MainModule.FileVersionInfo.CompanyName } catch { "" }
     Say ("1c/6  Le port 1234 de JuxtaLink est occupe par " + $holder.ProcessName + " (" + $(if ($hc) { $hc } else { $hp }) + ")")
     try { $Host.UI.RawUI.FlushInputBuffer() } catch {}
-    do { $r = (Read-Host ("    Le medecin utilise-t-il ENCORE ce logiciel (" + $holder.ProcessName + ") ? [o/n]  (n = il sera neutralise)")).Trim() } while ($r -notmatch '^[oOnN]')
+    $r = Read-ON ("    Le medecin utilise-t-il ENCORE ce logiciel (" + $holder.ProcessName + ") ? [o/n]  (n = il sera neutralise)")
     if ($r -match '^[nN]') { $diagArgs += "-LibererPort"; OK "Il sera neutralise (sans desinstallation) pour liberer le port" }
     else { Write-Host "    Encore utilise : rien n'est modifie. Conflit de port a traiter avec le support (Odaiji ne pourra pas joindre JuxtaLink)." -ForegroundColor Yellow }
 }
@@ -263,7 +269,7 @@ if ($nbCr -gt 2) {
     Write-Host "    Les Cryptolib en doublon ne servent a rien. Le menage garde la plus recente de chaque type (x86 / x64) et NE TOUCHE JAMAIS a celles des outils" -ForegroundColor Yellow
     Write-Host "    Assurance Maladie (ProgramData\santesocial) ni de DMP Connect / iCanopee. Il propose aussi de retirer les anciennes FSV inutilisees (une confirmation par element)." -ForegroundColor Yellow
     try { $Host.UI.RawUI.FlushInputBuffer() } catch {}
-    do { $rn = (Read-Host "    Lancer le menage des Cryptolib en doublon ? [o/n]").Trim() } while ($rn -notmatch '^[oOnN]')
+    $rn = Read-ON "    Lancer le menage des Cryptolib en doublon ? [o/n]"
     if ($rn -match '^[oO]') { Run-Diag ($diagArgs + @("-Prefix","Nettoyage","-Nettoyage")); Get-ChildItem "$Desktop\Nettoyage_*.txt" -ErrorAction SilentlyContinue | Sort-Object LastWriteTime -Descending | Select-Object -First 1 | ForEach-Object { Get-Content $_.FullName | Select-String 'Cryptolib|desinstall|msiexec|\[KO\]' | ForEach-Object { Write-Host "    $($_.Line.Trim())" } } }
 }
 

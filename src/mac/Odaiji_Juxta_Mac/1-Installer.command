@@ -1,7 +1,7 @@
 #!/bin/bash
 # =====================================================================
 #  Odaiji_Juxta - Installation propre de JuxtaLink + plugin SSV sur macOS
-#  MadeForMed / Odaiji - v1.2.0 (07/10/2026)
+#  MadeForMed / Odaiji - v1.2.1 (08/10/2026)
 # =====================================================================
 #  Double-clic depuis le Finder (ou : bash 1-Installer.command)
 #
@@ -179,7 +179,7 @@ MMARG=""
 for kp in "medimust|MediMust|medimust" "prokov|MediStory (Prokov)|prokov|medistory|m.distory"; do
     k=${kp%%|*}; rest=${kp#*|}; lbl=${rest%%|*}; pat=${rest#*|}
     if sudo grep -rqilE "$pat" /Library/LaunchDaemons /Library/LaunchAgents "$HOME/Library/LaunchAgents" 2>/dev/null || pgrep -fi "$pat" >/dev/null; then
-        r=""; while [[ ! "$r" =~ ^[oOnN] ]]; do read -r -p "    Le medecin facture-t-il ENCORE avec $lbl ? [o/n] (n = coupe, rien n'est supprime) " r; done
+        r=""; while [[ ! "$r" =~ ^[oOnN] ]]; do read -r -n 1 -p "    Le medecin facture-t-il ENCORE avec $lbl ? [o/n] (n = coupe, rien n'est supprime) " r; echo; done
         [[ "$r" =~ ^[nN] ]] && MMARG="$MMARG --sans-$k"
     fi
 done
